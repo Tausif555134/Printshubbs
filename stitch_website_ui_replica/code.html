@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Printhubbs - Custom Business Cards, T-Shirts, Marketing Materials &amp; Merch</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Custom Font & Tailwind Setup -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0f172a',
+              navyDeep: '#0a0f1d',
+              navyLight: '#1e3a8a',
+              orange: '#ea580c',
+              orangeHover: '#c2410c',
+              orangeLight: '#fff7ed',
+              orangeBorder: '#fed7aa',
+              accentCyan: '#0284c7',
+              grayBg: '#f8fafc',
+              textDark: '#0f172a'
+            }
+          },
+          fontFamily: {
+            sans: ['Open Sans', 'Segoe UI', 'Helvetica Neue', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Styles -->
+<style data-purpose="scrollbar-and-helpers">
+    /* Hide horizontal scrollbar while preserving scroll functionality */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .category-scroll-item {
+      flex: 0 0 auto;
+    }
+  </style>
+<style data-purpose="badges-and-buttons">
+    .product-price-pill {
+      background-color: #fff7ed;
+      color: #0f172a;
+      font-size: 11px;
+      font-weight: 700;
+      border: 1px solid #fdba74;
+      border-radius: 4px;
+      padding: 3px 7px;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    .carousel-nav-btn {
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+      transition: all 0.2s ease-in-out;
+    }
+    .carousel-nav-btn:hover {
+      background-color: #fff7ed;
+      color: #ea580c;
+      border-color: #fdba74;
+      transform: scale(1.05);
+    }
+  </style>
+<!-- END: Custom Styles -->
+</head>
+<body class="font-sans text-gray-800 bg-white antialiased">
+<!-- BEGIN: AnnouncementBar -->
+<aside class="bg-[#0f172a] text-white text-xs md:text-sm py-2.5 px-4 text-center font-medium flex items-center justify-center gap-2 tracking-wide border-b border-orange-500/30" data-purpose="announcement-banner">
+<span>Buy More, Save More! Flat 5% OFF on Orders ₹10,000+ | Code: <strong class="font-bold text-[#f97316] bg-black/30 px-2 py-0.5 rounded underline decoration-dotted decoration-[#ea580c]">HUB5</strong></span>
+<!-- Coupon Icon -->
+<svg aria-hidden="true" class="w-4 h-4 text-[#ea580c] inline-block" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</aside>
+<!-- END: AnnouncementBar -->
+<!-- BEGIN: MainHeader -->
+<header class="border-b border-gray-200 sticky top-0 bg-white z-50 shadow-sm">
+<!-- Top Utility Bar -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+<!-- Brand Logo -->
+<a aria-label="Printhubbs Home" class="flex items-center gap-2 flex-shrink-0" href="#">
+<img alt="Printhubbs Logo" class="h-10 sm:h-11 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WpmlCD0R4fQb8rglx5aizUOZBc7-LUZ0xaCn-QUtQ85dU9RkmRTiTmSVCqdWB1TA-lAo9hbNqIJOxnQx8HeP7d1NWcD031DQ8rQ4GHcqdQ94xvHRNHZCp-kiAgl1TOkwVuDO8M5PSm3nV9nkb_roKTYVVPuf3GQAu66ZRW7bc0znYoOtIba-APYcGY3EiwZcE8OTJpR37Y2hT5zw3dL9mZYS6krumUU1qkHE58V2pcc2VSuYZsbWoojgxy"/>
+</a>
+<!-- Search Input Container -->
+<div class="flex-grow max-w-2xl relative mx-2 hidden sm:block">
+<form action="#" class="relative" method="GET">
+<input aria-label="Search" class="w-full pl-4 pr-11 py-2 text-sm rounded-full border border-gray-300 focus:border-[#0f172a] focus:ring-1 focus:ring-[#0f172a] outline-none transition bg-slate-50/50" placeholder="Search all products, business cards, t-shirts..." type="search"/>
+<button aria-label="Execute search" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#ea580c] transition-colors" type="submit">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</form>
+</div>
+<!-- Right Header Actions -->
+<nav aria-label="Customer quick actions" class="flex items-center gap-5 text-gray-700 text-xs font-semibold">
+<!-- Help -->
+<a class="hidden lg:flex flex-col items-center hover:text-[#ea580c] transition-colors" href="#">
+<svg class="w-5 h-5 mb-0.5 text-gray-600 group-hover:text-[#ea580c]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Help</span>
+</a>
+<!-- My Projects / Favorites -->
+<a class="hidden md:flex flex-col items-center hover:text-[#ea580c] transition-colors" href="#">
+<svg class="w-5 h-5 mb-0.5 text-gray-600 group-hover:text-[#ea580c]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>My Projects</span>
+</a>
+<!-- Sign In -->
+<a class="flex flex-col items-center hover:text-[#ea580c] transition-colors" href="#">
+<svg class="w-5 h-5 mb-0.5 text-gray-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Sign In</span>
+</a>
+<!-- Shopping Cart -->
+<a class="flex flex-col items-center hover:text-[#ea580c] relative transition-colors" href="#">
+<span class="absolute -top-1 right-1 bg-[#ea580c] text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center font-bold shadow-sm">0</span>
+<svg class="w-5 h-5 mb-0.5 text-gray-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Cart</span>
+</a>
+</nav>
+</div>
+<!-- Category Mega-Navigation Submenu -->
+<nav aria-label="Product categories" class="border-t border-gray-100 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 overflow-x-auto no-scrollbar">
+<ul class="flex items-center gap-6 py-2.5 text-xs font-semibold whitespace-nowrap text-gray-700">
+<li><a class="hover:text-[#ea580c] flex items-center gap-1 font-bold text-[#0f172a]" href="#">View All</a></li>
+<li><a class="hover:text-[#ea580c] transition-colors" href="#">Visiting Cards</a></li>
+<li><a class="hover:text-[#ea580c] transition-colors" href="#">Stationery, Letterheads &amp; Notebooks</a></li>
+<li><a class="hover:text-[#ea580c] transition-colors" href="#">Stamps and Ink</a></li>
+<li><a class="hover:text-[#ea580c] transition-colors" href="#">Signs, Posters &amp; Marketing Materials</a></li>
+<li><a class="hover:text-[#ea580c] transition-colors" href="#">Labels, Stickers &amp; Packaging</a></li>
+<li><a class="hover:text-[#ea580c] transition-colors" href="#">Clothing, Caps &amp; Bags</a></li>
+<li><a class="hover:text-[#ea580c] transition-colors" href="#">Mugs, Albums &amp; Gifts</a></li>
+<li><a class="hover:text-[#ea580c] transition-colors" href="#">Pens</a></li>
+<li><a class="hover:text-[#ea580c] transition-colors" href="#">Drinkware</a></li>
+<li><a class="hover:text-[#ea580c] transition-colors" href="#">Custom Polo T-shirts</a></li>
+<li><a class="hover:text-[#ea580c] transition-colors" href="#">Custom Winterwear</a></li>
+</ul>
+</div>
+</nav>
+</header>
+<!-- END: MainHeader -->
+<main>
+<!-- BEGIN: HeroSection -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 pt-5 pb-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Hero Card 1: Visiting Cards -->
+<article class="relative bg-gradient-to-br from-[#f8faff] to-[#eff4ff] rounded-xl overflow-hidden min-h-[300px] flex flex-col justify-between p-6 sm:p-8 group shadow-sm border border-slate-200">
+<div class="z-10 max-w-xs">
+<div class="inline-block text-[11px] font-bold uppercase tracking-wider text-[#ea580c] bg-orange-100/80 px-2.5 py-0.5 rounded-full mb-3">Premium Print</div>
+<h2 class="text-2xl sm:text-3xl font-bold text-[#0f172a] leading-tight mb-2">Visiting Cards</h2>
+<p class="text-sm sm:text-base text-slate-600 font-medium mb-6">100 Visiting Cards at Rs 200</p>
+<a class="inline-block bg-[#0f172a] text-white text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-md hover:bg-[#ea580c] shadow-sm transition duration-200" href="#">
+              Shop Now
+            </a>
+</div>
+<!-- Visual Accent Graphic -->
+<div class="absolute right-0 bottom-0 top-0 w-1/2 flex items-center justify-center pointer-events-none">
+<div class="relative w-full h-full flex items-end justify-end p-4">
+<!-- Illustrated business card mock -->
+<div class="w-48 bg-white p-4 shadow-xl rounded border border-slate-200 transform -rotate-3 hover:rotate-0 transition">
+<div class="flex items-center gap-2 mb-3">
+<div class="w-6 h-6 rounded-full bg-[#ea580c] flex items-center justify-center text-white text-[10px] font-bold">P</div>
+<span class="font-bold text-xs text-[#0f172a] tracking-wider">NEETA RAI</span>
+</div>
+<div class="h-1.5 bg-orange-100 rounded w-3/4 mb-1"></div>
+<div class="h-1.5 bg-slate-200 rounded w-1/2"></div>
+</div>
+</div>
+</div>
+</article>
+<!-- Hero Card 2: Custom Apparel -->
+<article class="relative bg-gradient-to-br from-[#fff7ed] via-[#fef3c7]/30 to-[#f1f5f9] rounded-xl overflow-hidden min-h-[300px] flex flex-col justify-between p-6 sm:p-8 group shadow-sm border border-orange-100/70">
+<div class="z-10">
+<div class="inline-block text-[11px] font-bold uppercase tracking-wider text-[#0f172a] bg-white/80 border border-slate-200 px-2.5 py-0.5 rounded-full mb-3">Custom Merch</div>
+<h2 class="text-2xl sm:text-3xl font-bold text-[#0f172a] leading-tight mb-2">Wear your brand with pride</h2>
+<p class="text-sm sm:text-base text-slate-700 font-medium mb-6">1 Starting at Rs. 320</p>
+<!-- Category Quick Links -->
+<div class="flex flex-wrap gap-2">
+<a class="bg-[#0f172a] text-white text-xs font-medium px-3.5 py-1.5 rounded-full hover:bg-[#ea580c] transition duration-200 shadow-sm" href="#">Custom Polo T-shirts</a>
+<a class="bg-[#0f172a] text-white text-xs font-medium px-3.5 py-1.5 rounded-full hover:bg-[#ea580c] transition duration-200 shadow-sm" href="#">Custom T-shirts</a>
+<a class="bg-[#0f172a] text-white text-xs font-medium px-3.5 py-1.5 rounded-full hover:bg-[#ea580c] transition duration-200 shadow-sm" href="#">Caps</a>
+</div>
+</div>
+<!-- Visual Polo Mockup -->
+<div class="absolute right-4 bottom-2 w-44 sm:w-52 h-52 flex items-end justify-end">
+<img alt="Custom polo shirts showcasing logo branding" class="w-full h-auto object-contain drop-shadow-md hover:scale-105 transition" src="https://lh3.googleusercontent.com/aida/AEtjO1XTpV4i5PT6-Go7scz-XXAxuXK3MFZbUwNJ2MM5Hlhzt9mQGdS0_dzqsRwtqB-ZpSNdlNT74bPnCEIlCBV4bCoScbM-wohB-5OB-8JH9GQ_2m061g6Fn9rtv9Jk1G0vqHyJktjDlqd_u39Qgr5nxm0SUDwb4PqezP1cDyup8uL0hw3Dca9q8gjBj1CdYgJAJU1ovTx2SaUF0iOnEwV6FVoaM23efUuNW0oHSqS66zm0xBf5QmW4MkUSzhw"/>
+</div>
+</article>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: ExploreCategories -->
+<section aria-labelledby="cat-heading" class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-lg sm:text-xl font-bold text-gray-900" id="cat-heading">Explore all categories</h2>
+<div class="flex gap-2">
+<button aria-label="Scroll left" class="carousel-nav-btn w-8 h-8 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-600 shadow-sm">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<button aria-label="Scroll right" class="carousel-nav-btn w-8 h-8 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-600 shadow-sm">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+</div>
+<div class="flex gap-4 overflow-x-auto no-scrollbar pb-3">
+<!-- Visiting Cards Category -->
+<a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group" href="#">
+<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-3 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition">
+<div class="w-16 h-10 bg-white shadow-md border border-slate-200 rounded flex flex-col justify-center px-1.5">
+<div class="h-1 bg-[#ea580c] w-1/2 mb-1"></div>
+<div class="h-0.5 bg-slate-300 w-3/4"></div>
+</div>
+</div>
+<span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Visiting Cards</span>
+</a>
+<!-- Custom Polo T-shirts -->
+<a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group" href="#">
+<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition overflow-hidden">
+<img alt="Polo T-shirts" class="h-full w-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XTpV4i5PT6-Go7scz-XXAxuXK3MFZbUwNJ2MM5Hlhzt9mQGdS0_dzqsRwtqB-ZpSNdlNT74bPnCEIlCBV4bCoScbM-wohB-5OB-8JH9GQ_2m061g6Fn9rtv9Jk1G0vqHyJktjDlqd_u39Qgr5nxm0SUDwb4PqezP1cDyup8uL0hw3Dca9q8gjBj1CdYgJAJU1ovTx2SaUF0iOnEwV6FVoaM23efUuNW0oHSqS66zm0xBf5QmW4MkUSzhw"/>
+</div>
+<span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Custom Polo T-shirts</span>
+</a>
+<!-- Custom Dress Shirts -->
+<a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group" href="#">
+<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition overflow-hidden">
+<img alt="Custom Dress Shirts" class="h-full w-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Wyz2M963oVY_aKbB1j4d1LeTI_9ssjWIAqREQn7djfr-XIXERvdcqmPfgGGpWFLiFpFx4ZAYbTPC9Eu9Pe_i067JkUEDXG5UBgM_xWTL8mGG2ZTqmnuNHeQI9llZLbjazUfm7PHiru427N1FcCz1SJco6C0NhVN-1Mum09m75YGFBGdYRBknqhabbP2b64tmTcU8xt3n1a1NnwotwP3w7M6HDMv1Nde5ke2C9oym71K_hbzBcL0DKCMyI"/>
+</div>
+<span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Custom Dress Shirts</span>
+</a>
+<!-- Custom T-shirts -->
+<a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group" href="#">
+<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition overflow-hidden">
+<img alt="Custom T-shirts" class="h-full w-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XIDypY9A2uPUgxGhgAxNyV-QDbln_5XAQIdORlpEc4qr9rK0mwokTm9M9TMHgBDa2zbS7UVIRTgEw3OwGZnGs9YyfPIl83WEmdERm74E29JT1qQrVmCeXzi5U1iKyeceBDcMerz_QX_jRV6XihmNoBGlID_wd3BuqhNf4JzIQaPqvHeiDpJCQs9OdRYNgNT3gdyL08MZnrSAXoVAZm1xT728TKRBB2xFfNvNi-GDTiF08xVSEEIQjgm-I"/>
+</div>
+<span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Custom T-shirts</span>
+</a>
+<!-- Custom Caps -->
+<a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group" href="#">
+<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition overflow-hidden">
+<img alt="Custom Caps" class="h-full w-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1V3JZDj3QVZosY7zj6pmetKuwlzwrZbscqIlX_mOB2MGzj2TV7HvDUr-5txzDrIj-Y-doZET2zGNskfGm4BQFYXvfHjHmJXSosWJzWAB_E9Ckt8-ForhuWLerSSbCM8llttngKzL3Da1EzyFif7GBShGEnpbfoDNqHcmrt3RlRVyQYoHU_XumHkc1b1DA37upasw0tQSaDRX5zXJQgXPz5uAx0OriVU8qpasWjYxwaAn0pjh6LDAls7go_h"/>
+</div>
+<span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Custom Caps</span>
+</a>
+<!-- Custom Stamps & Ink -->
+<a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group" href="#">
+<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition overflow-hidden">
+<img alt="Stamps and Ink" class="h-full w-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VSMVzs-Q1XfbxOu0IRXxDsbafTb7KSAYAkfhm3pr-2fQm3d0bUd2Nd4nZN2qIn06e9SqIoudxJPotrU-iZ1nmn4jHzf5fXglSzQceb__bOWgAvZLjFBSKCt945N5vBNZybjxx2Q_H-HG7yHkvSYtAWMpdCL_nuIZbE3pkG_oU725ymc3i_Pr3xazif4__n6xrf4hSKVbenP8UK8fSsXoDU6oSXLqROHM9K5GwIjHvfE_BtoqoWQEkY_g4"/>
+</div>
+<span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Custom Stamps &amp; Ink</span>
+</a>
+<!-- Drinkware -->
+<a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group" href="#">
+<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition overflow-hidden">
+<img alt="Drinkware" class="h-full w-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U05Enf-IyR-QsvIdDd9bzeu3FQZIhiX3p9raPl7it7oXXoCU_NWURrfDnlO1Gvu9KqYp9pUBQ2JYVIblqBcREnhUc_HIphbJsivQR4V2KrcVhjt3Sibbe6jXBbcIeVN0lQqNsPOYYckaT3-F11J8tPrfBTcxk03wXjb2MfEan_wFSYSthcl0IMRWaVTE1A1vYeElf9A_Xf04IyZZ6KqcbbPEoVLRTB9iJ7OvCqMAAtskNHHGWUU8gmR89i"/>
+</div>
+<span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Drinkware</span>
+</a>
+<!-- Bags & Travel -->
+<a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group" href="#">
+<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition overflow-hidden">
+<img alt="Bags" class="h-full w-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XIzWIf6dTpbbjhlycI1WAx6xIvMpjxVkgiAlHMc6AF7RfA-zYYVB8vXqlxS8i5hDXm0fiYNfi7mB3fWmXoVro4XE7nWeJq9HsPu--Qae7O3CnmikeQ5Otwyix-TY2PUfoaKv-1QCJ0tlcDo7wfyUHmZTeN7VVJRyL2BBgPLl-jDKA2aKq2rzqQbrgB7LqxxhKY60kb3NtMWm7HaCoQYmMyw5QdrH8gZoXC0AiOyZpx6U9lurJYKIdYDhvd"/>
+</div>
+<span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Bags &amp; Luggage</span>
+</a>
+</div>
+</section>
+<!-- END: ExploreCategories -->
+<!-- BEGIN: MostPopularProducts -->
+<section aria-labelledby="popular-heading" class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-lg sm:text-xl font-bold text-gray-900" id="popular-heading">Our Most Popular Products</h2>
+<div class="flex gap-2">
+<button aria-label="Previous items" class="carousel-nav-btn w-8 h-8 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-600 shadow-sm">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<button aria-label="Next items" class="carousel-nav-btn w-8 h-8 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-600 shadow-sm">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+</div>
+<!-- Carousel Row -->
+<div class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+<!-- Item 1: Standard Visiting Cards -->
+<article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col">
+<span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 100 @ Rs.200</span>
+<div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3">
+<div class="w-24 h-14 bg-white border border-gray-300 shadow-sm rounded-sm p-2 flex flex-col justify-between">
+<div class="w-4 h-4 rounded-full bg-[#0f172a]"></div>
+<div class="h-1 bg-[#ea580c]/60 w-full"></div>
+</div>
+</div>
+<h3 class="text-xs sm:text-sm font-semibold text-gray-900">Standard Visiting Cards</h3>
+</article>
+<!-- Item 2: Rounded Corner Visiting Cards -->
+<article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col">
+<span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 100 @ Rs.250</span>
+<div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3">
+<div class="w-24 h-14 bg-white border border-gray-300 shadow-sm rounded-lg p-2 flex flex-col justify-between">
+<div class="w-4 h-4 rounded-full bg-[#ea580c]"></div>
+<div class="h-1 bg-slate-300 w-full"></div>
+</div>
+</div>
+<h3 class="text-xs sm:text-sm font-semibold text-gray-900">Rounded Corner Cards</h3>
+</article>
+<!-- Item 3: Custom Polo Shirts -->
+<article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col">
+<span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs.490</span>
+<div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+<img alt="Men's Polo T-Shirts" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XTpV4i5PT6-Go7scz-XXAxuXK3MFZbUwNJ2MM5Hlhzt9mQGdS0_dzqsRwtqB-ZpSNdlNT74bPnCEIlCBV4bCoScbM-wohB-5OB-8JH9GQ_2m061g6Fn9rtv9Jk1G0vqHyJktjDlqd_u39Qgr5nxm0SUDwb4PqezP1cDyup8uL0hw3Dca9q8gjBj1CdYgJAJU1ovTx2SaUF0iOnEwV6FVoaM23efUuNW0oHSqS66zm0xBf5QmW4MkUSzhw"/>
+</div>
+<h3 class="text-xs sm:text-sm font-semibold text-gray-900">Classic Polo T-Shirts</h3>
+</article>
+<!-- Item 4: Personalised Photo Mugs -->
+<article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col">
+<span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs.199</span>
+<div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+<img alt="Personalised Mugs" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XcreNKywu4dprT97Ould7MrFdCfRpaKiUMQvg6J6GONNuU1jzauIvkT9hxAQR3t8d_3b_99JbMsdvIH-ZCVHVnU9Vm8jjF7pqk1PDwy7zqOXYWESON6Pjb9upFAKSX9FtnV7lxxMvJO5alcBptqLI4j94HMJcFwEbAQDmGxB7J80I2CNmqySevueZGlfivcPqnkRpI_UOoKK8dZMovRhflwwJ1MVZ2HrMJyfeMyxywa5t-gHCb6qQ0OrfH"/>
+</div>
+<h3 class="text-xs sm:text-sm font-semibold text-gray-900">Photo Mugs</h3>
+</article>
+<!-- Item 5: Tote Bags -->
+<article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col">
+<span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs.310</span>
+<div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+<img alt="Cotton Tote Bags" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XIzWIf6dTpbbjhlycI1WAx6xIvMpjxVkgiAlHMc6AF7RfA-zYYVB8vXqlxS8i5hDXm0fiYNfi7mB3fWmXoVro4XE7nWeJq9HsPu--Qae7O3CnmikeQ5Otwyix-TY2PUfoaKv-1QCJ0tlcDo7wfyUHmZTeN7VVJRyL2BBgPLl-jDKA2aKq2rzqQbrgB7LqxxhKY60kb3NtMWm7HaCoQYmMyw5QdrH8gZoXC0AiOyZpx6U9lurJYKIdYDhvd"/>
+</div>
+<h3 class="text-xs sm:text-sm font-semibold text-gray-900">Tote Bags</h3>
+</article>
+<!-- Item 6: Self Inking Stamps -->
+<article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col">
+<span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs.399</span>
+<div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+<img alt="Self Inking Rubber Stamps" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VZotvVGP_FKzlydZikmlgr6L38gSW4UFLL2dRevX8JMFEe3yjAwt1DZ7Du5ODFBk9UJ_Gv84qq4uuBb1x77Wc7ZgTufcmGYt_d5NvI2w4aVKJX40oIPzu5-IjG86GtyIGVhMY62pg5M3ax29cSWalDS1_G2G9xnGvu5Gh2qS-UffgeaxfdHcpDLXkhNHsx41NcF8sGxdtZRSluQ7UPPyqa7pXeoSzWX_oHrzoYOG4422p05lX4asnuituS"/>
+</div>
+<h3 class="text-xs sm:text-sm font-semibold text-gray-900">Self Inking Stamps</h3>
+</article>
+</div>
+</section>
+<!-- END: MostPopularProducts -->
+<!-- BEGIN: TrendingProducts -->
+<section aria-labelledby="trending-heading" class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-lg sm:text-xl font-bold text-gray-900" id="trending-heading">Trending</h2>
+<div class="flex gap-2">
+<button aria-label="Previous" class="carousel-nav-btn w-8 h-8 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-600 shadow-sm">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<button aria-label="Next" class="carousel-nav-btn w-8 h-8 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-600 shadow-sm">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+</div>
+<!-- Trending List -->
+<div class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+<!-- Golf Umbrellas -->
+<article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col">
+<span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs. 1125</span>
+<div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+<img alt="Golf Umbrellas" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XB1hAB9uPG2FHvfqpRArd78WUtj5e1fOAshXcritmWXnOxM-8-py2woeA7u_Ma_mJjjeYSf96sVw24amGWfMtByTuPebx7eZu3VqmjBPz3I6qsHI4_jH1-iFcq1jVpA-JFz-8XlX6hRzUf-4bUpkV0Mz4wpqzR-KRSf31l77_SwKNa_YThH7XPzQPuk5nKk7EN073ATcfg-gL6QT30gREuhumNOz2kPVijHK-TsL3n68dBNf41s3zYZ0c"/>
+</div>
+<h3 class="text-xs sm:text-sm font-semibold text-gray-900">Golf Umbrellas</h3>
+</article>
+<!-- Embroidered Caps -->
+<article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col">
+<span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs. 310</span>
+<div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+<img alt="Embroidered Caps" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1V3JZDj3QVZosY7zj6pmetKuwlzwrZbscqIlX_mOB2MGzj2TV7HvDUr-5txzDrIj-Y-doZET2zGNskfGm4BQFYXvfHjHmJXSosWJzWAB_E9Ckt8-ForhuWLerSSbCM8llttngKzL3Da1EzyFif7GBShGEnpbfoDNqHcmrt3RlRVyQYoHU_XumHkc1b1DA37upasw0tQSaDRX5zXJQgXPz5uAx0OriVU8qpasWjYxwaAn0pjh6LDAls7go_h"/>
+</div>
+<h3 class="text-xs sm:text-sm font-semibold text-gray-900">Embroidered Caps</h3>
+</article>
+<!-- Diary With Pen Holder -->
+<article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col">
+<span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs. 465</span>
+<div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+<img alt="Diary with Pen Holder" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VV4MnTOAUlYhbWOpcqJhCRZlN3F-m3h-ut37PNa3B5dduwSSbAMS9t4hJjuso1sGHGab4gmEzlR0jlfHU8tJLtIBLnuNG8nIXgYQSRBWjjp2WMxiIavoV0wBhqSx96WpLYeUk3L6wAm57eEy_Vze0fKHCG0kHF5Tj_QDfj66dz-oUJfj-50DqQCClDLuiA5HJkbrTB8wmd51c8pnAt-BCRGu3xocWmZqpp3XBmiATRHvEDjs3-3p14O9zz"/>
+</div>
+<h3 class="text-xs sm:text-sm font-semibold text-gray-900">Diary With Pen Holder</h3>
+</article>
+<!-- Basic Rubber Stamps -->
+<article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col">
+<span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs. 180</span>
+<div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+<img alt="Basic Rubber Stamps" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1W-PuFPU1cJfQc6gx3OKUgm95LzbmYX8FeUyTVxSwJZ_0AINH2fJZfYV4sK2PeX67XChjg0DeaNEFb1SFmZoLBKVNfkKbTxs1cMAzV4wjFmEs9kzDGs6dDhmCl33ADscY3vCg1qQnzcqNndTw51IvbWFByB-42tg0n0yBz_EdVkhJOQIJ2bykD28ni6KKDE0SF5EcUoPNE62i3nRZWHlXbtQ7Zx0COeYFREgHPCabJ8D6H4DyWga7YP_ufc"/>
+</div>
+<h3 class="text-xs sm:text-sm font-semibold text-gray-900">Basic Rubber Stamps</h3>
+</article>
+<!-- Stainless Steel Tumbler -->
+<article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col">
+<span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs. 650</span>
+<div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+<img alt="Personalised Tumblers" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UkfbyxbwgG0Eijcd-jH3pUEgtzNn4NFM1LIf47ijIImpFNdxm119otCBxq335oHu3Y5XXmelvr3V9pZ7Lc4mkBsQHChW5Ot3MyWh-XUmnGqYi4hJcpvJfbFsBqk7hecHXiLAkNrJbMWDY2iiv25hmuiz8LAMOvzEbVbritz_iOxregPvSWnzW0NbCy0Tnnu_QN3huzpZfsS6wNRU-0QvxFPc2flFTA31cY1NZFDkJSx8TeQqlqiJsxIvG5"/>
+</div>
+<h3 class="text-xs sm:text-sm font-semibold text-gray-900">Personalized Tumblers</h3>
+</article>
+<!-- Water Bottles -->
+<article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col">
+<span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs. 390</span>
+<div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+<img alt="Custom Water Bottles" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U05Enf-IyR-QsvIdDd9bzeu3FQZIhiX3p9raPl7it7oXXoCU_NWURrfDnlO1Gvu9KqYp9pUBQ2JYVIblqBcREnhUc_HIphbJsivQR4V2KrcVhjt3Sibbe6jXBbcIeVN0lQqNsPOYYckaT3-F11J8tPrfBTcxk03wXjb2MfEan_wFSYSthcl0IMRWaVTE1A1vYeElf9A_Xf04IyZZ6KqcbbPEoVLRTB9iJ7OvCqMAAtskNHHGWUU8gmR89i"/>
+</div>
+<h3 class="text-xs sm:text-sm font-semibold text-gray-900">Custom Water Bottles</h3>
+</article>
+</div>
+</section>
+<!-- END: TrendingProducts -->
+<!-- BEGIN: MidpageBanners -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
+<!-- Cherished Moments Banner -->
+<div class="relative rounded-xl overflow-hidden bg-gradient-to-r from-[#fff7ed] via-[#f8faff] to-[#eff4ff] p-6 sm:p-10 border border-slate-200 flex flex-col justify-center">
+<div class="max-w-md z-10">
+<h2 class="text-2xl sm:text-3xl font-bold text-[#0f172a] mb-2">Preserve your cherished moments</h2>
+<p class="text-sm font-medium text-slate-700 mb-4">1 Starting at Rs 650</p>
+<div class="flex flex-wrap gap-2">
+<a class="bg-[#0f172a] text-white text-xs font-semibold px-4 py-2 rounded-md hover:bg-[#ea580c] shadow-sm transition duration-200" href="#">Photo Albums</a>
+<a class="bg-[#0f172a] text-white text-xs font-semibold px-4 py-2 rounded-md hover:bg-[#ea580c] shadow-sm transition duration-200" href="#">Mugs</a>
+<a class="bg-[#0f172a] text-white text-xs font-semibold px-4 py-2 rounded-md hover:bg-[#ea580c] shadow-sm transition duration-200" href="#">Canvas Prints</a>
+</div>
+</div>
+</div>
+<!-- Winter Wear Banner -->
+<div class="relative rounded-xl overflow-hidden bg-gradient-to-r from-[#f1f5f9] to-[#e2e8f0] p-6 sm:p-10 border border-slate-300/80 flex flex-col justify-center">
+<div class="max-w-md z-10">
+<h2 class="text-2xl sm:text-3xl font-bold text-[#0f172a] mb-1">Custom Winter Wear</h2>
+<p class="text-sm font-semibold text-slate-700 mb-1">Keep warm, look sharp, show your brand!</p>
+<p class="text-xs text-slate-600 mb-4">1 Starting at Rs. 850</p>
+<a class="inline-block bg-[#ea580c] text-white text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-md hover:bg-[#c2410c] shadow-sm transition self-start" href="#">
+            Shop Now
+          </a>
+</div>
+</div>
+</section>
+<!-- END: MidpageBanners -->
+<!-- BEGIN: ExploreMoreSection -->
+<section aria-labelledby="exploremore-heading" class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-lg sm:text-xl font-bold text-gray-900" id="exploremore-heading">Explore More</h2>
+<div class="flex gap-2">
+<button aria-label="Previous" class="carousel-nav-btn w-8 h-8 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-600 shadow-sm">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<button aria-label="Next" class="carousel-nav-btn w-8 h-8 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-600 shadow-sm">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+</div>
+<!-- Items Horizontal Scrolling -->
+<div class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+<!-- Harissons Laptop Bag -->
+<article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col">
+<span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs.1370</span>
+<div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+<img alt="Harissons Laptop Bags" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U-w7MIKTLdmoE0xXJjNSokcK_2Z5NY61yz0UYrhx4NuQ6D9R-AKI8bUi3cAyRdDRu02Qzya61wcpUuKH66COnGzPZGZ8p4gqScWpUs2JS1i4BtwfdJQDLNZl5M-3Nueeu32CUgrmgyE2Vaqn_o48C1h4QTGbU1CLBJG8bFxhU5gxS_itr0sB6q_Y0ivSxLjcz2wQkea71yhzgyOLqyg50uMW1I6l1Va2dyGqghR8lb4f7T4u5Cjof7H_Es"/>
+</div>
+<h3 class="text-xs sm:text-sm font-semibold text-gray-900">Harissons Nemesis Bag</h3>
+</article>
+<!-- Lanyards -->
+<article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col">
+<span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 10 @ Rs.740</span>
+<div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+<img alt="Branded Lanyards" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VlC0GFiHuPRgi-0V53jpuQ5tLmkTMT8cVd7Wxm-Dr1mKzeogpW0sswo6AjQEic7jJWpWiH8Yxtrm_mbG0eFnYsYvEw1ADxMkpqCKiJiC_D8ZqrCur8gqyPVbg77QMI-0y6N4G85wlmiISMpi1nNnNCoOFxQgtwh7Z2lImzE-EdoKgYafJqhcBzgTLlkISemz6SlcPDXQ_EQMTXmNCQyB0IWyTCZlACQq6DkTJwcSdXfUWJX1DDp2iaMVr8"/>
+</div>
+<h3 class="text-xs sm:text-sm font-semibold text-gray-900">Custom Lanyards</h3>
+</article>
+<!-- Custom Paper Bags -->
+<article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col">
+<span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 25 @ Rs.620</span>
+<div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+<img alt="Paper Bags" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VXH-qRofcUTUDijxJqDNSZ_n3ShLczZkX6So3zQRGFAKcZfattkoMtfXMB3Zb8OvusFbCYII697lJm0aLhYsW_h_dXpOZQFcmg-2jqBkoL_WtTyGUc7bNstyuwcFCyR6MGQIPNLRceMUmRS-1OZjtGrA-lnbNw9RWi1X9ZCLaXrkdLFT1z3lh0j8YQiIajbvjChfdQOw4x0wN7Nx79zwC5XnloVxrcJaSoqNeCn2lhbz4ooNV2"/>
+</div>
+<h3 class="text-xs sm:text-sm font-semibold text-gray-900">Custom Paper Bags</h3>
+</article>
+<!-- White Ball Pens -->
+<article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col">
+<span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 50 @ Rs.1600</span>
+<div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+<img alt="Custom Full White Ball Pens" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UE3tC8XlRMSvzWC6H9maOWAiYzq9tcUlG5rWV_vynHhp8gcfPyV1K-_KqcSm24XyVfJ5f_JrT68KesF3p79qO_1b3hwFe19zvO-XXSVking10_71EYd416YmxQZ9fK8i1ANwTD23QeLfeS52Qwnbkdn8ynxLlVLjmfJ5eRNo8_M4ofRxaA9zCn5NfyqHw3Ufiqg0kmw7OMXaiDMjuQ5u3YIVaYbBHj8lzAJfsCqbCGrlyQ6J2o9LBqrys"/>
+</div>
+<h3 class="text-xs sm:text-sm font-semibold text-gray-900">Full White Ball Pens</h3>
+</article>
+<!-- Rain Cap -->
+<article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col">
+<span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs.280</span>
+<div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+<img alt="Freedom Rain Cap" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WJkGrvs2hz3EjVkD2-FA0X-Zk5FV-_69-fCssORccyU9pmDopYcJfY2qiqGGahNd8H1MiksBvmJ3Q9DgfH6FghL9mv3C2ooZdJNfEITIG83i4eWFidLIZU7yQOpbDlUI50eW-_ZwFEUBKWpmnDWGEgiHSAkqV39vUoliaDqdiLThhSnaJijDfK1bngoMOJhKXG6Qw4bn8yHSlJDXNDTnuoD0J2TtHKXnpyyzVQShFdq7WPxJqBO7vyy9Jy"/>
+</div>
+<h3 class="text-xs sm:text-sm font-semibold text-gray-900">Freedom Rain Caps</h3>
+</article>
+<!-- Silver Pens -->
+<article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col">
+<span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 25 @ Rs.950</span>
+<div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+<img alt="Green with Silver Ball Pens" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UzMOs9sMEFiCX0L78BbnmyTbj23f9h6AArq5Jh4ppeStjomiVV6ewPH7BlRNeMq7RvRQ7rB-_jlfqe87lvtZUgr5C-6yAnFfJ5kO1OyWByg8fbChXJLJ_fpSm8ekru9z-23n5xeAqH3MV96sZImyUUuTqeb4cvwWnJBAOhRVUJoiulsvsq35W4FTizVIizBxFYSsd5-qzYOYlPJq8fQZ7671w9IYZq1SHd-cGlCmn2DbGbe6c52zr0JqTc"/>
+</div>
+<h3 class="text-xs sm:text-sm font-semibold text-gray-900">Green &amp; Silver Pens</h3>
+</article>
+</div>
+</section>
+<!-- END: ExploreMoreSection -->
+<!-- BEGIN: EmailSubscriptionSection -->
+<section class="bg-gradient-to-br from-slate-100 to-slate-200/80 py-12 px-4 sm:px-6 my-8 border-y border-slate-200">
+<div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="w-full md:w-1/2 flex justify-center">
+<!-- Graphic representation of printed cards -->
+<div class="relative w-64 h-40 bg-white shadow-xl rounded-lg border border-gray-200 p-4 transform -rotate-6">
+<div class="h-3 w-1/3 bg-[#0f172a] rounded mb-3"></div>
+<div class="h-2 w-2/3 bg-orange-400/80 rounded mb-2"></div>
+<div class="h-2 w-1/2 bg-gray-200 rounded"></div>
+<div class="absolute -bottom-4 -right-4 w-48 h-28 bg-white shadow-lg rounded border border-gray-200 p-3 transform rotate-12">
+<div class="h-2 w-1/2 bg-[#ea580c] rounded mb-2"></div>
+<div class="h-1.5 w-3/4 bg-slate-200 rounded"></div>
+</div>
+</div>
+</div>
+<div class="w-full md:w-1/2 text-center md:text-left">
+<h2 class="text-xl sm:text-2xl font-bold text-[#0f172a] mb-2">It's good to be on the list.</h2>
+<p class="text-sm font-medium text-slate-700 mb-4">Get 15% off* your first order when you sign up for our emails</p>
+<form action="#" class="space-y-3" method="POST">
+<div class="flex flex-col sm:flex-row gap-2">
+<input class="flex-grow px-4 py-2 text-sm rounded border border-gray-300 focus:border-[#0f172a] focus:ring-1 focus:ring-[#0f172a] outline-none" placeholder="Subscription email" required="" type="email"/>
+<button class="bg-[#0f172a] text-white hover:bg-[#ea580c] transition px-6 py-2 rounded text-sm font-semibold shadow-sm" type="submit">
+                Submit
+              </button>
+</div>
+<p class="text-[11px] text-gray-500 leading-tight">
+              Yes, I'd like to receive special offer emails from Printhubbs, as well as news about products, services and my designs in progress. Read our 
+              <a class="underline hover:text-[#ea580c]" href="#">Privacy and Cookie policy</a>.
+            </p>
+</form>
+</div>
+</div>
+</section>
+<!-- END: EmailSubscriptionSection -->
+<!-- BEGIN: TrustAndAboutSection -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-gray-700 text-xs sm:text-sm leading-relaxed">
+<div>
+<h2 class="font-bold text-[#0f172a] text-base sm:text-lg mb-3">Printhubbs : The leader in customisation</h2>
+<p class="text-slate-600">
+            For years, Printhubbs has helped business owners, creators, and individuals bring their ideas to life with high-impact custom merchandise and precision printing. Our online printing services are intended to help you find high quality customised products you need – visiting cards, personalized clothing, gifting products, and much more.
+          </p>
+</div>
+<div class="space-y-4">
+<div class="flex items-start gap-3">
+<div class="w-5 h-5 rounded-full bg-orange-100 text-[#ea580c] flex items-center justify-center flex-shrink-0 mt-0.5">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+</div>
+<div>
+<h3 class="font-bold text-[#0f172a]">Even Low Quantities @ Best Prices</h3>
+<p class="text-gray-600">We offer low/ single product quantities at affordable prices.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-5 h-5 rounded-full bg-orange-100 text-[#ea580c] flex items-center justify-center flex-shrink-0 mt-0.5">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+</div>
+<div>
+<h3 class="font-bold text-[#0f172a]">High quality products and Easy design</h3>
+<p class="text-gray-600">Our wide selection of high-quality products and online design tools make it easy for you to customize and order your favourite products.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-5 h-5 rounded-full bg-orange-100 text-[#ea580c] flex items-center justify-center flex-shrink-0 mt-0.5">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+</div>
+<div>
+<h3 class="font-bold text-[#0f172a]">Free replacement or Full Refund</h3>
+<p class="text-gray-600">We stand by everything we sell. So if you're not satisfied, we'll make it right.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: TrustAndAboutSection -->
+</main>
+<!-- BEGIN: MainFooter -->
+<footer class="bg-[#0a0f1d] text-white pt-12 pb-6 border-t border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<!-- Top Columns -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-slate-800">
+<!-- Brand Mark & Returns -->
+<div>
+<div class="flex items-center gap-2 mb-4 bg-white/95 p-2.5 rounded-lg w-fit">
+<img alt="Printhubbs Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WpmlCD0R4fQb8rglx5aizUOZBc7-LUZ0xaCn-QUtQ85dU9RkmRTiTmSVCqdWB1TA-lAo9hbNqIJOxnQx8HeP7d1NWcD031DQ8rQ4GHcqdQ94xvHRNHZCp-kiAgl1TOkwVuDO8M5PSm3nV9nkb_roKTYVVPuf3GQAu66ZRW7bc0znYoOtIba-APYcGY3EiwZcE8OTJpR37Y2hT5zw3dL9mZYS6krumUU1qkHE58V2pcc2VSuYZsbWoojgxy"/>
+</div>
+<p class="text-xs text-slate-400 font-medium leading-snug">Easy Returns:<br/>
+<a class="underline text-[#ea580c] font-semibold hover:text-orange-400 transition" href="#">Free Replacement or Full Refund</a>
+</p>
+</div>
+<!-- Let Us Help -->
+<div>
+<h4 class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3">Let us help</h4>
+<ul class="space-y-2 text-xs text-slate-400">
+<li><a class="hover:text-[#ea580c] transition" href="#">My Account</a></li>
+<li><a class="hover:text-[#ea580c] transition" href="#">Contact us</a></li>
+<li><a class="hover:text-[#ea580c] transition" href="#">Bulk Order Inquiry</a></li>
+</ul>
+</div>
+<!-- Our Company -->
+<div>
+<h4 class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3">Our Company</h4>
+<ul class="space-y-2 text-xs text-slate-400">
+<li><a class="hover:text-[#ea580c] transition" href="#">Careers</a></li>
+<li><a class="hover:text-[#ea580c] transition" href="#">For investors</a></li>
+<li><a class="hover:text-[#ea580c] transition" href="#">For media</a></li>
+<li><a class="hover:text-[#ea580c] transition" href="#">Sustainability</a></li>
+<li><a class="hover:text-[#ea580c] transition" href="#">Annual Returns</a></li>
+<li><a class="hover:text-[#ea580c] transition" href="#">Corporate Social Responsibility</a></li>
+</ul>
+</div>
+<!-- Our Policies -->
+<div>
+<h4 class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3">Our policies</h4>
+<ul class="space-y-2 text-xs text-slate-400">
+<li><a class="hover:text-[#ea580c] transition" href="#">Terms and Conditions</a></li>
+<li><a class="hover:text-[#ea580c] transition" href="#">Printhubbs Privacy &amp; Cookie Policy</a></li>
+<li><a class="hover:text-[#ea580c] transition" href="#">Copyright matters</a></li>
+<li><a class="hover:text-[#ea580c] transition" href="#">Patents &amp; trademarks</a></li>
+</ul>
+</div>
+</div>
+<!-- Footer Bottom Utility -->
+<div class="pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-slate-400">
+<div>
+<a class="underline hover:text-[#ea580c]" href="#">Home</a>
+<p class="mt-1">© 2026 Printhubbs. All rights reserved.<br/>Unless stated otherwise, prices are exclusive of delivery and product options.</p>
+</div>
+<!-- Payment & Socials -->
+<div class="flex flex-col sm:flex-row items-center gap-4">
+<!-- Card Badges -->
+<div class="flex items-center gap-2">
+<span class="bg-[#1e3a8a] text-white font-bold px-1.5 py-0.5 rounded text-[10px]">AMEX</span>
+<span class="bg-[#ea580c] text-white font-bold px-1.5 py-0.5 rounded text-[10px]">MC</span>
+<span class="bg-[#0f172a] border border-slate-700 text-white font-bold px-1.5 py-0.5 rounded text-[10px]">VISA</span>
+</div>
+<!-- Social Icons Mock -->
+<div class="flex items-center gap-3 text-slate-300 text-sm">
+<a aria-label="X (formerly Twitter)" class="hover:text-[#ea580c] transition" href="#">𝕏</a>
+<a aria-label="Facebook" class="hover:text-[#ea580c] transition" href="#">f</a>
+<a aria-label="Instagram" class="hover:text-[#ea580c] transition" href="#">📷</a>
+<a aria-label="YouTube" class="hover:text-[#ea580c] transition" href="#">▶</a>
+</div>
+<!-- Country Selector -->
+<div class="flex items-center gap-1 text-white border border-slate-700 px-2 py-1 rounded bg-[#0f172a]">
+<span>🇮🇳</span>
+<span class="text-xs">▾</span>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: MainFooter -->
+</body></html>

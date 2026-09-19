@@ -1,0 +1,19 @@
+{
+  "name": "printshubb-web",
+  "version": "1.0.0",
+  "description": "Printhubbs - Custom Printing, Merch & Web-to-Print Atelier E-Commerce Platform",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve -l 3000 .",
+    "test": "node -c js/data.js && node -c js/canvas-studio.js && node -c js/cart-checkout.js && node -c js/app.js"
+  },
+  "keywords": [
+    "custom-printing",
+    "visiting-cards",
+    "web-to-print",
+    "ecommerce"
+  ],
+  "author": "Printhubbs",
+  "license": "UNLICENSED"
+}

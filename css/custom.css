@@ -232,3 +232,68 @@
   background: rgba(15, 23, 42, 0.65);
   backdrop-filter: blur(4px);
 }
+
+/* ==========================================================================
+   HIGH-FIDELITY IMAGE & CANVAS RENDERING ENGINE
+   Guarantees maximum visual crispness across 4K, Retina, and standard screens
+   ========================================================================== */
+
+/* Universal High-Quality Resampling & Anti-Aliasing */
+img {
+  image-rendering: auto;
+  image-rendering: -webkit-optimize-contrast;
+  -ms-interpolation-mode: bicubic;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0); /* Promotes to composite layer for subpixel-smooth scaling without blur */
+}
+
+/* High-Definition Image Utility */
+.img-hq {
+  image-rendering: auto;
+  image-rendering: -webkit-optimize-contrast;
+  -ms-interpolation-mode: bicubic;
+  object-fit: contain;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* High-Definition Cover Image Utility */
+.img-hq-cover {
+  image-rendering: auto;
+  image-rendering: -webkit-optimize-contrast;
+  -ms-interpolation-mode: bicubic;
+  object-fit: cover;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Studio & Interactive Canvas Crispness */
+canvas {
+  image-rendering: auto;
+  image-rendering: -webkit-optimize-contrast;
+  -ms-interpolation-mode: bicubic;
+}
+
+/* Crisp Pixel-Accurate Mode for Barcodes & QR Codes */
+.img-crisp-qr, #standalone-qr-canvas {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* DPI Quality Meter Pill Colors */
+.dpi-badge-optimal {
+  background-color: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
+.dpi-badge-warning {
+  background-color: #fffbeb;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+

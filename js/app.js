@@ -125,7 +125,7 @@ class PrinthubbsApp {
             </button>
           </div>
           <div class="w-full h-36 bg-slate-50 rounded flex items-center justify-center mb-3 overflow-hidden p-2">
-            <img src="${product.image}" alt="${product.name}" class="h-full w-full object-contain group-hover:scale-105 transition duration-300" />
+            <img src="${product.image}" alt="${product.name}" class="h-full w-full object-contain group-hover:scale-105 transition duration-300 img-hq" loading="lazy" decoding="async" />
           </div>
           <h3 class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-[#ea580c] transition line-clamp-1">${product.name}</h3>
           <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">${product.subtitle}</p>
@@ -502,7 +502,7 @@ class PrinthubbsApp {
           title: 'Arjun Sharma - Minimalist Executive Card',
           productId: 'standard-visiting-cards',
           date: '15 Sep 2026',
-          thumbnail: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80',
+          thumbnail: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&auto=format&fit=crop&q=85',
           designState: {
             templateId: 'tpl-corporate-modern',
             bgColor: '#0f172a',
@@ -560,7 +560,7 @@ class PrinthubbsApp {
           title: 'Royal Finds - Luxury Embossed Gold Monogram',
           productId: 'embossed-business-cards',
           date: '08 Sep 2026',
-          thumbnail: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80',
+          thumbnail: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1200&auto=format&fit=crop&q=85',
           designState: {
             templateId: 'tpl-luxury-monogram',
             bgColor: '#18181b',
@@ -589,7 +589,7 @@ class PrinthubbsApp {
           title: 'Nexus Tech Labs - Modern QR vCard',
           productId: 'qr-smart-cards',
           date: '01 Sep 2026',
-          thumbnail: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&auto=format&fit=crop&q=80',
+          thumbnail: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&auto=format&fit=crop&q=85',
           designState: {
             templateId: 'tpl-tech-startup',
             bgColor: '#022c22',
@@ -675,7 +675,7 @@ class PrinthubbsApp {
               {
                 productId: 'classic-polo-tshirts',
                 title: 'Premium Corporate Embroidered Polo',
-                thumbnail: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=600&auto=format&fit=crop&q=80',
+                thumbnail: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=1200&auto=format&fit=crop&q=85',
                 quantity: 2,
                 totalPrice: 878
               }
@@ -691,14 +691,14 @@ class PrinthubbsApp {
               {
                 productId: 'personalised-photo-mugs',
                 title: 'Custom Ceramic Coffee Mugs',
-                thumbnail: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&auto=format&fit=crop&q=80',
+                thumbnail: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=1200&auto=format&fit=crop&q=85',
                 quantity: 2,
                 totalPrice: 458
               },
               {
                 productId: 'self-inking-stamps',
                 title: 'Self-Inking Return Address Stamp',
-                thumbnail: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&auto=format&fit=crop&q=80',
+                thumbnail: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=1200&auto=format&fit=crop&q=85',
                 quantity: 1,
                 totalPrice: 341
               }
@@ -867,20 +867,27 @@ class PrinthubbsApp {
   }
 
   // Standalone QR Code Generator
+  // Standalone QR Code Generator with High-DPI Sharpness
   generateStandaloneQR() {
     const input = document.getElementById('standalone-qr-input');
     const canvas = document.getElementById('standalone-qr-canvas');
     if (!input || !canvas) return;
     const val = input.value.trim() || 'https://printhubbs.in';
     const ctx = canvas.getContext('2d');
-    canvas.width = 250;
-    canvas.height = 250;
+    
+    // High-DPI crisp buffer (scales with retina displays)
+    const dpr = Math.max(window.devicePixelRatio || 1, 2);
+    canvas.width = 250 * dpr;
+    canvas.height = 250 * dpr;
+    canvas.style.width = '250px';
+    canvas.style.height = '250px';
 
-    // Draw QR using matrix
+    ctx.imageSmoothingEnabled = false; // Barcodes require crisp, unblurred edges
+
     const size = 25;
-    const cellSize = 250 / size;
+    const cellSize = (250 * dpr) / size;
     ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, 250, 250);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = '#0f172a';
 
     let hash = 0;
@@ -899,25 +906,35 @@ class PrinthubbsApp {
           const lc = inTR ? c - (size - 7) : c;
           const isBorder = lr === 0 || lr === 6 || lc === 0 || lc === 6;
           const isInner = lr >= 2 && lr <= 4 && lc >= 2 && lc <= 4;
-          if (isBorder || isInner) ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize);
+          if (isBorder || isInner) ctx.fillRect(Math.round(c * cellSize), Math.round(r * cellSize), Math.ceil(cellSize), Math.ceil(cellSize));
         } else if (r === 6 || c === 6) {
-          if ((r + c) % 2 === 0) ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize);
+          if ((r + c) % 2 === 0) ctx.fillRect(Math.round(c * cellSize), Math.round(r * cellSize), Math.ceil(cellSize), Math.ceil(cellSize));
         } else {
-          if ((Math.abs(hash ^ (r * 31 + c * 17))) % 3 !== 0) ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize);
+          if ((Math.abs(hash ^ (r * 31 + c * 17))) % 3 !== 0) ctx.fillRect(Math.round(c * cellSize), Math.round(r * cellSize), Math.ceil(cellSize), Math.ceil(cellSize));
         }
       }
     }
   }
 
-  // Interactive Logo Maker
+  // Interactive Logo Maker with High-DPI Retina Rendering
   generateLogo() {
     const name = document.getElementById('logo-brand-name')?.value || 'Atelier';
     const style = document.getElementById('logo-style-select')?.value || 'geometric';
     const canvas = document.getElementById('logo-maker-canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    canvas.width = 320;
-    canvas.height = 200;
+    
+    // High-DPI buffer scaling (enables retina 2x/3x crispness)
+    const dpr = Math.max(window.devicePixelRatio || 1, 2);
+    canvas.width = 320 * dpr;
+    canvas.height = 200 * dpr;
+    canvas.style.width = '320px';
+    canvas.style.height = '200px';
+
+    ctx.save();
+    ctx.scale(dpr, dpr);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
 
     ctx.fillStyle = '#0f172a';
     ctx.fillRect(0, 0, 320, 200);
@@ -974,6 +991,7 @@ class PrinthubbsApp {
     ctx.fillStyle = '#ea580c';
     ctx.font = '600 11px "JetBrains Mono", monospace';
     ctx.fillText('EST. 2026', 160, 168);
+    ctx.restore();
   }
 
   // Bulk Order corporate submission

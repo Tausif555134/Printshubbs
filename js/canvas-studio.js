@@ -56,6 +56,11 @@ class PrintStudioEngine {
     this.ctx = this.canvas.getContext('2d');
     this.canvas.width = this.canvasWidth;
     this.canvas.height = this.canvasHeight;
+    
+    // Enforce high-order bicubic smoothing across all canvas operations
+    this.ctx.imageSmoothingEnabled = true;
+    this.ctx.imageSmoothingQuality = 'high';
+    
     this.render();
   }
 
@@ -188,12 +193,13 @@ class PrintStudioEngine {
   setUploadedLogo(imgElement) {
     this.uploadedLogo = imgElement;
     this.logoTransform.active = true;
-    // Calculate DPI based on pixel dimensions vs logical 2 inch width
-    if (imgElement.naturalWidth) {
-      const approxInches = 1.5;
-      const calcDpi = Math.round(imgElement.naturalWidth / approxInches);
-      this.dpiStatus = Math.min(600, Math.max(72, calcDpi));
-    }
+    
+    // Calculate print DPI based on physical card target area (~1.5 inches box)
+    const naturalW = imgElement.naturalWidth || imgElement.width || 450;
+    const approxPrintInches = 1.5;
+    const calcDpi = Math.round(naturalW / approxPrintInches);
+    this.dpiStatus = Math.max(72, calcDpi);
+    
     this.updateProofingBar();
     this.render();
   }
@@ -202,6 +208,11 @@ class PrintStudioEngine {
   render() {
     if (!this.ctx || !this.canvas) return;
     const ctx = this.ctx;
+    
+    // Always enforce high-quality bicubic smoothing
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+
     const W = this.canvasWidth;
     const H = this.canvasHeight;
     const bleed = this.bleedPixels;
@@ -280,9 +291,28 @@ class PrintStudioEngine {
 
     if (this.uploadedLogo) {
       try {
-        const logoW = 160 * this.logoTransform.scale;
-        const logoH = 160 * this.logoTransform.scale;
-        ctx.drawImage(this.uploadedLogo, logoAreaX + 20, logoAreaY, logoW, logoH);
+        ctx.save();
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+
+        const naturalW = this.uploadedLogo.naturalWidth || this.uploadedLogo.width || 160;
+        const naturalH = this.uploadedLogo.naturalHeight || this.uploadedLogo.height || 160;
+        const aspect = naturalW / naturalH;
+
+        const maxBox = 160 * this.logoTransform.scale;
+        let drawW = maxBox;
+        let drawH = maxBox;
+        if (aspect >= 1) {
+          drawH = maxBox / aspect;
+        } else {
+          drawW = maxBox * aspect;
+        }
+
+        const posX = logoAreaX + 20 + ((maxBox - drawW) / 2);
+        const posY = logoAreaY + ((maxBox - drawH) / 2);
+
+        ctx.drawImage(this.uploadedLogo, posX, posY, drawW, drawH);
+        ctx.restore();
       } catch (e) {
         console.error('Error drawing uploaded logo', e);
       }
@@ -409,10 +439,13 @@ class PrintStudioEngine {
 
     if (dpiEl && dpiBadge) {
       if (this.dpiStatus >= 300) {
-        dpiEl.textContent = `${this.dpiStatus} DPI — Optimal Print Quality`;
+        dpiEl.textContent = `${this.dpiStatus} DPI — Optimal Print Quality (300+ DPI)`;
         dpiBadge.className = 'w-2 h-2 rounded-full bg-emerald-500 animate-pulse';
+      } else if (this.dpiStatus >= 200) {
+        dpiEl.textContent = `${this.dpiStatus} DPI — Standard Print Quality`;
+        dpiBadge.className = 'w-2 h-2 rounded-full bg-blue-500';
       } else {
-        dpiEl.textContent = `${this.dpiStatus} DPI — Low Resolution Alert`;
+        dpiEl.textContent = `${this.dpiStatus} DPI — Low Resolution Alert (Upload 300+ DPI for crisp print)`;
         dpiBadge.className = 'w-2 h-2 rounded-full bg-amber-500';
       }
     }
@@ -437,10 +470,10 @@ class PrintStudioEngine {
     }
   }
 
-  // Generate Base64 snapshot for thumbnail
+  // Generate Base64 snapshot for thumbnail at maximum fidelity
   getSnapshotDataUrl() {
     if (!this.canvas) return null;
-    return this.canvas.toDataURL('image/png', 0.92);
+    return this.canvas.toDataURL('image/png', 1.0);
   }
 }
 

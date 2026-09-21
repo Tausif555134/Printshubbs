@@ -531,7 +531,7 @@ class PrinthubbsApp {
           title: 'Neeta Rai - Architect & Urbanist Classic',
           productId: 'standard-visiting-cards',
           date: '12 Sep 2026',
-          thumbnail: 'https://lh3.googleusercontent.com/aida/AEtjO1WpmlCD0R4fQb8rglx5aizUOZBc7-LUZ0xaCn-QUtQ85dU9RkmRTiTmSVCqdWB1TA-lAo9hbNqIJOxnQx8HeP7d1NWcD031DQ8rQ4GHcqdQ94xvHRNHZCp-kiAgl1TOkwVuDO8M5PSm3nV9nkb_roKTYVVPuf3GQAu66ZRW7bc0znYoOtIba-APYcGY3EiwZcE8OTJpR37Y2hT5zw3dL9mZYS6krumUU1qkHE58V2pcc2VSuYZsbWoojgxy',
+          thumbnail: 'assets/images/products/standard-visiting-cards.jpg',
           designState: {
             templateId: 'tpl-creative-studio',
             bgColor: '#1e1b4b',
@@ -668,7 +668,7 @@ class PrinthubbsApp {
               {
                 productId: 'standard-visiting-cards',
                 title: 'Standard Visiting Cards (Matte 350 GSM)',
-                thumbnail: 'https://lh3.googleusercontent.com/aida/AEtjO1WpmlCD0R4fQb8rglx5aizUOZBc7-LUZ0xaCn-QUtQ85dU9RkmRTiTmSVCqdWB1TA-lAo9hbNqIJOxnQx8HeP7d1NWcD031DQ8rQ4GHcqdQ94xvHRNHZCp-kiAgl1TOkwVuDO8M5PSm3nV9nkb_roKTYVVPuf3GQAu66ZRW7bc0znYoOtIba-APYcGY3EiwZcE8OTJpR37Y2hT5zw3dL9mZYS6krumUU1qkHE58V2pcc2VSuYZsbWoojgxy',
+                thumbnail: 'assets/images/products/standard-visiting-cards.jpg',
                 quantity: 200,
                 totalPrice: 420
               },

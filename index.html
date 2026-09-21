@@ -279,43 +279,87 @@
     <!-- VIEW 1: EXACT REPLICA HOMEPAGE -->
     <div id="view-home" class="app-view-container">
 
-      <!-- BEGIN: HeroSection (Exact Match to screen.png & code.html) -->
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-5 pb-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- BEGIN: HeroSection -->
+      <section class="max-w-[1500px] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
           <!-- Hero Card 1: Visiting Cards -->
-          <article class="relative bg-gradient-to-br from-[#f8faff] to-[#eff4ff] rounded-xl overflow-hidden min-h-[300px] flex flex-col justify-between p-6 sm:p-8 group shadow-sm border border-slate-200 cursor-pointer" onclick="window.appRouter.navigate('pdp', 'standard-visiting-cards')">
-            <div class="z-10 max-w-xs relative">
-              <div class="inline-block text-[11px] font-bold uppercase tracking-wider text-[#ea580c] bg-orange-100/80 px-2.5 py-0.5 rounded-full mb-3">Premium Print</div>
-              <h2 class="text-2xl sm:text-3xl font-bold text-[#0f172a] leading-tight mb-2 font-display">Visiting Cards</h2>
-              <p class="text-sm sm:text-base text-slate-600 font-medium mb-6">100 Visiting Cards at Rs 200</p>
-              <a class="inline-block bg-[#0f172a] text-white text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-md hover:bg-[#ea580c] shadow-sm transition duration-200" href="javascript:void(0)" onclick="event.stopPropagation(); window.appRouter.navigate('pdp', 'standard-visiting-cards')">
-                Shop Now
-              </a>
-            </div>
-            <!-- Full product image filling the right side -->
-            <div class="absolute right-0 bottom-0 top-0 w-1/2 flex items-center justify-center pointer-events-none">
-              <img alt="Premium visiting cards stack" class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition duration-500" src="assets/images/products/standard-visiting-cards.jpg" />
-              <div class="absolute inset-0 bg-gradient-to-r from-[#eff4ff] via-[#eff4ff]/60 to-transparent"></div>
+          <article class="relative bg-gradient-to-br from-[#f8faff] via-[#eef4ff] to-[#e2ecfd] rounded-2xl overflow-hidden p-6 sm:p-8 lg:p-9 shadow-sm border border-slate-200/90 hover:shadow-md transition duration-300 group cursor-pointer flex flex-col justify-between" onclick="window.appRouter.navigate('pdp', 'standard-visiting-cards')">
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
+              <div class="sm:col-span-7 z-10 flex flex-col justify-between">
+                <div>
+                  <div class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#ea580c] bg-orange-100/90 border border-orange-200/60 px-3 py-1 rounded-full mb-3">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] animate-pulse"></span>
+                    Premium Print • 350 GSM
+                  </div>
+                  <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0f172a] leading-tight mb-2 font-display">Visiting Cards</h2>
+                  <p class="text-sm sm:text-base text-slate-700 font-semibold mb-3">100 Custom Cards starting at <span class="text-[#ea580c] font-bold">₹200</span></p>
+                  
+                  <ul class="text-xs text-slate-600 space-y-1.5 mb-5">
+                    <li class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Matte, Glossy &amp; Velvet Touch finishes</li>
+                    <li class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Raised Spot UV &amp; Metallic Foil Accents</li>
+                    <li class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Ready in 24h with Doorstep Delivery</li>
+                  </ul>
+                </div>
+                
+                <div class="flex flex-wrap items-center gap-3">
+                  <a class="inline-flex items-center justify-center bg-[#0f172a] text-white text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-lg hover:bg-[#ea580c] shadow transition duration-200" href="javascript:void(0)" onclick="event.stopPropagation(); window.appRouter.navigate('pdp', 'standard-visiting-cards')">
+                    Shop Now
+                  </a>
+                  <a class="inline-flex items-center justify-center bg-white text-[#0f172a] border border-slate-300 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-lg hover:border-[#ea580c] hover:text-[#ea580c] shadow-sm transition duration-200" href="javascript:void(0)" onclick="event.stopPropagation(); window.appRouter.navigate('studio', 'standard-visiting-cards')">
+                    Design in Studio
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Right Visual: Full Product Showcase without blank space -->
+              <div class="sm:col-span-5 relative flex items-center justify-center">
+                <div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-lg border border-white/80 group-hover:scale-105 transition duration-300">
+                  <img alt="Premium Visiting Cards Stack" class="w-full h-full object-cover img-hq" src="assets/images/products/standard-visiting-cards.jpg" />
+                  <div class="absolute bottom-2 left-2 bg-[#0f172a]/85 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-md shadow flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> 350 GSM Matte
+                  </div>
+                </div>
+              </div>
             </div>
           </article>
 
-          <!-- Hero Card 2: Custom Apparel (Exact Match to screen.png & code.html) -->
-          <article class="relative bg-gradient-to-br from-[#fff7ed] via-[#fef3c7]/30 to-[#f1f5f9] rounded-xl overflow-hidden min-h-[300px] flex flex-col justify-between p-6 sm:p-8 group shadow-sm border border-orange-100/70">
-            <div class="z-10">
-              <div class="inline-block text-[11px] font-bold uppercase tracking-wider text-[#0f172a] bg-white/80 border border-slate-200 px-2.5 py-0.5 rounded-full mb-3">Custom Merch</div>
-              <h2 class="text-2xl sm:text-3xl font-bold text-[#0f172a] leading-tight mb-2 font-display">Wear your brand with pride</h2>
-              <p class="text-sm sm:text-base text-slate-700 font-medium mb-6">1 Starting at Rs. 320</p>
-              <!-- Category Quick Links -->
-              <div class="flex flex-wrap gap-2">
-                <a class="bg-[#0f172a] text-white text-xs font-medium px-3.5 py-1.5 rounded-full hover:bg-[#ea580c] transition duration-200 shadow-sm cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'classic-polo-tshirts')">Custom Polo T-shirts</a>
-                <a class="bg-[#0f172a] text-white text-xs font-medium px-3.5 py-1.5 rounded-full hover:bg-[#ea580c] transition duration-200 shadow-sm cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'custom-round-neck-tshirts')">Custom T-shirts</a>
-                <a class="bg-[#0f172a] text-white text-xs font-medium px-3.5 py-1.5 rounded-full hover:bg-[#ea580c] transition duration-200 shadow-sm cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'embroidered-caps')">Caps</a>
+          <!-- Hero Card 2: Custom Apparel -->
+          <article class="relative bg-gradient-to-br from-[#fff7ed] via-[#fef3c7]/30 to-[#fbf7ee] rounded-2xl overflow-hidden p-6 sm:p-8 lg:p-9 shadow-sm border border-orange-200/70 hover:shadow-md transition duration-300 group cursor-pointer flex flex-col justify-between" onclick="window.appRouter.navigate('pdp', 'classic-polo-tshirts')">
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
+              <div class="sm:col-span-7 z-10 flex flex-col justify-between">
+                <div>
+                  <div class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#ea580c] bg-orange-100/90 border border-orange-200/60 px-3 py-1 rounded-full mb-3">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#ea580c]"></span>
+                    Custom Merch
+                  </div>
+                  <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0f172a] leading-tight mb-2 font-display">Wear your brand with pride</h2>
+                  <p class="text-sm sm:text-base text-slate-700 font-semibold mb-3">Custom Polos, Tees &amp; Caps from <span class="text-[#ea580c] font-bold">₹320</span></p>
+                  
+                  <ul class="text-xs text-slate-600 space-y-1.5 mb-5">
+                    <li class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> 100% Bio-Washed Combed Cotton Pique</li>
+                    <li class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Needle Embroidery &amp; Full Color DTG</li>
+                    <li class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Free Shipping on Orders Over ₹999</li>
+                  </ul>
+                </div>
+                
+                <!-- Category Quick Links -->
+                <div class="flex flex-wrap gap-2">
+                  <a class="bg-[#0f172a] text-white text-xs font-semibold px-3.5 py-1.5 rounded-full hover:bg-[#ea580c] transition duration-200 shadow-sm cursor-pointer" href="javascript:void(0)" onclick="event.stopPropagation(); window.appRouter.navigate('pdp', 'classic-polo-tshirts')">Polo T-shirts</a>
+                  <a class="bg-[#0f172a] text-white text-xs font-semibold px-3.5 py-1.5 rounded-full hover:bg-[#ea580c] transition duration-200 shadow-sm cursor-pointer" href="javascript:void(0)" onclick="event.stopPropagation(); window.appRouter.navigate('pdp', 'custom-round-neck-tshirts')">T-shirts</a>
+                  <a class="bg-[#0f172a] text-white text-xs font-semibold px-3.5 py-1.5 rounded-full hover:bg-[#ea580c] transition duration-200 shadow-sm cursor-pointer" href="javascript:void(0)" onclick="event.stopPropagation(); window.appRouter.navigate('pdp', 'embroidered-caps')">Caps</a>
+                  <a class="bg-white border border-slate-300 text-[#0f172a] text-xs font-semibold px-3.5 py-1.5 rounded-full hover:border-[#ea580c] hover:text-[#ea580c] transition duration-200 shadow-sm cursor-pointer" href="javascript:void(0)" onclick="event.stopPropagation(); window.appRouter.navigate('pdp', 'winter-hoodies')">Hoodies</a>
+                </div>
               </div>
-            </div>
-            <!-- Visual Polo Mockup - Full right side -->
-            <div class="absolute right-0 bottom-0 top-0 w-1/2 flex items-center justify-center pointer-events-none">
-              <img alt="Custom polo shirts showcasing logo branding" class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition duration-500" src="assets/images/products/polo-tshirts.jpg" />
-              <div class="absolute inset-0 bg-gradient-to-r from-[#fff7ed] via-[#fff7ed]/50 to-transparent"></div>
+              
+              <!-- Right Visual: Full Product Showcase without blank space -->
+              <div class="sm:col-span-5 relative flex items-center justify-center">
+                <div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-lg border border-white/80 group-hover:scale-105 transition duration-300">
+                  <img alt="Custom Polo Shirts & Apparel" class="w-full h-full object-cover img-hq" src="assets/images/products/polo-tshirts.jpg" />
+                  <div class="absolute bottom-2 left-2 bg-[#0f172a]/85 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-md shadow flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> 220 GSM Pique
+                  </div>
+                </div>
+              </div>
             </div>
           </article>
         </div>
@@ -338,11 +382,8 @@
         <div id="cat-scroll-container" class="flex gap-4 overflow-x-auto no-scrollbar pb-3">
           <!-- Visiting Cards Category -->
           <a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'visiting-cards')">
-            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-3 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition">
-              <div class="w-16 h-10 bg-white shadow-md border border-slate-200 rounded flex flex-col justify-center px-1.5">
-                <div class="h-1 bg-[#ea580c] w-1/2 mb-1"></div>
-                <div class="h-0.5 bg-slate-300 w-3/4"></div>
-              </div>
+            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition overflow-hidden">
+              <img alt="Visiting Cards" class="w-full h-full object-cover rounded-lg img-hq" loading="lazy" decoding="async" src="assets/images/products/standard-visiting-cards.jpg" />
             </div>
             <span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Visiting Cards</span>
           </a>
@@ -377,21 +418,21 @@
           <!-- Custom Stamps & Ink -->
           <a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'stamps-ink')">
             <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition overflow-hidden">
-              <img alt="Stamps and Ink" class="h-full w-full object-contain" src="https://images.unsplash.com/photo-1524234107056-1c1f48f64ab8?w=1200&auto=format&fit=crop&q=85" />
+              <img alt="Stamps and Ink" class="w-full h-full object-cover rounded-lg img-hq" loading="lazy" decoding="async" src="assets/images/products/self-inking-stamps.jpg" />
             </div>
             <span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Custom Stamps &amp; Ink</span>
           </a>
           <!-- Drinkware -->
           <a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'drinkware')">
             <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition overflow-hidden">
-              <img alt="Drinkware" class="h-full w-full object-contain" src="https://images.unsplash.com/photo-1523362628745-0c100150b504?w=1200&auto=format&fit=crop&q=85" />
+              <img alt="Drinkware" class="w-full h-full object-cover rounded-lg img-hq" loading="lazy" decoding="async" src="assets/images/products/water-bottles.jpg" />
             </div>
             <span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Drinkware</span>
           </a>
           <!-- Bags & Travel -->
           <a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'packaging')">
             <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition overflow-hidden">
-              <img alt="Bags" class="h-full w-full object-contain" src="https://images.unsplash.com/photo-1597633125184-9000a93a30a0?w=1200&auto=format&fit=crop&q=85" />
+              <img alt="Bags & Luggage" class="w-full h-full object-cover rounded-lg img-hq" loading="lazy" decoding="async" src="assets/images/products/tote-bags.jpg" />
             </div>
             <span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Bags &amp; Luggage</span>
           </a>
@@ -450,7 +491,7 @@
           <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'tote-bags')">
             <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs.310</span>
             <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Cotton Tote Bags" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=800&auto=format&fit=crop&q=85" />
+              <img alt="Cotton Tote Bags" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/tote-bags.jpg" />
             </div>
             <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Tote Bags</h3>
           </article>
@@ -458,7 +499,7 @@
           <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'self-inking-stamps')">
             <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs.399</span>
             <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Self Inking Rubber Stamps" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1524234107056-1c1f48f64ab8?w=1200&auto=format&fit=crop&q=85" />
+              <img alt="Self Inking Rubber Stamps" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/self-inking-stamps.jpg" />
             </div>
             <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Self Inking Stamps</h3>
           </article>
@@ -485,7 +526,7 @@
           <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'golf-umbrellas')">
             <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs. 1125</span>
             <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Golf Umbrellas" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1595776613215-fe04b78de7d0?w=800&auto=format&fit=crop&q=85" />
+              <img alt="Golf Umbrellas" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/golf-umbrellas.jpg" />
             </div>
             <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Golf Umbrellas</h3>
           </article>
@@ -501,7 +542,7 @@
           <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'diary-pen-holder')">
             <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs. 465</span>
             <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Diary with Pen Holder" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=1200&auto=format&fit=crop&q=85" />
+              <img alt="Diary with Pen Holder" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/diary-pen-holder.jpg" />
             </div>
             <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Diary With Pen Holder</h3>
           </article>
@@ -509,7 +550,7 @@
           <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'basic-rubber-stamps')">
             <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs. 180</span>
             <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Basic Rubber Stamps" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1200&auto=format&fit=crop&q=85" />
+              <img alt="Basic Rubber Stamps" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/rubber-stamps.jpg" />
             </div>
             <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Basic Rubber Stamps</h3>
           </article>
@@ -517,7 +558,7 @@
           <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'stainless-steel-tumbler')">
             <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs. 650</span>
             <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Personalised Tumblers" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=1200&auto=format&fit=crop&q=85" />
+              <img alt="Personalised Tumblers" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/stainless-tumbler.jpg" />
             </div>
             <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Personalized Tumblers</h3>
           </article>
@@ -525,7 +566,7 @@
           <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'water-bottles')">
             <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs. 390</span>
             <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Custom Water Bottles" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1523362628745-0c100150b504?w=1200&auto=format&fit=crop&q=85" />
+              <img alt="Custom Water Bottles" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/water-bottles.jpg" />
             </div>
             <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Custom Water Bottles</h3>
           </article>
@@ -580,7 +621,7 @@
           <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'harissons-laptop-bag')">
             <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs.1370</span>
             <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Harissons Laptop Bags" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=1200&auto=format&fit=crop&q=85" />
+              <img alt="Harissons Laptop Bags" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/harissons-laptop-bag.jpg" />
             </div>
             <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Harissons Nemesis Bag</h3>
           </article>
@@ -588,7 +629,7 @@
           <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'custom-lanyards')">
             <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 10 @ Rs.740</span>
             <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Branded Lanyards" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=1200&auto=format&fit=crop&q=85" />
+              <img alt="Branded Lanyards" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/custom-lanyards.jpg" />
             </div>
             <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Custom Lanyards</h3>
           </article>
@@ -596,7 +637,7 @@
           <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'custom-paper-bags')">
             <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 25 @ Rs.620</span>
             <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Paper Bags" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?w=1200&auto=format&fit=crop&q=85" />
+              <img alt="Paper Bags" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/custom-paper-bags.jpg" />
             </div>
             <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Custom Paper Bags</h3>
           </article>
@@ -604,7 +645,7 @@
           <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'custom-pens')">
             <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 50 @ Rs.1600</span>
             <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Custom Full White Ball Pens" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=1200&auto=format&fit=crop&q=85" />
+              <img alt="Custom Full White Ball Pens" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/custom-pens.jpg" />
             </div>
             <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Full White Ball Pens</h3>
           </article>
@@ -620,7 +661,7 @@
           <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'green-silver-pens')">
             <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 25 @ Rs.950</span>
             <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Green with Silver Ball Pens" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=1200&auto=format&fit=crop&q=85" />
+              <img alt="Green with Silver Ball Pens" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/green-silver-pens.jpg" />
             </div>
             <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Green &amp; Silver Pens</h3>
           </article>

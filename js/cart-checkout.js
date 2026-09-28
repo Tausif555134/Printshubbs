@@ -49,6 +49,9 @@ class CartAndCheckoutEngine {
       corners: item.corners || 'Standard Square',
       finish: item.finish || 'Standard Finish',
       sides: item.sides || 'Single-Sided',
+      color: item.color || null,
+      size: item.size || null,
+      shape: item.shape || null,
       unitPrice: item.unitPrice,
       totalPrice: item.totalPrice,
       isCustomized: !!item.isCustomized,
@@ -187,12 +190,12 @@ class CartAndCheckoutEngine {
 
     if (this.items.length === 0) {
       container.innerHTML = `
-        <div class="py-16 text-center text-slate-500">
-          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
+        <div class="py-16 text-center text-[#595959]">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[#f3f3f3] flex items-center justify-center text-[#8c8c8c]">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
           </div>
-          <h4 class="font-display font-semibold text-slate-800 text-lg mb-1">Your cart is empty</h4>
-          <p class="text-xs text-slate-500 max-w-xs mx-auto mb-5">Discover our custom visiting cards, apparel, and marketing merchandise.</p>
+          <h4 class="font-display font-semibold text-black text-lg mb-1">Your cart is empty</h4>
+          <p class="text-xs text-[#595959] max-w-xs mx-auto mb-5">Discover our custom visiting cards, apparel, and marketing merchandise.</p>
           <button onclick="window.appRouter.navigate('catalog')" class="btn-primary px-5 py-2 text-xs">Start Shopping</button>
         </div>
       `;
@@ -208,24 +211,24 @@ class CartAndCheckoutEngine {
     let html = '';
     this.items.forEach(item => {
       html += `
-        <div class="p-4 bg-white border border-slate-200 rounded-lg flex gap-3.5 relative group hover:border-slate-300 transition">
-          <div class="w-20 h-20 bg-slate-50 border border-slate-200 rounded flex-shrink-0 flex items-center justify-center overflow-hidden p-1">
+        <div class="p-4 bg-white border border-[#d9d9d9] rounded-lg flex gap-3.5 relative group hover:border-[#8c8c8c] transition">
+          <div class="w-20 h-20 bg-[#f3f3f3] border border-[#d9d9d9] rounded flex-shrink-0 flex items-center justify-center overflow-hidden p-1">
             <img src="${item.thumbnail}" alt="${item.title}" class="w-full h-full object-contain rounded" />
           </div>
           <div class="flex-grow min-w-0">
             <div class="flex items-start justify-between gap-2 mb-1">
-              <h4 class="font-bold text-xs text-[#0f172a] leading-snug truncate">${item.title}</h4>
-              <button onclick="window.cartEngine.removeItem('${item.id}')" class="text-slate-400 hover:text-red-500 transition text-sm">
+              <h4 class="font-bold text-xs text-black leading-snug truncate">${item.title}</h4>
+              <button onclick="window.cartEngine.removeItem('${item.id}')" class="text-[#8c8c8c] hover:text-black underline transition text-sm">
                 ✕
               </button>
             </div>
-            <div class="text-[11px] text-slate-500 space-y-0.5 mb-2 font-mono-spec">
-              <div>Qty: <strong class="text-slate-800">${item.quantity}</strong> | ${item.paperStock}</div>
-              <div>${item.corners} • ${item.finish}</div>
+            <div class="text-[11px] text-[#595959] space-y-0.5 mb-2 font-mono-spec">
+              <div>Qty: <strong class="text-black">${item.quantity}</strong> ${item.size ? `| Size: <strong class="text-black">${item.size}</strong>` : ''} ${item.color ? `| Color: <span class="inline-block w-2.5 h-2.5 rounded-full border border-gray-400 align-middle" style="background-color:${item.color};"></span>` : ''} ${item.shape ? `| Shape: <strong class="text-black capitalize">${item.shape}</strong>` : ''}</div>
+              <div>${item.paperStock || ''} ${item.corners && item.corners !== 'Standard Square' ? '• ' + item.corners : ''}</div>
             </div>
             <div class="flex items-center justify-between">
-              <span class="font-mono-spec font-bold text-xs text-[#ea580c]">₹${item.totalPrice.toLocaleString('en-IN')}</span>
-              <span class="text-[10px] text-slate-500 font-mono-spec">(₹${item.unitPrice}/unit)</span>
+              <span class="font-mono-spec font-bold text-xs text-black">₹${item.totalPrice.toLocaleString('en-IN')}</span>
+              <span class="text-[10px] text-[#595959] font-mono-spec">(₹${item.unitPrice}/unit)</span>
             </div>
           </div>
         </div>
@@ -237,39 +240,39 @@ class CartAndCheckoutEngine {
     if (summaryContainer) {
       summaryContainer.innerHTML = `
         <!-- Coupon input -->
-        <div class="pt-3 border-t border-slate-200">
+        <div class="pt-3 border-t border-[#d9d9d9]">
           <div class="flex gap-2 mb-2">
             <input type="text" id="cart-coupon-input" value="${calcs.couponCode || ''}" placeholder="Coupon code (e.g. HUB5)" class="flex-grow input-atelier text-xs px-3 uppercase font-mono-spec" />
             <button onclick="window.cartEngine.handleCouponApply()" class="btn-secondary px-3 text-xs font-semibold">Apply</button>
           </div>
-          ${calcs.couponMessage ? `<p class="text-[11px] ${calcs.discountAmount > 0 ? 'text-emerald-600' : 'text-amber-600'} font-medium mb-3">${calcs.couponMessage}</p>` : ''}
+          ${calcs.couponMessage ? `<p class="text-[11px] ${calcs.discountAmount > 0 ? 'text-black' : 'text-[#595959]'} font-medium mb-3">${calcs.couponMessage}</p>` : ''}
         </div>
 
         <!-- Price breakdown -->
-        <div class="space-y-1.5 text-xs text-slate-600 py-3 border-t border-slate-200 font-mono-spec">
+        <div class="space-y-1.5 text-xs text-[#595959] py-3 border-t border-[#d9d9d9] font-mono-spec">
           <div class="flex justify-between">
             <span>Items Subtotal:</span>
-            <span class="font-semibold text-slate-900">₹${calcs.subtotal.toLocaleString('en-IN')}</span>
+            <span class="font-semibold text-black">₹${calcs.subtotal.toLocaleString('en-IN')}</span>
           </div>
           ${calcs.discountAmount > 0 ? `
-            <div class="flex justify-between text-emerald-600 font-medium">
+            <div class="flex justify-between text-black font-bold">
               <span>Coupon Discount:</span>
               <span>-₹${calcs.discountAmount.toLocaleString('en-IN')}</span>
             </div>
           ` : ''}
           <div class="flex justify-between">
             <span>GST (18% Invoiced):</span>
-            <span class="font-semibold text-slate-900">₹${calcs.gstTax.toLocaleString('en-IN')}</span>
+            <span class="font-semibold text-black">₹${calcs.gstTax.toLocaleString('en-IN')}</span>
           </div>
           <div class="flex justify-between">
             <span>Delivery (${this.selectedDeliverySpeed === 'same-day' ? 'Same Day Express' : 'Standard'}):</span>
-            <span class="font-semibold ${calcs.deliveryFee === 0 ? 'text-emerald-600' : 'text-slate-900'}">
+            <span class="font-semibold ${calcs.deliveryFee === 0 ? 'text-black' : 'text-black'}">
               ${calcs.deliveryFee === 0 ? 'FREE' : '₹' + calcs.deliveryFee}
             </span>
           </div>
-          <div class="flex justify-between text-sm font-bold text-[#0f172a] pt-2 border-t border-slate-200">
+          <div class="flex justify-between text-sm font-bold text-black pt-2 border-t border-[#d9d9d9]">
             <span>Grand Total:</span>
-            <span class="text-[#ea580c] font-display text-base">₹${calcs.grandTotal.toLocaleString('en-IN')}</span>
+            <span class="text-black font-display text-base">₹${calcs.grandTotal.toLocaleString('en-IN')}</span>
           </div>
         </div>
 
@@ -317,11 +320,11 @@ class CartAndCheckoutEngine {
     document.querySelectorAll('.checkout-step-indicator').forEach(el => {
       const s = parseInt(el.getAttribute('data-step'));
       if (s === step) {
-        el.className = 'checkout-step-indicator px-3 py-1.5 rounded-full text-xs font-bold bg-[#ea580c] text-white flex items-center gap-1.5';
+        el.className = 'checkout-step-indicator px-3 py-1.5 rounded-full text-xs font-bold bg-black text-white flex items-center gap-1.5';
       } else if (s < step) {
-        el.className = 'checkout-step-indicator px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 flex items-center gap-1.5';
+        el.className = 'checkout-step-indicator px-3 py-1.5 rounded-lg text-xs font-bold bg-[#f3f3f3] text-black shadow-[rgb(0_0_0)_0px_0px_0px_1px_inset] flex items-center gap-1.5';
       } else {
-        el.className = 'checkout-step-indicator px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 text-slate-500 flex items-center gap-1.5';
+        el.className = 'checkout-step-indicator px-3 py-1.5 rounded-full text-xs font-medium bg-[#f3f3f3] text-[#595959] flex items-center gap-1.5';
       }
     });
 
@@ -331,28 +334,28 @@ class CartAndCheckoutEngine {
       // Step 1: Shipping Address & GST
       stepContainer.innerHTML = `
         <form id="checkout-form-address" onsubmit="window.cartEngine.handleAddressSubmit(event)" class="space-y-4">
-          <h3 class="font-display font-bold text-base text-[#0f172a] mb-2">1. Shipping & Tax Invoicing Address</h3>
+          <h3 class="font-display font-bold text-base text-black mb-2">1. Shipping & Tax Invoicing Address</h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">Full Name *</label>
+              <label class="block text-xs font-semibold text-[#595959] mb-1">Full Name *</label>
               <input type="text" id="co-name" required value="Arjun Sharma" class="w-full input-atelier px-3 text-xs" />
             </div>
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">Mobile Number (For Delivery SMS) *</label>
+              <label class="block text-xs font-semibold text-[#595959] mb-1">Mobile Number (For Delivery SMS) *</label>
               <input type="tel" id="co-phone" required value="9820012345" class="w-full input-atelier px-3 text-xs" />
             </div>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Street Address / Suite / Building *</label>
+            <label class="block text-xs font-semibold text-[#595959] mb-1">Street Address / Suite / Building *</label>
             <input type="text" id="co-address" required value="Tower 4, Floor 8, BKC Commercial Complex" class="w-full input-atelier px-3 text-xs" />
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">City *</label>
+              <label class="block text-xs font-semibold text-[#595959] mb-1">City *</label>
               <input type="text" id="co-city" required value="Mumbai" class="w-full input-atelier px-3 text-xs" />
             </div>
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">State *</label>
+              <label class="block text-xs font-semibold text-[#595959] mb-1">State *</label>
               <select id="co-state" class="w-full input-atelier px-3 text-xs">
                 <option value="Maharashtra" selected>Maharashtra</option>
                 <option value="Karnataka">Karnataka</option>
@@ -364,16 +367,16 @@ class CartAndCheckoutEngine {
               </select>
             </div>
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">Pin Code *</label>
+              <label class="block text-xs font-semibold text-[#595959] mb-1">Pin Code *</label>
               <input type="text" id="co-pincode" onchange="window.cartEngine.handlePincodeChange(this.value)" required maxlength="6" value="${this.deliveryPincode}" class="w-full input-atelier px-3 text-xs font-mono-spec" />
             </div>
           </div>
 
           <!-- B2B GSTIN field for business tax invoice -->
-          <div class="p-3 bg-slate-50 border border-slate-200 rounded-md">
-            <label class="block text-xs font-bold text-[#0f172a] mb-1">B2B GSTIN (Optional — For 18% Input Tax Credit)</label>
+          <div class="p-3 bg-[#f3f3f3] border border-[#d9d9d9] rounded-md">
+            <label class="block text-xs font-bold text-black mb-1">B2B GSTIN (Optional — For 18% Input Tax Credit)</label>
             <input type="text" id="co-gstin" placeholder="27AAAAA0000A1Z5" class="w-full input-atelier px-3 text-xs uppercase font-mono-spec" />
-            <p class="text-[10px] text-slate-500 mt-1">Provide your business GSTIN to receive a formal tax invoice with your company name.</p>
+            <p class="text-[10px] text-[#595959] mt-1">Provide your business GSTIN to receive a formal tax invoice with your company name.</p>
           </div>
 
           <div class="flex justify-end pt-3">
@@ -389,46 +392,46 @@ class CartAndCheckoutEngine {
       const pinCheck = this.checkPincode(this.deliveryPincode);
       stepContainer.innerHTML = `
         <div class="space-y-4">
-          <h3 class="font-display font-bold text-base text-[#0f172a] mb-1">2. Choose Delivery Method</h3>
-          <p class="text-xs text-slate-600">Delivering to PIN: <strong class="font-mono-spec text-slate-800">${this.deliveryPincode}</strong> (${pinCheck.city})</p>
+          <h3 class="font-display font-bold text-base text-black mb-1">2. Choose Delivery Method</h3>
+          <p class="text-xs text-[#595959]">Delivering to PIN: <strong class="font-mono-spec text-black">${this.deliveryPincode}</strong> (${pinCheck.city})</p>
 
           <div class="space-y-3">
             <!-- Standard Delivery -->
-            <label class="p-4 border ${this.selectedDeliverySpeed === 'standard' ? 'border-[#ea580c] bg-orange-50/20' : 'border-slate-200 bg-white'} rounded-lg flex items-start gap-3 cursor-pointer transition">
-              <input type="radio" name="delivery-speed" value="standard" ${this.selectedDeliverySpeed === 'standard' ? 'checked' : ''} onchange="window.cartEngine.setDeliverySpeed('standard')" class="mt-1 text-[#ea580c] focus:ring-[#ea580c]" />
+            <label class="p-4 border ${this.selectedDeliverySpeed === 'standard' ? 'border-black bg-[#f3f3f3] ring-2 ring-black' : 'border-[#d9d9d9] bg-white'} rounded-lg flex items-start gap-3 cursor-pointer transition">
+              <input type="radio" name="delivery-speed" value="standard" ${this.selectedDeliverySpeed === 'standard' ? 'checked' : ''} onchange="window.cartEngine.setDeliverySpeed('standard')" class="mt-1 accent-black" />
               <div class="flex-grow">
                 <div class="flex justify-between items-center mb-1">
-                  <span class="font-bold text-xs text-[#0f172a]">Standard Insured Delivery</span>
-                  <span class="font-mono-spec text-xs font-bold ${calcs.deliveryFee === 0 ? 'text-emerald-600' : 'text-slate-800'}">${calcs.subtotal >= 999 ? 'FREE' : '₹79'}</span>
+                  <span class="font-bold text-xs text-black">Standard Insured Delivery</span>
+                  <span class="font-mono-spec text-xs font-bold ${calcs.deliveryFee === 0 ? 'text-black' : 'text-black'}">${calcs.subtotal >= 999 ? 'FREE' : '₹79'}</span>
                 </div>
-                <p class="text-xs text-slate-500">Estimated delivery within 3 to 5 business days across India.</p>
+                <p class="text-xs text-[#595959]">Estimated delivery within 3 to 5 business days across India.</p>
               </div>
             </label>
 
             <!-- Same Day Delivery (Conditional on Pincode) -->
             ${pinCheck.isSameDay ? `
-              <label class="p-4 border ${this.selectedDeliverySpeed === 'same-day' ? 'border-[#ea580c] bg-orange-50/20' : 'border-slate-200 bg-white'} rounded-lg flex items-start gap-3 cursor-pointer transition">
-                <input type="radio" name="delivery-speed" value="same-day" ${this.selectedDeliverySpeed === 'same-day' ? 'checked' : ''} onchange="window.cartEngine.setDeliverySpeed('same-day')" class="mt-1 text-[#ea580c] focus:ring-[#ea580c]" />
+              <label class="p-4 border ${this.selectedDeliverySpeed === 'same-day' ? 'border-black bg-[#f3f3f3] ring-2 ring-black' : 'border-[#d9d9d9] bg-white'} rounded-lg flex items-start gap-3 cursor-pointer transition">
+                <input type="radio" name="delivery-speed" value="same-day" ${this.selectedDeliverySpeed === 'same-day' ? 'checked' : ''} onchange="window.cartEngine.setDeliverySpeed('same-day')" class="mt-1 accent-black" />
                 <div class="flex-grow">
                   <div class="flex justify-between items-center mb-1">
                     <div class="flex items-center gap-2">
-                      <span class="font-bold text-xs text-[#0f172a]">Same Day Express Priority</span>
+                      <span class="font-bold text-xs text-black">Same Day Express Priority</span>
                       <span class="badge-pill-accent">Eligible City</span>
                     </div>
-                    <span class="font-mono-spec text-xs font-bold text-[#ea580c]">₹149</span>
+                    <span class="font-mono-spec text-xs font-bold text-black">₹149</span>
                   </div>
-                  <p class="text-xs text-slate-500">Delivered by 8:00 PM today via dedicated courier dispatch in ${pinCheck.city}. Note: Cash on Delivery is not supported for Same Day orders.</p>
+                  <p class="text-xs text-[#595959]">Delivered by 8:00 PM today via dedicated courier dispatch in ${pinCheck.city}. Note: Cash on Delivery is not supported for Same Day orders.</p>
                 </div>
               </label>
             ` : `
-              <div class="p-4 border border-dashed border-slate-300 rounded-lg bg-slate-50 text-slate-500 text-xs">
-                <div class="font-semibold text-slate-700 mb-0.5">Same Day Delivery Not Available For ${this.deliveryPincode}</div>
+              <div class="p-4 border border-dashed border-[#8c8c8c] rounded-lg bg-[#f3f3f3] text-[#595959] text-xs">
+                <div class="font-semibold text-[#595959] mb-0.5">Same Day Delivery Not Available For ${this.deliveryPincode}</div>
                 <div>Same Day Express is currently active for eligible PINs in Mumbai, Bengaluru, and Kolkata. Standard fast delivery applies.</div>
               </div>
             `}
           </div>
 
-          <div class="flex justify-between pt-4 border-t border-slate-200">
+          <div class="flex justify-between pt-4 border-t border-[#d9d9d9]">
             <button onclick="window.cartEngine.renderCheckoutStep(1)" class="btn-outline px-4 py-2 text-xs">← Back</button>
             <button onclick="window.cartEngine.renderCheckoutStep(3)" class="btn-primary px-6 py-2 text-xs font-bold">Next: Payment →</button>
           </div>
@@ -439,50 +442,50 @@ class CartAndCheckoutEngine {
       const codEligible = calcs.grandTotal <= 5000 && this.selectedDeliverySpeed !== 'same-day';
       stepContainer.innerHTML = `
         <div class="space-y-4">
-          <h3 class="font-display font-bold text-base text-[#0f172a] mb-1">3. Select Payment Method</h3>
-          <p class="text-xs text-slate-600">Total Payable: <strong class="font-mono-spec text-[#ea580c] font-bold text-sm">₹${calcs.grandTotal.toLocaleString('en-IN')}</strong> (Incl. GST)</p>
+          <h3 class="font-display font-bold text-base text-black mb-1">3. Select Payment Method</h3>
+          <p class="text-xs text-[#595959]">Total Payable: <strong class="font-mono-spec text-black font-bold text-sm">₹${calcs.grandTotal.toLocaleString('en-IN')}</strong> (Incl. GST)</p>
 
           <div class="space-y-2.5">
             <!-- UPI -->
-            <label class="p-3.5 border border-slate-200 rounded-lg flex items-center gap-3 cursor-pointer hover:border-slate-300 bg-white">
-              <input type="radio" name="payment-method" value="upi" checked class="text-[#ea580c] focus:ring-[#ea580c]" />
+            <label class="p-3.5 border border-[#d9d9d9] rounded-lg flex items-center gap-3 cursor-pointer hover:border-[#8c8c8c] bg-white">
+              <input type="radio" name="payment-method" value="upi" checked class="accent-black" />
               <div class="flex-grow">
-                <div class="font-bold text-xs text-[#0f172a] flex items-center gap-2">
+                <div class="font-bold text-xs text-black flex items-center gap-2">
                   <span>Instant UPI (Google Pay, PhonePe, Paytm, BHIM)</span>
                   <span class="badge-pill-accent">Zero Surcharge</span>
                 </div>
-                <div class="text-[11px] text-slate-500">Scan dynamic QR or enter your VPA @upi</div>
+                <div class="text-[11px] text-[#595959]">Scan dynamic QR or enter your VPA @upi</div>
               </div>
             </label>
 
             <!-- Credit / Debit Cards -->
-            <label class="p-3.5 border border-slate-200 rounded-lg flex items-center gap-3 cursor-pointer hover:border-slate-300 bg-white">
-              <input type="radio" name="payment-method" value="card" class="text-[#ea580c] focus:ring-[#ea580c]" />
+            <label class="p-3.5 border border-[#d9d9d9] rounded-lg flex items-center gap-3 cursor-pointer hover:border-[#8c8c8c] bg-white">
+              <input type="radio" name="payment-method" value="card" class="accent-black" />
               <div class="flex-grow">
-                <div class="font-bold text-xs text-[#0f172a]">Credit / Debit Card / NetBanking</div>
-                <div class="text-[11px] text-slate-500">Visa, MasterCard, RuPay, Corporate Amex</div>
+                <div class="font-bold text-xs text-black">Credit / Debit Card / NetBanking</div>
+                <div class="text-[11px] text-[#595959]">Visa, MasterCard, RuPay, Corporate Amex</div>
               </div>
             </label>
 
             <!-- Cash on Delivery -->
-            <label class="p-3.5 border ${codEligible ? 'border-slate-200 bg-white cursor-pointer hover:border-slate-300' : 'border-slate-200 bg-slate-50 opacity-60 cursor-not-allowed'} rounded-lg flex items-center gap-3">
-              <input type="radio" name="payment-method" value="cod" ${!codEligible ? 'disabled' : ''} class="text-[#ea580c] focus:ring-[#ea580c]" />
+            <label class="p-3.5 border ${codEligible ? 'border-[#d9d9d9] bg-white cursor-pointer hover:border-[#8c8c8c]' : 'border-[#d9d9d9] bg-[#f3f3f3] opacity-60 cursor-not-allowed'} rounded-lg flex items-center gap-3">
+              <input type="radio" name="payment-method" value="cod" ${!codEligible ? 'disabled' : ''} class="accent-black" />
               <div class="flex-grow">
-                <div class="font-bold text-xs text-[#0f172a] flex items-center gap-2">
+                <div class="font-bold text-xs text-black flex items-center gap-2">
                   <span>Cash on Delivery (COD)</span>
-                  ${!codEligible ? '<span class="text-[10px] text-red-600 font-medium">(Not eligible for Same Day or Orders &gt; ₹5,000)</span>' : ''}
+                  ${!codEligible ? '<span class="text-[10px] text-black font-bold underline">(Not eligible for Same Day or Orders &gt; ₹5,000)</span>' : ''}
                 </div>
-                <div class="text-[11px] text-slate-500">Pay cash or UPI upon delivery verification</div>
+                <div class="text-[11px] text-[#595959]">Pay cash or UPI upon delivery verification</div>
               </div>
             </label>
           </div>
 
-          <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 flex items-center gap-2 text-xs text-slate-600">
-            <svg class="w-4 h-4 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+          <div class="p-3 bg-[#f3f3f3] rounded-lg border border-[#d9d9d9] flex items-center gap-2 text-xs text-[#595959]">
+            <svg class="w-4 h-4 text-black flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
             <span>256-Bit SSL Encrypted Pre-Press Payment Gateway</span>
           </div>
 
-          <div class="flex justify-between pt-4 border-t border-slate-200">
+          <div class="flex justify-between pt-4 border-t border-[#d9d9d9]">
             <button onclick="window.cartEngine.renderCheckoutStep(2)" class="btn-outline px-4 py-2 text-xs">← Back</button>
             <button onclick="window.cartEngine.placeFinalOrder()" class="btn-primary px-8 py-2.5 text-xs font-bold shadow-md">Place Order Now (₹${calcs.grandTotal.toLocaleString('en-IN')})</button>
           </div>
@@ -546,30 +549,30 @@ class CartAndCheckoutEngine {
     if (stepContainer) {
       stepContainer.innerHTML = `
         <div class="text-center py-6 space-y-4">
-          <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-sm">
+          <div class="w-16 h-16 bg-[#f3f3f3] text-black rounded-full flex items-center justify-center mx-auto shadow-sm">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
           </div>
           <div>
-            <h2 class="font-display font-bold text-xl text-[#0f172a]">Order Successfully Placed!</h2>
-            <p class="text-xs text-slate-600 mt-1">Thank you for choosing Printhubbs Atelier. Your custom artwork has entered automated pre-press color proofing.</p>
+            <h2 class="font-display font-bold text-xl text-black">Order Successfully Placed!</h2>
+            <p class="text-xs text-[#595959] mt-1">Thank you for choosing Printhubbs Atelier. Your custom artwork has entered automated pre-press color proofing.</p>
           </div>
 
-          <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg text-left max-w-md mx-auto space-y-2 text-xs font-mono-spec">
+          <div class="p-4 bg-[#f3f3f3] border border-[#d9d9d9] rounded-lg text-left max-w-md mx-auto space-y-2 text-xs font-mono-spec">
             <div class="flex justify-between">
-              <span class="text-slate-500">Order Reference:</span>
-              <strong class="text-[#0f172a]">${orderId}</strong>
+              <span class="text-[#595959]">Order Reference:</span>
+              <strong class="text-black">${orderId}</strong>
             </div>
             <div class="flex justify-between">
-              <span class="text-slate-500">Estimated Dispatch:</span>
-              <strong class="text-emerald-700">${this.selectedDeliverySpeed === 'same-day' ? 'Today by 8:00 PM' : '3 to 5 Business Days'}</strong>
+              <span class="text-[#595959]">Estimated Dispatch:</span>
+              <strong class="text-black">${this.selectedDeliverySpeed === 'same-day' ? 'Today by 8:00 PM' : '3 to 5 Business Days'}</strong>
             </div>
             <div class="flex justify-between">
-              <span class="text-slate-500">Total Paid (GST 18%):</span>
-              <strong class="text-[#ea580c]">₹${calcs.grandTotal.toLocaleString('en-IN')}</strong>
+              <span class="text-[#595959]">Total Paid (GST 18%):</span>
+              <strong class="text-black">₹${calcs.grandTotal.toLocaleString('en-IN')}</strong>
             </div>
             <div class="flex justify-between">
-              <span class="text-slate-500">Tracking Number:</span>
-              <span class="text-slate-700">${newOrder.trackingNumber}</span>
+              <span class="text-[#595959]">Tracking Number:</span>
+              <span class="text-[#595959]">${newOrder.trackingNumber}</span>
             </div>
           </div>
 

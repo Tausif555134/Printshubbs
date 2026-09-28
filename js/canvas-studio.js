@@ -26,8 +26,8 @@ class PrintStudioEngine {
     // Active design state
     this.state = {
       templateId: 'tpl-corporate-modern',
-      bgColor: '#0f172a',
-      accentColor: '#ea580c',
+      bgColor: '#000000',
+      accentColor: '#ffffff',
       textColor: '#ffffff',
       secondaryTextColor: '#cbd5e1',
       fontHeading: 'Space Grotesk',
@@ -77,7 +77,7 @@ class PrintStudioEngine {
       this.canvasHeight = 800;
       this.bleedPixels = 0;
       this.safePixels = 50;
-    } else if (product.category === 'photo-gifts' || product.category === 'drinkware') {
+    } else if (product.category === 'photo-gifts') {
       this.canvasWidth = 900;
       this.canvasHeight = 600;
       this.bleedPixels = 20;
@@ -130,15 +130,15 @@ class PrintStudioEngine {
     const backBtn = document.getElementById('studio-btn-back');
     if (frontBtn && backBtn) {
       if (side === 'front') {
-        frontBtn.classList.add('bg-[#ea580c]', 'text-white');
-        frontBtn.classList.remove('bg-white', 'text-[#0f172a]');
-        backBtn.classList.add('bg-white', 'text-[#0f172a]');
-        backBtn.classList.remove('bg-[#ea580c]', 'text-white');
+        frontBtn.classList.add('bg-black', 'text-white');
+        frontBtn.classList.remove('bg-white', 'text-black');
+        backBtn.classList.add('bg-white', 'text-black');
+        backBtn.classList.remove('bg-black', 'text-white');
       } else {
-        backBtn.classList.add('bg-[#ea580c]', 'text-white');
-        backBtn.classList.remove('bg-white', 'text-[#0f172a]');
-        frontBtn.classList.add('bg-white', 'text-[#0f172a]');
-        frontBtn.classList.remove('bg-[#ea580c]', 'text-white');
+        backBtn.classList.add('bg-black', 'text-white');
+        backBtn.classList.remove('bg-white', 'text-black');
+        frontBtn.classList.add('bg-white', 'text-black');
+        frontBtn.classList.remove('bg-black', 'text-white');
       }
     }
   }
@@ -379,7 +379,7 @@ class PrintStudioEngine {
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(x - 8, y - 8, size + 16, size + 16);
 
-    ctx.fillStyle = '#0f172a';
+    ctx.fillStyle = '#000000';
     for (let r = 0; r < count; r++) {
       for (let c = 0; c < count; c++) {
         if (matrix[r][c] === 1) {
@@ -389,7 +389,7 @@ class PrintStudioEngine {
     }
 
     // QR Label micro-tag
-    ctx.fillStyle = '#64748b';
+    ctx.fillStyle = '#595959';
     ctx.font = `700 9px "JetBrains Mono", monospace`;
     ctx.textAlign = 'center';
     ctx.fillText('SCAN VCARD', x + (size / 2), y + size + 14);
@@ -398,15 +398,15 @@ class PrintStudioEngine {
   renderPrintGuides(ctx, W, H, bleed) {
     ctx.save();
 
-    // 1. Bleed Border Line (3mm - Orange Dashed)
-    ctx.strokeStyle = '#ea580c';
+    // 1. Bleed Border Line (3mm - Ink Dashed)
+    ctx.strokeStyle = '#000000';
     ctx.lineWidth = 2;
     ctx.setLineDash([8, 6]);
     ctx.strokeRect(bleed, bleed, W - (bleed * 2), H - (bleed * 2));
 
-    // 2. Safe Margin Border Line (Blue / Cyan Dotted)
+    // 2. Safe Margin Border Line (Gray Dotted)
     const safe = this.safePixels;
-    ctx.strokeStyle = '#0284c7';
+    ctx.strokeStyle = '#595959';
     ctx.lineWidth = 1.5;
     ctx.setLineDash([4, 4]);
     ctx.strokeRect(safe, safe, W - (safe * 2), H - (safe * 2));
@@ -416,13 +416,13 @@ class PrintStudioEngine {
     ctx.font = `600 10px "JetBrains Mono", monospace`;
 
     // Bleed indicator tag
-    ctx.fillStyle = '#ea580c';
+    ctx.fillStyle = '#000000';
     ctx.fillRect(bleed, 6, 92, 18);
     ctx.fillStyle = '#ffffff';
     ctx.fillText('BLEED: 3MM', bleed + 6, 19);
 
     // Trim cut indicator tag
-    ctx.fillStyle = '#0f172a';
+    ctx.fillStyle = '#000000';
     ctx.fillRect(W - bleed - 92, 6, 86, 18);
     ctx.fillStyle = '#ffffff';
     ctx.fillText('TRIM LINE', W - bleed - 86, 19);
@@ -440,13 +440,13 @@ class PrintStudioEngine {
     if (dpiEl && dpiBadge) {
       if (this.dpiStatus >= 300) {
         dpiEl.textContent = `${this.dpiStatus} DPI — Optimal Print Quality (300+ DPI)`;
-        dpiBadge.className = 'w-2 h-2 rounded-full bg-emerald-500 animate-pulse';
+        dpiBadge.className = 'w-2 h-2 rounded-full bg-white animate-pulse';
       } else if (this.dpiStatus >= 200) {
         dpiEl.textContent = `${this.dpiStatus} DPI — Standard Print Quality`;
-        dpiBadge.className = 'w-2 h-2 rounded-full bg-blue-500';
+        dpiBadge.className = 'w-2 h-2 rounded-full bg-white/70';
       } else {
         dpiEl.textContent = `${this.dpiStatus} DPI — Low Resolution Alert (Upload 300+ DPI for crisp print)`;
-        dpiBadge.className = 'w-2 h-2 rounded-full bg-amber-500';
+        dpiBadge.className = 'w-2 h-2 rounded-full bg-white/50';
       }
     }
 

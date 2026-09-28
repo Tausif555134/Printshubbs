@@ -3,6 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta name="description" content="Printhubbs - India's custom printing atelier. Visiting cards, apparel, mugs, stamps &amp; marketing materials with online design studio, 300 DPI proofing and Same Day Delivery in select cities." />
+  <meta name="theme-color" content="#000000" />
+  <meta property="og:title" content="Printhubbs - Custom Business Cards, T-Shirts, Marketing Materials &amp; Merch" />
+  <meta property="og:description" content="Design and order premium custom print &amp; merch online. Low quantities, best prices, free replacement or full refund." />
+  <meta property="og:type" content="website" />
   <title>Printhubbs - Custom Business Cards, T-Shirts, Marketing Materials &amp; Merch</title>
 
   <!-- Favicons: SVG, Apple Touch Icon, PNG, and ICO -->
@@ -15,38 +20,47 @@
   <!-- Tailwind CSS v3 with Plugins -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-  <!-- Google Fonts: Space Grotesk, Hanken Grotesk, JetBrains Mono, Open Sans -->
+  <!-- Google Fonts: Inter (Graphik-metric substitute), JetBrains Mono -->
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
+            /* Semantic monochrome tokens — do not introduce raw hex outside this config */
             brand: {
-              navy: '#0f172a',
-              navyDeep: '#0a0f1d',
-              navyLight: '#1e3a8a',
-              orange: '#ea580c',
-              orangeHover: '#c2410c',
-              orangeLight: '#fff7ed',
-              orangeBorder: '#fed7aa',
-              accentCyan: '#0284c7',
-              grayBg: '#f8fafc',
-              textDark: '#0f172a'
+              ink: '#000000',           /* color.surface.base + primary text */
+              inkHover: '#1a1a1a',
+              paper: '#ffffff',         /* color.text.secondary on ink surfaces */
+              raised: '#e6e6e6',        /* color.surface.raised */
+              strong: '#f3f3f3',        /* color.surface.strong */
+              muted: '#595959',         /* secondary text on light (AA on white) */
+              line: '#d9d9d9',          /* hairline borders */
+              lineStrong: '#8c8c8c'
             }
           },
           fontFamily: {
-            sans: ['Open Sans', 'Hanken Grotesk', 'Segoe UI', 'Helvetica Neue', 'sans-serif'],
-            display: ['Space Grotesk', 'Open Sans', 'sans-serif'],
+            sans: ['Inter', 'Graphik', 'Segoe UI', 'Helvetica Neue', 'sans-serif'],
+            display: ['Inter', 'Graphik', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace'],
+          },
+          borderRadius: {
+            DEFAULT: '8px',
+          },
+          transitionDuration: {
+            instant: '200ms',
+            fast: '300ms'
           }
         }
       }
     }
   </script>
+
+  <!-- Design System (fonts, elevation, image HQ engine) -->
+  <link rel="stylesheet" href="css/custom.css" />
 
   <!-- Custom Styles Matching DESIGN.md & code.html -->
   <style data-purpose="scrollbar-and-helpers">
@@ -63,185 +77,529 @@
   </style>
   <style data-purpose="badges-and-buttons">
     .product-price-pill {
-      background-color: #fff7ed;
-      color: #0f172a;
+      background-color: #00695c;
+      color: #ffffff;
       font-size: 11px;
       font-weight: 700;
-      border: 1px solid #fdba74;
+      border: none;
       border-radius: 4px;
-      padding: 3px 7px;
+      padding: 4px 10px;
       display: inline-flex;
       align-items: center;
-      gap: 3px;
-      line-height: 1.1;
+      gap: 4px;
+      line-height: 1.2;
       letter-spacing: -0.01em;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Inter', 'Graphik', sans-serif;
+      white-space: nowrap;
     }
     .carousel-nav-btn {
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
-      transition: all 0.2s ease-in-out;
+      box-shadow: rgb(0 0 0) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.09) 0px -1px 1px 0px inset;
+      transition: all 200ms ease;
       cursor: pointer;
     }
     .carousel-nav-btn:hover {
-      background-color: #fff7ed;
-      color: #ea580c;
-      border-color: #fdba74;
-      transform: scale(1.05);
+      background-color: #e6e6e6;
+      color: #000000;
+      border-color: #000000;
+    }
+    .carousel-nav-btn:focus-visible {
+      outline: 2px solid #000000;
+      outline-offset: 2px;
+    }
+    .carousel-nav-btn:active {
+      background-color: #e6e6e6;
+      transform: scale(0.97);
     }
     /* Atelier Print Proofing Bar and Guides */
     .canvas-wrapper {
-      background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+      background-image: radial-gradient(#d9d9d9 1px, transparent 1px);
       background-size: 16px 16px;
-      background-color: #f8faff;
+      background-color: #f3f3f3;
     }
     .proofing-dock {
-      background: #0f172a;
-      border-top: 1px solid #334155;
-      color: #f8fafc;
+      background: #000000;
+      border-top: 1px solid #333333;
+      color: #ffffff;
     }
     .badge-pill-accent {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6875rem;
+      font-size: 12px;
       font-weight: 600;
       text-transform: uppercase;
-      background-color: rgba(234, 88, 12, 0.1);
-      color: #ea580c;
-      border: 1px solid rgba(234, 88, 12, 0.25);
-      border-radius: 9999px;
-      padding: 0.25rem 0.625rem;
+      background-color: #000000;
+      color: #ffffff;
+      border-radius: 8px;
+      padding: 3px 10px;
       display: inline-flex;
       align-items: center;
-      gap: 0.25rem;
+      gap: 4px;
     }
+    .badge-pill-accent:disabled, .badge-pill-accent[aria-disabled="true"] { opacity: 0.5; }
     .badge-pill-neutral {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6875rem;
+      font-size: 12px;
       font-weight: 500;
       text-transform: uppercase;
-      background-color: #f1f5f9;
-      color: #334155;
-      border-radius: 9999px;
-      padding: 0.25rem 0.625rem;
+      background-color: #f3f3f3;
+      color: #000000;
+      box-shadow: rgb(0 0 0) 0px 0px 0px 1px inset;
+      border-radius: 8px;
+      padding: 3px 10px;
       display: inline-flex;
       align-items: center;
-      gap: 0.25rem;
+      gap: 4px;
     }
     .btn-primary {
-      background-color: #ea580c;
+      background-color: #000000;
       color: #ffffff;
-      border-radius: 0.375rem;
-      font-weight: 600;
-      transition: all 0.15s ease;
+      border-radius: 8px;
+      font-weight: 700;
+      transition: all 200ms ease;
     }
     .btn-primary:hover {
-      background-color: #c2410c;
+      background-color: #1a1a1a;
+    }
+    .btn-primary:focus-visible {
+      outline: 2px solid #000000;
+      outline-offset: 2px;
+    }
+    .btn-primary:active {
+      transform: scale(0.98);
+    }
+    .btn-primary:disabled {
+      background-color: #e6e6e6;
+      color: #8c8c8c;
+      cursor: not-allowed;
+      transform: none;
     }
     .btn-secondary {
-      background-color: #0f172a;
-      color: #ffffff;
-      border-radius: 0.375rem;
-      font-weight: 600;
-      transition: all 0.15s ease;
+      background-color: #ffffff;
+      color: #000000;
+      box-shadow: rgb(0 0 0) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.09) 0px -1px 1px 0px inset;
+      border-radius: 8px;
+      font-weight: 700;
+      transition: all 200ms ease;
     }
     .btn-secondary:hover {
-      background-color: #1e293b;
+      background-color: #e6e6e6;
+      box-shadow: rgb(0 0 0) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.26) 0px 0px 0px 1px inset;
+    }
+    .btn-secondary:focus-visible {
+      outline: 2px solid #000000;
+      outline-offset: 2px;
+    }
+    .btn-secondary:active {
+      background-color: #e6e6e6;
+      transform: scale(0.98);
+    }
+    .btn-secondary:disabled {
+      color: #8c8c8c;
+      box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 1px inset;
+      cursor: not-allowed;
     }
     .btn-outline {
-      border: 1px solid #cbd5e1;
+      border: 1px solid #d9d9d9;
       background-color: transparent;
-      color: #0f172a;
-      border-radius: 0.375rem;
-      font-weight: 600;
-      transition: all 0.15s ease;
+      color: #000000;
+      border-radius: 8px;
+      font-weight: 700;
+      transition: all 200ms ease;
     }
     .btn-outline:hover {
-      background-color: #f8fafc;
-      border-color: #0f172a;
+      background-color: #f3f3f3;
+      border-color: #000000;
+    }
+    .btn-outline:focus-visible {
+      outline: 2px solid #000000;
+      outline-offset: 2px;
+    }
+    .btn-outline:active {
+      background-color: #e6e6e6;
+    }
+    .btn-outline:disabled {
+      color: #8c8c8c;
+      border-color: #e6e6e6;
+      cursor: not-allowed;
     }
     .input-atelier {
       height: 42px;
       background-color: #ffffff;
-      border: 1px solid #cbd5e1;
-      color: #0f172a;
-      border-radius: 0.375rem;
-      transition: border-color 0.15s ease;
+      color: #000000;
+      border-radius: 8px;
+      box-shadow: rgba(0, 0, 0, 0.09) 0px -1px 1px 0px inset, rgb(0 0 0) 0px 0px 0px 1px inset;
+      transition: box-shadow 200ms ease;
+    }
+    .input-atelier:hover {
+      box-shadow: rgba(0, 0, 0, 0.09) 0px -1px 1px 0px inset, rgba(0, 0, 0, 0.26) 0px 0px 0px 1px inset;
     }
     .input-atelier:focus {
-      border-color: #ea580c;
       outline: none;
-      box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.15);
+      box-shadow: rgba(0, 0, 0, 0.09) 0px -1px 1px 0px inset, rgb(17 112 245) 0px 0px 0px 2px inset;
+      outline-offset: 0;
     }
+    .input-atelier:focus-visible {
+      outline: 2px solid #000000;
+      outline-offset: 2px;
+    }
+    .input-atelier:disabled {
+      background-color: #f3f3f3;
+      color: #8c8c8c;
+      cursor: not-allowed;
+      box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 1px inset;
+    }
+    .input-atelier[aria-invalid="true"] {
+      box-shadow: rgba(0, 0, 0, 0.09) 0px -1px 1px 0px inset, rgb(178 34 34) 0px 0px 0px 2px inset;
+    }
+    .input-atelier::placeholder { color: #8c8c8c; }
     .modal-backdrop {
-      background: rgba(15, 23, 42, 0.65);
+      background: rgba(0, 0, 0, 0.65);
       backdrop-filter: blur(4px);
+    }
+
+    /* ============ UI POLISH LAYER ============ */
+    html { scroll-behavior: smooth; }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Always visible when JS is off or before hydration */
+    html:not(.js-enabled) .reveal-up { opacity: 1; transform: none; }
+
+    /* Toast entrance/exit animations */
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(12px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes toastOut {
+      from { opacity: 1; transform: translateY(0) scale(1); }
+      to   { opacity: 0; transform: translateY(12px) scale(0.97); }
+    }
+    .toast-in { animation: toastIn 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+    .toast-out { animation: toastOut 0.25s ease forwards; }
+
+    /* Cart drawer overlay */
+    #cart-drawer-overlay {
+      transition: opacity 0.3s ease;
+    }
+
+    @keyframes marqueeSlide {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-track {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      animation: marqueeSlide 22s linear infinite;
+    }
+    .announcement-bar:hover .marquee-track { animation-play-state: paused; opacity: 1; }
+    .marquee-track { opacity: 0; transition: opacity 0.2s ease; }
+    .announcement-bar:hover .announcement-static { display: none; }
+
+    /* Header nav underline sweep */
+    .nav-link {
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 2px;
+      background: #000000;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 200ms ease;
+    }
+    .nav-link:hover::after, .nav-link:focus-visible::after { transform: scaleX(1); }
+    .nav-link:focus-visible {
+      outline: 2px solid #000000;
+      outline-offset: 2px;
+    }
+
+    /* Monochrome press for media frames */
+    .media-frame {
+      position: relative;
+      transition: transform 300ms ease, box-shadow 300ms ease;
+    }
+    .media-frame::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 1px inset;
+      transition: box-shadow 300ms ease;
+      pointer-events: none;
+    }
+    .group:hover .media-frame {
+      transform: scale(1.04);
+      box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.3);
+    }
+    .group:hover .media-frame::after {
+      box-shadow: rgb(0 0 0) 0px 0px 0px 1px inset;
+    }
+
+    /* Section heading — clean bold, no decorative bar (matches Vistaprint layout) */
+    .section-heading { display: flex; align-items: center; gap: 0; }
+
+    /* Product card micro-polish */
+    .product-card {
+      transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+    }
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.25);
+      border-color: #000000;
+    }
+    .product-card:focus-within {
+      outline: 2px solid #000000;
+      outline-offset: 2px;
+    }
+    .product-card:active {
+      transform: translateY(-1px);
+    }
+    .product-card:hover .product-card-arrow { transform: translateX(2px); }
+    .product-card-arrow { transition: transform 200ms ease; }
+
+    /* CTA arrow micro-interaction */
+    .cta-arrow { display: inline-block; transition: transform 200ms ease; }
+    a:hover > .cta-arrow, button:hover > .cta-arrow { transform: translateX(3px); }
+
+    /* Trust strip chips */
+    .trust-chip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      transition: background-color 200ms ease, border-color 200ms ease;
+    }
+    .trust-chip:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    .trust-chip-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+    }
+
+    /* Back-to-top button */
+    #back-to-top {
+      transition: opacity 300ms ease, transform 300ms ease, background-color 200ms ease;
+    }
+    #back-to-top.is-hidden {
+      opacity: 0;
+      transform: translateY(12px) scale(0.9);
+      pointer-events: none;
+    }
+    #back-to-top:hover { background-color: #1a1a1a; border-color: #ffffff; }
+    #back-to-top:focus-visible { outline: 2px solid #000000; outline-offset: 2px; }
+
+    /* Footer social buttons */
+    .footer-social {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      color: #ffffff;
+      transition: all 200ms ease;
+    }
+    .footer-social:hover {
+      background: #ffffff;
+      border-color: #ffffff;
+      color: #000000;
+      transform: translateY(-2px);
+    }
+    .footer-social:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 2px;
+    }
+
+    /* Payment chip */
+    .pay-chip {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      padding: 3px 8px;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #000000;
+      border: 1px solid #d9d9d9;
+      display: inline-flex;
+      align-items: center;
+      line-height: 1.4;
+    }
+    .pay-chip.dark { background: transparent; color: #ffffff; border-color: #595959; }
+
+    /* ============ HERO (full-bleed lifestyle tiles) ============ */
+    .hero-tile img {
+      transition: transform 300ms ease;
+    }
+    .hero-tile:hover img {
+      transform: scale(1.03);
+    }
+    .hero-overlay-card {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      padding: 22px 26px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+    .hero-tile:hover .hero-overlay-card {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px -12px rgba(0, 0, 0, 0.4);
+    }
+    .hero-card-tilt {
+      transform: rotate(3deg);
+      transition: transform 300ms ease;
+    }
+    .hero-tile:hover .hero-card-tilt {
+      transform: rotate(0deg) translateY(-4px);
+    }
+
+    /* ============ GLOBAL ACCESSIBILITY ============ */
+    :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+      outline: 2px solid #000000;
+      outline-offset: 2px;
+    }
+    .proofing-dock :focus-visible,
+    .announcement-bar :focus-visible,
+    footer :focus-visible,
+    .trust-strip :focus-visible {
+      outline-color: #ffffff;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal-up { transition: none; opacity: 1; transform: none; }
+      .marquee-track { animation: none; opacity: 1; }
+      .announcement-bar .announcement-static { display: none !important; }
+      .media-frame, .product-card, .cta-arrow, .product-card-arrow, .footer-social { transition: none; }
     }
   </style>
 </head>
-<body class="font-sans text-gray-800 bg-white antialiased min-h-screen flex flex-col">
+  <body class="font-sans text-black bg-white antialiased min-h-screen flex flex-col">
+
+  <!-- Back-to-top floating button -->
+  <button id="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" aria-label="Back to top" class="is-hidden fixed bottom-6 left-6 z-40 w-11 h-11 rounded-full bg-black border border-white/40 text-white shadow-lg flex items-center justify-center">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+  </button>
 
   <!-- BEGIN: AnnouncementBar (Exact Match to screen.png & code.html) -->
-  <aside class="bg-[#0f172a] text-white text-xs md:text-sm py-2.5 px-4 text-center font-medium flex items-center justify-center gap-2 tracking-wide border-b border-orange-500/30 sticky top-0 z-50" data-purpose="announcement-banner">
-    <span>Buy More, Save More! Flat 5% OFF on Orders ₹10,000+ | Code: <strong class="font-bold text-[#f97316] bg-black/30 px-2 py-0.5 rounded underline decoration-dotted decoration-[#ea580c]">HUB5</strong></span>
-    <!-- Coupon Icon -->
-    <svg aria-hidden="true" class="w-4 h-4 text-[#ea580c] inline-block" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-      <path d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-    </svg>
+  <aside class="announcement-bar bg-black text-white text-xs md:text-sm py-2.5 px-4 font-medium tracking-wide border-b border-white/20 sticky top-0 z-50 overflow-hidden relative" data-purpose="announcement-banner">
+    <!-- Static offer (visible on hover / reduced-motion) -->
+    <div class="announcement-static absolute inset-0 flex items-center justify-center gap-2">
+      <span class="truncate"><span class="hidden md:inline">Buy More, Save More! Flat 5% OFF on Orders ₹10,000+ | Code: </span><span class="md:hidden">Flat 5% OFF · Code: </span><strong class="font-bold text-white bg-white/10 px-2 py-0.5 rounded underline decoration-dotted decoration-white/70">HUB5</strong></span>
+      <svg aria-hidden="true" class="w-4 h-4 text-white inline-block" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+        <path d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+      </svg>
+    </div>
+    <!-- Auto-scrolling ticker -->
+    <div class="marquee-track text-xs" aria-hidden="true">
+      <span class="inline-flex items-center gap-6 pr-6">
+        <span class="inline-flex items-center gap-2">🎉 Flat 5% OFF on Orders ₹10,000+ · Code <strong class="text-white underline decoration-dotted decoration-white/70">HUB5</strong></span>
+        <span class="text-white/40">•</span>
+        <span class="inline-flex items-center gap-2">🚚 Free Shipping on Orders Over ₹999</span>
+        <span class="text-white/40">•</span>
+        <span class="inline-flex items-center gap-2">⚡ Same Day Delivery in Mumbai, Bengaluru &amp; Kolkata</span>
+        <span class="text-white/40">•</span>
+        <span class="inline-flex items-center gap-2">✅ Free Replacement or Full Refund Guarantee</span>
+      </span>
+      <span class="inline-flex items-center gap-6 pr-6">
+        <span class="inline-flex items-center gap-2">🎉 Flat 5% OFF on Orders ₹10,000+ · Code <strong class="text-white underline decoration-dotted decoration-white/70">HUB5</strong></span>
+        <span class="text-white/40">•</span>
+        <span class="inline-flex items-center gap-2">🚚 Free Shipping on Orders Over ₹999</span>
+        <span class="text-white/40">•</span>
+        <span class="inline-flex items-center gap-2">⚡ Same Day Delivery in Mumbai, Bengaluru &amp; Kolkata</span>
+        <span class="text-white/40">•</span>
+        <span class="inline-flex items-center gap-2">✅ Free Replacement or Full Refund Guarantee</span>
+      </span>
+    </div>
   </aside>
   <!-- END: AnnouncementBar -->
 
   <!-- BEGIN: MainHeader (Exact Match to screen.png & code.html) -->
-  <header class="border-b border-gray-200 sticky top-9 bg-white z-40 shadow-sm">
+  <header class="border-b border-[#e6e6e6] sticky top-9 bg-white z-40 shadow-sm">
     <!-- Top Utility Bar -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
       <!-- Brand Logo -->
       <a aria-label="Printhubbs Home" class="flex items-center gap-2 flex-shrink-0" href="javascript:void(0)" onclick="window.appRouter.navigate('home')">
-        <img alt="Printhubbs Logo" class="h-10 sm:h-11 w-auto object-contain cursor-pointer" src="assets/images/printhubbs-logo.png" />
+        <img alt="Printhubbs Logo" class="h-10 sm:h-11 w-auto object-contain cursor-pointer" src="assets/images/printhubbs-logo.png" onerror="this.classList.add('hidden'); var f=document.getElementById('logo-fallback'); f.classList.remove('hidden'); f.classList.add('flex');" />
+        <span id="logo-fallback" class="hidden items-center gap-2">
+          <span class="w-9 h-9 rounded-lg bg-black text-white font-bold text-lg flex items-center justify-center shadow">P</span>
+          <span class="font-display font-extrabold text-xl text-black tracking-tight">Printhubbs</span>
+        </span>
       </a>
 
       <!-- Search Input Container -->
       <div class="flex-grow max-w-2xl relative mx-2 hidden sm:block">
         <div class="relative">
-          <input id="global-search-input" aria-label="Search" class="w-full pl-4 pr-11 py-2 text-sm rounded-full border border-gray-300 focus:border-[#0f172a] focus:ring-1 focus:ring-[#0f172a] outline-none transition bg-slate-50/50" placeholder="Search all products, business cards, t-shirts..." type="search" autocomplete="off" />
-          <button aria-label="Execute search" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#ea580c] transition-colors">
+          <input id="global-search-input" aria-label="Search" class="w-full pl-4 pr-11 py-2.5 text-sm rounded-lg border border-black bg-white shadow-inner outline-none transition placeholder:text-[#8c8c8c]" placeholder="Search all products, business cards, t-shirts..." type="search" autocomplete="off" />
+          <button aria-label="Execute search" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#595959] hover:text-black transition-colors">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
               <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
             </svg>
           </button>
         </div>
         <!-- Real-time dropdown -->
-        <div id="search-dropdown" class="absolute left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl z-50 hidden"></div>
+        <div id="search-dropdown" class="absolute left-0 right-0 top-full mt-1 bg-white border border-[#d9d9d9] rounded-lg shadow-xl z-50 hidden"></div>
       </div>
 
-      <!-- Right Header Actions -->
-      <nav aria-label="Customer quick actions" class="flex items-center gap-5 text-gray-700 text-xs font-semibold">
+      <!-- Right Header Actions -->        <nav aria-label="Customer quick actions" class="flex items-center gap-5 text-black text-xs font-bold">
         <!-- Help -->
-        <a class="hidden lg:flex flex-col items-center hover:text-[#ea580c] transition-colors cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.openModal('help-modal')">
-          <svg class="w-5 h-5 mb-0.5 text-gray-600 group-hover:text-[#ea580c]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+        <a class="hidden lg:flex flex-col items-center hover:text-black transition-colors cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.openModal('help-modal')">
+          <svg class="w-5 h-5 mb-0.5 text-black group-hover:text-black" fill="none" stroke="currentColor" viewbox="0 0 24 24">
             <path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
           </svg>
           <span>Help</span>
         </a>
 
         <!-- My Projects / Favorites -->
-        <a class="hidden md:flex flex-col items-center hover:text-[#ea580c] transition-colors cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('projects')">
-          <svg class="w-5 h-5 mb-0.5 text-gray-600 group-hover:text-[#ea580c]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+        <a class="hidden md:flex flex-col items-center hover:text-black transition-colors cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('projects')">
+          <svg class="w-5 h-5 mb-0.5 text-black group-hover:text-black" fill="none" stroke="currentColor" viewbox="0 0 24 24">
             <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
           </svg>
           <span>My Projects</span>
         </a>
 
         <!-- Sign In -->
-        <a class="flex flex-col items-center hover:text-[#ea580c] transition-colors cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.openModal('signin-modal')">
-          <svg class="w-5 h-5 mb-0.5 text-gray-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+        <a class="flex flex-col items-center hover:text-black transition-colors cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.openModal('signin-modal')">
+          <svg class="w-5 h-5 mb-0.5 text-black" fill="none" stroke="currentColor" viewbox="0 0 24 24">
             <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
           </svg>
           <span>Sign In</span>
         </a>
 
         <!-- Shopping Cart -->
-        <a class="flex flex-col items-center hover:text-[#ea580c] relative transition-colors cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.openCartDrawer()">
-          <span class="cart-counter-badge absolute -top-1 right-1 bg-[#ea580c] text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center font-bold shadow-sm">0</span>
-          <svg class="w-5 h-5 mb-0.5 text-gray-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+        <a class="flex flex-col items-center hover:text-black relative transition-colors cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.openCartDrawer()">
+          <span class="cart-counter-badge absolute -top-1 right-1 bg-black text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center font-bold shadow-sm">0</span>
+          <svg class="w-5 h-5 mb-0.5 text-black" fill="none" stroke="currentColor" viewbox="0 0 24 24">
             <path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
           </svg>
           <span>Cart</span>
@@ -250,21 +608,19 @@
     </div>
 
     <!-- Category Mega-Navigation Submenu (Exact Match to code.html) -->
-    <nav aria-label="Product categories" class="border-t border-gray-100 bg-white">
+    <nav aria-label="Product categories" class="border-t border-[#e6e6e6] bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 overflow-x-auto no-scrollbar">
-        <ul class="flex items-center gap-6 py-2.5 text-xs font-semibold whitespace-nowrap text-gray-700">
-          <li><a class="hover:text-[#ea580c] flex items-center gap-1 font-bold text-[#0f172a]" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'all')">View All</a></li>
-          <li><a class="hover:text-[#ea580c] transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'visiting-cards')">Visiting Cards</a></li>
-          <li><a class="hover:text-[#ea580c] transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'stationery-office')">Stationery, Letterheads &amp; Notebooks</a></li>
-          <li><a class="hover:text-[#ea580c] transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'stamps-ink')">Stamps and Ink</a></li>
-          <li><a class="hover:text-[#ea580c] transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'marketing-materials')">Signs, Posters &amp; Marketing Materials</a></li>
-          <li><a class="hover:text-[#ea580c] transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'packaging')">Labels, Stickers &amp; Packaging</a></li>
-          <li><a class="hover:text-[#ea580c] transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'clothing-apparel')">Clothing, Caps &amp; Bags</a></li>
-          <li><a class="hover:text-[#ea580c] transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'photo-gifts')">Mugs, Albums &amp; Gifts</a></li>
-          <li><a class="hover:text-[#ea580c] transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'custom-pens')">Pens</a></li>
-          <li><a class="hover:text-[#ea580c] transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'drinkware')">Drinkware</a></li>
-          <li><a class="hover:text-[#ea580c] transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'classic-polo-tshirts')">Custom Polo T-shirts</a></li>
-          <li><a class="hover:text-[#ea580c] transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'clothing-apparel')">Custom Winterwear</a></li>
+        <ul class="flex items-center gap-6 py-2.5 text-xs font-semibold whitespace-nowrap text-black">
+          <li><a class="nav-link hover:text-black flex items-center gap-1 font-bold text-black" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'all')">View All</a></li>
+          <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'visiting-cards')">Visiting Cards</a></li>
+          <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'stamps-ink')">Stamps and Ink</a></li>
+          <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'marketing-materials')">Signs, Posters &amp; Marketing Materials</a></li>
+          <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'packaging')">Labels, Stickers &amp; Packaging</a></li>
+          <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'clothing-apparel')">Clothing, Caps &amp; Bags</a></li>
+          <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'photo-gifts')">Mugs, Albums &amp; Gifts</a></li>
+          <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'custom-pens')">Pens</a></li>
+          <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'classic-polo-tshirts')">Custom Polo T-shirts</a></li>
+          <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'clothing-apparel')">Custom Winterwear</a></li>
         </ul>
       </div>
     </nav>
@@ -279,176 +635,169 @@
     <!-- VIEW 1: EXACT REPLICA HOMEPAGE -->
     <div id="view-home" class="app-view-container">
 
-      <!-- BEGIN: HeroSection -->
-      <section class="max-w-[1500px] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-6">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-          <!-- Hero Card 1: Visiting Cards -->
-          <article class="relative bg-gradient-to-br from-[#f8faff] via-[#eef4ff] to-[#e2ecfd] rounded-2xl overflow-hidden p-6 sm:p-8 lg:p-9 shadow-sm border border-slate-200/90 hover:shadow-md transition duration-300 group cursor-pointer flex flex-col justify-between" onclick="window.appRouter.navigate('pdp', 'standard-visiting-cards')">
-            <div class="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
-              <div class="sm:col-span-7 z-10 flex flex-col justify-between">
-                <div>
-                  <div class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#ea580c] bg-orange-100/90 border border-orange-200/60 px-3 py-1 rounded-full mb-3">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] animate-pulse"></span>
-                    Premium Print • 350 GSM
-                  </div>
-                  <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0f172a] leading-tight mb-2 font-display">Visiting Cards</h2>
-                  <p class="text-sm sm:text-base text-slate-700 font-semibold mb-3">100 Custom Cards starting at <span class="text-[#ea580c] font-bold">₹200</span></p>
-                  
-                  <ul class="text-xs text-slate-600 space-y-1.5 mb-5">
-                    <li class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Matte, Glossy &amp; Velvet Touch finishes</li>
-                    <li class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Raised Spot UV &amp; Metallic Foil Accents</li>
-                    <li class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Ready in 24h with Doorstep Delivery</li>
-                  </ul>
-                </div>
-                
-                <div class="flex flex-wrap items-center gap-3">
-                  <a class="inline-flex items-center justify-center bg-[#0f172a] text-white text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-lg hover:bg-[#ea580c] shadow transition duration-200" href="javascript:void(0)" onclick="event.stopPropagation(); window.appRouter.navigate('pdp', 'standard-visiting-cards')">
-                    Shop Now
-                  </a>
-                  <a class="inline-flex items-center justify-center bg-white text-[#0f172a] border border-slate-300 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-lg hover:border-[#ea580c] hover:text-[#ea580c] shadow-sm transition duration-200" href="javascript:void(0)" onclick="event.stopPropagation(); window.appRouter.navigate('studio', 'standard-visiting-cards')">
-                    Design in Studio
-                  </a>
-                </div>
-              </div>
-              
-              <!-- Right Visual: Full Product Showcase without blank space -->
-              <div class="sm:col-span-5 relative flex items-center justify-center">
-                <div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-lg border border-white/80 group-hover:scale-105 transition duration-300">
-                  <img alt="Premium Visiting Cards Stack" class="w-full h-full object-cover img-hq" src="assets/images/products/standard-visiting-cards.jpg" />
-                  <div class="absolute bottom-2 left-2 bg-[#0f172a]/85 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-md shadow flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> 350 GSM Matte
-                  </div>
-                </div>
-              </div>
+      <!-- BEGIN: HeroSection (Vistaprint India two-tile layout with premium images) -->
+      <section aria-label="Featured collections" class="w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-1">
+          <!-- Hero Tile 1: Visiting Cards -->
+          <article class="hero-tile relative min-h-[360px] sm:min-h-[420px] lg:min-h-[480px] overflow-hidden group cursor-pointer" onclick="window.appRouter.navigate('catalog', 'visiting-cards')">
+            <!-- Premium AI-generated hero image -->
+            <img alt="Professional Indian woman holding visiting cards in modern office" class="absolute inset-0 w-full h-full object-cover img-hq-cover" src="assets/images/hero-visiting-cards.jpg" />
+            <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+            <!-- Floating overlay card -->
+            <div class="hero-overlay-card absolute left-4 sm:left-8 bottom-4 sm:bottom-8 sm:w-[320px]">
+              <h2 class="text-2xl sm:text-[28px] font-bold text-black leading-tight mb-2 font-display tracking-tight">Visiting Cards</h2>
+              <p class="text-sm sm:text-base text-gray-800 font-medium mb-5">100 Visiting Cards at Rs 200</p>
+              <a class="btn-primary inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold rounded-lg" href="javascript:void(0)" onclick="event.stopPropagation(); window.appRouter.navigate('catalog', 'visiting-cards')" aria-label="Shop Visiting Cards now">
+                Shop Now
+              </a>
             </div>
           </article>
 
-          <!-- Hero Card 2: Custom Apparel -->
-          <article class="relative bg-gradient-to-br from-[#fff7ed] via-[#fef3c7]/30 to-[#fbf7ee] rounded-2xl overflow-hidden p-6 sm:p-8 lg:p-9 shadow-sm border border-orange-200/70 hover:shadow-md transition duration-300 group cursor-pointer flex flex-col justify-between" onclick="window.appRouter.navigate('pdp', 'classic-polo-tshirts')">
-            <div class="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
-              <div class="sm:col-span-7 z-10 flex flex-col justify-between">
-                <div>
-                  <div class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#ea580c] bg-orange-100/90 border border-orange-200/60 px-3 py-1 rounded-full mb-3">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#ea580c]"></span>
-                    Custom Merch
-                  </div>
-                  <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0f172a] leading-tight mb-2 font-display">Wear your brand with pride</h2>
-                  <p class="text-sm sm:text-base text-slate-700 font-semibold mb-3">Custom Polos, Tees &amp; Caps from <span class="text-[#ea580c] font-bold">₹320</span></p>
-                  
-                  <ul class="text-xs text-slate-600 space-y-1.5 mb-5">
-                    <li class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> 100% Bio-Washed Combed Cotton Pique</li>
-                    <li class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Needle Embroidery &amp; Full Color DTG</li>
-                    <li class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Free Shipping on Orders Over ₹999</li>
-                  </ul>
-                </div>
-                
-                <!-- Category Quick Links -->
-                <div class="flex flex-wrap gap-2">
-                  <a class="bg-[#0f172a] text-white text-xs font-semibold px-3.5 py-1.5 rounded-full hover:bg-[#ea580c] transition duration-200 shadow-sm cursor-pointer" href="javascript:void(0)" onclick="event.stopPropagation(); window.appRouter.navigate('pdp', 'classic-polo-tshirts')">Polo T-shirts</a>
-                  <a class="bg-[#0f172a] text-white text-xs font-semibold px-3.5 py-1.5 rounded-full hover:bg-[#ea580c] transition duration-200 shadow-sm cursor-pointer" href="javascript:void(0)" onclick="event.stopPropagation(); window.appRouter.navigate('pdp', 'custom-round-neck-tshirts')">T-shirts</a>
-                  <a class="bg-[#0f172a] text-white text-xs font-semibold px-3.5 py-1.5 rounded-full hover:bg-[#ea580c] transition duration-200 shadow-sm cursor-pointer" href="javascript:void(0)" onclick="event.stopPropagation(); window.appRouter.navigate('pdp', 'embroidered-caps')">Caps</a>
-                  <a class="bg-white border border-slate-300 text-[#0f172a] text-xs font-semibold px-3.5 py-1.5 rounded-full hover:border-[#ea580c] hover:text-[#ea580c] transition duration-200 shadow-sm cursor-pointer" href="javascript:void(0)" onclick="event.stopPropagation(); window.appRouter.navigate('pdp', 'winter-hoodies')">Hoodies</a>
-                </div>
-              </div>
-              
-              <!-- Right Visual: Full Product Showcase without blank space -->
-              <div class="sm:col-span-5 relative flex items-center justify-center">
-                <div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-lg border border-white/80 group-hover:scale-105 transition duration-300">
-                  <img alt="Custom Polo Shirts & Apparel" class="w-full h-full object-cover img-hq" src="assets/images/products/polo-tshirts.jpg" />
-                  <div class="absolute bottom-2 left-2 bg-[#0f172a]/85 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-md shadow flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> 220 GSM Pique
-                  </div>
-                </div>
-              </div>
+          <!-- Hero Tile 2: Winter Apparel -->
+          <article class="hero-tile relative min-h-[360px] sm:min-h-[420px] lg:min-h-[480px] overflow-hidden group cursor-pointer" onclick="window.appRouter.navigate('catalog', 'clothing-apparel')">
+            <!-- Premium AI-generated hero image -->
+            <img alt="Team wearing branded winter hoodies next to company van" class="absolute inset-0 w-full h-full object-cover img-hq-cover" src="assets/images/hero-winter-hoodies.jpg" />
+            <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+            <!-- Floating overlay card -->
+            <div class="hero-overlay-card absolute left-4 sm:left-8 bottom-4 sm:bottom-8 sm:w-[360px]">
+              <h2 class="text-2xl sm:text-[28px] font-bold text-black leading-tight mb-2 font-display tracking-tight">Get Winter-Ready</h2>
+              <p class="text-sm sm:text-base text-gray-800 font-medium leading-snug mb-1">Hoodies, jackets and more, branded for your team</p>
+              <p class="text-sm text-gray-800 font-medium mb-5">1 Starting at Rs. 850</p>
+              <a class="btn-primary inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold rounded-lg" href="javascript:void(0)" onclick="event.stopPropagation(); window.appRouter.navigate('catalog', 'clothing-apparel')" aria-label="Shop winter hoodies now">
+                Shop Now
+              </a>
             </div>
           </article>
         </div>
       </section>
       <!-- END: HeroSection -->
 
-      <!-- BEGIN: ExploreCategories (Exact Match to screen.png & code.html) -->
+      <!-- BEGIN: TrustStrip -->
+      <section aria-label="Why shop with Printhubbs" class="trust-strip bg-black text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div class="trust-chip">
+            <span class="trust-chip-icon">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            </span>
+            <div>
+              <p class="text-xs font-bold">Same Day Delivery</p>
+              <p class="text-[11px] text-white/70">Mumbai · Bengaluru · Kolkata</p>
+            </div>
+          </div>
+          <div class="trust-chip">
+            <span class="trust-chip-icon">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            </span>
+            <div>
+              <p class="text-xs font-bold">100% Print-Accuracy Guarantee</p>
+              <p class="text-[11px] text-white/70">Free replacement or full refund</p>
+            </div>
+          </div>
+          <div class="trust-chip">
+            <span class="trust-chip-icon">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"></path></svg>
+            </span>
+            <div>
+              <p class="text-xs font-bold">GST Invoice Included</p>
+              <p class="text-[11px] text-white/70">Claim input credit on every order</p>
+            </div>
+          </div>
+          <div class="trust-chip">
+            <span class="trust-chip-icon">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+            </span>
+            <div>
+              <p class="text-xs font-bold">Secure Payments</p>
+              <p class="text-[11px] text-white/70">UPI · Cards · NetBanking · COD</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- END: TrustStrip -->
+
+      <!-- BEGIN: ExploreCategories (Vistaprint India layout) -->
       <section aria-labelledby="cat-heading" class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
         <div class="flex items-center justify-between mb-4">
-          <h2 class="text-lg sm:text-xl font-bold text-gray-900 font-display" id="cat-heading">Explore all categories</h2>
+          <h2 class="section-heading text-lg sm:text-2xl font-bold text-black font-display" id="cat-heading">Explore all categories</h2>
           <div class="flex gap-2">
-            <button aria-label="Scroll left" onclick="document.getElementById('cat-scroll-container').scrollBy({ left: -260, behavior: 'smooth' })" class="carousel-nav-btn w-8 h-8 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-600 shadow-sm">
+            <button aria-label="Scroll left" onclick="document.getElementById('cat-scroll-container').scrollBy({ left: -260, behavior: 'smooth' })" class="carousel-nav-btn w-8 h-8 rounded-full border border-black bg-white flex items-center justify-center text-black shadow-sm">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
             </button>
-            <button aria-label="Scroll right" onclick="document.getElementById('cat-scroll-container').scrollBy({ left: 260, behavior: 'smooth' })" class="carousel-nav-btn w-8 h-8 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-600 shadow-sm">
+            <button aria-label="Scroll right" onclick="document.getElementById('cat-scroll-container').scrollBy({ left: 260, behavior: 'smooth' })" class="carousel-nav-btn w-8 h-8 rounded-full border border-black bg-white flex items-center justify-center text-black shadow-sm">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
             </button>
           </div>
         </div>
         <div id="cat-scroll-container" class="flex gap-4 overflow-x-auto no-scrollbar pb-3">
-          <!-- Visiting Cards Category -->
+          <!-- Visiting Cards -->
           <a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'visiting-cards')">
-            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition overflow-hidden">
+            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-lg bg-[#f3f3f3] border border-[#d9d9d9] flex items-center justify-center p-2 group-hover:border-black group-hover:bg-[#e6e6e6] transition overflow-hidden">
               <img alt="Visiting Cards" class="w-full h-full object-cover rounded-lg img-hq" loading="lazy" decoding="async" src="assets/images/products/standard-visiting-cards.jpg" />
             </div>
-            <span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Visiting Cards</span>
+            <span class="mt-2 text-xs font-semibold text-black group-hover:underline underline-offset-2 transition-colors">Visiting Cards</span>
           </a>
           <!-- Custom Polo T-shirts -->
-          <a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'classic-polo-tshirts')">
-            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition overflow-hidden">
+          <a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'clothing-apparel')">
+            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-lg bg-[#f3f3f3] border border-[#d9d9d9] flex items-center justify-center p-2 group-hover:border-black group-hover:bg-[#e6e6e6] transition overflow-hidden">
               <img alt="Polo T-shirts" class="h-full w-full object-contain" src="assets/images/products/polo-tshirts.jpg" />
             </div>
-            <span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Custom Polo T-shirts</span>
+            <span class="mt-2 text-xs font-semibold text-black group-hover:underline underline-offset-2 transition-colors">Custom Polo T-shirts</span>
           </a>
           <!-- Custom Dress Shirts -->
           <a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'custom-dress-shirts')">
-            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition overflow-hidden">
+            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-lg bg-[#f3f3f3] border border-[#d9d9d9] flex items-center justify-center p-2 group-hover:border-black group-hover:bg-[#e6e6e6] transition overflow-hidden">
               <img alt="Custom Dress Shirts" class="h-full w-full object-contain" src="assets/images/products/dress-shirts.jpg" />
             </div>
-            <span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Custom Dress Shirts</span>
+            <span class="mt-2 text-xs font-semibold text-black group-hover:underline underline-offset-2 transition-colors">Custom Dress Shirts</span>
           </a>
           <!-- Custom T-shirts -->
           <a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'custom-round-neck-tshirts')">
-            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition overflow-hidden">
+            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-lg bg-[#f3f3f3] border border-[#d9d9d9] flex items-center justify-center p-2 group-hover:border-black group-hover:bg-[#e6e6e6] transition overflow-hidden">
               <img alt="Custom T-shirts" class="h-full w-full object-contain" src="assets/images/products/custom-tshirts.jpg" />
             </div>
-            <span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Custom T-shirts</span>
+            <span class="mt-2 text-xs font-semibold text-black group-hover:underline underline-offset-2 transition-colors">Custom T-shirts</span>
+          </a>
+          <!-- Custom Winter Wear -->
+          <a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'winter-hoodies')">
+            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-lg bg-[#f3f3f3] border border-[#d9d9d9] flex items-center justify-center p-2 group-hover:border-black group-hover:bg-[#e6e6e6] transition overflow-hidden">
+              <img alt="Custom Winter Wear" class="h-full w-full object-contain" src="assets/images/products/winter-hoodies.jpg" />
+            </div>
+            <span class="mt-2 text-xs font-semibold text-black group-hover:underline underline-offset-2 transition-colors">Custom Winter Wear</span>
           </a>
           <!-- Custom Caps -->
           <a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'embroidered-caps')">
-            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition overflow-hidden">
+            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-lg bg-[#f3f3f3] border border-[#d9d9d9] flex items-center justify-center p-2 group-hover:border-black group-hover:bg-[#e6e6e6] transition overflow-hidden">
               <img alt="Custom Caps" class="h-full w-full object-contain" src="assets/images/products/embroidered-caps.jpg" />
             </div>
-            <span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Custom Caps</span>
+            <span class="mt-2 text-xs font-semibold text-black group-hover:underline underline-offset-2 transition-colors">Custom Caps</span>
+          </a>
+          <!-- Signs, Posters & Marketing Materials -->
+          <a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'marketing-materials')">
+            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-lg bg-[#f3f3f3] border border-[#d9d9d9] flex items-center justify-center p-2 group-hover:border-black group-hover:bg-[#e6e6e6] transition overflow-hidden">
+              <img alt="Signs, Posters and Marketing Materials" class="w-full h-full object-cover rounded-lg img-hq" loading="lazy" decoding="async" src="assets/images/products/marketing-materials.jpg" />
+            </div>
+            <span class="mt-2 text-xs font-semibold text-black group-hover:underline underline-offset-2 transition-colors">Signs, Posters &amp; Marketing Materials</span>
           </a>
           <!-- Custom Stamps & Ink -->
           <a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'stamps-ink')">
-            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition overflow-hidden">
+            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-lg bg-[#f3f3f3] border border-[#d9d9d9] flex items-center justify-center p-2 group-hover:border-black group-hover:bg-[#e6e6e6] transition overflow-hidden">
               <img alt="Stamps and Ink" class="w-full h-full object-cover rounded-lg img-hq" loading="lazy" decoding="async" src="assets/images/products/self-inking-stamps.jpg" />
             </div>
-            <span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Custom Stamps &amp; Ink</span>
-          </a>
-          <!-- Drinkware -->
-          <a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'drinkware')">
-            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition overflow-hidden">
-              <img alt="Drinkware" class="w-full h-full object-cover rounded-lg img-hq" loading="lazy" decoding="async" src="assets/images/products/water-bottles.jpg" />
-            </div>
-            <span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Drinkware</span>
-          </a>
-          <!-- Bags & Travel -->
-          <a class="category-scroll-item w-28 sm:w-32 flex flex-col items-center text-center group cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'packaging')">
-            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-2 group-hover:border-[#ea580c] group-hover:bg-orange-50/40 transition overflow-hidden">
-              <img alt="Bags & Luggage" class="w-full h-full object-cover rounded-lg img-hq" loading="lazy" decoding="async" src="assets/images/products/tote-bags.jpg" />
-            </div>
-            <span class="mt-2 text-xs font-semibold text-slate-800 group-hover:text-[#ea580c] transition-colors">Bags &amp; Luggage</span>
+            <span class="mt-2 text-xs font-semibold text-black group-hover:underline underline-offset-2 transition-colors">Custom Stamps &amp; Ink</span>
           </a>
         </div>
       </section>
       <!-- END: ExploreCategories -->
 
-      <!-- BEGIN: MostPopularProducts (Exact Match to screen.png & code.html) -->
+      <!-- BEGIN: MostPopularProducts (Vistaprint India layout) -->
       <section aria-labelledby="popular-heading" class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
         <div class="flex items-center justify-between mb-4">
-          <h2 class="text-lg sm:text-xl font-bold text-gray-900 font-display" id="popular-heading">Our Most Popular Products</h2>
+          <h2 class="section-heading text-lg sm:text-2xl font-bold text-black font-display" id="popular-heading">Our Most Popular Products</h2>
           <div class="flex gap-2">
-            <button aria-label="Previous items" onclick="document.getElementById('popular-scroll-container').scrollBy({ left: -260, behavior: 'smooth' })" class="carousel-nav-btn w-8 h-8 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-600 shadow-sm">
+            <button aria-label="Previous items" onclick="document.getElementById('popular-scroll-container').scrollBy({ left: -260, behavior: 'smooth' })" class="carousel-nav-btn w-8 h-8 rounded-full border border-black bg-white flex items-center justify-center text-black shadow-sm">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
             </button>
-            <button aria-label="Next items" onclick="document.getElementById('popular-scroll-container').scrollBy({ left: 260, behavior: 'smooth' })" class="carousel-nav-btn w-8 h-8 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-600 shadow-sm">
+            <button aria-label="Next items" onclick="document.getElementById('popular-scroll-container').scrollBy({ left: 260, behavior: 'smooth' })" class="carousel-nav-btn w-8 h-8 rounded-full border border-black bg-white flex items-center justify-center text-black shadow-sm">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
             </button>
           </div>
@@ -456,52 +805,52 @@
         <!-- Carousel Row -->
         <div id="popular-scroll-container" class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
           <!-- Item 1: Standard Visiting Cards -->
-          <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'standard-visiting-cards')">
-            <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 100 @ Rs.200</span>
-            <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'standard-visiting-cards')">
+            <span class="product-price-pill self-start mb-2">BUY 100 @ Rs.200</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
               <img alt="Standard Visiting Cards" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/standard-visiting-cards.jpg" />
             </div>
-            <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Standard Visiting Cards</h3>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Standard Visiting Cards</h3>
           </article>
           <!-- Item 2: Rounded Corner Visiting Cards -->
-          <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'rounded-corner-visiting-cards')">
-            <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 100 @ Rs.250</span>
-            <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Rounded Corner Cards" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/rounded-corner-cards.jpg" />
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'rounded-corner-visiting-cards')">
+            <span class="product-price-pill self-start mb-2">BUY 1 00 @ Rs.250</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
+              <img alt="Rounded Corner Visiting Cards" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/rounded-corner-cards.jpg" />
             </div>
-            <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Rounded Corner Cards</h3>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Rounded Corner Visiting Cards</h3>
           </article>
-          <!-- Item 3: Custom Polo Shirts -->
-          <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'classic-polo-tshirts')">
-            <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs.490</span>
-            <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+          <!-- Item 3: Classic Polo T-Shirts -->
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'classic-polo-tshirts')">
+            <span class="product-price-pill self-start mb-2">BUY 1 @ Rs.490</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
               <img alt="Men's Polo T-Shirts" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/polo-tshirts.jpg" />
             </div>
-            <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Classic Polo T-Shirts</h3>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Classic Polo T-Shirts</h3>
           </article>
-          <!-- Item 4: Personalised Photo Mugs -->
-          <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'personalised-photo-mugs')">
-            <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs.199</span>
-            <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Personalised Mugs" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/photo-mugs.jpg" />
+          <!-- Item 4: Photo Albums -->
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'photo-albums')">
+            <span class="product-price-pill self-start mb-2">BUY 1 @ Rs.715</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
+              <img alt="Photo Albums" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/photo-albums.jpg" />
             </div>
-            <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Photo Mugs</h3>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Photo Albums</h3>
           </article>
-          <!-- Item 5: Tote Bags -->
-          <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'tote-bags')">
-            <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs.310</span>
-            <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Cotton Tote Bags" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/tote-bags.jpg" />
+          <!-- Item 5: Stickers -->
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'stickers')">
+            <span class="product-price-pill self-start mb-2">BUY 10 @ Rs.150</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
+              <img alt="Stickers" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/stickers.jpg" />
             </div>
-            <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Tote Bags</h3>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Stickers</h3>
           </article>
-          <!-- Item 6: Self Inking Stamps -->
-          <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'self-inking-stamps')">
-            <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs.399</span>
-            <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Self Inking Rubber Stamps" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/self-inking-stamps.jpg" />
+          <!-- Item 6: Hoodies -->
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'winter-hoodies')">
+            <span class="product-price-pill self-start mb-2">BUY 1 @ Rs.1030</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
+              <img alt="Hoodies" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/hoodies-duo.jpg" />
             </div>
-            <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Self Inking Stamps</h3>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Hoodies</h3>
           </article>
         </div>
       </section>
@@ -510,12 +859,12 @@
       <!-- BEGIN: TrendingProducts (Exact Match to screen.png & code.html) -->
       <section aria-labelledby="trending-heading" class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
         <div class="flex items-center justify-between mb-4">
-          <h2 class="text-lg sm:text-xl font-bold text-gray-900 font-display" id="trending-heading">Trending</h2>
+          <h2 class="section-heading text-lg sm:text-2xl font-bold text-black font-display" id="trending-heading">Trending</h2>
           <div class="flex gap-2">
-            <button aria-label="Previous" onclick="document.getElementById('trending-scroll-container').scrollBy({ left: -260, behavior: 'smooth' })" class="carousel-nav-btn w-8 h-8 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-600 shadow-sm">
+            <button aria-label="Previous" onclick="document.getElementById('trending-scroll-container').scrollBy({ left: -260, behavior: 'smooth' })" class="carousel-nav-btn w-8 h-8 rounded-full border border-black bg-white flex items-center justify-center text-black shadow-sm">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
             </button>
-            <button aria-label="Next" onclick="document.getElementById('trending-scroll-container').scrollBy({ left: 260, behavior: 'smooth' })" class="carousel-nav-btn w-8 h-8 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-600 shadow-sm">
+            <button aria-label="Next" onclick="document.getElementById('trending-scroll-container').scrollBy({ left: 260, behavior: 'smooth' })" class="carousel-nav-btn w-8 h-8 rounded-full border border-black bg-white flex items-center justify-center text-black shadow-sm">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
             </button>
           </div>
@@ -523,52 +872,44 @@
         <!-- Trending List -->
         <div id="trending-scroll-container" class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
           <!-- Golf Umbrellas -->
-          <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'golf-umbrellas')">
-            <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs. 1125</span>
-            <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'golf-umbrellas')">
+            <span class="product-price-pill self-start mb-2">BUY 1 @ Rs. 1125</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
               <img alt="Golf Umbrellas" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/golf-umbrellas.jpg" />
             </div>
-            <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Golf Umbrellas</h3>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Golf Umbrellas</h3>
           </article>
           <!-- Embroidered Caps -->
-          <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'embroidered-caps')">
-            <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs. 310</span>
-            <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'embroidered-caps')">
+            <span class="product-price-pill self-start mb-2">BUY 1 @ Rs. 310</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
               <img alt="Embroidered Caps" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/embroidered-caps.jpg" />
             </div>
-            <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Embroidered Caps</h3>
-          </article>
-          <!-- Diary With Pen Holder -->
-          <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'diary-pen-holder')">
-            <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs. 465</span>
-            <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Diary with Pen Holder" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/diary-pen-holder.jpg" />
-            </div>
-            <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Diary With Pen Holder</h3>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Embroidered Caps</h3>
           </article>
           <!-- Basic Rubber Stamps -->
-          <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'basic-rubber-stamps')">
-            <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs. 180</span>
-            <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'basic-rubber-stamps')">
+            <span class="product-price-pill self-start mb-2">BUY 1 @ Rs. 180</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
               <img alt="Basic Rubber Stamps" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/rubber-stamps.jpg" />
             </div>
-            <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Basic Rubber Stamps</h3>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Basic Rubber Stamps</h3>
           </article>
-          <!-- Stainless Steel Tumbler -->
-          <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'stainless-steel-tumbler')">
-            <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs. 650</span>
-            <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Personalised Tumblers" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/stainless-tumbler.jpg" />
+          <!-- Rollup Standees -->
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'rollup-standees')">
+            <span class="product-price-pill self-start mb-2">BUY 1 @ Rs. 1450</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
+              <img alt="Rollup Standees" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/rollup-standees.jpg" />
             </div>
-            <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Personalized Tumblers</h3>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Rollup Standees</h3>
           </article>
-          <!-- Water Bottles -->
-          <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'water-bottles')">
-            <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs. 390</span>
-            <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Custom Water Bottles" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/water-bottles.jpg" />
+          <!-- Canvas Prints -->
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'canvas-prints')">
+            <span class="product-price-pill self-start mb-2">BUY 1 @ Rs. 650</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
+              <img alt="Personalised Canvas Prints" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/canvas-prints.jpg" />
             </div>
-            <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Custom Water Bottles</h3>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Canvas Prints</h3>
           </article>
         </div>
       </section>
@@ -577,26 +918,41 @@
       <!-- BEGIN: MidpageBanners (Exact Match to screen.png & code.html) -->
       <section class="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
         <!-- Cherished Moments Banner -->
-        <div class="relative rounded-xl overflow-hidden bg-gradient-to-r from-[#fff7ed] via-[#f8faff] to-[#eff4ff] p-6 sm:p-10 border border-slate-200 flex flex-col justify-center">
-          <div class="max-w-md z-10">
-            <h2 class="text-2xl sm:text-3xl font-bold text-[#0f172a] mb-2 font-display">Preserve your cherished moments</h2>
-            <p class="text-sm font-medium text-slate-700 mb-4">1 Starting at Rs 650</p>
-            <div class="flex flex-wrap gap-2">
-              <a class="bg-[#0f172a] text-white text-xs font-semibold px-4 py-2 rounded-md hover:bg-[#ea580c] shadow-sm transition duration-200 cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'photo-gifts')">Photo Albums</a>
-              <a class="bg-[#0f172a] text-white text-xs font-semibold px-4 py-2 rounded-md hover:bg-[#ea580c] shadow-sm transition duration-200 cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'personalised-photo-mugs')">Mugs</a>
-              <a class="bg-[#0f172a] text-white text-xs font-semibold px-4 py-2 rounded-md hover:bg-[#ea580c] shadow-sm transition duration-200 cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'photo-gifts')">Canvas Prints</a>
+        <div class="relative rounded-lg overflow-hidden bg-[#f3f3f3] border border-[#d9d9d9] shadow-sm hover:shadow-md transition duration-300 group">
+          <div class="grid grid-cols-1 sm:grid-cols-12 items-center">
+            <div class="sm:col-span-7 p-6 sm:p-10 z-10">
+              <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-white bg-black px-3 py-1 rounded-[8px] mb-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-white"></span> Photo Gifts · From ₹650
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-bold text-black mb-2 font-display">Preserve your cherished moments</h2>
+              <p class="text-sm font-medium text-[#595959] mb-4">Photo albums, canvas prints &amp; personalised mugs — printed with archival-grade inks.</p>
+              <div class="flex flex-wrap gap-2">
+                <a class="bg-black text-white text-xs font-bold px-4 py-2 rounded-[8px] hover:bg-[#1a1a1a] shadow-sm transition duration-200 cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'photo-gifts')">Photo Albums</a>
+                <a class="bg-black text-white text-xs font-bold px-4 py-2 rounded-[8px] hover:bg-[#1a1a1a] shadow-sm transition duration-200 cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'personalised-photo-mugs')">Mugs</a>
+                <a class="bg-black text-white text-xs font-bold px-4 py-2 rounded-[8px] hover:bg-[#1a1a1a] shadow-sm transition duration-200 cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'photo-gifts')">Canvas Prints</a>
+              </div>
+            </div>
+            <div class="sm:col-span-5 h-48 sm:h-full sm:min-h-[220px]">
+              <img alt="Photo albums and personalised photo mugs" class="w-full h-full object-cover img-hq-cover sm:[clip-path:ellipse(85%_100%_at_100%_50%)]" loading="lazy" decoding="async" src="assets/images/products/photo-albums.jpg" />
             </div>
           </div>
         </div>
         <!-- Winter Wear Banner -->
-        <div class="relative rounded-xl overflow-hidden bg-gradient-to-r from-[#f1f5f9] to-[#e2e8f0] p-6 sm:p-10 border border-slate-300/80 flex flex-col justify-center">
-          <div class="max-w-md z-10">
-            <h2 class="text-2xl sm:text-3xl font-bold text-[#0f172a] mb-1 font-display">Custom Winter Wear</h2>
-            <p class="text-sm font-semibold text-slate-700 mb-1">Keep warm, look sharp, show your brand!</p>
-            <p class="text-xs text-slate-600 mb-4">1 Starting at Rs. 850</p>
-            <a class="inline-block bg-[#ea580c] text-white text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-md hover:bg-[#c2410c] shadow-sm transition self-start cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'clothing-apparel')">
-              Shop Now
-            </a>
+        <div class="relative rounded-lg overflow-hidden bg-black border border-black shadow-sm hover:shadow-md transition duration-300 group">
+          <div class="grid grid-cols-1 sm:grid-cols-12 items-center">
+            <div class="sm:col-span-7 p-6 sm:p-10 z-10">
+              <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-black bg-white px-3 py-1 rounded-[8px] mb-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-black animate-pulse"></span> Winter Collection · From ₹850
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-bold text-white mb-1 font-display">Custom Winter Wear</h2>
+              <p class="text-sm font-medium text-white/70 mb-4">Keep warm, look sharp, show your brand — hoodies &amp; sweatshirts with embroidered crests.</p>
+              <a class="inline-flex items-center gap-1.5 bg-white text-black text-xs sm:text-sm font-bold px-6 py-2.5 rounded-lg hover:bg-[#e6e6e6] shadow-md transition self-start cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'clothing-apparel')">
+                Shop Winter Collection <span class="cta-arrow">→</span>
+              </a>
+            </div>
+            <div class="sm:col-span-5 h-48 sm:h-full sm:min-h-[220px]">
+              <img alt="Custom winter hoodies with embroidered branding" class="w-full h-full object-cover img-hq-cover sm:[clip-path:ellipse(85%_100%_at_100%_50%)]" loading="lazy" decoding="async" src="assets/images/products/winter-hoodies.jpg" />
+            </div>
           </div>
         </div>
       </section>
@@ -605,12 +961,12 @@
       <!-- BEGIN: ExploreMoreSection (Exact Match to screen.png & code.html) -->
       <section aria-labelledby="exploremore-heading" class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
         <div class="flex items-center justify-between mb-4">
-          <h2 class="text-lg sm:text-xl font-bold text-gray-900 font-display" id="exploremore-heading">Explore More</h2>
+          <h2 class="section-heading text-lg sm:text-2xl font-bold text-black font-display" id="exploremore-heading">Explore More</h2>
           <div class="flex gap-2">
-            <button aria-label="Previous" onclick="document.getElementById('explore-scroll-container').scrollBy({ left: -260, behavior: 'smooth' })" class="carousel-nav-btn w-8 h-8 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-600 shadow-sm">
+            <button aria-label="Previous" onclick="document.getElementById('explore-scroll-container').scrollBy({ left: -260, behavior: 'smooth' })" class="carousel-nav-btn w-8 h-8 rounded-full border border-black bg-white flex items-center justify-center text-black shadow-sm">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
             </button>
-            <button aria-label="Next" onclick="document.getElementById('explore-scroll-container').scrollBy({ left: 260, behavior: 'smooth' })" class="carousel-nav-btn w-8 h-8 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-600 shadow-sm">
+            <button aria-label="Next" onclick="document.getElementById('explore-scroll-container').scrollBy({ left: 260, behavior: 'smooth' })" class="carousel-nav-btn w-8 h-8 rounded-full border border-black bg-white flex items-center justify-center text-black shadow-sm">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
             </button>
           </div>
@@ -618,85 +974,85 @@
         <!-- Items Horizontal Scrolling -->
         <div id="explore-scroll-container" class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
           <!-- Harissons Laptop Bag -->
-          <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'harissons-laptop-bag')">
-            <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs.1370</span>
-            <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'harissons-laptop-bag')">
+            <span class="product-price-pill self-start mb-2">BUY 1 @ Rs.1370</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
               <img alt="Harissons Laptop Bags" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/harissons-laptop-bag.jpg" />
             </div>
-            <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Harissons Nemesis Bag</h3>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Harissons Nemesis Bag</h3>
           </article>
           <!-- Lanyards -->
-          <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'custom-lanyards')">
-            <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 10 @ Rs.740</span>
-            <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'custom-lanyards')">
+            <span class="product-price-pill self-start mb-2">BUY 10 @ Rs.740</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
               <img alt="Branded Lanyards" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/custom-lanyards.jpg" />
             </div>
-            <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Custom Lanyards</h3>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Custom Lanyards</h3>
           </article>
           <!-- Custom Paper Bags -->
-          <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'custom-paper-bags')">
-            <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 25 @ Rs.620</span>
-            <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'custom-paper-bags')">
+            <span class="product-price-pill self-start mb-2">BUY 25 @ Rs.620</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
               <img alt="Paper Bags" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/custom-paper-bags.jpg" />
             </div>
-            <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Custom Paper Bags</h3>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Custom Paper Bags</h3>
           </article>
           <!-- White Ball Pens -->
-          <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'custom-pens')">
-            <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 50 @ Rs.1600</span>
-            <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'custom-pens')">
+            <span class="product-price-pill self-start mb-2">BUY 50 @ Rs.1600</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
               <img alt="Custom Full White Ball Pens" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/custom-pens.jpg" />
             </div>
-            <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Full White Ball Pens</h3>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Full White Ball Pens</h3>
           </article>
           <!-- Rain Cap -->
-          <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'freedom-rain-cap')">
-            <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 1 @ Rs.280</span>
-            <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'freedom-rain-cap')">
+            <span class="product-price-pill self-start mb-2">BUY 1 @ Rs.280</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
               <img alt="Freedom Rain Cap" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/rain-caps.jpg" />
             </div>
-            <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Freedom Rain Caps</h3>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Freedom Rain Caps</h3>
           </article>
           <!-- Silver Pens -->
-          <article class="category-scroll-item w-40 sm:w-48 bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:shadow-md transition flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'green-silver-pens')">
-            <span class="product-price-pill self-start mb-2"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c] inline-block"></span>BUY 25 @ Rs.950</span>
-            <div class="w-full h-36 bg-gray-50 rounded flex items-center justify-center mb-3 overflow-hidden">
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'green-silver-pens')">
+            <span class="product-price-pill self-start mb-2">BUY 25 @ Rs.950</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
               <img alt="Green with Silver Ball Pens" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/green-silver-pens.jpg" />
             </div>
-            <h3 class="text-xs sm:text-sm font-semibold text-gray-900">Green &amp; Silver Pens</h3>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Green &amp; Silver Pens</h3>
           </article>
         </div>
       </section>
       <!-- END: ExploreMoreSection -->
 
       <!-- BEGIN: EmailSubscriptionSection (Exact Match to screen.png & code.html) -->
-      <section class="bg-gradient-to-br from-slate-100 to-slate-200/80 py-12 px-4 sm:px-6 my-8 border-y border-slate-200">
+      <section class="bg-[#e6e6e6] py-12 px-4 sm:px-6 my-8 border-y border-[#d9d9d9]">
         <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
           <div class="w-full md:w-1/2 flex justify-center">
             <!-- Graphic representation of printed cards -->
-            <div class="relative w-64 h-40 bg-white shadow-xl rounded-lg border border-gray-200 p-4 transform -rotate-6">
-              <div class="h-3 w-1/3 bg-[#0f172a] rounded mb-3"></div>
-              <div class="h-2 w-2/3 bg-orange-400/80 rounded mb-2"></div>
-              <div class="h-2 w-1/2 bg-gray-200 rounded"></div>
-              <div class="absolute -bottom-4 -right-4 w-48 h-28 bg-white shadow-lg rounded border border-gray-200 p-3 transform rotate-12">
-                <div class="h-2 w-1/2 bg-[#ea580c] rounded mb-2"></div>
-                <div class="h-1.5 w-3/4 bg-slate-200 rounded"></div>
+            <div class="relative w-64 h-40 bg-white shadow-xl rounded-lg border border-[#d9d9d9] p-4 transform -rotate-6">
+              <div class="h-3 w-1/3 bg-black"></div>
+              <div class="h-2 w-2/3 bg-black/70 rounded mb-2"></div>
+              <div class="h-2 w-1/2 bg-[#d9d9d9] rounded"></div>
+              <div class="absolute -bottom-4 -right-4 w-48 h-28 bg-white shadow-lg rounded border border-[#d9d9d9] p-3 transform rotate-12">
+                <div class="h-2 w-1/2 bg-[#595959] rounded mb-2"></div>
+                <div class="h-1.5 w-3/4 bg-[#d9d9d9] rounded"></div>
               </div>
             </div>
           </div>
           <div class="w-full md:w-1/2 text-center md:text-left">
-            <h2 class="text-xl sm:text-2xl font-bold text-[#0f172a] mb-2 font-display">It's good to be on the list.</h2>
-            <p class="text-sm font-medium text-slate-700 mb-4">Get 15% off* your first order when you sign up for our emails</p>
+            <h2 class="text-xl sm:text-2xl font-bold text-black mb-2 font-display">It's good to be on the list.</h2>
+            <p class="text-sm font-medium text-[#595959] mb-4">Get 15% off* your first order when you sign up for our emails</p>
             <form onsubmit="event.preventDefault(); window.showToast('Subscribed! Promo code FIRST15 active for 15% OFF.', 'success');" class="space-y-3">
               <div class="flex flex-col sm:flex-row gap-2">
-                <input class="flex-grow px-4 py-2 text-sm rounded border border-gray-300 focus:border-[#0f172a] focus:ring-1 focus:ring-[#0f172a] outline-none" placeholder="Subscription email" required="" type="email" />
-                <button class="bg-[#0f172a] text-white hover:bg-[#ea580c] transition px-6 py-2 rounded text-sm font-semibold shadow-sm" type="submit">
+                <input class="input-atelier flex-grow px-4 text-sm" placeholder="Subscription email" required="" type="email" />
+                <button class="bg-black text-white hover:bg-[#1a1a1a] transition px-6 py-2 rounded-lg text-sm font-bold shadow-sm" type="submit">
                   Submit
                 </button>
               </div>
-              <p class="text-[11px] text-gray-500 leading-tight">
+              <p class="text-[11px] text-[#595959] leading-tight">
                 Yes, I'd like to receive special offer emails from Printhubbs, as well as news about products, services and my designs in progress. Read our 
-                <a class="underline hover:text-[#ea580c]" href="javascript:void(0)" onclick="window.appRouter.openModal('help-modal')">Privacy and Cookie policy</a>.
+                <a class="underline hover:text-black" href="javascript:void(0)" onclick="window.appRouter.openModal('help-modal')">Privacy and Cookie policy</a>.
               </p>
             </form>
           </div>
@@ -706,39 +1062,39 @@
 
       <!-- BEGIN: TrustAndAboutSection (Exact Match to screen.png & code.html) -->
       <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-gray-700 text-xs sm:text-sm leading-relaxed">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-[#595959] text-xs sm:text-sm leading-relaxed">
           <div>
-            <h2 class="font-bold text-[#0f172a] text-base sm:text-lg mb-3 font-display">Printhubbs : The leader in customisation</h2>
-            <p class="text-slate-600">
+            <h2 class="font-bold text-black text-base sm:text-lg mb-3 font-display">Printhubbs : The leader in customisation</h2>
+            <p class="text-[#595959]">
               For years, Printhubbs has helped business owners, creators, and individuals bring their ideas to life with high-impact custom merchandise and precision printing. Our online printing services are intended to help you find high quality customised products you need – visiting cards, personalized clothing, gifting products, and much more.
             </p>
           </div>
           <div class="space-y-4">
             <div class="flex items-start gap-3">
-              <div class="w-5 h-5 rounded-full bg-orange-100 text-[#ea580c] flex items-center justify-center flex-shrink-0 mt-0.5">
+              <div class="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center flex-shrink-0 mt-0.5">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
               </div>
               <div>
-                <h3 class="font-bold text-[#0f172a]">Even Low Quantities @ Best Prices</h3>
-                <p class="text-gray-600">We offer low/ single product quantities at affordable prices.</p>
+                <h3 class="font-bold text-black">Even Low Quantities @ Best Prices</h3>
+                <p class="text-[#595959]">We offer low/ single product quantities at affordable prices.</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
-              <div class="w-5 h-5 rounded-full bg-orange-100 text-[#ea580c] flex items-center justify-center flex-shrink-0 mt-0.5">
+              <div class="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center flex-shrink-0 mt-0.5">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
               </div>
               <div>
-                <h3 class="font-bold text-[#0f172a]">High quality products and Easy design</h3>
-                <p class="text-gray-600">Our wide selection of high-quality products and online design tools make it easy for you to customize and order your favourite products.</p>
+                <h3 class="font-bold text-black">High quality products and Easy design</h3>
+                <p class="text-[#595959]">Our wide selection of high-quality products and online design tools make it easy for you to customize and order your favourite products.</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
-              <div class="w-5 h-5 rounded-full bg-orange-100 text-[#ea580c] flex items-center justify-center flex-shrink-0 mt-0.5">
+              <div class="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center flex-shrink-0 mt-0.5">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
               </div>
               <div>
-                <h3 class="font-bold text-[#0f172a]">Free replacement or Full Refund</h3>
-                <p class="text-gray-600">We stand by everything we sell. So if you're not satisfied, we'll make it right.</p>
+                <h3 class="font-bold text-black">Free replacement or Full Refund</h3>
+                <p class="text-[#595959]">We stand by everything we sell. So if you're not satisfied, we'll make it right.</p>
               </div>
             </div>
           </div>
@@ -750,47 +1106,42 @@
 
     <!-- VIEW 2: FULL PRODUCT CATALOG (PLP) -->
     <div id="view-catalog" class="app-view-container hidden max-w-7xl mx-auto px-4 sm:px-6 py-6">
-      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
-        <div>
-          <h1 class="text-2xl font-display font-bold text-[#0f172a]">Print &amp; Merch Catalogue</h1>
-          <p id="catalog-count" class="text-xs text-slate-500 mt-0.5">Showing all products</p>
-        </div>
-        <div class="flex items-center gap-3">
-          <label class="text-xs font-semibold text-slate-600">Sort By:</label>
-          <select id="catalog-sort-select" onchange="window.appRouter.renderCatalogView()" class="input-atelier text-xs px-3 py-1">
-            <option value="popular">Most Popular</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
-            <option value="rating">Customer Rating</option>
-          </select>
-        </div>
+      <!-- Breadcrumb -->
+      <div id="catalog-breadcrumb" class="text-xs text-[#595959] mb-4 flex items-center gap-2">
+        <a href="javascript:void(0)" onclick="window.appRouter.navigate('home')" class="hover:underline">Home</a>
+        <span>›</span>
+        <span id="catalog-breadcrumb-current" class="text-black font-bold">Catalog</span>
       </div>
-      <div id="catalog-category-tabs" class="flex gap-2 overflow-x-auto no-scrollbar pb-3 mb-6"></div>
-      <div id="catalog-products-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+
+      <!-- Dynamic Category Hero Banner -->
+      <div id="catalog-hero-banner" class="mb-8"></div>
+
+      <!-- Dynamic Catalog Content (Shapes, Sidebar, and Product Grid) -->
+      <div id="catalog-content-area"></div>
     </div>
 
     <!-- VIEW 3: 7/5 ASYMMETRICAL PRODUCT DETAIL & SPECIFICATION CONFIGURATOR (PDP) -->
     <div id="view-pdp" class="app-view-container hidden max-w-7xl mx-auto px-4 sm:px-6 py-6">
       <!-- Breadcrumb -->
-      <div class="text-xs text-slate-500 mb-4 flex items-center gap-2">
+      <div class="text-xs text-[#595959] mb-4 flex items-center gap-2">
         <a href="javascript:void(0)" onclick="window.appRouter.navigate('home')" class="hover:underline">Home</a>
         <span>›</span>
         <a href="javascript:void(0)" onclick="window.appRouter.navigate('catalog')" class="hover:underline">Catalog</a>
         <span>›</span>
-        <span class="text-slate-800 font-semibold truncate">Product Specifications</span>
+        <span class="text-black font-bold truncate">Product Specifications</span>
       </div>
 
       <!-- 7/5 Asymmetrical Split Layout -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <!-- 7 Columns Visual Preview -->
         <div class="lg:col-span-7 space-y-4">
-          <div class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 relative flex items-center justify-center min-h-[380px] overflow-hidden shadow-sm">
+          <div class="bg-white border border-[#d9d9d9] rounded-lg p-6 sm:p-8 relative flex items-center justify-center min-h-[380px] overflow-hidden shadow-sm">
             <img id="pdp-preview-image" src="" alt="Product Preview" class="max-h-[340px] max-w-full object-contain drop-shadow-md img-hq" decoding="async" />
             <div class="absolute top-4 left-4 flex gap-2">
               <span id="pdp-dimensions" class="badge-pill-neutral">8.9 cm × 5.1 cm</span>
               <span class="badge-pill-accent">300 DPI Pre-Press Ready</span>
             </div>
-            <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[11px] text-slate-500 bg-slate-50/90 backdrop-blur p-2.5 rounded border border-slate-200">
+            <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[11px] text-[#595959] bg-[#f3f3f3]/90 backdrop-blur p-2.5 rounded border border-[#d9d9d9]">
               <span>✦ Automated Pre-Press Color Proofing</span>
               <span>100% Print-Accuracy Guarantee</span>
             </div>
@@ -809,61 +1160,79 @@
         </div>
 
         <!-- 5 Columns Configurator Panel -->
-        <div class="lg:col-span-5 bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-5">
+        <div class="lg:col-span-5 bg-white border border-[#d9d9d9] rounded-lg p-6 shadow-sm space-y-5">
           <div>
-            <h1 id="pdp-title" class="text-xl sm:text-2xl font-display font-bold text-[#0f172a] leading-tight">Product Title</h1>
-            <p id="pdp-subtitle" class="text-xs text-slate-600 mt-1">Product Subtitle</p>
-            <div id="pdp-rating" class="text-xs text-amber-500 font-bold mt-2">★ 4.8</div>
+            <h1 id="pdp-title" class="text-xl sm:text-2xl font-display font-bold text-black leading-tight">Product Title</h1>
+            <p id="pdp-subtitle" class="text-xs text-[#595959] mt-1">Product Subtitle</p>
+            <div id="pdp-rating" class="text-xs text-black font-bold mt-2">★ 4.8</div>
           </div>
 
           <!-- Dynamic Price Calculator Box -->
-          <div class="p-4 bg-orange-50/50 border border-orange-200 rounded-lg flex items-center justify-between">
+          <div class="p-4 bg-[#f3f3f3] border border-[#d9d9d9] rounded-lg flex items-center justify-between">
             <div>
-              <span class="text-[11px] text-slate-600 font-medium">Calculated Price (Excl. Tax):</span>
-              <div id="pdp-calculated-price" class="font-display font-bold text-2xl text-[#ea580c]">₹200</div>
-              <div id="pdp-per-unit-price" class="text-[11px] text-slate-500 font-mono-spec">(₹2.00 per unit)</div>
+              <span class="text-[11px] text-[#595959] font-medium">Calculated Price (Excl. Tax):</span>
+              <div id="pdp-calculated-price" class="font-display font-bold text-2xl text-black">₹200</div>
+              <div id="pdp-per-unit-price" class="text-[11px] text-[#595959] font-mono-spec">(₹2.00 per unit)</div>
             </div>
             <span class="badge-pill-accent">Volume Savings Applied</span>
           </div>
 
+          <!-- Color Variants Selector (for apparel/merch) -->
+          <div id="pdp-color-section" class="hidden">
+            <label class="block text-xs font-bold text-black uppercase tracking-wider mb-2">Select Color: <span id="pdp-selected-color-name" class="font-normal normal-case text-gray-600"></span></label>
+            <div id="pdp-colors-container" class="flex flex-wrap gap-2.5"></div>
+          </div>
+
+          <!-- Size Selector (for apparel) -->
+          <div id="pdp-size-section" class="hidden">
+            <label class="block text-xs font-bold text-black uppercase tracking-wider mb-2">Select Size</label>
+            <div id="pdp-sizes-container" class="flex flex-wrap gap-2"></div>
+          </div>
+
+          <!-- Shape Selector (for visiting cards) -->
+          <div id="pdp-shape-section" class="hidden">
+            <label class="block text-xs font-bold text-black uppercase tracking-wider mb-2">Select Shape</label>
+            <div id="pdp-shapes-container" class="grid grid-cols-2 sm:grid-cols-3 gap-2"></div>
+          </div>
+
           <!-- 1. Quantity Selector -->
           <div>
-            <label class="block text-xs font-bold text-[#0f172a] uppercase tracking-wider mb-2">1. Select Quantity</label>
+            <label class="block text-xs font-bold text-black uppercase tracking-wider mb-2">1. Select Quantity</label>
             <div id="pdp-quantity-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2"></div>
           </div>
 
           <!-- 2. Paper Stock & GSM -->
           <div>
-            <label class="block text-xs font-bold text-[#0f172a] uppercase tracking-wider mb-2">2. Paper Stock &amp; Weight (GSM)</label>
+            <label class="block text-xs font-bold text-black uppercase tracking-wider mb-2">2. Paper Stock &amp; Weight (GSM)</label>
             <div id="pdp-paper-stock-container" class="space-y-2"></div>
           </div>
 
           <!-- 3. Corners -->
           <div>
-            <label class="block text-xs font-bold text-[#0f172a] uppercase tracking-wider mb-2">3. Corner Style</label>
+            <label class="block text-xs font-bold text-black uppercase tracking-wider mb-2">3. Corner Style</label>
             <div id="pdp-corners-container" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
           </div>
 
           <!-- 4. Special Finishes -->
           <div>
-            <label class="block text-xs font-bold text-[#0f172a] uppercase tracking-wider mb-2">4. Special Finishes &amp; Foils</label>
+            <label class="block text-xs font-bold text-black uppercase tracking-wider mb-2">4. Special Finishes &amp; Foils</label>
             <div id="pdp-finishes-container" class="space-y-2"></div>
           </div>
 
           <!-- 5. Print Sides -->
           <div>
-            <label class="block text-xs font-bold text-[#0f172a] uppercase tracking-wider mb-2">5. Printing Sides</label>
+            <label class="block text-xs font-bold text-black uppercase tracking-wider mb-2">5. Printing Sides</label>
             <div id="pdp-sides-container" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
           </div>
 
           <!-- Delivery Speed Estimator -->
-          <div class="pt-3 border-t border-slate-200">
-            <label class="block text-xs font-bold text-[#0f172a] mb-1.5">Delivery Pincode Checker</label>
+          <div class="pt-3 border-t border-[#e6e6e6]">
+            <label class="block text-xs font-bold text-black mb-1.5">Delivery Pincode Checker</label>
             <div class="flex gap-2">
               <input id="pdp-pincode-input" type="text" maxlength="6" value="400001" placeholder="Enter 6-digit Pincode" class="flex-grow input-atelier text-xs px-3 font-mono-spec" />
               <button onclick="window.appRouter.checkPincodeSpeed()" class="btn-secondary px-4 text-xs font-semibold">Check</button>
             </div>
-            <p id="pdp-pincode-status" class="text-[11px] text-emerald-600 font-semibold mt-1">✓ Same Day Delivery available for Mumbai (400001)!</p>
+            <p id="pdp-pincode-status" class="text-[11px] text-black font-bold mt-1">✓ Same Day Delivery available for Mumbai (400001)!</p>
           </div>
         </div>
       </div>
@@ -871,13 +1240,13 @@
 
     <!-- VIEW 4: ONLINE INTERACTIVE DESIGN STUDIO (WEB-TO-PRINT) -->
     <div id="view-studio" class="app-view-container hidden max-w-7xl mx-auto px-4 sm:px-6 py-6">
-      <div class="flex flex-wrap items-center justify-between gap-4 mb-4 pb-3 border-b border-slate-200">
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-4 pb-3 border-b border-[#d9d9d9]">
         <div>
           <div class="flex items-center gap-2">
             <span class="badge-pill-accent">Interactive Studio</span>
-            <h1 id="studio-product-title" class="text-lg sm:text-xl font-display font-bold text-[#0f172a]">Standard Visiting Cards</h1>
+            <h1 id="studio-product-title" class="text-lg sm:text-xl font-display font-bold text-black">Standard Visiting Cards</h1>
           </div>
-          <p class="text-xs text-slate-500">Real-time vector proofing, 3mm safety bleed, and dynamic QR embedding</p>
+          <p class="text-xs text-[#595959]">Real-time vector proofing, 3mm safety bleed, and dynamic QR embedding</p>
         </div>
         <div class="flex items-center gap-2">
           <button onclick="window.appRouter.saveCurrentProject()" class="btn-outline px-3 py-1.5 text-xs flex items-center gap-1">
@@ -895,17 +1264,17 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <!-- 7 Columns Canvas Viewport -->
         <div class="lg:col-span-7 flex flex-col justify-between">
-          <div class="bg-white border border-slate-200 rounded-xl p-4 sm:p-6 flex flex-col items-center justify-center relative canvas-wrapper min-h-[460px] shadow-sm">
+          <div class="bg-white border border-[#d9d9d9] rounded-lg p-4 sm:p-6 flex flex-col items-center justify-center relative canvas-wrapper min-h-[460px] shadow-sm">
             <div class="w-full flex items-center justify-between gap-2 mb-3 z-10">
-              <div class="inline-flex rounded-md shadow-sm border border-slate-300 p-0.5 bg-white">
-                <button id="studio-btn-front" onclick="window.studioEngine.toggleSide('front')" class="px-3 py-1 text-xs font-semibold rounded bg-[#ea580c] text-white">Front Side</button>
-                <button id="studio-btn-back" onclick="window.studioEngine.toggleSide('back')" class="px-3 py-1 text-xs font-semibold rounded bg-white text-[#0f172a]">Back Side</button>
+              <div class="inline-flex rounded-lg shadow-sm border border-[#d9d9d9] p-0.5 bg-white">
+                <button id="studio-btn-front" onclick="window.studioEngine.toggleSide('front')" class="px-3 py-1 text-xs font-bold rounded bg-black text-white">Front Side</button>
+                <button id="studio-btn-back" onclick="window.studioEngine.toggleSide('back')" class="px-3 py-1 text-xs font-semibold rounded bg-white text-black">Back Side</button>
               </div>
               <button onclick="window.studioEngine.toggleGuides()" class="btn-outline px-2.5 py-1 text-[11px] font-mono-spec flex items-center gap-1">
                 <span>Toggle Bleed Guides (3mm)</span>
               </button>
             </div>
-            <div class="relative max-w-full overflow-hidden shadow-lg border border-slate-300 rounded">
+            <div class="relative max-w-full overflow-hidden shadow-lg border border-[#8c8c8c] rounded">
               <canvas id="studio-canvas" class="max-w-full h-auto block cursor-crosshair"></canvas>
             </div>
           </div>
@@ -913,95 +1282,95 @@
           <!-- Bottom-Docked Custom Print Proofing Bar (DESIGN.md Requirement) -->
           <div class="proofing-dock p-3.5 rounded-lg mt-3 flex flex-wrap items-center justify-between gap-3 text-xs font-mono-spec shadow-md">
             <div class="flex items-center gap-2">
-              <span id="proofing-dpi-badge" class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span id="proofing-dpi-text" class="font-bold text-slate-100">300 DPI — Optimal Print Quality</span>
+              <span id="proofing-dpi-badge" class="w-2.5 h-2.5 rounded-full bg-white animate-pulse"></span>
+              <span id="proofing-dpi-text" class="font-bold text-white">300 DPI — Optimal Print Quality</span>
             </div>
-            <div class="flex items-center gap-1.5 text-[#ea580c] font-semibold">
-              <span class="w-2 h-2 rounded-full bg-[#ea580c]"></span>
+            <div class="flex items-center gap-1.5 text-white font-semibold">
+              <span class="w-2 h-2 rounded-full bg-white"></span>
               <span id="proofing-bleed-status">3mm Bleed Protected</span>
             </div>
-            <div class="flex items-center gap-1.5 text-sky-400 font-semibold">
+            <div class="flex items-center gap-1.5 text-white/70 font-semibold">
               <span>CMYK FOGRA39 Verified</span>
             </div>
-            <div class="text-slate-300">
-              <span id="proofing-dimensions-pill" class="badge-pill-neutral bg-slate-800 text-slate-200 border border-slate-700">8.9 cm × 5.1 cm</span>
+            <div class="text-white/70">
+              <span id="proofing-dimensions-pill" class="badge-pill-neutral bg-[#1a1a1a] text-white shadow-none">8.9 cm × 5.1 cm</span>
             </div>
           </div>
         </div>
 
         <!-- 5 Columns Tool Panel -->
-        <div class="lg:col-span-5 bg-white border border-slate-200 rounded-xl p-5 shadow-sm space-y-4 max-h-[640px] overflow-y-auto custom-scrollbar">
+        <div class="lg:col-span-5 bg-white border border-[#d9d9d9] rounded-lg p-5 shadow-sm space-y-4 max-h-[640px] overflow-y-auto custom-scrollbar">
           <div>
-            <label class="block text-xs font-bold text-[#0f172a] uppercase tracking-wider mb-2">Pre-Made Studio Templates</label>
+            <label class="block text-xs font-bold text-black uppercase tracking-wider mb-2">Pre-Made Studio Templates</label>
             <div id="studio-templates-list" class="space-y-1.5"></div>
           </div>
 
-          <div class="pt-3 border-t border-slate-200 space-y-3">
-            <label class="block text-xs font-bold text-[#0f172a] uppercase tracking-wider">Customize Text Layers</label>
+          <div class="pt-3 border-t border-[#e6e6e6] space-y-3">
+            <label class="block text-xs font-bold text-black uppercase tracking-wider">Customize Text Layers</label>
             <div>
-              <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Company / Brand Name</label>
+              <label class="block text-[11px] font-bold text-[#595959] mb-0.5">Company / Brand Name</label>
               <input id="studio-input-company" type="text" oninput="window.studioEngine.updateField('company', this.value)" class="w-full input-atelier px-3 text-xs" />
             </div>
             <div>
-              <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Brand Tagline</label>
+              <label class="block text-[11px] font-bold text-[#595959] mb-0.5">Brand Tagline</label>
               <input id="studio-input-tagline" type="text" oninput="window.studioEngine.updateField('tagline', this.value)" class="w-full input-atelier px-3 text-xs" />
             </div>
             <div class="grid grid-cols-2 gap-2">
               <div>
-                <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Full Name</label>
+                <label class="block text-[11px] font-bold text-[#595959] mb-0.5">Full Name</label>
                 <input id="studio-input-name" type="text" oninput="window.studioEngine.updateField('name', this.value)" class="w-full input-atelier px-3 text-xs" />
               </div>
               <div>
-                <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Title / Designation</label>
+                <label class="block text-[11px] font-bold text-[#595959] mb-0.5">Title / Designation</label>
                 <input id="studio-input-title" type="text" oninput="window.studioEngine.updateField('title', this.value)" class="w-full input-atelier px-3 text-xs" />
               </div>
             </div>
             <div class="grid grid-cols-2 gap-2">
               <div>
-                <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Phone Number</label>
+                <label class="block text-[11px] font-bold text-[#595959] mb-0.5">Phone Number</label>
                 <input id="studio-input-phone" type="text" oninput="window.studioEngine.updateField('phone', this.value)" class="w-full input-atelier px-3 text-xs font-mono-spec" />
               </div>
               <div>
-                <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Email Address</label>
+                <label class="block text-[11px] font-bold text-[#595959] mb-0.5">Email Address</label>
                 <input id="studio-input-email" type="email" oninput="window.studioEngine.updateField('email', this.value)" class="w-full input-atelier px-3 text-xs font-mono-spec" />
               </div>
             </div>
             <div>
-              <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Office Street Address</label>
+              <label class="block text-[11px] font-bold text-[#595959] mb-0.5">Office Street Address</label>
               <input id="studio-input-address" type="text" oninput="window.studioEngine.updateField('address', this.value)" class="w-full input-atelier px-3 text-xs" />
             </div>
             <!-- Dynamic QR Code Input -->
-            <div class="p-3 bg-orange-50/40 border border-orange-200 rounded-md">
-              <label class="block text-[11px] font-bold text-[#0f172a] mb-0.5">Dynamic QR Code (URL or vCard)</label>
+            <div class="p-3 bg-[#f3f3f3] border border-[#d9d9d9] rounded-lg">
+              <label class="block text-[11px] font-bold text-black mb-0.5">Dynamic QR Code (URL or vCard)</label>
               <input id="studio-input-qrUrl" type="text" oninput="window.studioEngine.updateField('qrUrl', this.value)" placeholder="https://yourwebsite.com" class="w-full input-atelier px-3 text-xs font-mono-spec" />
-              <p class="text-[10px] text-slate-500 mt-1">A scannable QR code matrix is generated and placed directly on the design.</p>
+              <p class="text-[10px] text-[#595959] mt-1">A scannable QR code matrix is generated and placed directly on the design.</p>
             </div>
           </div>
 
           <!-- Color Adjustments -->
-          <div class="pt-3 border-t border-slate-200">
-            <label class="block text-xs font-bold text-[#0f172a] uppercase tracking-wider mb-2">Palette &amp; Finish Accents</label>
+          <div class="pt-3 border-t border-[#e6e6e6]">
+            <label class="block text-xs font-bold text-black uppercase tracking-wider mb-2">Palette &amp; Finish Accents</label>
             <div class="grid grid-cols-3 gap-2 text-center text-[10px]">
               <div>
-                <span class="block mb-1 text-slate-600">Background</span>
-                <input type="color" value="#0f172a" onchange="window.studioEngine.updateColor('bg', this.value)" class="w-full h-8 cursor-pointer rounded border border-slate-300" />
+                <span class="block mb-1 text-[#595959]">Background</span>
+                <input type="color" value="#000000" onchange="window.studioEngine.updateColor('bg', this.value)" class="w-full h-8 cursor-pointer rounded-lg border border-[#d9d9d9]" />
               </div>
               <div>
-                <span class="block mb-1 text-slate-600">Accent Hue</span>
-                <input type="color" value="#ea580c" onchange="window.studioEngine.updateColor('accent', this.value)" class="w-full h-8 cursor-pointer rounded border border-slate-300" />
+                <span class="block mb-1 text-[#595959]">Accent Hue</span>
+                <input type="color" value="#000000" onchange="window.studioEngine.updateColor('accent', this.value)" class="w-full h-8 cursor-pointer rounded-lg border border-[#d9d9d9]" />
               </div>
               <div>
-                <span class="block mb-1 text-slate-600">Text Primary</span>
-                <input type="color" value="#ffffff" onchange="window.studioEngine.updateColor('text', this.value)" class="w-full h-8 cursor-pointer rounded border border-slate-300" />
+                <span class="block mb-1 text-[#595959]">Text Primary</span>
+                <input type="color" value="#ffffff" onchange="window.studioEngine.updateColor('text', this.value)" class="w-full h-8 cursor-pointer rounded-lg border border-[#d9d9d9]" />
               </div>
             </div>
           </div>
 
           <!-- Custom Artwork / Logo Uploader -->
-          <div class="pt-3 border-t border-slate-200">
-            <label class="block text-xs font-bold text-[#0f172a] uppercase tracking-wider mb-1.5">Upload Custom Logo / Artwork</label>
-            <input type="file" id="studio-logo-uploader" accept="image/png, image/jpeg, image/svg+xml" onchange="window.appRouter.handleLogoUpload(event)" class="w-full text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200 cursor-pointer" />
-            <p class="text-[10px] text-slate-500 mt-1">Recommended: Transparent PNG at 300 DPI for high-impact print fidelity.</p>
+          <div class="pt-3 border-t border-[#e6e6e6]">
+            <label class="block text-xs font-bold text-black uppercase tracking-wider mb-1.5">Upload Custom Logo / Artwork</label>
+            <input type="file" id="studio-logo-uploader" accept="image/png, image/jpeg, image/svg+xml" onchange="window.appRouter.handleLogoUpload(event)" class="w-full text-xs text-black file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-xs file:font-bold file:bg-[#e6e6e6] file:text-black hover:file:bg-[#d9d9d9] cursor-pointer" />
+            <p class="text-[10px] text-[#595959] mt-1">Recommended: Transparent PNG at 300 DPI for high-impact print fidelity.</p>
           </div>
         </div>
       </div>
@@ -1010,29 +1379,29 @@
     <!-- VIEW 5: USER DASHBOARD, MY PROJECTS & ORDERS -->
     <div id="view-projects" class="app-view-container hidden max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-8">
       <div>
-        <h1 class="text-2xl font-display font-bold text-[#0f172a]">User Dashboard &amp; Account</h1>
-        <p class="text-xs text-slate-500 mt-0.5">Manage your saved print designs, review live order status, and reorder past artwork</p>
+        <h1 class="text-2xl font-display font-bold text-black">User Dashboard &amp; Account</h1>
+        <p class="text-xs text-[#595959] mt-0.5">Manage your saved print designs, review live order status, and reorder past artwork</p>
       </div>
       <section>
         <div class="flex items-center justify-between mb-3">
-          <h2 class="text-base font-display font-bold text-[#0f172a] flex items-center gap-2">
+          <h2 class="text-base font-display font-bold text-black flex items-center gap-2">
             <span>My Saved Projects</span>
             <span class="badge-pill-neutral">Cloud Stored</span>
           </h2>
-          <button onclick="window.appRouter.navigate('catalog', 'visiting-cards')" class="text-xs text-[#ea580c] font-semibold hover:underline">+ New Design</button>
+          <button onclick="window.appRouter.navigate('catalog', 'visiting-cards')" class="text-xs text-black font-bold underline underline-offset-2">+ New Design</button>
         </div>
         <div id="my-projects-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"></div>
       </section>
       <section>
         <div class="flex items-center justify-between mb-3">
-          <h2 class="text-base font-display font-bold text-[#0f172a]">Order History &amp; Tracking</h2>
-          <span class="text-xs text-slate-500">Includes Invoiced GST Receipts</span>
+          <h2 class="text-base font-display font-bold text-black">Order History &amp; Tracking</h2>
+          <span class="text-xs text-[#595959]">Includes Invoiced GST Receipts</span>
         </div>
         <div id="order-history-list" class="space-y-3"></div>
       </section>
       <section>
         <div class="flex items-center justify-between mb-3">
-          <h2 class="text-base font-display font-bold text-[#0f172a]">My Favourites</h2>
+          <h2 class="text-base font-display font-bold text-black">My Favourites</h2>
         </div>
         <div id="my-favourites-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"></div>
       </section>
@@ -1043,16 +1412,17 @@
   <!-- =====================================================================
        SLIDE-OVER SHOPPING CART DRAWER
        ===================================================================== -->
-  <div id="cart-drawer" class="fixed inset-y-0 right-0 max-w-md w-full bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col border-l border-slate-200">
-    <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+  <div id="cart-drawer-overlay" onclick="window.appRouter.closeCartDrawer()" class="hidden opacity-0 fixed inset-0 bg-black/50 backdrop-blur-[2px] z-40"></div>
+  <div id="cart-drawer" class="fixed inset-y-0 right-0 max-w-md w-full bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col border-l border-[#e6e6e6]">
+    <div class="p-4 border-b border-[#e6e6e6] flex items-center justify-between bg-[#f3f3f3]">
       <div class="flex items-center gap-2">
-        <h3 class="font-display font-bold text-base text-[#0f172a]">Shopping Cart</h3>
+        <h3 class="font-display font-bold text-base text-black">Shopping Cart</h3>
         <span class="cart-counter-badge badge-pill-accent">0</span>
       </div>
-      <button onclick="window.appRouter.closeCartDrawer()" class="text-slate-400 hover:text-slate-700 p-1 text-lg">✕</button>
+      <button onclick="window.appRouter.closeCartDrawer()" class="text-[#595959] hover:text-black p-1 text-lg" aria-label="Close cart">✕</button>
     </div>
     <div id="cart-items-container" class="flex-grow overflow-y-auto p-4 space-y-3 custom-scrollbar"></div>
-    <div id="cart-summary-container" class="p-4 bg-slate-50 border-t border-slate-200 space-y-3"></div>
+    <div id="cart-summary-container" class="p-4 bg-[#f3f3f3] border-t border-[#e6e6e6] space-y-3"></div>
   </div>
 
   <!-- =====================================================================
@@ -1061,12 +1431,12 @@
   <!-- CHECKOUT MODAL -->
   <div id="checkout-modal" class="fixed inset-0 modal-backdrop z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-xl max-w-xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar p-6 shadow-2xl relative">
-      <button onclick="window.cartEngine.closeCheckoutModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-lg">✕</button>
-      <div class="flex items-center gap-2 mb-6 pb-4 border-b border-slate-200">
+      <button onclick="window.cartEngine.closeCheckoutModal()" class="absolute top-4 right-4 text-[#595959] hover:text-black text-lg" aria-label="Close checkout">✕</button>
+      <div class="flex items-center gap-2 mb-6 pb-4 border-b border-[#e6e6e6]">
         <div data-step="1" class="checkout-step-indicator">1. Address</div>
-        <span class="text-slate-300">›</span>
+        <span class="text-[#8c8c8c]">›</span>
         <div data-step="2" class="checkout-step-indicator">2. Delivery</div>
-        <span class="text-slate-300">›</span>
+        <span class="text-[#8c8c8c]">›</span>
         <div data-step="3" class="checkout-step-indicator">3. Payment</div>
       </div>
       <div id="checkout-step-content"></div>
@@ -1076,37 +1446,37 @@
   <!-- HELP & FAQ MODAL -->
   <div id="help-modal" class="fixed inset-0 modal-backdrop z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-xl max-w-xl w-full max-h-[85vh] overflow-y-auto custom-scrollbar p-6 shadow-2xl relative space-y-4">
-      <button onclick="window.appRouter.closeModal('help-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-lg">✕</button>
+      <button onclick="window.appRouter.closeModal('help-modal')" class="absolute top-4 right-4 text-[#595959] hover:text-black text-lg" aria-label="Close help">✕</button>
       <div class="flex items-center gap-2">
         <span class="badge-pill-accent">Customer Care</span>
-        <h3 class="font-display font-bold text-lg text-[#0f172a]">Help &amp; Knowledge Base</h3>
+        <h3 class="font-display font-bold text-lg text-black">Help &amp; Knowledge Base</h3>
       </div>
-      <p class="text-xs text-slate-500">Frequently asked questions regarding print dimensions, bleeds, Same Day Delivery, and returns.</p>
-      <div class="divide-y divide-slate-100 text-xs">
+      <p class="text-xs text-[#595959]">Frequently asked questions regarding print dimensions, bleeds, Same Day Delivery, and returns.</p>
+      <div class="divide-y divide-[#e6e6e6] text-xs">
         <div class="py-3">
-          <h4 class="font-bold text-[#0f172a] mb-1">What is the standard visiting card size in India?</h4>
-          <p class="text-slate-600">The standard finished card size is 8.9 cm × 5.1 cm. Our online studio automatically enforces a 3mm safety bleed margin around all edges so graphics never clip during automated cutting.</p>
+          <h4 class="font-bold text-black mb-1">What is the standard visiting card size in India?</h4>
+          <p class="text-[#595959]">The standard finished card size is 8.9 cm × 5.1 cm. Our online studio automatically enforces a 3mm safety bleed margin around all edges so graphics never clip during automated cutting.</p>
         </div>
         <div class="py-3">
-          <h4 class="font-bold text-[#0f172a] mb-1">Which cities receive Same Day Delivery?</h4>
-          <p class="text-slate-600">Same Day Delivery is live for eligible pin codes in Mumbai (400xxx), Bengaluru (560xxx), and Kolkata (700xxx) on orders placed before 11:00 AM IST on business days.</p>
+          <h4 class="font-bold text-black mb-1">Which cities receive Same Day Delivery?</h4>
+          <p class="text-[#595959]">Same Day Delivery is live for eligible pin codes in Mumbai (400xxx), Bengaluru (560xxx), and Kolkata (700xxx) on orders placed before 11:00 AM IST on business days.</p>
         </div>
         <div class="py-3">
-          <h4 class="font-bold text-[#0f172a] mb-1">What is the Free Replacement or Full Refund guarantee?</h4>
-          <p class="text-slate-600">We stand 100% behind our print quality. If you notice any registration defect or shipping damage, let us know within 14 days and we will reprint your order for free or issue a full refund.</p>
+          <h4 class="font-bold text-black mb-1">What is the Free Replacement or Full Refund guarantee?</h4>
+          <p class="text-[#595959]">We stand 100% behind our print quality. If you notice any registration defect or shipping damage, let us know within 14 days and we will reprint your order for free or issue a full refund.</p>
         </div>
       </div>
-      <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg space-y-2 text-xs">
+      <div class="p-3 bg-[#f3f3f3] border border-[#d9d9d9] rounded-lg space-y-2 text-xs">
         <div class="flex items-center justify-between">
           <div>
-            <span class="font-bold text-[#0f172a]">Customer Care &amp; Support:</span>
-            <div class="text-slate-700 font-mono-spec">0631-34424153 | +91 6201933317, 9525477539</div>
+            <span class="font-bold text-black">Customer Care &amp; Support:</span>
+            <div class="text-black font-mono-spec">0631-34424153 | +91 6201933317, 9525477539</div>
           </div>
           <a href="mailto:printshubbsgaya@gmail.com" class="btn-secondary px-3 py-1.5 text-xs inline-block">Email Support</a>
         </div>
-        <div class="pt-2 border-t border-slate-200/80 text-[11px] text-slate-500 flex flex-wrap justify-between items-center gap-2">
+        <div class="pt-2 border-t border-[#e6e6e6] text-[11px] text-[#595959] flex flex-wrap justify-between items-center gap-2">
           <span>📍 Noor Compound, Near V-2 Mall, Civil Line, Gaya - 823001</span>
-          <span class="font-mono-spec text-[#ea580c] font-semibold">GSTIN: 10CMQPS6390P1Z5</span>
+          <span class="font-mono-spec font-semibold">GSTIN: 10CMQPS6390P1Z5</span>
         </div>
       </div>
     </div>
@@ -1115,17 +1485,17 @@
   <!-- SIGN IN MODAL -->
   <div id="signin-modal" class="fixed inset-0 modal-backdrop z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-xl max-w-sm w-full p-6 shadow-2xl relative space-y-4">
-      <button onclick="window.appRouter.closeModal('signin-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-lg">✕</button>
-      <h3 class="font-display font-bold text-lg text-[#0f172a]">Sign in to Printhubbs</h3>
-      <p class="text-xs text-slate-500">Access saved projects, order receipts, and 1-click reordering.</p>
-      <form onsubmit="event.preventDefault(); window.appRouter.closeModal('signin-modal'); window.showToast('Welcome back, Arjun! Logged in successfully.', 'success');" class="space-y-3">
+      <button onclick="window.appRouter.closeModal('signin-modal')" class="absolute top-4 right-4 text-[#595959] hover:text-black text-lg" aria-label="Close sign in">✕</button>
+      <h3 class="font-display font-bold text-lg text-black">Sign in to Printhubbs</h3>
+      <p class="text-xs text-[#595959]">Access saved projects, order receipts, and 1-click reordering.</p>
+      <form onsubmit="event.preventDefault(); window.appRouter.closeModal('signin-modal'); window.showToast('Logged in successfully.', 'success');" class="space-y-3">
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">Email Address</label>
-          <input type="email" required value="arjun@printhubbs.in" class="w-full input-atelier px-3 text-xs" />
+          <label class="block text-xs font-bold text-black mb-1">Email Address</label>
+          <input type="email" required placeholder="Enter your email" class="w-full input-atelier px-3 text-xs" />
         </div>
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">Password</label>
-          <input type="password" required value="password123" class="w-full input-atelier px-3 text-xs" />
+          <label class="block text-xs font-bold text-black mb-1">Password</label>
+          <input type="password" required placeholder="Enter your password" class="w-full input-atelier px-3 text-xs" />
         </div>
         <button type="submit" class="w-full btn-primary py-2.5 text-xs font-bold shadow-md">Sign In</button>
       </form>
@@ -1136,82 +1506,98 @@
   <div id="toast-notification" class="hidden"></div>
 
   <!-- BEGIN: MainFooter (Exact Match to screen.png & code.html) -->
-  <footer class="bg-[#0a0f1d] text-white pt-12 pb-6 border-t border-slate-800">
+  <footer class="bg-black text-white pt-12 pb-6 border-t border-[#333333]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <!-- Top Columns -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-slate-800">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-white/15">
         <!-- Brand Mark & Returns -->
         <div>
           <div class="flex items-center gap-2 mb-4 bg-white/95 p-2.5 rounded-lg w-fit">
             <img alt="Printhubbs Logo" class="h-8 w-auto object-contain" src="assets/images/printhubbs-logo.png" />
           </div>
-          <p class="text-[11px] text-slate-400 font-medium leading-snug mb-3">
+          <p class="text-[11px] text-white/70 font-medium leading-snug mb-3">
             📍 Noor Compound, Near V-2 Mall, Civil Line, Gaya - 823001<br />
             📞 0631-34424153 | +91 6201933317<br />
             ✉️ printshubbsgaya@gmail.com
           </p>
-          <p class="text-xs text-slate-400 font-medium leading-snug">
+          <p class="text-xs text-white/70 font-medium leading-snug">
             Easy Returns:<br />
-            <a class="underline text-[#ea580c] font-semibold hover:text-orange-400 transition cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.openModal('help-modal')">Free Replacement or Full Refund</a>
+            <a class="underline text-white font-semibold hover:text-[#d9d9d9] transition cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.openModal('help-modal')">Free Replacement or Full Refund</a>
           </p>
         </div>
         <!-- Let Us Help -->
         <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3">Let us help</h4>
-          <ul class="space-y-2 text-xs text-slate-400">
-            <li><a class="hover:text-[#ea580c] transition cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('projects')">My Account</a></li>
-            <li><a class="hover:text-[#ea580c] transition cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.openModal('help-modal')">Contact us</a></li>
-            <li><a class="hover:text-[#ea580c] transition cursor-pointer" href="javascript:void(0)" onclick="window.showToast('Corporate bulk inquiry form opened', 'info')">Bulk Order Inquiry</a></li>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Let us help</h4>
+          <ul class="space-y-2 text-xs text-white/70">
+            <li><a class="hover:text-black transition cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('projects')">My Account</a></li>
+            <li><a class="hover:text-black transition cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.openModal('help-modal')">Contact us</a></li>
+            <li><a class="hover:text-black transition cursor-pointer" href="javascript:void(0)" onclick="window.showToast('Corporate bulk inquiry form opened', 'info')">Bulk Order Inquiry</a></li>
           </ul>
         </div>
         <!-- Our Company -->
         <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3">Our Company</h4>
-          <ul class="space-y-2 text-xs text-slate-400">
-            <li><a class="hover:text-[#ea580c] transition" href="#">Careers</a></li>
-            <li><a class="hover:text-[#ea580c] transition" href="#">For investors</a></li>
-            <li><a class="hover:text-[#ea580c] transition" href="#">For media</a></li>
-            <li><a class="hover:text-[#ea580c] transition" href="#">Sustainability</a></li>
-            <li><a class="hover:text-[#ea580c] transition" href="#">Annual Returns</a></li>
-            <li><a class="hover:text-[#ea580c] transition" href="#">Corporate Social Responsibility</a></li>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Our Company</h4>
+          <ul class="space-y-2 text-xs text-white/70">
+            <li><a class="hover:text-black transition" href="#">Careers</a></li>
+            <li><a class="hover:text-black transition" href="#">For investors</a></li>
+            <li><a class="hover:text-black transition" href="#">For media</a></li>
+            <li><a class="hover:text-black transition" href="#">Sustainability</a></li>
+            <li><a class="hover:text-black transition" href="#">Annual Returns</a></li>
+            <li><a class="hover:text-black transition" href="#">Corporate Social Responsibility</a></li>
           </ul>
         </div>
         <!-- Our Policies -->
         <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3">Our policies</h4>
-          <ul class="space-y-2 text-xs text-slate-400">
-            <li><a class="hover:text-[#ea580c] transition" href="#">Terms and Conditions</a></li>
-            <li><a class="hover:text-[#ea580c] transition" href="#">Printhubbs Privacy &amp; Cookie Policy</a></li>
-            <li><a class="hover:text-[#ea580c] transition" href="#">Copyright matters</a></li>
-            <li><a class="hover:text-[#ea580c] transition" href="#">Patents &amp; trademarks</a></li>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Our policies</h4>
+          <ul class="space-y-2 text-xs text-white/70">
+            <li><a class="hover:text-black transition" href="#">Terms and Conditions</a></li>
+            <li><a class="hover:text-black transition" href="#">Printhubbs Privacy &amp; Cookie Policy</a></li>
+            <li><a class="hover:text-black transition" href="#">Copyright matters</a></li>
+            <li><a class="hover:text-black transition" href="#">Patents &amp; trademarks</a></li>
           </ul>
         </div>
       </div>
       <!-- Footer Bottom Utility -->
-      <div class="pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-slate-400">
+      <div class="pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-white/70">
         <div>
-          <a class="underline hover:text-[#ea580c] cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('home')">Home</a>
+          <a class="underline hover:text-black cursor-pointer" href="javascript:void(0)" onclick="window.appRouter.navigate('home')">Home</a>
           <p class="mt-1">© 2026 Printhubbs. All rights reserved.<br />Unless stated otherwise, prices are exclusive of delivery and product options.</p>
         </div>
         <!-- Payment & Socials -->
         <div class="flex flex-col sm:flex-row items-center gap-4">
-          <!-- Card Badges -->
-          <div class="flex items-center gap-2">
-            <span class="bg-[#1e3a8a] text-white font-bold px-1.5 py-0.5 rounded text-[10px]">AMEX</span>
-            <span class="bg-[#ea580c] text-white font-bold px-1.5 py-0.5 rounded text-[10px]">MC</span>
-            <span class="bg-[#0f172a] border border-slate-700 text-white font-bold px-1.5 py-0.5 rounded text-[10px]">VISA</span>
+          <!-- Payment Badges -->
+          <div class="flex items-center gap-1.5 flex-wrap justify-center">
+            <span class="pay-chip">VISA</span>
+            <span class="pay-chip">Mastercard</span>
+            <span class="pay-chip">AMEX</span>
+            <span class="pay-chip">UPI</span>
+            <span class="pay-chip">RuPay</span>
+            <span class="pay-chip dark">NetBanking</span>
+            <span class="pay-chip dark">COD</span>
           </div>
-          <!-- Social Icons Mock -->
-          <div class="flex items-center gap-3 text-slate-300 text-sm">
-            <a aria-label="X (formerly Twitter)" class="hover:text-[#ea580c] transition" href="#">𝕏</a>
-            <a aria-label="Facebook" class="hover:text-[#ea580c] transition" href="#">f</a>
-            <a aria-label="Instagram" class="hover:text-[#ea580c] transition" href="#">📷</a>
-            <a aria-label="YouTube" class="hover:text-[#ea580c] transition" href="#">▶</a>
+          <!-- Social Icons -->
+          <div class="flex items-center gap-2">
+            <a aria-label="X (formerly Twitter)" class="footer-social" href="#">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+            </a>
+            <a aria-label="Facebook" class="footer-social" href="#">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path></svg>
+            </a>
+            <a aria-label="Instagram" class="footer-social" href="#">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+            </a>
+            <a aria-label="YouTube" class="footer-social" href="#">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
+            </a>
+            <a aria-label="WhatsApp" class="footer-social" href="#">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
+            </a>
           </div>
           <!-- Country Selector -->
-          <div class="flex items-center gap-1 text-white border border-slate-700 px-2 py-1 rounded bg-[#0f172a]">
+          <div class="flex items-center gap-1.5 text-white border border-white/30 px-2.5 py-1.5 rounded-lg bg-black hover:border-white transition cursor-pointer">
             <span>🇮🇳</span>
-            <span class="text-xs">▾</span>
+            <span class="text-xs font-semibold">India</span>
+            <span class="text-xs text-white/70">▾</span>
           </div>
         </div>
       </div>
@@ -1233,10 +1619,10 @@
       if (!input || !statusEl) return;
       const res = window.cartEngine.checkPincode(input.value);
       if (res.isSameDay) {
-        statusEl.className = 'text-[11px] text-emerald-600 font-semibold mt-1';
+        statusEl.className = 'text-[11px] text-black font-bold mt-1';
         statusEl.textContent = `✓ Same Day Delivery available for ${res.city} (${res.pincode})!`;
       } else {
-        statusEl.className = 'text-[11px] text-slate-600 font-medium mt-1';
+        statusEl.className = 'text-[11px] text-[#595959] font-medium mt-1';
         statusEl.textContent = `Standard 3-5 business days delivery for PIN ${res.pincode}.`;
       }
     };

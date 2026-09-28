@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- Background Desk Texture -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <filter id="handShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="3" dy="10" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <rect width="400" height="300" fill="url(#bgGrad)"/>
+
+  <!-- Bent Synthetic Waterproof Card Being Stretched Between Hands -->
+  <g transform="translate(130, 75)" filter="url(#handShadow)">
+    <!-- Curving / flexible bent card shape -->
+    <path d="M 0 10 Q 70 2 140 10 L 140 160 Q 70 168 0 160 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.75"/>
+    <path d="M 0 10 Q 70 2 140 10 L 140 70 Q 70 100 0 60 Z" fill="#0284c7" opacity="0.9"/>
+
+    <!-- Dynamic Blue Swoosh on Card -->
+    <path d="M 0 40 Q 80 120 140 45 L 140 95 Q 70 140 0 85 Z" fill="#38bdf8" opacity="0.85"/>
+
+    <!-- Micro QR Code on Card -->
+    <g transform="translate(25, 105)">
+      <rect width="28" height="28" fill="#ffffff" stroke="#0f172a" stroke-width="0.5"/>
+      <rect x="2" y="2" width="8" height="8" fill="#0f172a"/>
+      <rect x="18" y="2" width="8" height="8" fill="#0f172a"/>
+      <rect x="2" y="18" width="8" height="8" fill="#0f172a"/>
+      <rect x="4" y="4" width="4" height="4" fill="#ffffff"/>
+      <rect x="20" y="4" width="4" height="4" fill="#ffffff"/>
+      <rect x="4" y="20" width="4" height="4" fill="#ffffff"/>
+      <rect x="12" y="12" width="4" height="4" fill="#0f172a"/>
+      <rect x="12" y="4" width="3" height="4" fill="#0f172a"/>
+      <rect x="18" y="14" width="4" height="3" fill="#0f172a"/>
+    </g>
+
+    <!-- Synthetic Badge / Logo -->
+    <text x="70" y="118" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="700" font-size="9" fill="#0f172a">KRAFT</text>
+    <text x="70" y="128" font-family="-apple-system, sans-serif" font-size="6" fill="#0284c7">WATERPROOF</text>
+    <text x="70" y="137" font-family="-apple-system, sans-serif" font-size="5" fill="#64748b">100% Non-Tearable Poly</text>
+  </g>
+
+  <!-- Left Hand / Fingers Holding & Pulling Card Left -->
+  <g transform="translate(75, 45)" filter="url(#handShadow)">
+    <!-- Arm / Wrist -->
+    <path d="M 0 0 C 20 20 40 40 45 70 L 65 72 C 60 30 35 10 10 -10 Z" fill="#fcd34d" opacity="0.2"/>
+    <!-- Thumb Finger pressing top corner -->
+    <path d="M 50 35 C 65 35 75 50 78 68 C 80 80 68 85 58 75 C 50 65 42 50 48 38 Z" fill="#fed7aa" stroke="#fbcfe8" stroke-width="0.5"/>
+    <ellipse cx="68" cy="62" rx="4" ry="7" fill="#fecdd3" opacity="0.6"/> <!-- Nail -->
+    <!-- Lower fingers gripping back -->
+    <path d="M 45 130 C 60 132 75 145 72 165 C 70 175 55 178 48 168 C 40 155 35 140 45 130 Z" fill="#fed7aa"/>
+    <ellipse cx="64" cy="155" rx="4" ry="6" fill="#fecdd3" opacity="0.6"/>
+  </g>
+
+  <!-- Right Hand / Fingers Holding & Pulling Card Right -->
+  <g transform="translate(245, 45)" filter="url(#handShadow)">
+    <!-- Thumb Finger pressing right top corner -->
+    <path d="M 40 38 C 25 35 15 50 12 68 C 10 80 22 85 32 75 C 40 65 48 50 42 38 Z" fill="#fed7aa" stroke="#fbcfe8" stroke-width="0.5"/>
+    <ellipse cx="22" cy="62" rx="4" ry="7" fill="#fecdd3" opacity="0.6"/>
+    <!-- Lower fingers gripping bottom right corner -->
+    <path d="M 45 130 C 30 132 15 145 18 165 C 20 175 35 178 42 168 C 50 155 55 140 45 130 Z" fill="#fed7aa"/>
+    <ellipse cx="26" cy="155" rx="4" ry="6" fill="#fecdd3" opacity="0.6"/>
+  </g>
+</svg>

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- Warm Oak Wood Table Surface -->
+    <linearGradient id="oakWood" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#b08968"/>
+      <stop offset="50%" stop-color="#9c6644"/>
+      <stop offset="100%" stop-color="#7f4f24"/>
+    </linearGradient>
+    <!-- Mirror High Gloss Specular Reflection -->
+    <linearGradient id="mirrorGloss" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="30%" stop-color="#ffffff" stop-opacity="0.2"/>
+      <stop offset="55%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="thickShadow" x="-10%" y="-10%" width="130%" height="135%">
+      <feDropShadow dx="4" dy="12" stdDeviation="8" flood-color="#431407" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Wood Table Surface -->
+  <rect width="400" height="300" fill="url(#oakWood)"/>
+  <line x1="0" y1="110" x2="400" y2="110" stroke="#7f4f24" stroke-width="1.5" opacity="0.6"/>
+  <line x1="0" y1="210" x2="400" y2="210" stroke="#7f4f24" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Lower Angled Card -->
+  <g transform="translate(110, 45) rotate(16)" filter="url(#thickShadow)">
+    <rect width="210" height="125" rx="4" fill="#ffffff"/>
+    <rect width="210" height="125" rx="4" fill="#f8fafc" opacity="0.5"/>
+    <!-- Clover Logo -->
+    <g transform="translate(45, 62)">
+      <circle cx="-6" cy="0" r="8" fill="#10b981"/>
+      <circle cx="6" cy="0" r="8" fill="#0284c7"/>
+      <circle cx="0" cy="-6" r="8" fill="#06b6d4"/>
+      <circle cx="0" cy="6" r="8" fill="#14b8a6"/>
+    </g>
+    <text x="75" y="67" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="800" font-size="12" fill="#0f172a" letter-spacing="2">KOUSH</text>
+  </g>
+
+  <!-- Upper Card with High Mirror Gloss Specular Shine -->
+  <g transform="translate(125, 110) rotate(-2)" filter="url(#thickShadow)">
+    <!-- 400 GSM Extra Thick Card Base with visible white edge bevel -->
+    <rect x="-1" y="2" width="220" height="130" rx="4" fill="#e2e8f0"/>
+    <rect width="220" height="130" rx="4" fill="#ffffff"/>
+
+    <!-- Vivid Four-Petal Cross/Clover Icon -->
+    <g transform="translate(110, 52)">
+      <path d="M 0 0 C -12 -12 -12 12 0 0 Z" fill="#10b981"/>
+      <path d="M 0 0 C 12 -12 12 12 0 0 Z" fill="#0284c7"/>
+      <path d="M 0 0 C -12 -12 12 -12 0 0 Z" fill="#06b6d4"/>
+      <path d="M 0 0 C -12 12 12 12 0 0 Z" fill="#14b8a6"/>
+      <!-- Soft circle center -->
+      <circle cx="0" cy="0" r="3" fill="#ffffff"/>
+    </g>
+
+    <text x="110" y="88" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="800" font-size="13" fill="#0f172a" letter-spacing="2.5" text-anchor="middle">KOUSH</text>
+    <text x="110" y="98" font-family="-apple-system, sans-serif" font-weight="500" font-size="6" fill="#64748b" letter-spacing="1.5" text-anchor="middle">DESIGN &amp; TECHNOLOGY</text>
+
+    <!-- Mirror-Gloss Reflection Sweep -->
+    <polygon points="0,0 90,0 20,130 0,130" fill="url(#mirrorGloss)"/>
+    <rect width="220" height="130" rx="4" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+  </g>
+</svg>

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- Warm Ochre / Yellow Fabric Surface -->
+    <linearGradient id="yellowCloth" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <filter id="stackShadow" x="-15%" y="-15%" width="135%" height="140%">
+      <feDropShadow dx="6" dy="14" stdDeviation="10" flood-color="#78350f" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Yellow Cloth Background Surface -->
+  <rect width="400" height="300" fill="url(#yellowCloth)"/>
+  <!-- Fabric Fold Creases -->
+  <path d="M 0 240 Q 200 220 400 260" stroke="#b45309" stroke-width="2" fill="none" opacity="0.4"/>
+  <path d="M 0 60 Q 200 80 400 50" stroke="#fef3c7" stroke-width="2" fill="none" opacity="0.3"/>
+
+  <!-- High-Volume Bulk Stack (Showing thickness of ~500-1000 cards) -->
+  <g transform="translate(100, 75)" filter="url(#stackShadow)">
+    <!-- Layered Paper Stack Rim (White Paper Edges) -->
+    <path d="M 0 60 L 35 15 L 175 15 L 140 60 Z" fill="#1e293b"/> <!-- Top Card on Stack -->
+    <!-- Edge of the stack showing height -->
+    <rect x="0" y="60" width="140" height="42" fill="#f8fafc"/>
+    <!-- Stack layer stripes (hundreds of cards) -->
+    <line x1="0" y1="68" x2="140" y2="68" stroke="#cbd5e1" stroke-width="1"/>
+    <line x1="0" y1="76" x2="140" y2="76" stroke="#94a3b8" stroke-width="1"/>
+    <line x1="0" y1="84" x2="140" y2="84" stroke="#cbd5e1" stroke-width="1"/>
+    <line x1="0" y1="92" x2="140" y2="92" stroke="#94a3b8" stroke-width="1"/>
+    <!-- Right edge of stack in perspective -->
+    <path d="M 140 60 L 175 15 L 175 57 L 140 102 Z" fill="#e2e8f0"/>
+    <line x1="140" y1="70" x2="175" y2="25" stroke="#cbd5e1" stroke-width="1"/>
+    <line x1="140" y1="80" x2="175" y2="35" stroke="#94a3b8" stroke-width="1"/>
+    <line x1="140" y1="90" x2="175" y2="45" stroke="#cbd5e1" stroke-width="1"/>
+  </g>
+
+  <!-- Single Card 1 Leaning / Fanned Forward (Dark Navy with Wing Logo) -->
+  <g transform="translate(155, 115) rotate(-8)" filter="url(#stackShadow)">
+    <rect width="125" height="75" rx="3" fill="#1e293b"/>
+    <!-- Wing Logo -->
+    <g transform="translate(25, 38)">
+      <path d="M 0 0 Q 15 -15 30 -5 Q 15 5 0 0 Z" fill="#f59e0b"/>
+      <path d="M 5 6 Q 18 -6 28 2 Q 18 10 5 6 Z" fill="#0284c7"/>
+    </g>
+    <text x="65" y="38" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="700" font-size="8" fill="#ffffff">VENTURE</text>
+    <text x="65" y="46" font-family="-apple-system, sans-serif" font-size="5" fill="#94a3b8">HOLDINGS</text>
+  </g>
+
+  <!-- Single Card 2 White Front Leaning Forward (Abhi Agarwal) -->
+  <g transform="translate(200, 130) rotate(14)" filter="url(#stackShadow)">
+    <rect width="130" height="78" rx="3" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5"/>
+    <text x="18" y="28" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="700" font-size="9" fill="#0f172a">ABHI AGARWAL</text>
+    <text x="18" y="38" font-family="-apple-system, sans-serif" font-weight="600" font-size="6" fill="#f59e0b" letter-spacing="1">FOUNDER &amp; CEO</text>
+    <line x1="18" y1="44" x2="110" y2="44" stroke="#f1f5f9" stroke-width="1"/>
+    <text x="18" y="54" font-family="-apple-system, sans-serif" font-size="5.5" fill="#64748b">abhi@ventureholdings.in</text>
+    <text x="18" y="63" font-family="-apple-system, sans-serif" font-size="5.5" fill="#64748b">+91 99200 48821</text>
+  </g>
+</svg>

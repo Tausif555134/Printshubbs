@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- Rich Wood Plank Background -->
+    <linearGradient id="transpWood" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4a3525"/>
+      <stop offset="50%" stop-color="#3b281a"/>
+      <stop offset="100%" stop-color="#2a1b10"/>
+    </linearGradient>
+    <!-- Frosted Clear Acrylic Glass Texture -->
+    <linearGradient id="frostedGlass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="40%" stop-color="#f8fafc" stop-opacity="0.35"/>
+      <stop offset="80%" stop-color="#ffffff" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.45"/>
+    </linearGradient>
+    <filter id="glassShadow" x="-10%" y="-10%" width="125%" height="130%">
+      <feDropShadow dx="4" dy="10" stdDeviation="8" flood-color="#000000" flood-opacity="0.38"/>
+    </filter>
+  </defs>
+
+  <!-- Dark Grain Wood Background -->
+  <rect width="400" height="300" fill="url(#transpWood)"/>
+  <line x1="0" y1="85" x2="400" y2="85" stroke="#2a1b10" stroke-width="2"/>
+  <line x1="0" y1="195" x2="400" y2="195" stroke="#2a1b10" stroke-width="2"/>
+  <path d="M0 40 Q 200 45 400 38" stroke="#5c4331" stroke-width="1" fill="none" opacity="0.6"/>
+  <path d="M0 140 Q 220 148 400 142" stroke="#5c4331" stroke-width="1" fill="none" opacity="0.6"/>
+  <path d="M0 250 Q 180 245 400 252" stroke="#5c4331" stroke-width="1" fill="none" opacity="0.6"/>
+
+  <!-- Lower Translucent Card (Layer Behind) -->
+  <g transform="translate(130, 45) rotate(18)">
+    <rect width="215" height="130" rx="8" fill="url(#frostedGlass)"/>
+    <rect width="215" height="130" rx="8" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.5"/>
+    <!-- Subtle blurred green logo peeking -->
+    <circle cx="107" cy="65" r="16" fill="#10b981" opacity="0.6"/>
+  </g>
+
+  <!-- Main Transparent / Frosted Acrylic Card (Sharp Foreground) -->
+  <g transform="translate(90, 80) rotate(-6)" filter="url(#glassShadow)">
+    <!-- Frosted Semitransparent Card Body (Reveals Wood Tone Beneath) -->
+    <rect width="225" height="135" rx="8" fill="url(#frostedGlass)"/>
+    <!-- Beveled Light Edge (Reflective Acrylic Contour) -->
+    <rect width="225" height="135" rx="8" fill="none" stroke="#ffffff" stroke-width="1.2" opacity="0.8"/>
+    <rect x="1" y="1" width="223" height="133" rx="7" fill="none" stroke="#cbd5e1" stroke-width="0.5" opacity="0.4"/>
+
+    <!-- Crisp Opaque Green Clover Geometric Emblem on Card -->
+    <g transform="translate(50, 68)">
+      <circle cx="0" cy="0" r="14" fill="#059669"/>
+      <!-- Radiating dot pattern -->
+      <circle cx="-6" cy="-6" r="3" fill="#34d399"/>
+      <circle cx="6" cy="-6" r="3" fill="#34d399"/>
+      <circle cx="-6" cy="6" r="3" fill="#34d399"/>
+      <circle cx="6" cy="6" r="3" fill="#34d399"/>
+      <circle cx="0" cy="0" r="3" fill="#ffffff"/>
+    </g>
+
+    <text x="80" y="66" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="800" font-size="12" fill="#ffffff" letter-spacing="2">KOUSH</text>
+    <text x="80" y="77" font-family="-apple-system, sans-serif" font-weight="600" font-size="6.5" fill="#e2e8f0" letter-spacing="1">STUDIO ARCHITECTURE</text>
+
+    <!-- Translucent Specular Glare Arc -->
+    <path d="M 0 0 L 80 0 L 10 135 L 0 135 Z" fill="#ffffff" opacity="0.25"/>
+  </g>
+</svg>

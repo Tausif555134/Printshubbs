@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- Light Natural Pine Wood Surface -->
+    <linearGradient id="pineWood" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#dfcaa7"/>
+      <stop offset="50%" stop-color="#d0b994"/>
+      <stop offset="100%" stop-color="#be9d76"/>
+    </linearGradient>
+    <!-- Organic Natural Kraft Paper Texture -->
+    <linearGradient id="kraftPaper" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#cbb592"/>
+      <stop offset="50%" stop-color="#bc9f78"/>
+      <stop offset="100%" stop-color="#ac8e65"/>
+    </linearGradient>
+    <!-- Geometric Pattern for Bottom Card -->
+    <pattern id="kraftPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="#f97316"/>
+      <polygon points="10,0 20,10 10,20 0,10" fill="#0284c7"/>
+      <circle cx="10" cy="10" r="3" fill="#ffffff"/>
+    </pattern>
+    <filter id="kraftShadow" x="-10%" y="-10%" width="125%" height="130%">
+      <feDropShadow dx="3" dy="10" stdDeviation="7" flood-color="#451a03" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Pine Wood Desk -->
+  <rect width="400" height="300" fill="url(#pineWood)"/>
+  <line x1="0" y1="90" x2="400" y2="90" stroke="#a17a4e" stroke-width="1.2" opacity="0.4"/>
+  <line x1="0" y1="210" x2="400" y2="210" stroke="#a17a4e" stroke-width="1.2" opacity="0.4"/>
+
+  <!-- Organic Soap / Stone Block in Upper Left (Matching screenshot) -->
+  <g transform="translate(10, 20)" opacity="0.8">
+    <rect width="65" height="120" rx="6" fill="#f5ebe0" filter="drop-shadow(2px 5px 6px rgba(0,0,0,0.15))"/>
+    <path d="M 0 0 L 20 -15 L 85 -15 L 65 0 Z" fill="#e3d5ca"/>
+  </g>
+
+  <!-- Lower Card with Vibrant Geometric Moroccan Tile Pattern (Matching screenshot) -->
+  <g transform="translate(150, 60) rotate(18)" filter="url(#kraftShadow)">
+    <rect width="180" height="110" rx="4" fill="url(#kraftPattern)"/>
+  </g>
+
+  <!-- Stack of Kraft Cards on Right (Stack depth) -->
+  <g transform="translate(230, 115) rotate(-2)">
+    <rect x="0" y="8" width="120" height="75" rx="3" fill="#8c6d48"/>
+    <line x1="0" y1="12" x2="120" y2="12" stroke="#d5be9b" stroke-width="1"/>
+    <line x1="0" y1="16" x2="120" y2="16" stroke="#a17a4e" stroke-width="1"/>
+  </g>
+
+  <!-- Main Organic Brown Kraft Business Card 'Courtyard' (Foreground) -->
+  <g transform="translate(90, 85) rotate(-4)" filter="url(#kraftShadow)">
+    <!-- Natural Brown Kraft Base with Rustic Speckles -->
+    <rect width="225" height="135" rx="4" fill="url(#kraftPaper)"/>
+    <rect width="225" height="135" rx="4" fill="none" stroke="#93724c" stroke-width="0.5"/>
+
+    <!-- Organic Speckles & Paper Fibers -->
+    <circle cx="35" cy="40" r="0.8" fill="#785530"/>
+    <circle cx="85" cy="25" r="0.6" fill="#785530"/>
+    <circle cx="160" cy="50" r="0.7" fill="#785530"/>
+    <circle cx="120" cy="110" r="0.8" fill="#785530"/>
+    <circle cx="190" cy="90" r="0.6" fill="#785530"/>
+
+    <!-- Left Script Brand Name: 'Courtyard' (Matching exact cursive in screenshot) -->
+    <g transform="translate(30, 75)">
+      <text x="0" y="0" font-family="'Great Vibes', 'Caveat', cursive" font-size="34" font-weight="700" fill="#1c1917">Courtyard</text>
+      <text x="5" y="14" font-family="-apple-system, sans-serif" font-weight="500" font-size="6" fill="#44403c" letter-spacing="1.5">ORGANIC BISTRO &amp; CAFE</text>
+    </g>
+
+    <!-- Right Side Contact Lines -->
+    <g transform="translate(135, 52)">
+      <text x="0" y="12" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="700" font-size="9" fill="#1c1917">Kunal Singhania</text>
+      <text x="0" y="24" font-family="-apple-system, sans-serif" font-size="6" fill="#44403c">Culinary Director</text>
+      <line x1="0" y1="30" x2="70" y2="30" stroke="#8c6d48" stroke-width="0.75"/>
+      <text x="0" y="42" font-family="-apple-system, sans-serif" font-size="5.5" fill="#44403c">Fort, Mumbai 400001</text>
+      <text x="0" y="52" font-family="-apple-system, sans-serif" font-size="5.5" fill="#44403c">+91 98330 91822</text>
+    </g>
+  </g>
+</svg>

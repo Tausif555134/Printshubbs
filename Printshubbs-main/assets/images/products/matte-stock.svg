@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- Warm Light Wood Texture -->
+    <linearGradient id="woodBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fdf4e7"/>
+      <stop offset="50%" stop-color="#faeed9"/>
+      <stop offset="100%" stop-color="#f5e4c8"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="125%" height="130%">
+      <feDropShadow dx="3" dy="8" stdDeviation="7" flood-color="#78350f" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <!-- Wood Desk Surface -->
+  <rect width="400" height="300" fill="url(#woodBg)"/>
+  <!-- Natural Wood Planks & Grains -->
+  <line x1="0" y1="95" x2="400" y2="95" stroke="#e6cca9" stroke-width="0.75" opacity="0.6"/>
+  <line x1="0" y1="205" x2="400" y2="205" stroke="#e6cca9" stroke-width="0.75" opacity="0.6"/>
+  <path d="M0 45 Q 200 48 400 44" stroke="#ebd5b3" stroke-width="0.5" fill="none"/>
+  <path d="M0 145 Q 180 152 400 146" stroke="#ebd5b3" stroke-width="0.5" fill="none"/>
+  <path d="M0 260 Q 250 255 400 263" stroke="#ebd5b3" stroke-width="0.5" fill="none"/>
+
+  <!-- Clean Matte White Business Card (Horizontal Perspective) -->
+  <g transform="translate(75, 70) rotate(-4)" filter="url(#cardShadow)">
+    <!-- Crisp White Matte Card Base -->
+    <rect width="250" height="150" rx="4" fill="#ffffff"/>
+    <rect width="250" height="150" rx="4" fill="#f8fafc" opacity="0.4"/>
+    <rect width="250" height="150" rx="4" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+
+    <!-- Circular Colorful Dotted Wreath Logo (Kimaya Mehra) -->
+    <g transform="translate(52, 60)">
+      <!-- Circle of pastel dots -->
+      <circle cx="0" cy="-22" r="4" fill="#f43f5e"/>
+      <circle cx="15" cy="-16" r="3.8" fill="#fb923c"/>
+      <circle cx="22" cy="0" r="4.2" fill="#fbbf24"/>
+      <circle cx="16" cy="16" r="3.6" fill="#a3e635"/>
+      <circle cx="0" cy="22" r="4" fill="#34d399"/>
+      <circle cx="-16" cy="16" r="3.8" fill="#38bdf8"/>
+      <circle cx="-22" cy="0" r="4" fill="#818cf8"/>
+      <circle cx="-15" cy="-16" r="3.6" fill="#c084fc"/>
+      <!-- Inner text inside logo circle -->
+      <text x="0" y="2" font-family="'Caveat', cursive, sans-serif" font-weight="700" font-size="9" fill="#0f172a" text-anchor="middle">macaronis</text>
+    </g>
+
+    <!-- Right Side: Name & Designation -->
+    <g transform="translate(110, 52)">
+      <text x="0" y="0" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="700" font-size="13" fill="#be123c">Kimaya Mehra</text>
+      <text x="0" y="14" font-family="-apple-system, sans-serif" font-weight="600" font-size="7.5" fill="#475569" letter-spacing="1">OWNER &amp; CHEF</text>
+      <line x1="0" y1="22" x2="115" y2="22" stroke="#f1f5f9" stroke-width="1"/>
+      <text x="0" y="34" font-family="-apple-system, sans-serif" font-size="6.5" fill="#64748b">25, Silver Rock Road, Fort</text>
+      <text x="0" y="44" font-family="-apple-system, sans-serif" font-size="6.5" fill="#64748b">Mumbai, Maharashtra 400001</text>
+      <text x="0" y="56" font-family="-apple-system, sans-serif" font-weight="500" font-size="6.5" fill="#0f172a">+91 98200 12845 • kimaya@macaronis.in</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="classicDesk" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fdf6ee"/>
+      <stop offset="100%" stop-color="#f3e7d5"/>
+    </linearGradient>
+    <filter id="cardShadowClassic" x="-10%" y="-10%" width="125%" height="130%">
+      <feDropShadow dx="3" dy="8" stdDeviation="7" flood-color="#451a03" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+
+  <!-- Wood Tabletop -->
+  <rect width="400" height="300" fill="url(#classicDesk)"/>
+  <line x1="0" y1="110" x2="400" y2="110" stroke="#ebd5b8" stroke-width="0.7" opacity="0.6"/>
+  <line x1="0" y1="210" x2="400" y2="210" stroke="#ebd5b8" stroke-width="0.7" opacity="0.6"/>
+
+  <!-- Classic Visiting Card -->
+  <g transform="translate(85, 75) rotate(-3)" filter="url(#cardShadowClassic)">
+    <!-- Card Body -->
+    <rect width="240" height="145" rx="3" fill="#ffffff" stroke="#e5e7eb" stroke-width="0.8"/>
+    
+    <!-- Accent Line on Left -->
+    <rect x="18" y="24" width="3" height="96" fill="#1e3a8a"/>
+
+    <!-- Brand Typography -->
+    <text x="32" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#0f172a" letter-spacing="1.5">AVENUE &amp; CO.</text>
+    <text x="32" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="7.5" font-weight="600" fill="#64748b" letter-spacing="2">FINANCIAL CONSULTING</text>
+
+    <!-- Name & Role -->
+    <text x="32" y="86" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#1e293b">David Sterling</text>
+    <text x="32" y="97" font-family="system-ui, -apple-system, sans-serif" font-size="7" font-weight="500" fill="#64748b">Senior Managing Partner</text>
+
+    <!-- Contact details -->
+    <text x="32" y="112" font-family="system-ui, -apple-system, sans-serif" font-size="6.5" fill="#475569">+91 98200 12345  •  contact@avenue.in</text>
+
+    <!-- Minimal emblem on right -->
+    <g transform="translate(195, 30)">
+      <circle cx="15" cy="15" r="14" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+      <path d="M10 20 L15 10 L20 20 Z" fill="#1e3a8a"/>
+    </g>
+  </g>
+</svg>

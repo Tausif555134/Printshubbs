@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100%" height="100%">
+  <g transform="translate(10, 8)">
+    <!-- Cyan Top Wedge -->
+    <polygon points="6,65 39,32 39,48 14,65" fill="#009fe3" />
+    
+    <!-- Magenta Middle Wedge -->
+    <polygon points="14,65 39,48 39,65" fill="#e5007d" />
+    <polygon points="14,65 39,65 39,67 17,67" fill="#e5007d" />
+    
+    <!-- Yellow Bottom Wedge -->
+    <polygon points="17,67 39,67 39,89" fill="#fff100" />
+    
+    <!-- Bold 'P' Mark -->
+    <path d="M26 14 H68 C80 14 88 22 88 35 C88 48 80 56 68 56 H47 V66 C47 74 41 80 34 80 C30 80 26 75 26 69 Z M47 31 H65 C69 31 72 33 72 36 C72 39 69 41 65 41 H47 Z" fill="#222428" />
+  </g>
+</svg>

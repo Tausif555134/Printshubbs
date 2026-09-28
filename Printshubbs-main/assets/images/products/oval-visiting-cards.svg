@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- Soft Warm Light Stone Background -->
+    <linearGradient id="ovalBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#faf5ef"/>
+      <stop offset="100%" stop-color="#f0e6d6"/>
+    </linearGradient>
+    <filter id="ovalShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="3" dy="10" stdDeviation="8" flood-color="#7c2d12" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <rect width="400" height="300" fill="url(#ovalBg)"/>
+
+  <!-- Background Scattered Oval Cards (Matching Screenshot 5) -->
+  <g transform="translate(80, 50) rotate(-28)">
+    <ellipse cx="60" cy="40" rx="65" ry="38" fill="#ffffff" stroke="#e5e5e5" stroke-width="0.5"/>
+    <circle cx="60" cy="40" r="10" fill="#ea580c" opacity="0.3"/>
+  </g>
+  <g transform="translate(280, 60) rotate(18)">
+    <ellipse cx="50" cy="35" rx="58" ry="34" fill="#c2410c"/>
+    <circle cx="50" cy="35" r="8" fill="#ffffff" opacity="0.4"/>
+  </g>
+  <g transform="translate(310, 190) rotate(-14)">
+    <ellipse cx="50" cy="35" rx="60" ry="35" fill="#f97316"/>
+  </g>
+
+  <!-- Main Terracotta Oval Visiting Card (Foreground Left) -->
+  <g transform="translate(140, 160) rotate(-6)" filter="url(#ovalShadow)">
+    <ellipse cx="0" cy="0" rx="100" ry="58" fill="#c2410c"/>
+    <ellipse cx="0" cy="0" rx="98" ry="56" fill="none" stroke="#ea580c" stroke-width="0.75"/>
+
+    <!-- Floral / Leaf Line Crest inside Oval -->
+    <g transform="translate(0, -10)" stroke="#ffffff" stroke-width="1.2" fill="none">
+      <path d="M 0 -12 C 12 -4 12 10 0 16 C -12 10 -12 -4 0 -12 Z"/>
+      <line x1="0" y1="-8" x2="0" y2="12"/>
+    </g>
+
+    <text x="0" y="24" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="700" font-size="10" fill="#ffffff" letter-spacing="1.5" text-anchor="middle">SOUL STUDIOS</text>
+    <text x="0" y="34" font-family="-apple-system, sans-serif" font-weight="500" font-size="5.5" fill="#fed7aa" letter-spacing="1" text-anchor="middle">CERAMICS &amp; POTTERY</text>
+  </g>
+
+  <!-- Second Crisp White Oval Visiting Card (Foreground Right) -->
+  <g transform="translate(260, 115) rotate(14)" filter="url(#ovalShadow)">
+    <ellipse cx="0" cy="0" rx="95" ry="55" fill="#ffffff"/>
+    <ellipse cx="0" cy="0" rx="94" ry="54" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+
+    <g transform="translate(0, -8)" stroke="#c2410c" stroke-width="1.2" fill="none">
+      <circle cx="0" cy="0" r="12"/>
+      <circle cx="0" cy="0" r="4" fill="#c2410c"/>
+    </g>
+
+    <text x="0" y="20" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="700" font-size="9.5" fill="#0f172a" letter-spacing="1" text-anchor="middle">Earthen Aura</text>
+    <text x="0" y="30" font-family="-apple-system, sans-serif" font-size="5.5" fill="#64748b" text-anchor="middle">Bespoke Artisan Homeware</text>
+  </g>
+</svg>

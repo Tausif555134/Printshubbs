@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- Warm Craft Wood Surface -->
+    <linearGradient id="craftWood" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fdf4e7"/>
+      <stop offset="100%" stop-color="#f5e4c8"/>
+    </linearGradient>
+    <filter id="shapeShadow" x="-15%" y="-15%" width="135%" height="140%">
+      <feDropShadow dx="3" dy="10" stdDeviation="7" flood-color="#78350f" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <rect width="400" height="300" fill="url(#craftWood)"/>
+
+  <!-- Shape 1: Custom Die-cut Dental Tooth Silhouette (Top Left, Matching Screenshot 5) -->
+  <g transform="translate(100, 60)" filter="url(#shapeShadow)">
+    <!-- Laser Contour Tooth Contour -->
+    <path d="M 30 10 C 10 10 0 25 0 50 C 0 80 15 110 25 125 C 32 135 40 120 48 105 C 55 90 65 90 72 105 C 80 120 88 135 95 125 C 105 110 120 80 120 50 C 120 25 110 10 90 10 C 75 10 65 20 60 20 C 55 20 45 10 30 10 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.75"/>
+
+    <!-- Dental Clinic Info -->
+    <g transform="translate(60, 48)">
+      <circle cx="0" cy="0" r="10" fill="#0284c7"/>
+      <path d="M -4 -4 L 4 4 M -4 4 L 4 -4" stroke="#ffffff" stroke-width="2"/>
+    </g>
+    <text x="60" y="72" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="700" font-size="7.5" fill="#0f172a" text-anchor="middle">DR. ANJALI MEHTA</text>
+    <text x="60" y="82" font-family="-apple-system, sans-serif" font-weight="600" font-size="5" fill="#0284c7" letter-spacing="1" text-anchor="middle">DENTAL IMPLANTS</text>
+  </g>
+
+  <!-- Shape 2: Scalloped Flower / Cupcake Silhouette (Top Right, Matching Screenshot 5) -->
+  <g transform="translate(225, 55)" filter="url(#shapeShadow)">
+    <path d="M 60 5 C 75 -5 95 5 95 20 C 110 20 120 40 115 55 C 125 70 115 90 100 95 C 100 110 80 120 65 115 C 50 120 30 115 25 100 C 10 90 5 70 15 55 C 5 40 15 20 30 20 C 35 5 50 -5 60 5 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.75"/>
+    <text x="62" y="55" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="700" font-size="8" fill="#be123c" text-anchor="middle">BLOOM &amp; PETALS</text>
+    <text x="62" y="65" font-family="-apple-system, sans-serif" font-size="5.5" fill="#64748b" text-anchor="middle">Artisan Florist</text>
+  </g>
+
+  <!-- Shape 3: Geometric Hexagon / Shield Silhouette (Bottom Center) -->
+  <g transform="translate(160, 165)" filter="url(#shapeShadow)">
+    <polygon points="65,0 125,25 125,85 65,115 5,85 5,25" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.75"/>
+    <text x="65" y="50" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="800" font-size="9" fill="#0f172a" text-anchor="middle">AVENUE LABS</text>
+    <text x="65" y="60" font-family="-apple-system, sans-serif" font-size="5.5" fill="#f59e0b" text-anchor="middle">CUSTOM SILHOUETTES</text>
+  </g>
+</svg>

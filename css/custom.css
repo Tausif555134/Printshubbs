@@ -324,3 +324,28 @@ canvas {
   box-shadow: var(--shadow-2);
 }
 
+/* ==========================================================================
+   DESKTOP LAYOUT: Wider content on large screens
+   Reduces excessive left/right whitespace while keeping a clean gutter.
+   ========================================================================== */
+
+/* On screens >= 1440px, make max-w-7xl containers fluid with a consistent 24px gutter */
+@media (min-width: 1440px) {
+  .max-w-7xl {
+    max-width: calc(100% - 48px) !important; /* 24px gutter on each side */
+  }
+  /* Widen the email subscription CTA section proportionally */
+  .max-w-4xl {
+    max-width: calc(100% - 200px) !important;
+  }
+}
+
+/* On extremely wide screens (>= 2200px), cap the width to prevent overly-stretched lines */
+@media (min-width: 2200px) {
+  .max-w-7xl {
+    max-width: 2100px !important;
+  }
+  .max-w-4xl {
+    max-width: 1400px !important;
+  }
+}

@@ -613,15 +613,17 @@
     <!-- Category Mega-Navigation Submenu (Exact Match to code.html) -->
     <nav aria-label="Product categories" class="border-t border-[#e6e6e6] bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 overflow-x-auto no-scrollbar">
-        <ul class="flex items-center gap-6 py-2.5 text-xs font-semibold whitespace-nowrap text-black">
+        <ul class="flex items-center gap-5 lg:gap-6 py-2.5 text-xs font-semibold whitespace-nowrap text-black">
           <li><a class="nav-link hover:text-black flex items-center gap-1 font-bold text-black" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'all')">View All</a></li>
           <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'visiting-cards')">Visiting Cards</a></li>
+          <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'letterheads')">Stationery, Letterheads &amp; Notebooks</a></li>
           <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'stamps-ink')">Stamps and Ink</a></li>
           <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'marketing-materials')">Signs, Posters &amp; Marketing Materials</a></li>
           <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'packaging')">Labels, Stickers &amp; Packaging</a></li>
           <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'clothing-apparel')">Clothing, Caps &amp; Bags</a></li>
           <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'photo-gifts')">Mugs, Albums &amp; Gifts</a></li>
           <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'custom-pens')">Pens</a></li>
+          <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'water-bottles')">Drinkware</a></li>
           <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'classic-polo-tshirts')">Custom Polo T-shirts</a></li>
           <li><a class="nav-link hover:text-black transition-colors" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'clothing-apparel')">Custom Winterwear</a></li>
         </ul>
@@ -1310,19 +1312,19 @@
     </div>
 
     <!-- VIEW 2: FULL PRODUCT CATALOG (PLP) -->
-    <div id="view-catalog" class="app-view-container hidden max-w-7xl mx-auto px-4 sm:px-6 py-6">
+    <div id="view-catalog" class="app-view-container hidden py-0">
       <!-- Breadcrumb -->
-      <div id="catalog-breadcrumb" class="text-xs text-[#595959] mb-4 flex items-center gap-2">
-        <a href="javascript:void(0)" onclick="window.appRouter.navigate('home')" class="hover:underline">Home</a>
-        <span>›</span>
-        <span id="catalog-breadcrumb-current" class="text-black font-bold">Catalog</span>
-      </div>
+      <nav class="catalog-breadcrumb" aria-label="Breadcrumb">
+        <a href="javascript:void(0)" onclick="window.appRouter.navigate('home')">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <span id="catalog-breadcrumb-current" class="breadcrumb-current">View All</span>
+      </nav>
 
       <!-- Dynamic Category Hero Banner -->
-      <div id="catalog-hero-banner" class="mb-8"></div>
+      <div id="catalog-hero-banner" class="max-w-7xl mx-auto px-4 sm:px-6"></div>
 
-      <!-- Dynamic Catalog Content (Shapes, Sidebar, and Product Grid) -->
-      <div id="catalog-content-area"></div>
+      <!-- Dynamic Catalog Content (Sidebar + Product Grid) -->
+      <div id="catalog-content-area" class="max-w-7xl mx-auto px-4 sm:px-6 pb-12"></div>
     </div>
 
     <!-- VIEW 3: 7/5 ASYMMETRICAL PRODUCT DETAIL & SPECIFICATION CONFIGURATOR (PDP) -->

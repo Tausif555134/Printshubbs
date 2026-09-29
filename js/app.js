@@ -204,9 +204,52 @@ class PrinthubbsApp {
     container.innerHTML = items.map(p => this.createProductCardHtml(p)).join('');
   }
 
-  createProductCardHtml(product) {
+  createProductCardHtml(product, useGridCard = false) {
     const isFav = this.wishlist.includes(product.id);
     const hasColors = product.colors && product.colors.length > 0;
+
+    // Grid-style card for catalog views (compact, 4-column)
+    if (useGridCard) {
+      return `
+        <article class="pcard" onclick="window.appRouter.navigate('pdp', '${product.id}')">
+          <div class="pcard-img-wrap">
+            <span class="pcard-badge">${product.pricePill || 'BUY NOW'}</span>
+            <button onclick="event.stopPropagation(); window.appRouter.toggleWishlist('${product.id}')" class="pcard-wishlist ${isFav ? 'pcard-wishlist--active' : ''}" title="Save to Favourites" aria-pressed="${isFav}" aria-label="Save ${product.name} to favourites">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+            </button>
+            ${product.isNew ? `<span class="pcard-new-badge">New</span>` : ''}
+            ${product.newBadge ? `<span class="pcard-new-badge">${product.newBadge}</span>` : ''}
+            <img src="${product.image}" alt="${product.name}" class="pcard-img" loading="lazy" decoding="async" />
+          </div>
+          <div class="pcard-body">
+            ${product.rating ? `
+              <div class="pcard-rating">
+                <span class="pcard-rating-stars">★★★★★</span>
+                <span class="pcard-rating-score">${product.rating}</span>
+                <span class="pcard-rating-count">(${product.reviewCount})</span>
+              </div>
+            ` : ''}
+            <h3 class="pcard-title">${product.name}</h3>
+            <p class="pcard-subtitle">${product.subtitle}</p>
+            ${hasColors ? `
+              <div class="pcard-colors">
+                ${product.colors.slice(0, 5).map(c => `<span class="pcard-color-dot" style="background-color: ${c};"></span>`).join('')}
+                ${product.extraColors ? `<span class="pcard-color-extra">+${product.extraColors}</span>` : ''}
+              </div>
+            ` : ''}
+            <div class="pcard-footer">
+              <div>
+                <span class="pcard-price">${product.priceRange || '₹' + product.basePrice.toLocaleString('en-IN')}</span>
+                ${product.pricePerUnit ? `<span class="pcard-price-per-unit">${product.pricePerUnit}</span>` : ''}
+              </div>
+              <span class="pcard-cta">Customize <span class="pcard-cta-arrow">→</span></span>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    // Original carousel-style card (for homepage horizontal scrolling)
     return `
       <article class="category-scroll-item product-card w-44 sm:w-52 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col justify-between group cursor-pointer relative" onclick="window.appRouter.navigate('pdp', '${product.id}')">
         <div>
@@ -251,65 +294,74 @@ class PrinthubbsApp {
   createShapeOrStockCardHtml(p) {
     const isFav = this.wishlist.includes(p.id);
     return `
-      <div class="bg-white rounded-xl border border-transparent hover:border-[#d9d9d9] hover:shadow-md transition p-3 cursor-pointer group flex flex-col justify-between" onclick="window.appRouter.navigate('pdp', '${p.id}')">
-        <div>
-          <div class="relative bg-[#f8f9fa] rounded-xl overflow-hidden aspect-[4/3] flex items-center justify-center mb-2.5 border border-[#ebebeb]">
-            ${p.isNew ? `<span class="absolute top-2 left-2 bg-[#00a8cc] text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-10 shadow-sm">New</span>` : ''}
-            ${p.newBadge ? `<span class="absolute top-2 left-2 bg-[#00a8cc] text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-10 shadow-sm">${p.newBadge}</span>` : ''}
-            <button onclick="event.stopPropagation(); window.appRouter.toggleWishlist('${p.id}')" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/90 shadow-sm flex items-center justify-center text-gray-500 hover:text-black z-10 transition">
-              <svg class="w-4 h-4 ${isFav ? 'text-black fill-current' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-            </button>
-            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" loading="lazy" />
-          </div>
-          <h3 class="font-bold text-sm text-black group-hover:underline underline-offset-2 mb-1">${p.name}</h3>
+      <article class="pcard" onclick="window.appRouter.navigate('pdp', '${p.id}')">
+        <div class="pcard-img-wrap">
+          ${p.pricePill ? `<span class="pcard-badge">${p.pricePill}</span>` : ''}
+          <button onclick="event.stopPropagation(); window.appRouter.toggleWishlist('${p.id}')" class="pcard-wishlist ${isFav ? 'pcard-wishlist--active' : ''}" aria-label="Save ${p.name} to favourites">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+          </button>
+          ${p.isNew ? `<span class="pcard-new-badge">New</span>` : ''}
+          ${p.newBadge ? `<span class="pcard-new-badge">${p.newBadge}</span>` : ''}
+          <img src="${p.image}" alt="${p.name}" class="pcard-img" loading="lazy" decoding="async" />
+        </div>
+        <div class="pcard-body">
           ${p.rating ? `
-            <div class="flex items-center gap-1 text-xs mb-1.5">
-              <span class="text-[#eab308]">★★★★☆</span>
-              <span class="font-bold text-black">${p.rating.toFixed(1)}</span>
-              <span class="text-[#595959]">(${p.reviewCount})</span>
+            <div class="pcard-rating">
+              <span class="pcard-rating-stars">★★★★★</span>
+              <span class="pcard-rating-score">${p.rating.toFixed(1)}</span>
+              <span class="pcard-rating-count">(${p.reviewCount})</span>
             </div>
-          ` : '<div class="h-4 mb-1.5"></div>'}
+          ` : ''}
+          <h3 class="pcard-title">${p.name}</h3>
+          <p class="pcard-subtitle">${p.subtitle || ''}</p>
+          <div class="pcard-footer">
+            <div>
+              <span class="pcard-price">${p.priceRange || '100 from ₹' + p.basePrice + '.00'}</span>
+              <span class="pcard-price-per-unit">${p.pricePerUnit || '(₹' + (p.basePrice/100).toFixed(2) + ' each)'}</span>
+            </div>
+            <span class="pcard-cta">Customize <span class="pcard-cta-arrow">→</span></span>
+          </div>
         </div>
-        <div class="mt-auto">
-          <div class="text-xs sm:text-sm font-bold text-black leading-tight">${p.priceRange || '100 from ₹' + p.basePrice + '.00'}</div>
-          <div class="text-xs text-[#595959] mt-0.5">${p.pricePerUnit || '(₹' + (p.basePrice/100).toFixed(2) + ' each)'}</div>
-        </div>
-      </div>
+      </article>
     `;
   }
 
   createApparelCardHtml(p) {
     const isFav = this.wishlist.includes(p.id);
     return `
-      <div class="bg-white rounded-xl border border-transparent hover:border-[#d9d9d9] hover:shadow-md transition p-3 cursor-pointer group flex flex-col justify-between" onclick="window.appRouter.navigate('pdp', '${p.id}')">
-        <div>
-          <div class="relative bg-[#f8f9fa] rounded-xl overflow-hidden aspect-[4/3] flex items-center justify-center p-2 mb-3 border border-[#f0f0f0]">
-            ${p.isNew ? `<span class="absolute top-2.5 left-2.5 bg-[#00a8cc] text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-10 shadow-sm">New</span>` : ''}
-            <button onclick="event.stopPropagation(); window.appRouter.toggleWishlist('${p.id}')" class="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-white shadow-sm flex items-center justify-center text-gray-500 hover:text-black z-10 transition">
-              <svg class="w-4 h-4 ${isFav ? 'text-black fill-current' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-            </button>
-            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-contain group-hover:scale-105 transition duration-300" loading="lazy" />
-          </div>
+      <article class="pcard" onclick="window.appRouter.navigate('pdp', '${p.id}')">
+        <div class="pcard-img-wrap">
+          ${p.pricePill ? `<span class="pcard-badge">${p.pricePill}</span>` : ''}
+          <button onclick="event.stopPropagation(); window.appRouter.toggleWishlist('${p.id}')" class="pcard-wishlist ${isFav ? 'pcard-wishlist--active' : ''}" aria-label="Save ${p.name} to favourites">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+          </button>
+          ${p.isNew ? `<span class="pcard-new-badge">New</span>` : ''}
+          <img src="${p.image}" alt="${p.name}" class="pcard-img" style="object-fit: contain; padding: 8px;" loading="lazy" decoding="async" />
+        </div>
+        <div class="pcard-body">
           ${p.colors ? `
-            <div class="flex items-center gap-1.5 mb-2">
-              ${p.colors.map(c => `<span class="w-3.5 h-3.5 rounded-full border border-gray-300 inline-block shadow-inner" style="background-color: ${c};"></span>`).join('')}
-              ${p.extraColors ? `<span class="text-xs text-[#595959] font-medium ml-1">+${p.extraColors}</span>` : ''}
+            <div class="pcard-colors">
+              ${p.colors.slice(0, 5).map(c => `<span class="pcard-color-dot" style="background-color: ${c};"></span>`).join('')}
+              ${p.extraColors ? `<span class="pcard-color-extra">+${p.extraColors}</span>` : ''}
             </div>
           ` : ''}
-          <h3 class="font-bold text-sm text-black group-hover:underline underline-offset-2 mb-0.5">${p.name}</h3>
-          ${p.subtitle ? `<p class="text-xs text-[#595959] mb-1.5 line-clamp-1">${p.subtitle}</p>` : ''}
+          <h3 class="pcard-title">${p.name}</h3>
+          ${p.subtitle ? `<p class="pcard-subtitle">${p.subtitle}</p>` : ''}
           ${p.rating ? `
-            <div class="flex items-center gap-1 text-xs mb-1.5">
-              <span class="text-[#eab308]">★★★★☆</span>
-              <span class="font-bold text-black">${p.rating}</span>
-              <span class="text-[#595959]">(${p.reviewCount})</span>
+            <div class="pcard-rating">
+              <span class="pcard-rating-stars">★★★★★</span>
+              <span class="pcard-rating-score">${p.rating}</span>
+              <span class="pcard-rating-count">(${p.reviewCount})</span>
             </div>
           ` : ''}
+          <div class="pcard-footer">
+            <div>
+              <span class="pcard-price">${p.priceRange || 'From ₹' + p.basePrice + '.00 each'}</span>
+            </div>
+            <span class="pcard-cta">Customize <span class="pcard-cta-arrow">→</span></span>
+          </div>
         </div>
-        <div class="mt-1">
-          <div class="text-xs font-bold text-black">${p.priceRange || 'From ₹' + p.basePrice + '.00 each'}</div>
-        </div>
-      </div>
+      </article>
     `;
   }
 
@@ -496,9 +548,9 @@ class PrinthubbsApp {
       return;
     }
 
-    // --- CASE 3: ALL PRODUCTS OR OTHER CATEGORIES ---
+    // --- CASE 3: ALL PRODUCTS OR OTHER CATEGORIES (Redesigned with sidebar + hero + sections) ---
     const catObj = window.PRINTSHUBB_DATA.categories.find(c => c.id === this.selectedCategory);
-    if (breadcrumbCurrent) breadcrumbCurrent.textContent = catObj ? catObj.name : 'All Products';
+    if (breadcrumbCurrent) breadcrumbCurrent.textContent = catObj ? catObj.name : 'View All';
     if (heroBannerContainer) heroBannerContainer.innerHTML = '';
 
     let filtered = window.PRINTSHUBB_DATA.products;
@@ -506,35 +558,284 @@ class PrinthubbsApp {
       filtered = filtered.filter(p => p.category === this.selectedCategory);
     }
 
-    const allTabs = [{ id: 'all', name: 'All Products' }, ...window.PRINTSHUBB_DATA.categories];
+    // Group products by category for sectioned display
+    const visitingCards = window.PRINTSHUBB_DATA.products.filter(p => p.category === 'visiting-cards');
+    const clothing = window.PRINTSHUBB_DATA.products.filter(p => p.category === 'clothing-apparel');
+    const marketing = window.PRINTSHUBB_DATA.products.filter(p => p.category === 'marketing-materials');
+    const packaging = window.PRINTSHUBB_DATA.products.filter(p => p.category === 'packaging');
+    const stampsInk = window.PRINTSHUBB_DATA.products.filter(p => p.category === 'stamps-ink');
+    const photoGifts = window.PRINTSHUBB_DATA.products.filter(p => p.category === 'photo-gifts');
+
+    const isAllView = this.selectedCategory === 'all';
 
     contentArea.innerHTML = `
-      <!-- Category Tabs Row -->
-      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-6">
-        ${allTabs.map(cat => `
-          <button onclick="window.appRouter.filterCatalog('${cat.id}')" aria-pressed="${this.selectedCategory === cat.id}" class="px-4 py-2 text-xs font-bold rounded-lg whitespace-nowrap transition ${this.selectedCategory === cat.id ? 'bg-black text-white shadow-sm' : 'bg-[#f3f3f3] text-black hover:bg-[#e6e6e6] shadow-[rgb(0_0_0)_0px_0px_0px_1px_inset]'}">
-            ${cat.name}
-          </button>
-        `).join('')}
-      </div>
+      <div class="catalog-layout" style="padding: 0;">
+        <!-- LEFT SIDEBAR -->
+        <aside class="catalog-sidebar" id="catalog-sidebar">
+          ${this.buildCatalogSidebar()}
+        </aside>
 
-      <!-- Controls Row: Count and Sort -->
-      <div class="flex items-center justify-between pb-4 mb-6 border-b border-[#e6e6e6]">
-        <span class="text-xs text-[#595959] font-medium" id="catalog-count">Showing ${filtered.length} products</span>
-        <div class="flex items-center gap-2 text-xs">
-          <label for="catalog-sort-select" class="text-[#595959] font-medium">Sort by:</label>
-          <select id="catalog-sort-select" onchange="window.appRouter.sortCatalog(this.value)" class="input-atelier text-xs px-2.5 py-1">
-            <option value="popular">Popularity</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
-            <option value="rating">Customer Rating</option>
-          </select>
+        <!-- RIGHT MAIN CONTENT -->
+        <div class="catalog-main-content">
+          <!-- Mobile sidebar toggle -->
+          <button class="mobile-sidebar-toggle" onclick="document.getElementById('catalog-sidebar').classList.toggle('mobile-open'); this.textContent = document.getElementById('catalog-sidebar').classList.contains('mobile-open') ? 'Hide Categories' : 'Browse Categories'; this.style.setProperty('--after', document.getElementById('catalog-sidebar').classList.contains('mobile-open') ? '▴' : '▾');">Browse Categories</button>
+
+          ${isAllView ? `
+          <!-- HERO BANNER -->
+          <div class="catalog-hero">
+            <div class="catalog-hero-content">
+              <h1 class="catalog-hero-title">Print Your Ideas</h1>
+              <p class="catalog-hero-desc">High-quality custom printing for businesses, events and everyday needs. From visiting cards to apparel — everything custom printed.</p>
+              <button class="catalog-hero-cta" onclick="document.getElementById('catalog-section-business').scrollIntoView({behavior:'smooth'})">Explore Products <span style="font-size:16px;">→</span></button>
+            </div>
+            <img src="assets/images/catalog-hero-banner.jpg" alt="Custom printing products showcase" class="catalog-hero-image img-hq-cover" />
+          </div>
+
+          <!-- CATEGORY SHOWCASE -->
+          <div class="catalog-section">
+            <h2 class="section-title">Explore Our Categories</h2>
+            <p class="section-subtitle">Browse our wide range of custom printing categories</p>
+            <div class="category-showcase-grid">
+              <div class="category-showcase-card" onclick="window.appRouter.navigate('catalog', 'visiting-cards')">
+                <div class="category-showcase-card-img-wrap">
+                  <img src="assets/images/products/standard-visiting-cards.jpg" alt="Visiting Cards" class="category-showcase-card-img" loading="lazy" />
+                </div>
+                <div class="category-showcase-card-body">
+                  <div class="category-showcase-card-title">Visiting Cards</div>
+                  <div class="category-showcase-card-desc">22+ styles & finishes</div>
+                </div>
+              </div>
+              <div class="category-showcase-card" onclick="window.appRouter.navigate('catalog', 'marketing-materials')">
+                <div class="category-showcase-card-img-wrap">
+                  <img src="assets/images/products/marketing-materials.jpg" alt="Signs & Marketing" class="category-showcase-card-img" loading="lazy" />
+                </div>
+                <div class="category-showcase-card-body">
+                  <div class="category-showcase-card-title">Signs, Banners & Posters</div>
+                  <div class="category-showcase-card-desc">Standees, flyers & more</div>
+                </div>
+              </div>
+              <div class="category-showcase-card" onclick="window.appRouter.navigate('catalog', 'clothing-apparel')">
+                <div class="category-showcase-card-img-wrap">
+                  <img src="assets/images/products/polo-tshirts.jpg" alt="Clothing & Bags" class="category-showcase-card-img" loading="lazy" />
+                </div>
+                <div class="category-showcase-card-body">
+                  <div class="category-showcase-card-title">Custom Clothing, Caps & Bags</div>
+                  <div class="category-showcase-card-desc">Polos, t-shirts, caps & more</div>
+                </div>
+              </div>
+              <div class="category-showcase-card" onclick="window.appRouter.navigate('catalog', 'packaging')">
+                <div class="category-showcase-card-img-wrap">
+                  <img src="assets/images/products/custom-labels.jpg" alt="Labels & Packaging" class="category-showcase-card-img" loading="lazy" />
+                </div>
+                <div class="category-showcase-card-body">
+                  <div class="category-showcase-card-title">Labels, Stickers & Packaging</div>
+                  <div class="category-showcase-card-desc">Custom branding materials</div>
+                </div>
+              </div>
+              <div class="category-showcase-card" onclick="window.appRouter.navigate('catalog', 'stamps-ink')">
+                <div class="category-showcase-card-img-wrap">
+                  <img src="assets/images/products/self-inking-stamps.jpg" alt="Stamps & Ink" class="category-showcase-card-img" loading="lazy" />
+                </div>
+                <div class="category-showcase-card-body">
+                  <div class="category-showcase-card-title">Custom Stamps & Ink</div>
+                  <div class="category-showcase-card-desc">Self-inking & rubber stamps</div>
+                </div>
+              </div>
+              <div class="category-showcase-card" onclick="window.appRouter.navigate('catalog', 'photo-gifts')">
+                <div class="category-showcase-card-img-wrap">
+                  <img src="assets/images/products/photo-mugs.jpg" alt="Mugs & Gifts" class="category-showcase-card-img" loading="lazy" />
+                </div>
+                <div class="category-showcase-card-body">
+                  <div class="category-showcase-card-title">Mugs & Drinkware</div>
+                  <div class="category-showcase-card-desc">Photo mugs, bottles & more</div>
+                </div>
+              </div>
+              <div class="category-showcase-card" onclick="window.appRouter.navigate('pdp', 'letterheads')">
+                <div class="category-showcase-card-img-wrap">
+                  <img src="assets/images/products/letterheads.jpg" alt="Stationery" class="category-showcase-card-img" loading="lazy" />
+                </div>
+                <div class="category-showcase-card-body">
+                  <div class="category-showcase-card-title">Stationery</div>
+                  <div class="category-showcase-card-desc">Letterheads, diaries & pens</div>
+                </div>
+              </div>
+              <div class="category-showcase-card" onclick="window.appRouter.navigate('pdp', 'corporate-gift-boxes')">
+                <div class="category-showcase-card-img-wrap">
+                  <img src="assets/images/products/corporate-gift-boxes.jpg" alt="Gifts" class="category-showcase-card-img" loading="lazy" />
+                </div>
+                <div class="category-showcase-card-body">
+                  <div class="category-showcase-card-title">Gifts</div>
+                  <div class="category-showcase-card-desc">Corporate gift hampers</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          ` : ''}
+
+          ${isAllView ? `
+          <!-- BUSINESS ESSENTIALS SECTION -->
+          <div class="catalog-section" id="catalog-section-business">
+            <div class="catalog-section-header">
+              <h2 class="section-title">Business Essentials</h2>
+              <p class="section-subtitle">Essential printing products for your business</p>
+            </div>
+            <div class="product-grid-4col">
+              ${visitingCards.slice(0, 4).map(p => this.createProductCardHtml(p, true)).join('')}
+            </div>
+          </div>
+
+          <!-- CLOTHING & BAGS SECTION -->
+          <div class="catalog-section">
+            <div class="catalog-section-header">
+              <h2 class="section-title">Clothing & Bags</h2>
+              <p class="section-subtitle">Custom apparel and promotional products</p>
+            </div>
+            <div class="product-grid-4col">
+              ${clothing.slice(0, 4).map(p => this.createProductCardHtml(p, true)).join('')}
+            </div>
+          </div>
+
+          <!-- SIGNS & MARKETING SECTION -->
+          ${marketing.length > 0 ? `
+          <div class="catalog-section">
+            <div class="catalog-section-header">
+              <h2 class="section-title">Signs, Posters & Marketing Materials</h2>
+              <p class="section-subtitle">Professional marketing and signage products</p>
+            </div>
+            <div class="product-grid-4col">
+              ${marketing.slice(0, 4).map(p => this.createProductCardHtml(p, true)).join('')}
+            </div>
+          </div>
+          ` : ''}
+
+          <!-- LABELS & PACKAGING SECTION -->
+          ${packaging.length > 0 ? `
+          <div class="catalog-section">
+            <div class="catalog-section-header">
+              <h2 class="section-title">Labels, Stickers & Packaging</h2>
+              <p class="section-subtitle">Professional branding materials</p>
+            </div>
+            <div class="product-grid-4col">
+              ${packaging.slice(0, 4).map(p => this.createProductCardHtml(p, true)).join('')}
+            </div>
+          </div>
+          ` : ''}
+
+          <!-- STAMPS & INK SECTION -->
+          ${stampsInk.length > 0 ? `
+          <div class="catalog-section">
+            <div class="catalog-section-header">
+              <h2 class="section-title">Custom Stamps & Ink</h2>
+              <p class="section-subtitle">Rubber and self-inking stamps for every need</p>
+            </div>
+            <div class="product-grid-4col">
+              ${stampsInk.slice(0, 4).map(p => this.createProductCardHtml(p, true)).join('')}
+            </div>
+          </div>
+          ` : ''}
+
+          <!-- HOME & GIFTS SECTION -->
+          ${photoGifts.length > 0 ? `
+          <div class="catalog-section">
+            <div class="catalog-section-header">
+              <h2 class="section-title">Home & Gifts</h2>
+              <p class="section-subtitle">Personalised photo gifts and drinkware</p>
+            </div>
+            <div class="product-grid-4col">
+              ${photoGifts.slice(0, 4).map(p => this.createProductCardHtml(p, true)).join('')}
+            </div>
+          </div>
+          ` : ''}
+          ` : `
+          <!-- FILTERED CATEGORY VIEW -->
+          <div class="catalog-section">
+            <div class="catalog-section-header">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <h2 class="section-title">${catObj ? catObj.name : 'Products'}</h2>
+                  <p class="section-subtitle">Showing ${filtered.length} products</p>
+                </div>
+                <div class="flex items-center gap-2 text-xs">
+                  <label for="catalog-sort-select" class="text-[#595959] font-medium">Sort by:</label>
+                  <select id="catalog-sort-select" onchange="window.appRouter.sortCatalog(this.value)" class="input-atelier text-xs px-2.5 py-1" style="height:36px;">
+                    <option value="popular">Popularity</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="rating">Customer Rating</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div id="catalog-products-grid" class="product-grid-4col">
+              ${filtered.map(p => this.createProductCardHtml(p, true)).join('')}
+            </div>
+          </div>
+          `}
         </div>
       </div>
+    `;
+  }
 
-      <!-- Product Grid -->
-      <div id="catalog-products-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
-        ${filtered.map(p => this.createProductCardHtml(p)).join('')}
+  buildCatalogSidebar() {
+    return `
+      <div class="catalog-sidebar-section">
+        <div class="catalog-sidebar-heading">Trending Categories</div>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'visiting-cards')">Visiting Cards</a>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'clothing-apparel')">Clothing, Caps & Bags</a>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'marketing-materials')">Signs, Posters & Marketing Materials</a>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'packaging')">Labels, Stickers & Packaging</a>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'stamps-ink')">Stamps and Ink</a>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'photo-gifts')">Home & Gifts</a>
+      </div>
+
+      <div class="catalog-sidebar-section">
+        <div class="catalog-sidebar-heading">Visiting Cards</div>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'standard-visiting-cards')">Standard Visiting Cards</a>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'classic-visiting-cards')">Classic Visiting Cards</a>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'rounded-corner-visiting-cards')">Rounded Corner Visiting Cards</a>
+        <a class="catalog-sidebar-link catalog-sidebar-link--view-all" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'visiting-cards')">View all in Visiting Cards</a>
+      </div>
+
+      <div class="catalog-sidebar-section">
+        <div class="catalog-sidebar-heading">Clothing & Bags</div>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'classic-polo-tshirts')">Custom Polo T-Shirts</a>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'custom-round-neck-tshirts')">Custom T-Shirts</a>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'custom-dress-shirts')">Custom Dress Shirts</a>
+        <a class="catalog-sidebar-link catalog-sidebar-link--view-all" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'clothing-apparel')">View all in Clothing & Bags</a>
+      </div>
+
+      <div class="catalog-sidebar-section">
+        <div class="catalog-sidebar-heading">Stationery</div>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'stamps-ink')">Stamps and Ink</a>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'letterheads')">Custom Letterheads</a>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'custom-notepads')">Customised Diaries</a>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'custom-pens')">Personalised Pens</a>
+        <a class="catalog-sidebar-link catalog-sidebar-link--view-all" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'all')">View all in Stationery</a>
+      </div>
+
+      <div class="catalog-sidebar-section">
+        <div class="catalog-sidebar-heading">Signs, Posters & Marketing</div>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'custom-flyers')">Flyers & Leaflets</a>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'rollup-standees')">Standees</a>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'canvas-prints')">Posters</a>
+        <a class="catalog-sidebar-link catalog-sidebar-link--view-all" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'marketing-materials')">View all</a>
+      </div>
+
+      <div class="catalog-sidebar-section">
+        <div class="catalog-sidebar-heading">Labels, Stickers & Packaging</div>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'custom-labels')">Custom Labels</a>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'stickers')">Custom Stickers</a>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'custom-mailer-boxes')">Custom Packaging</a>
+        <a class="catalog-sidebar-link catalog-sidebar-link--view-all" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'packaging')">View all</a>
+      </div>
+
+      <div class="catalog-sidebar-section">
+        <div class="catalog-sidebar-heading">Home & Gifts</div>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'photo-albums')">Photo Albums</a>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'personalised-photo-mugs')">Mugs</a>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'water-bottles')">Custom Drinkware</a>
+        <a class="catalog-sidebar-link" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'corporate-gift-boxes')">Gift Hampers</a>
+        <a class="catalog-sidebar-link catalog-sidebar-link--view-all" href="javascript:void(0)" onclick="window.appRouter.navigate('catalog', 'photo-gifts')">View all</a>
       </div>
     `;
   }
@@ -552,7 +853,7 @@ class PrinthubbsApp {
       filtered.sort((a, b) => b.rating - a.rating);
     }
     const container = document.getElementById('catalog-products-grid');
-    if (container) container.innerHTML = filtered.map(p => this.createProductCardHtml(p)).join('');
+    if (container) container.innerHTML = filtered.map(p => this.createProductCardHtml(p, true)).join('');
   }
 
   filterCatalog(categoryId) {

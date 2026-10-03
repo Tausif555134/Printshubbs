@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 890 510" width="890" height="510">
+  <rect width="890" height="510" rx="16" fill="#000000" stroke="#ffffff" stroke-width="1.5"/>
+  <rect x="18" y="18" width="854" height="474" rx="12" fill="none" stroke="#333333" stroke-width="1"/>
+
+  <g transform="translate(60, 55)">
+    <rect x="0" y="0" width="36" height="36" rx="6" fill="#ffffff"/>
+    <text x="18" y="24" font-family="Inter, -apple-system, sans-serif" font-size="18" font-weight="900" fill="#000000" text-anchor="middle">PH</text>
+    <text x="50" y="22" font-family="Inter, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#ffffff" letter-spacing="2">PRINTHUBBS ENTERPRISES</text>
+    <text x="50" y="42" font-family="Inter, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#a3a3a3" letter-spacing="1">PRECISION WEB-TO-PRINT ATELIER</text>
+  </g>
+
+  <g transform="translate(60, 170)">
+    <text x="0" y="32" font-family="Inter, -apple-system, sans-serif" font-size="34" font-weight="800" fill="#ffffff" letter-spacing="1">ARJUN SHARMA</text>
+    <text x="0" y="60" font-family="Inter, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#d4d4d4" letter-spacing="1">CREATIVE DIRECTOR &amp; FOUNDER</text>
+  </g>
+
+  <line x1="60" y1="275" x2="620" y2="275" stroke="#333333" stroke-width="1.5"/>
+
+  <g transform="translate(60, 318)" font-family="Inter, -apple-system, sans-serif" font-size="13" font-weight="400" fill="#a3a3a3">
+    <text x="0" y="14"><tspan fill="#ffffff" font-weight="600">P: </tspan>+91 98200 12345 · 022 6123 4567</text>
+    <text x="0" y="50"><tspan fill="#ffffff" font-weight="600">E: </tspan>arjun@printhubbs.in</text>
+    <text x="0" y="86"><tspan fill="#ffffff" font-weight="600">W: </tspan>www.printhubbs.in/profile/arjun</text>
+    <text x="0" y="122"><tspan fill="#ffffff" font-weight="600">A: </tspan>Tower 2, Bandra-Kurla Complex (BKC), Mumbai - 400051</text>
+  </g>
+
+  <g transform="translate(680, 260)">
+    <rect width="150" height="190" rx="12" fill="#18181b" stroke="#3f3f46" stroke-width="1.5"/>
+    <rect x="15" y="15" width="120" height="120" rx="8" fill="#ffffff"/>
+    <rect x="25" y="25" width="30" height="30" fill="#000000"/>
+    <rect x="30" y="30" width="20" height="20" fill="#ffffff"/>
+    <rect x="35" y="35" width="10" height="10" fill="#000000"/>
+    <rect x="85" y="25" width="30" height="30" fill="#000000"/>
+    <rect x="90" y="30" width="20" height="20" fill="#ffffff"/>
+    <rect x="95" y="35" width="10" height="10" fill="#000000"/>
+    <rect x="25" y="85" width="30" height="30" fill="#000000"/>
+    <rect x="30" y="90" width="20" height="20" fill="#ffffff"/>
+    <rect x="35" y="95" width="10" height="10" fill="#000000"/>
+    <rect x="65" y="30" width="8" height="16" fill="#000000"/>
+    <rect x="65" y="55" width="20" height="8" fill="#000000"/>
+    <rect x="35" y="65" width="16" height="8" fill="#000000"/>
+    <rect x="65" y="85" width="12" height="12" fill="#000000"/>
+    <rect x="85" y="70" width="25" height="8" fill="#000000"/>
+    <rect x="85" y="95" width="10" height="20" fill="#000000"/>
+    <rect x="105" y="90" width="10" height="10" fill="#000000"/>
+    <text x="75" y="160" font-family="Inter, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">ATELIER VCARD</text>
+    <text x="75" y="174" font-family="Inter, -apple-system, sans-serif" font-size="8" font-weight="500" fill="#a3a3a3" text-anchor="middle">SCAN FOR PORTFOLIO</text>
+  </g>
+</svg>

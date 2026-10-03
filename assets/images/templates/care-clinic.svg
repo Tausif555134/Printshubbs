@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 890 510" width="890" height="510">
+  <defs>
+    <linearGradient id="clinic-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f0fdf4"/>
+    </linearGradient>
+    <filter id="clinic-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#059669" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <rect width="890" height="510" rx="16" fill="url(#clinic-bg)" stroke="#059669" stroke-width="2"/>
+  <rect x="0" y="0" width="16" height="510" rx="4" fill="#059669"/>
+  <rect x="16" y="0" width="6" height="510" fill="#34d399"/>
+  
+  <g transform="translate(60, 50)">
+    <circle cx="28" cy="28" r="28" fill="#059669" filter="url(#clinic-shadow)"/>
+    <path d="M24 14h8v10h10v8H32v10h-8V32H14v-8h10V14z" fill="#ffffff"/>
+    <text x="72" y="24" font-family="Inter, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#064e3b" letter-spacing="1">CARE CLINIC &amp; HEALTHCARE</text>
+    <text x="72" y="44" font-family="Inter, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#059669" letter-spacing="0.5">Multi-Speciality Practice &amp; Diagnostic Center</text>
+  </g>
+
+  <g transform="translate(60, 160)">
+    <text x="0" y="32" font-family="Inter, -apple-system, sans-serif" font-size="32" font-weight="800" fill="#064e3b" letter-spacing="-0.5">DR. SNEHA KULKARNI</text>
+    <text x="0" y="60" font-family="Inter, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#059669">MD, Senior Consultant Physician &amp; Cardiologist</text>
+    <text x="0" y="80" font-family="Inter, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#047857">Reg No. MH-MED-2014-99882 · Fellow of Cardiology</text>
+  </g>
+
+  <line x1="60" y1="270" x2="630" y2="270" stroke="#a7f3d0" stroke-width="1.5"/>
+
+  <g transform="translate(60, 310)" font-family="Inter, -apple-system, sans-serif" font-size="13" font-weight="500" fill="#065f46">
+    <g transform="translate(0, 0)">
+      <text x="0" y="14" font-weight="700" fill="#059669">Phone: </text>
+      <text x="55" y="14">+91 98220 99887 · 020 2567 8900</text>
+    </g>
+    <g transform="translate(0, 42)">
+      <text x="0" y="14" font-weight="700" fill="#059669">Email: </text>
+      <text x="55" y="14">appointments@careclinic.in</text>
+    </g>
+    <g transform="translate(0, 84)">
+      <text x="0" y="14" font-weight="700" fill="#059669">Web: </text>
+      <text x="55" y="14">www.careclinic.in/dr-sneha</text>
+    </g>
+    <g transform="translate(0, 126)">
+      <text x="0" y="14" font-weight="700" fill="#059669">Clinic: </text>
+      <text x="55" y="14">104 Care Chambers, JM Road, Shivajinagar, Pune - 411005</text>
+    </g>
+  </g>
+
+  <g transform="translate(680, 260)">
+    <rect width="150" height="190" rx="12" fill="#ffffff" stroke="#d1fae5" stroke-width="2" filter="url(#clinic-shadow)"/>
+    <rect x="15" y="15" width="120" height="120" rx="8" fill="#f0fdf4"/>
+    <rect x="25" y="25" width="30" height="30" fill="#064e3b"/>
+    <rect x="30" y="30" width="20" height="20" fill="#ffffff"/>
+    <rect x="35" y="35" width="10" height="10" fill="#064e3b"/>
+    <rect x="85" y="25" width="30" height="30" fill="#064e3b"/>
+    <rect x="90" y="30" width="20" height="20" fill="#ffffff"/>
+    <rect x="95" y="35" width="10" height="10" fill="#064e3b"/>
+    <rect x="25" y="85" width="30" height="30" fill="#064e3b"/>
+    <rect x="30" y="90" width="20" height="20" fill="#ffffff"/>
+    <rect x="35" y="95" width="10" height="10" fill="#064e3b"/>
+    <rect x="65" y="30" width="8" height="16" fill="#064e3b"/>
+    <rect x="65" y="55" width="20" height="8" fill="#064e3b"/>
+    <rect x="35" y="65" width="16" height="8" fill="#064e3b"/>
+    <rect x="65" y="85" width="12" height="12" fill="#064e3b"/>
+    <rect x="85" y="70" width="25" height="8" fill="#064e3b"/>
+    <rect x="85" y="95" width="10" height="20" fill="#064e3b"/>
+    <rect x="105" y="90" width="10" height="10" fill="#064e3b"/>
+    <text x="75" y="160" font-family="Inter, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#064e3b" text-anchor="middle">SCAN TO BOOK</text>
+    <text x="75" y="174" font-family="Inter, -apple-system, sans-serif" font-size="8" font-weight="600" fill="#059669" text-anchor="middle">CARE CLINIC APPOINTMENT</text>
+  </g>
+</svg>

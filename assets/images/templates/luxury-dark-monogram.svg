@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 890 510" width="890" height="510">
+  <defs>
+    <linearGradient id="luxury-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#182238"/>
+      <stop offset="100%" stop-color="#0b0f19"/>
+    </linearGradient>
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde68a"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <filter id="gold-glow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#f59e0b" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="890" height="510" rx="16" fill="url(#luxury-bg)" stroke="url(#gold-grad)" stroke-width="2"/>
+  <rect x="24" y="24" width="842" height="462" rx="10" fill="none" stroke="#f59e0b" stroke-opacity="0.25" stroke-width="1"/>
+
+  <g transform="translate(60, 56)">
+    <rect x="0" y="8" width="40" height="40" transform="rotate(45 20 28)" fill="none" stroke="url(#gold-grad)" stroke-width="2" filter="url(#gold-glow)"/>
+    <text x="20" y="34" font-family="'Playfair Display', serif, Inter" font-size="18" font-weight="900" fill="url(#gold-grad)" text-anchor="middle">RF</text>
+    
+    <text x="65" y="24" font-family="Inter, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#ffffff" letter-spacing="3">ROYAL FINDS JEWELLERY</text>
+    <text x="65" y="44" font-family="Inter, -apple-system, sans-serif" font-size="11" font-weight="600" fill="url(#gold-grad)" letter-spacing="2">HANDCRAFTED HERITAGE LUXURY · EST. 1988</text>
+  </g>
+
+  <g transform="translate(60, 175)">
+    <text x="0" y="32" font-family="Inter, -apple-system, sans-serif" font-size="34" font-weight="800" fill="#ffffff" letter-spacing="1">KABIR MEHTA</text>
+    <text x="0" y="60" font-family="Inter, -apple-system, sans-serif" font-size="14" font-weight="600" fill="url(#gold-grad)" letter-spacing="1.5">MANAGING PARTNER &amp; GEMOLOGIST</text>
+  </g>
+
+  <line x1="60" y1="270" x2="620" y2="270" stroke="url(#gold-grad)" stroke-width="1.5"/>
+
+  <g transform="translate(60, 312)" font-family="Inter, -apple-system, sans-serif" font-size="13" font-weight="400" fill="#cbd5e1">
+    <text x="0" y="14"><tspan fill="url(#gold-grad)" font-weight="700">M : </tspan>+91 99300 44556 / +91 98200 88776</text>
+    <text x="0" y="52"><tspan fill="url(#gold-grad)" font-weight="700">E : </tspan>kabir@royalfinds.com / vip@royalfinds.com</text>
+    <text x="0" y="90"><tspan fill="url(#gold-grad)" font-weight="700">W : </tspan>www.royalfinds.com</text>
+    <text x="0" y="128"><tspan fill="url(#gold-grad)" font-weight="700">A : </tspan>14 Heritage Boulevard, Park Street, Kolkata - 700016</text>
+  </g>
+
+  <g transform="translate(675, 260)">
+    <rect width="150" height="190" rx="12" fill="#0b0f19" stroke="url(#gold-grad)" stroke-width="1.5" filter="url(#gold-glow)"/>
+    <rect x="15" y="15" width="120" height="120" rx="8" fill="#ffffff"/>
+    <rect x="25" y="25" width="30" height="30" fill="#0b0f19"/>
+    <rect x="30" y="30" width="20" height="20" fill="#ffffff"/>
+    <rect x="35" y="35" width="10" height="10" fill="#0b0f19"/>
+    <rect x="85" y="25" width="30" height="30" fill="#0b0f19"/>
+    <rect x="90" y="30" width="20" height="20" fill="#ffffff"/>
+    <rect x="95" y="35" width="10" height="10" fill="#0b0f19"/>
+    <rect x="25" y="85" width="30" height="30" fill="#0b0f19"/>
+    <rect x="30" y="90" width="20" height="20" fill="#ffffff"/>
+    <rect x="35" y="95" width="10" height="10" fill="#0b0f19"/>
+    <rect x="65" y="30" width="8" height="16" fill="#0b0f19"/>
+    <rect x="65" y="55" width="20" height="8" fill="#0b0f19"/>
+    <rect x="35" y="65" width="16" height="8" fill="#0b0f19"/>
+    <rect x="65" y="85" width="12" height="12" fill="#0b0f19"/>
+    <rect x="85" y="70" width="25" height="8" fill="#0b0f19"/>
+    <rect x="85" y="95" width="10" height="20" fill="#0b0f19"/>
+    <rect x="105" y="90" width="10" height="10" fill="#0b0f19"/>
+    <text x="75" y="160" font-family="Inter, -apple-system, sans-serif" font-size="10" font-weight="700" fill="url(#gold-grad)" text-anchor="middle">PRIVATE SHOWING</text>
+    <text x="75" y="174" font-family="Inter, -apple-system, sans-serif" font-size="8" font-weight="600" fill="#94a3b8" text-anchor="middle">SCAN CONCIERGE VCARD</text>
+  </g>
+</svg>

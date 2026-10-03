@@ -11,10 +11,10 @@ class PrinthubbsApp {
     this.wishlist = this.loadWishlist();
     this.myProjects = this.loadProjects();
 
-    // Single source of truth for the selected card
-    this.selectedCardId = sessionStorage.getItem('printhubbs_selected_card_id')
-      || sessionStorage.getItem('printhubbs_selected_template')
-      || 'tpl-corporate-modern';
+    // Single source of truth for the selected template
+    this.selectedTemplateId = sessionStorage.getItem('printhubbs_selected_template')
+      || sessionStorage.getItem('printhubbs_selected_card_id')
+      || 'care-clinic';
     this.activeProjectEdit = null;
 
     this.pdpOptions = {
@@ -23,19 +23,19 @@ class PrinthubbsApp {
       cornerId: null,
       finishId: null,
       sideId: null,
-      templateId: this.selectedCardId,
-      cardId: this.selectedCardId
+      templateId: this.selectedTemplateId,
+      cardId: this.selectedTemplateId
     };
 
     this.init();
   }
 
-  // Compatibility getter/setter for selectedTemplateId
-  get selectedTemplateId() {
-    return this.selectedCardId;
+  // Compatibility getter/setter for selectedCardId
+  get selectedCardId() {
+    return this.selectedTemplateId;
   }
-  set selectedTemplateId(val) {
-    this.selectedCardId = val;
+  set selectedCardId(val) {
+    this.selectedTemplateId = val;
   }
 
   init() {
@@ -63,16 +63,19 @@ class PrinthubbsApp {
     const param = parts[1];
     const subParam = parts[2];
 
-    let queryCard = null;
+    let queryTpl = null;
     if (queryPart) {
       const qParams = new URLSearchParams(queryPart);
-      queryCard = qParams.get('card') || qParams.get('template') || qParams.get('tpl');
+      queryTpl = qParams.get('template') || qParams.get('card') || qParams.get('tpl');
     }
 
-    if (queryCard && window.PRINTSHUBB_DATA.studioTemplates.some(t => t.id === queryCard)) {
-      this.selectedCardId = queryCard;
-      sessionStorage.setItem('printhubbs_selected_card_id', queryCard);
-      sessionStorage.setItem('printhubbs_selected_template', queryCard);
+    if (queryTpl) {
+      const matchedTpl = window.PRINTSHUBB_DATA.getTemplate(queryTpl);
+      if (matchedTpl) {
+        this.selectedTemplateId = matchedTpl.id;
+        sessionStorage.setItem('printhubbs_selected_template', matchedTpl.id);
+        sessionStorage.setItem('printhubbs_selected_card_id', matchedTpl.id);
+      }
     }
 
     if (route === 'visiting-cards') {
@@ -82,10 +85,10 @@ class PrinthubbsApp {
     } else if (route === 'catalog') {
       this.navigate('catalog', param || 'all', false);
     } else if (route === 'pdp' && param) {
-      this.navigate('pdp', { productId: param, cardId: this.selectedCardId, templateId: this.selectedCardId }, false);
+      this.navigate('pdp', { productId: param, templateId: this.selectedTemplateId, cardId: this.selectedTemplateId }, false);
     } else if (route === 'studio') {
-      const targetCard = queryCard || subParam || this.selectedCardId;
-      this.navigate('studio', { productId: param || 'standard-visiting-cards', cardId: targetCard, templateId: targetCard }, false);
+      const targetTpl = queryTpl || subParam || this.selectedTemplateId;
+      this.navigate('studio', { productId: param || 'standard-visiting-cards', templateId: targetTpl, cardId: targetTpl }, false);
     } else if (route === 'projects') {
       this.navigate('projects', null, false);
     }
@@ -178,29 +181,33 @@ class PrinthubbsApp {
         window.location.hash = param ? `catalog/${param}` : 'catalog';
       } else if (viewName === 'pdp') {
         const prodId = typeof param === 'string' ? param : (param ? (param.productId || param.id) : '');
-        const cardId = (param && typeof param === 'object' && (param.cardId || param.templateId)) ? (param.cardId || param.templateId) : this.selectedCardId;
-        window.location.hash = cardId ? `pdp/${prodId}?card=${cardId}` : `pdp/${prodId}`;
+        const rawTpl = (param && typeof param === 'object' && (param.templateId || param.cardId)) ? (param.templateId || param.cardId) : this.selectedTemplateId;
+        const matchedTpl = window.PRINTSHUBB_DATA.getTemplate(rawTpl);
+        const effectiveTpl = matchedTpl ? matchedTpl.id : rawTpl;
+        window.location.hash = effectiveTpl ? `pdp/${prodId}?template=${effectiveTpl}` : `pdp/${prodId}`;
       } else if (viewName === 'studio') {
         let prodId = 'standard-visiting-cards';
-        let cardId = this.selectedCardId;
+        let templateId = this.selectedTemplateId;
         if (typeof param === 'string') {
           if (param.includes('?')) {
             const [p, q] = param.split('?');
             prodId = p;
             const qp = new URLSearchParams(q);
-            cardId = qp.get('card') || qp.get('template') || qp.get('tpl') || cardId;
+            templateId = qp.get('template') || qp.get('card') || qp.get('tpl') || templateId;
           } else {
             prodId = param;
           }
         } else if (param && typeof param === 'object') {
           prodId = param.productId || param.id || (this.selectedProduct ? this.selectedProduct.id : prodId);
-          if (param.cardId || param.templateId) cardId = param.cardId || param.templateId;
+          if (param.templateId || param.cardId) templateId = param.templateId || param.cardId;
         }
-        if (cardId) {
-          this.selectedCardId = cardId;
-          sessionStorage.setItem('printhubbs_selected_card_id', cardId);
-          sessionStorage.setItem('printhubbs_selected_template', cardId);
-          window.location.hash = `studio/${prodId}?card=${cardId}`;
+        const resolvedTpl = window.PRINTSHUBB_DATA.getTemplate(templateId);
+        if (resolvedTpl) templateId = resolvedTpl.id;
+        if (templateId) {
+          this.selectedTemplateId = templateId;
+          sessionStorage.setItem('printhubbs_selected_template', templateId);
+          sessionStorage.setItem('printhubbs_selected_card_id', templateId);
+          window.location.hash = `studio/${prodId}?template=${templateId}`;
         } else {
           window.location.hash = `studio/${prodId}`;
         }
@@ -225,39 +232,42 @@ class PrinthubbsApp {
       this.renderCatalogView();
     } else if (viewName === 'pdp') {
       let product = null;
-      let cardId = null;
+      let templateId = null;
       if (typeof param === 'string') {
         let prodId = param;
         if (param.includes('?')) {
           const [p, q] = param.split('?');
           prodId = p;
           const qp = new URLSearchParams(q);
-          cardId = qp.get('card') || qp.get('template') || qp.get('tpl');
+          templateId = qp.get('template') || qp.get('card') || qp.get('tpl');
         }
         product = window.PRINTSHUBB_DATA.products.find(p => p.id === prodId);
       } else if (param && typeof param === 'object') {
         const prodId = param.productId || param.id;
         product = prodId ? window.PRINTSHUBB_DATA.products.find(p => p.id === prodId) : param;
-        cardId = param.cardId || param.templateId;
+        templateId = param.templateId || param.cardId;
       }
-      if (cardId && window.PRINTSHUBB_DATA.studioTemplates.some(t => t.id === cardId)) {
-        this.selectedCardId = cardId;
-        sessionStorage.setItem('printhubbs_selected_card_id', cardId);
-        sessionStorage.setItem('printhubbs_selected_template', cardId);
+      if (templateId) {
+        const resolvedTpl = window.PRINTSHUBB_DATA.getTemplate(templateId);
+        if (resolvedTpl) {
+          this.selectedTemplateId = resolvedTpl.id;
+          sessionStorage.setItem('printhubbs_selected_template', resolvedTpl.id);
+          sessionStorage.setItem('printhubbs_selected_card_id', resolvedTpl.id);
+        }
       }
       if (product) {
         this.openPDP(product);
       }
     } else if (viewName === 'studio') {
       let product = null;
-      let cardId = this.selectedCardId;
+      let templateId = this.selectedTemplateId;
       if (typeof param === 'string') {
         let prodId = param;
         if (param.includes('?')) {
           const [p, q] = param.split('?');
           prodId = p;
           const qp = new URLSearchParams(q);
-          cardId = qp.get('card') || qp.get('template') || qp.get('tpl') || cardId;
+          templateId = qp.get('template') || qp.get('card') || qp.get('tpl') || templateId;
         }
         product = window.PRINTSHUBB_DATA.products.find(p => p.id === prodId);
       } else if (param && typeof param === 'object') {
@@ -267,12 +277,12 @@ class PrinthubbsApp {
         } else {
           product = param;
         }
-        if (param.cardId || param.templateId) {
-          cardId = param.cardId || param.templateId;
+        if (param.templateId || param.cardId) {
+          templateId = param.templateId || param.cardId;
         }
       }
       product = product || this.selectedProduct || window.PRINTSHUBB_DATA.products[0];
-      this.openDesignStudio(product, cardId);
+      this.openDesignStudio(product, templateId);
     } else if (viewName === 'projects') {
       this.renderProjectsAndOrders();
     }
@@ -988,19 +998,23 @@ class PrinthubbsApp {
   openPDP(product) {
     this.selectedProduct = product;
 
-    // Never reset or overwrite an already-selected card!
-    if (!this.selectedCardId || !window.PRINTSHUBB_DATA.studioTemplates.some(t => t.id === this.selectedCardId)) {
-      const stored = sessionStorage.getItem('printhubbs_selected_card_id') || sessionStorage.getItem('printhubbs_selected_template');
-      if (stored && window.PRINTSHUBB_DATA.studioTemplates.some(t => t.id === stored)) {
-        this.selectedCardId = stored;
-      } else {
-        this.selectedCardId = product.defaultTemplateId || (window.PRINTSHUBB_DATA.studioTemplates[0] ? window.PRINTSHUBB_DATA.studioTemplates[0].id : 'tpl-corporate-modern');
-      }
+    // Never reset or overwrite an already-selected template!
+    let currentTpl = window.PRINTSHUBB_DATA.getTemplate(this.selectedTemplateId);
+    if (!currentTpl) {
+      const stored = sessionStorage.getItem('printhubbs_selected_template') || sessionStorage.getItem('printhubbs_selected_card_id');
+      currentTpl = window.PRINTSHUBB_DATA.getTemplate(stored);
     }
-    sessionStorage.setItem('printhubbs_selected_card_id', this.selectedCardId);
-    sessionStorage.setItem('printhubbs_selected_template', this.selectedCardId);
+    if (!currentTpl && product.defaultTemplateId) {
+      currentTpl = window.PRINTSHUBB_DATA.getTemplate(product.defaultTemplateId);
+    }
+    if (!currentTpl) {
+      currentTpl = window.PRINTSHUBB_DATA.templates[0];
+    }
+    this.selectedTemplateId = currentTpl.id;
+    sessionStorage.setItem('printhubbs_selected_template', this.selectedTemplateId);
+    sessionStorage.setItem('printhubbs_selected_card_id', this.selectedTemplateId);
 
-    // Set default configuration options including colors, sizes, shapes, and card
+    // Set default configuration options including colors, sizes, shapes, and template
     this.pdpOptions = {
       quantity: product.quantities ? product.quantities[0].qty : 100,
       paperStockId: product.paperStocks ? product.paperStocks[0].id : null,
@@ -1010,8 +1024,8 @@ class PrinthubbsApp {
       color: product.colors ? product.colors[0] : null,
       size: product.sizes ? product.sizes[0] : null,
       shapeId: product.shape || (product.category === 'visiting-cards' ? 'standard' : null),
-      templateId: this.selectedCardId,
-      cardId: this.selectedCardId
+      templateId: this.selectedTemplateId,
+      cardId: this.selectedTemplateId
     };
 
     const pdpTitle = document.getElementById('pdp-title');
@@ -1029,7 +1043,17 @@ class PrinthubbsApp {
         pdpRating.innerHTML = `<span class="text-black font-bold">100% Satisfaction Guaranteed</span> • <span class="text-[#595959]">Enterprise Grade Quality</span>`;
       }
     }
-    if (pdpImage) pdpImage.src = product.image;
+    // Display selected template preview if visiting cards or customizable card
+    const isCustomizableCard = product.category === 'visiting-cards';
+    if (pdpImage) {
+      if (isCustomizableCard && currentTpl && currentTpl.previewImage) {
+        pdpImage.src = currentTpl.previewImage;
+        pdpImage.alt = `${currentTpl.name} - ${product.name}`;
+      } else {
+        pdpImage.src = product.image;
+        pdpImage.alt = product.name;
+      }
+    }
     if (pdpDims) pdpDims.textContent = product.dimensions;
 
     this.renderPDPOptions();
@@ -1124,29 +1148,22 @@ class PrinthubbsApp {
     if (tplSection && tplContainer) {
       if (product.category === 'visiting-cards') {
         tplSection.classList.remove('hidden');
-        const activeTpl = window.PRINTSHUBB_DATA.studioTemplates.find(t => t.id === this.selectedCardId);
+        const activeTpl = window.PRINTSHUBB_DATA.getTemplate(this.selectedTemplateId);
         if (tplNameLabel && activeTpl) {
-          tplNameLabel.textContent = `${activeTpl.name} (${activeTpl.theme})`;
+          tplNameLabel.textContent = `${activeTpl.name} (${activeTpl.category || activeTpl.theme})`;
         }
-        tplContainer.innerHTML = window.PRINTSHUBB_DATA.studioTemplates.map(t => {
-          const isSelected = t.id === this.selectedCardId;
+        tplContainer.innerHTML = window.PRINTSHUBB_DATA.templates.map(t => {
+          const isSelected = t.id === this.selectedTemplateId || (t.aliases && t.aliases.includes(this.selectedTemplateId));
           return `
-            <button type="button" onclick="window.appRouter.selectCard('${t.id}')" aria-pressed="${isSelected}" class="p-2.5 border rounded-lg text-left transition flex flex-col justify-between ${isSelected ? 'border-black bg-[#f3f3f3] ring-2 ring-black shadow-sm' : 'border-[#d9d9d9] hover:border-black bg-white'}">
-              <div class="w-full h-12 rounded border border-[#d9d9d9] flex flex-col justify-between p-1.5 mb-1.5 relative overflow-hidden" style="background-color: ${t.bgColor}; color: ${t.textColor};">
-                <div class="flex items-center justify-between text-[8px] font-bold">
-                  <span class="truncate max-w-[65px] uppercase tracking-wider" style="color: ${t.textColor};">${(t.fields && t.fields.company) ? t.fields.company.split(' ')[0] : 'PRINTHUBBS'}</span>
-                  <span class="w-1.5 h-1.5 rounded-full" style="background-color: ${t.accentColor};"></span>
-                </div>
-                <div class="flex items-end justify-between">
-                  <span class="text-[9px] font-bold truncate max-w-[60px]" style="color: ${t.textColor};">${(t.fields && t.fields.name) ? t.fields.name.split(' ')[0] : 'NAME'}</span>
-                  <span class="w-3 h-3 bg-white text-black text-[6px] font-mono-spec flex items-center justify-center font-bold rounded">QR</span>
-                </div>
+            <button type="button" onclick="window.appRouter.selectTemplate('${t.id}')" aria-pressed="${isSelected}" class="p-2.5 border rounded-lg text-left transition flex flex-col justify-between ${isSelected ? 'border-black bg-[#f3f3f3] ring-2 ring-black shadow-sm' : 'border-[#d9d9d9] hover:border-black bg-white'}">
+              <div class="w-full h-16 rounded border border-[#d9d9d9] overflow-hidden mb-2 relative bg-white flex items-center justify-center p-1">
+                <img src="${t.previewImage}" alt="${t.name}" class="w-full h-full object-contain" />
               </div>
               <div class="flex items-center justify-between gap-1">
                 <div class="text-xs font-bold text-black truncate">${t.name}</div>
-                ${isSelected ? '<span class="w-1.5 h-1.5 rounded-full bg-black flex-shrink-0"></span>' : ''}
+                ${isSelected ? '<span class="w-2 h-2 rounded-full bg-black flex-shrink-0"></span>' : ''}
               </div>
-              <div class="text-[10px] text-[#595959] font-mono-spec truncate">${t.theme}</div>
+              <div class="text-[10px] text-[#595959] font-mono-spec truncate">${t.category || t.theme}</div>
             </button>
           `;
         }).join('');
@@ -1333,53 +1350,71 @@ class PrinthubbsApp {
     this.openCartDrawer();
   }
 
-  selectCard(cardId) {
-    const card = window.PRINTSHUBB_DATA.studioTemplates.find(t => t.id === cardId);
-    if (!card) return;
-    this.selectedCardId = card.id;
-    this.pdpOptions.cardId = card.id;
-    this.pdpOptions.templateId = card.id;
-    sessionStorage.setItem('printhubbs_selected_card_id', card.id);
-    sessionStorage.setItem('printhubbs_selected_template', card.id);
+  selectTemplate(templateId) {
+    const template = window.PRINTSHUBB_DATA.getTemplate(templateId);
+    if (!template) return;
+    this.selectedTemplateId = template.id;
+    this.pdpOptions.templateId = template.id;
+    this.pdpOptions.cardId = template.id;
+    sessionStorage.setItem('printhubbs_selected_template', template.id);
+    sessionStorage.setItem('printhubbs_selected_card_id', template.id);
+
+    // Update Product Specifications preview image directly from the selected template data entity
+    const pdpImage = document.getElementById('pdp-preview-image');
+    if (pdpImage && template.previewImage) {
+      pdpImage.src = template.previewImage;
+      pdpImage.alt = template.name;
+    }
+
+    const tplNameLabel = document.getElementById('pdp-selected-template-name');
+    if (tplNameLabel) {
+      tplNameLabel.textContent = `${template.name} (${template.category || template.theme})`;
+    }
+
     if (this.selectedProduct) {
-      history.replaceState(null, '', `#pdp/${this.selectedProduct.id}?card=${card.id}`);
+      history.replaceState(null, '', `#pdp/${this.selectedProduct.id}?template=${template.id}`);
     }
     this.renderPDPOptions();
-    window.showToast(`Selected card: ${card.name}`, 'info');
+    window.showToast(`Selected template: ${template.name}`, 'info');
+  }
+
+  // Backwards compatibility alias
+  selectCard(cardId) {
+    this.selectTemplate(cardId);
   }
 
   selectPDPTemplate(tplId) {
-    this.selectCard(tplId);
-  }
-
-  launchStudioWithSelectedCard() {
-    this.activeProjectEdit = null;
-    const product = this.selectedProduct || window.PRINTSHUBB_DATA.products[0];
-    const cardId = this.selectedCardId;
-    this.navigate('studio', {
-      product: product,
-      productId: product.id,
-      cardId: cardId,
-      templateId: cardId
-    });
+    this.selectTemplate(tplId);
   }
 
   launchStudioWithSelectedTemplate() {
-    this.launchStudioWithSelectedCard();
+    this.activeProjectEdit = null;
+    const product = this.selectedProduct || window.PRINTSHUBB_DATA.products[0];
+    const templateId = this.selectedTemplateId;
+    this.navigate('studio', {
+      product: product,
+      productId: product.id,
+      templateId: templateId,
+      cardId: templateId
+    });
+  }
+
+  launchStudioWithSelectedCard() {
+    this.launchStudioWithSelectedTemplate();
   }
 
   // --- ONLINE DESIGN STUDIO LAUNCHER ---
-  openDesignStudio(product, cardId = null) {
+  openDesignStudio(product, templateId = null) {
     this.selectedProduct = product;
     const studioTitle = document.getElementById('studio-product-title');
     if (studioTitle) {
       studioTitle.textContent = product.name;
     }
 
-    // Single source of truth: explicit arg -> this.selectedCardId -> sessionStorage
-    const effectiveCardId = cardId || this.selectedCardId || sessionStorage.getItem('printhubbs_selected_card_id');
-    const targetCard = effectiveCardId
-      ? window.PRINTSHUBB_DATA.studioTemplates.find(t => t.id === effectiveCardId)
+    // Single source of truth: explicit arg -> this.selectedTemplateId -> sessionStorage
+    const effectiveTplId = templateId || this.selectedTemplateId || sessionStorage.getItem('printhubbs_selected_template') || sessionStorage.getItem('printhubbs_selected_card_id');
+    const targetTpl = effectiveTplId
+      ? window.PRINTSHUBB_DATA.getTemplate(effectiveTplId)
       : null;
 
     // Initialize Canvas Engine
@@ -1390,18 +1425,22 @@ class PrinthubbsApp {
 
       if (this.activeProjectEdit && this.activeProjectEdit.designState) {
         // Project being edited: restore its exact design state
-        const editCardId = this.activeProjectEdit.cardId || (this.activeProjectEdit.designState && this.activeProjectEdit.designState.templateId) || effectiveCardId;
-        this.selectedCardId = editCardId;
-        sessionStorage.setItem('printhubbs_selected_card_id', editCardId);
+        const editTplId = this.activeProjectEdit.templateId || this.activeProjectEdit.cardId || (this.activeProjectEdit.designState && this.activeProjectEdit.designState.templateId) || effectiveTplId;
+        const resolvedEditTpl = window.PRINTSHUBB_DATA.getTemplate(editTplId);
+        this.selectedTemplateId = resolvedEditTpl ? resolvedEditTpl.id : editTplId;
+        sessionStorage.setItem('printhubbs_selected_template', this.selectedTemplateId);
+        sessionStorage.setItem('printhubbs_selected_card_id', this.selectedTemplateId);
         window.studioEngine.state = JSON.parse(JSON.stringify(this.activeProjectEdit.designState));
-      } else if (targetCard) {
-        this.selectedCardId = targetCard.id;
-        sessionStorage.setItem('printhubbs_selected_card_id', targetCard.id);
-        window.studioEngine.applyTemplate(targetCard);
+      } else if (targetTpl) {
+        this.selectedTemplateId = targetTpl.id;
+        sessionStorage.setItem('printhubbs_selected_template', targetTpl.id);
+        sessionStorage.setItem('printhubbs_selected_card_id', targetTpl.id);
+        window.studioEngine.applyTemplate(targetTpl);
       } else {
-        const defaultTpl = window.PRINTSHUBB_DATA.studioTemplates[0];
+        const defaultTpl = window.PRINTSHUBB_DATA.templates[0];
         if (defaultTpl) {
-          this.selectedCardId = defaultTpl.id;
+          this.selectedTemplateId = defaultTpl.id;
+          sessionStorage.setItem('printhubbs_selected_template', defaultTpl.id);
           sessionStorage.setItem('printhubbs_selected_card_id', defaultTpl.id);
           window.studioEngine.applyTemplate(defaultTpl);
         }
@@ -1409,25 +1448,25 @@ class PrinthubbsApp {
       window.studioEngine.syncFormControls();
     }
 
-    this.renderStudioTemplatesList(this.selectedCardId);
+    this.renderStudioTemplatesList(this.selectedTemplateId);
   }
 
-  renderStudioTemplatesList(activeCardId) {
+  renderStudioTemplatesList(activeTemplateId) {
     const templatesContainer = document.getElementById('studio-templates-list');
     if (!templatesContainer) return;
 
-    const currentActive = activeCardId || this.selectedCardId;
-    templatesContainer.innerHTML = window.PRINTSHUBB_DATA.studioTemplates.map(t => {
-      const isSelected = t.id === currentActive;
+    const currentActive = activeTemplateId || this.selectedTemplateId;
+    templatesContainer.innerHTML = window.PRINTSHUBB_DATA.templates.map(t => {
+      const isSelected = t.id === currentActive || (t.aliases && t.aliases.includes(currentActive));
       return `
         <button type="button" onclick="window.appRouter.applyStudioTemplate('${t.id}')" class="p-2.5 border rounded-lg text-left transition flex items-center justify-between gap-3 w-full ${isSelected ? 'border-black bg-[#f3f3f3] ring-2 ring-black shadow-sm' : 'border-[#d9d9d9] hover:border-black bg-white'}">
           <div class="flex items-center gap-3 min-w-0">
-            <div class="w-12 h-8 rounded border border-[#8c8c8c] flex items-center justify-center font-bold text-[10px] flex-shrink-0" style="background-color: ${t.bgColor}; color: ${t.textColor};">
-              Aa
+            <div class="w-12 h-8 rounded border border-[#d9d9d9] overflow-hidden flex-shrink-0 bg-white flex items-center justify-center p-0.5">
+              <img src="${t.previewImage}" alt="${t.name}" class="w-full h-full object-contain" />
             </div>
             <div class="min-w-0">
               <div class="text-xs text-black truncate ${isSelected ? 'font-bold' : 'font-medium'}">${t.name}</div>
-              <div class="text-[10px] text-[#595959] font-mono-spec">${t.theme} • ${t.fontHeading}</div>
+              <div class="text-[10px] text-[#595959] font-mono-spec">${t.category || t.theme}</div>
             </div>
           </div>
           ${isSelected ? '<span class="text-[9px] font-bold uppercase tracking-wider bg-black text-white px-2 py-0.5 rounded flex-shrink-0">Active</span>' : ''}
@@ -1436,19 +1475,19 @@ class PrinthubbsApp {
     }).join('');
   }
 
-  applyStudioTemplate(cardId) {
+  applyStudioTemplate(templateId) {
     this.activeProjectEdit = null;
-    const card = window.PRINTSHUBB_DATA.studioTemplates.find(t => t.id === cardId);
-    if (card) {
-      this.selectedCardId = card.id;
-      sessionStorage.setItem('printhubbs_selected_card_id', card.id);
-      sessionStorage.setItem('printhubbs_selected_template', card.id);
-      window.studioEngine.applyTemplate(card);
-      this.renderStudioTemplatesList(card.id);
+    const tpl = window.PRINTSHUBB_DATA.getTemplate(templateId);
+    if (tpl) {
+      this.selectedTemplateId = tpl.id;
+      sessionStorage.setItem('printhubbs_selected_template', tpl.id);
+      sessionStorage.setItem('printhubbs_selected_card_id', tpl.id);
+      window.studioEngine.applyTemplate(tpl);
+      this.renderStudioTemplatesList(tpl.id);
       if (this.selectedProduct) {
-        history.replaceState(null, '', `#studio/${this.selectedProduct.id}?card=${card.id}`);
+        history.replaceState(null, '', `#studio/${this.selectedProduct.id}?template=${tpl.id}`);
       }
-      window.showToast(`Applied ${card.name} template`, 'info');
+      window.showToast(`Applied ${tpl.name} template`, 'info');
     }
   }
 
@@ -1490,12 +1529,15 @@ class PrinthubbsApp {
   saveCurrentProject() {
     const product = this.selectedProduct || window.PRINTSHUBB_DATA.products[0];
     const snapshot = window.studioEngine.getSnapshotDataUrl();
-    const cardId = this.selectedCardId || (window.studioEngine.state && window.studioEngine.state.templateId) || 'tpl-corporate-modern';
+    const rawTplId = this.selectedTemplateId || (window.studioEngine.state && window.studioEngine.state.templateId) || 'care-clinic';
+    const resolvedTpl = window.PRINTSHUBB_DATA.getTemplate(rawTplId);
+    const templateId = resolvedTpl ? resolvedTpl.id : rawTplId;
     const newProject = {
       id: 'proj_' + Date.now(),
       title: `${(window.studioEngine.state && window.studioEngine.state.fields && window.studioEngine.state.fields.company) || 'Custom Design'} - ${product.name}`,
       productId: product.id,
-      cardId: cardId,
+      templateId: templateId,
+      cardId: templateId,
       date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
       thumbnail: snapshot,
       designState: JSON.parse(JSON.stringify(window.studioEngine.state))
@@ -1771,23 +1813,25 @@ class PrinthubbsApp {
     const proj = this.myProjects.find(p => p.id === projId);
     if (!proj) return;
     const product = window.PRINTSHUBB_DATA.products.find(p => p.id === proj.productId) || window.PRINTSHUBB_DATA.products[0];
-    const projCardId = proj.cardId || (proj.designState && proj.designState.templateId) || this.selectedCardId || 'tpl-corporate-modern';
+    const rawTplId = proj.templateId || proj.cardId || (proj.designState && proj.designState.templateId) || this.selectedTemplateId || 'care-clinic';
+    const resolvedTpl = window.PRINTSHUBB_DATA.getTemplate(rawTplId);
+    const projTplId = resolvedTpl ? resolvedTpl.id : rawTplId;
 
-    this.selectedCardId = projCardId;
-    sessionStorage.setItem('printhubbs_selected_card_id', projCardId);
-    sessionStorage.setItem('printhubbs_selected_template', projCardId);
+    this.selectedTemplateId = projTplId;
+    sessionStorage.setItem('printhubbs_selected_template', projTplId);
+    sessionStorage.setItem('printhubbs_selected_card_id', projTplId);
 
     this.activeProjectEdit = proj;
 
     // Navigate to studio without triggering hashchange reload so custom design is not overwritten
-    this.navigate('studio', { productId: product.id, cardId: projCardId, templateId: projCardId }, false);
-    history.replaceState(null, '', `#studio/${product.id}?card=${projCardId}`);
+    this.navigate('studio', { productId: product.id, templateId: projTplId, cardId: projTplId }, false);
+    history.replaceState(null, '', `#studio/${product.id}?template=${projTplId}`);
 
     if (proj.designState) {
       window.studioEngine.state = JSON.parse(JSON.stringify(proj.designState));
       window.studioEngine.syncFormControls();
       window.studioEngine.render();
-      this.renderStudioTemplatesList(projCardId);
+      this.renderStudioTemplatesList(projTplId);
       window.showToast(`Loaded "${proj.title}" into studio`, 'success');
     }
   }

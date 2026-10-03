@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 890 510" width="890" height="510">
+  <defs>
+    <linearGradient id="tech-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d"/>
+      <stop offset="100%" stop-color="#050811"/>
+    </linearGradient>
+    <linearGradient id="cyan-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <filter id="neon-glow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#38bdf8" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <rect width="890" height="510" rx="16" fill="url(#tech-bg)" stroke="#0284c7" stroke-width="2"/>
+  <rect x="0" y="0" width="890" height="6" fill="url(#cyan-glow)"/>
+
+  <g transform="translate(60, 50)">
+    <rect x="0" y="0" width="38" height="38" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" filter="url(#neon-glow)"/>
+    <text x="19" y="25" font-family="'JetBrains Mono', monospace, Inter" font-size="16" font-weight="800" fill="#38bdf8" text-anchor="middle">&lt;/&gt;</text>
+    
+    <text x="54" y="24" font-family="Inter, -apple-system, sans-serif" font-size="20" font-weight="900" fill="#ffffff" letter-spacing="1">NEXUS CLOUD SYSTEMS</text>
+    <text x="54" y="44" font-family="'JetBrains Mono', monospace, Inter" font-size="12" font-weight="500" fill="#38bdf8">Autonomous AI Infrastructure &amp; Edge Cloud</text>
+  </g>
+
+  <g transform="translate(60, 165)">
+    <text x="0" y="32" font-family="Inter, -apple-system, sans-serif" font-size="34" font-weight="800" fill="#ffffff" letter-spacing="-0.5">DEV PATEL</text>
+    <text x="0" y="60" font-family="'JetBrains Mono', monospace, Inter" font-size="15" font-weight="700" fill="#38bdf8">Chief Technology Officer &amp; Co-Founder</text>
+    <rect x="0" y="75" width="145" height="22" rx="4" fill="#0369a1" fill-opacity="0.3" stroke="#0284c7" stroke-width="1"/>
+    <text x="72" y="90" font-family="'JetBrains Mono', monospace, Inter" font-size="10" font-weight="700" fill="#7dd3fc" text-anchor="middle">vCard 4.0 · NFC Ready</text>
+  </g>
+
+  <line x1="60" y1="285" x2="620" y2="285" stroke="#1e293b" stroke-width="1.5"/>
+
+  <g transform="translate(60, 325)" font-family="'JetBrains Mono', monospace, Inter" font-size="12" font-weight="400" fill="#94a3b8">
+    <text x="0" y="14"><tspan fill="#38bdf8">tel:</tspan> +91 98450 78901 / +91 80 4123 4567</text>
+    <text x="0" y="46"><tspan fill="#38bdf8">email:</tspan> dev@nexuscloud.io</text>
+    <text x="0" y="78"><tspan fill="#38bdf8">web:</tspan> https://nexuscloud.io/dev</text>
+    <text x="0" y="110"><tspan fill="#38bdf8">loc:</tspan> Koramangala 4th Block, Bengaluru - 560034</text>
+  </g>
+
+  <g transform="translate(680, 260)">
+    <rect width="150" height="190" rx="12" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" filter="url(#neon-glow)"/>
+    <rect x="15" y="15" width="120" height="120" rx="8" fill="#ffffff"/>
+    <rect x="25" y="25" width="30" height="30" fill="#0a0f1d"/>
+    <rect x="30" y="30" width="20" height="20" fill="#ffffff"/>
+    <rect x="35" y="35" width="10" height="10" fill="#0284c7"/>
+    <rect x="85" y="25" width="30" height="30" fill="#0a0f1d"/>
+    <rect x="90" y="30" width="20" height="20" fill="#ffffff"/>
+    <rect x="95" y="35" width="10" height="10" fill="#0284c7"/>
+    <rect x="25" y="85" width="30" height="30" fill="#0a0f1d"/>
+    <rect x="30" y="90" width="20" height="20" fill="#ffffff"/>
+    <rect x="35" y="95" width="10" height="10" fill="#0284c7"/>
+    <rect x="65" y="30" width="8" height="16" fill="#0284c7"/>
+    <rect x="65" y="55" width="20" height="8" fill="#0284c7"/>
+    <rect x="35" y="65" width="16" height="8" fill="#0284c7"/>
+    <rect x="65" y="85" width="12" height="12" fill="#0284c7"/>
+    <rect x="85" y="70" width="25" height="8" fill="#0284c7"/>
+    <rect x="85" y="95" width="10" height="20" fill="#0284c7"/>
+    <rect x="105" y="90" width="10" height="10" fill="#0284c7"/>
+    <text x="75" y="160" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#38bdf8" text-anchor="middle">SCAN DIGITAL CARD</text>
+    <text x="75" y="174" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="500" fill="#94a3b8" text-anchor="middle">CONNECT ON GITHUB/VCARD</text>
+  </g>
+</svg>

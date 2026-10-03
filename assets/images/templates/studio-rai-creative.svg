@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 890 510" width="890" height="510">
+  <defs>
+    <linearGradient id="creative-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#0f0e26"/>
+    </linearGradient>
+  </defs>
+  <rect width="890" height="510" rx="16" fill="url(#creative-bg)" stroke="#818cf8" stroke-width="2"/>
+  
+  <g transform="translate(60, 55)">
+    <text x="0" y="24" font-family="Inter, -apple-system, sans-serif" font-size="20" font-weight="900" fill="#ffffff" letter-spacing="2">STUDIO RAI DESIGN</text>
+    <text x="0" y="44" font-family="Inter, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#818cf8">Sustainable Architectural Visions &amp; Urbanism</text>
+  </g>
+
+  <g transform="translate(60, 165)">
+    <text x="0" y="32" font-family="Inter, -apple-system, sans-serif" font-size="34" font-weight="800" fill="#ffffff">NEETA RAI</text>
+    <text x="0" y="60" font-family="Inter, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#818cf8">Principal Architect &amp; Urbanist</text>
+  </g>
+
+  <line x1="60" y1="270" x2="620" y2="270" stroke="#312e81" stroke-width="1.5"/>
+
+  <g transform="translate(60, 315)" font-family="Inter, -apple-system, sans-serif" font-size="13" font-weight="400" fill="#c7d2fe">
+    <text x="0" y="14"><tspan fill="#818cf8" font-weight="700">T: </tspan>+91 98450 67890</text>
+    <text x="0" y="50"><tspan fill="#818cf8" font-weight="700">E: </tspan>neeta@studiorai.in</text>
+    <text x="0" y="86"><tspan fill="#818cf8" font-weight="700">W: </tspan>www.studiorai.in</text>
+    <text x="0" y="122"><tspan fill="#818cf8" font-weight="700">A: </tspan>Indiranagar 100ft Road, Bengaluru - 560038</text>
+  </g>
+
+  <g transform="translate(680, 260)">
+    <rect width="150" height="190" rx="12" fill="#0f0e26" stroke="#818cf8" stroke-width="1.5"/>
+    <rect x="15" y="15" width="120" height="120" rx="8" fill="#ffffff"/>
+    <rect x="25" y="25" width="30" height="30" fill="#1e1b4b"/>
+    <rect x="30" y="30" width="20" height="20" fill="#ffffff"/>
+    <rect x="35" y="35" width="10" height="10" fill="#818cf8"/>
+    <rect x="85" y="25" width="30" height="30" fill="#1e1b4b"/>
+    <rect x="90" y="30" width="20" height="20" fill="#ffffff"/>
+    <rect x="95" y="35" width="10" height="10" fill="#818cf8"/>
+    <rect x="25" y="85" width="30" height="30" fill="#1e1b4b"/>
+    <rect x="30" y="90" width="20" height="20" fill="#ffffff"/>
+    <rect x="35" y="95" width="10" height="10" fill="#818cf8"/>
+    <rect x="65" y="30" width="8" height="16" fill="#818cf8"/>
+    <rect x="65" y="55" width="20" height="8" fill="#818cf8"/>
+    <rect x="35" y="65" width="16" height="8" fill="#818cf8"/>
+    <rect x="65" y="85" width="12" height="12" fill="#818cf8"/>
+    <rect x="85" y="70" width="25" height="8" fill="#818cf8"/>
+    <rect x="85" y="95" width="10" height="20" fill="#818cf8"/>
+    <rect x="105" y="90" width="10" height="10" fill="#818cf8"/>
+    <text x="75" y="160" font-family="Inter, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#818cf8" text-anchor="middle">PORTFOLIO VCARD</text>
+    <text x="75" y="174" font-family="Inter, -apple-system, sans-serif" font-size="8" font-weight="500" fill="#c7d2fe" text-anchor="middle">SCAN FOR PROJECTS</text>
+  </g>
+</svg>

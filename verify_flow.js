@@ -1,5 +1,12 @@
 // verify_flow.js
-// Verification of all 6 cases required by the user prompt
+// Verification of all requirements specified in user prompt:
+// 1. Templates as real frontend data entities with unique id, name, category, and previewImage
+// 2. Exact test flow:
+//    - Select Template A → Continue/Submit → Product Specifications → correct Template A image/data appears
+//    - Select Template B → Continue/Submit → Product Specifications → correct Template B image/data appears
+//    - Select Template C → Edit → Template C is still selected
+// 3. Single source of truth: selectedTemplateId
+// 4. Aliases and backward compatibility
 const fs = require('fs');
 const assert = require('assert');
 
@@ -56,6 +63,7 @@ const mockDoc = {
         textContent: '',
         value: '',
         src: '',
+        toDataURL: () => 'data:image/png;base64,mockpng',
         getContext: () => ({
           clearRect: () => {},
           fillRect: () => {},
@@ -95,98 +103,105 @@ eval(studioCode);
 eval(appCode);
 if (listeners['DOMContentLoaded']) listeners['DOMContentLoaded'].forEach(fn => fn());
 
-const CARD_1 = 'tpl-corporate-modern';
-const CARD_2 = 'tpl-neeta-rai';
-const CARD_3 = 'tpl-luxury-gold';
+console.log('--- VERIFYING TEMPLATE ARCHITECTURE & USER REQUIREMENTS ---\n');
 
-console.log('Testing User Requirements:\n');
+// 1. Verify Templates as Real Frontend Data Entities
+console.log('TEST 1: Templates are first-class frontend data entities');
+assert(Array.isArray(window.PRINTSHUBB_DATA.templates), 'PRINTSHUBB_DATA.templates must be an array');
+assert(window.PRINTSHUBB_DATA.templates.length >= 6, 'Must have at least 6 templates');
 
-// CASE 1: Select Card 1 → Submit → Card 1 appears
-console.log('TEST 1: Select Card 1 → Submit → Card 1 appears');
+const templateA = window.PRINTSHUBB_DATA.getTemplate('care-clinic');
+assert(templateA, 'Template A (care-clinic) must exist');
+assert.strictEqual(templateA.id, 'care-clinic', 'Template A id must be care-clinic');
+assert.strictEqual(templateA.name, 'Care Clinic & Healthcare');
+assert.strictEqual(templateA.category, 'Healthcare');
+assert(templateA.previewImage && templateA.previewImage.includes('care-clinic.svg'), 'Template A must have previewImage');
+
+const templateB = window.PRINTSHUBB_DATA.getTemplate('luxury-dark-monogram');
+assert(templateB, 'Template B (luxury-dark-monogram) must exist');
+assert.strictEqual(templateB.id, 'luxury-dark-monogram');
+assert.strictEqual(templateB.name, 'Luxury Dark Monogram');
+assert(templateB.previewImage && templateB.previewImage.includes('luxury-dark-monogram.svg'));
+
+const templateC = window.PRINTSHUBB_DATA.getTemplate('nexus-tech-startup');
+assert(templateC, 'Template C (nexus-tech-startup) must exist');
+assert.strictEqual(templateC.id, 'nexus-tech-startup');
+assert.strictEqual(templateC.name, 'Nexus Tech Startup');
+assert(templateC.previewImage && templateC.previewImage.includes('nexus-tech-startup.svg'));
+
+console.log('  PASSED: Templates verified as rich data entities with id, name, category, and previewImage.');
+
+// 2. Flow Step 1: Select Template A → Continue/Submit → Product Specifications → correct Template A image/data appears
+console.log('\nTEST 2: Select Template A → Continue/Submit → Product Specifications → correct Template A image/data appears');
+window.appRouter.selectTemplate('care-clinic');
+assert.strictEqual(window.appRouter.selectedTemplateId, 'care-clinic', 'selectedTemplateId must be care-clinic');
+assert.strictEqual(mockWindow.sessionStorage.getItem('printhubbs_selected_template'), 'care-clinic', 'sessionStorage must store care-clinic');
+
+// Open Product Specifications (PDP)
 window.appRouter.navigate('pdp', 'standard-visiting-cards');
-window.appRouter.selectCard(CARD_1);
-assert.strictEqual(window.appRouter.selectedCardId, CARD_1, 'selectedCardId must be Card 1');
-window.appRouter.launchStudioWithSelectedCard();
-assert.strictEqual(window.appRouter.currentView, 'studio', 'Must navigate to studio');
-assert.strictEqual(window.studioEngine.state.templateId, CARD_1, 'Studio canvas must display Card 1');
-console.log('  PASSED: Card 1 successfully loaded into studio on submit.');
+const pdpImageA = mockDoc.getElementById('pdp-preview-image');
+const pdpNameA = mockDoc.getElementById('pdp-selected-template-name');
+assert.strictEqual(pdpImageA.src, templateA.previewImage, 'PDP preview image must show Template A preview image');
+assert(pdpNameA.textContent.includes('Care Clinic'), 'PDP template name must show Care Clinic');
+console.log('  PASSED: Product Specifications rendered Care Clinic template previewImage and data.');
 
-// CASE 2: Select Card 2 → Submit → Card 2 appears
-console.log('\nTEST 2: Select Card 2 → Submit → Card 2 appears');
+// 3. Flow Step 2: Select Template B → Continue/Submit → Product Specifications → correct Template B image/data appears
+console.log('\nTEST 3: Select Template B → Continue/Submit → Product Specifications → correct Template B image/data appears');
+window.appRouter.selectTemplate('luxury-dark-monogram');
+assert.strictEqual(window.appRouter.selectedTemplateId, 'luxury-dark-monogram', 'selectedTemplateId must be luxury-dark-monogram');
+
 window.appRouter.navigate('pdp', 'standard-visiting-cards');
-window.appRouter.selectCard(CARD_2);
-assert.strictEqual(window.appRouter.selectedCardId, CARD_2, 'selectedCardId must be Card 2');
-window.appRouter.launchStudioWithSelectedCard();
-assert.strictEqual(window.studioEngine.state.templateId, CARD_2, 'Studio canvas must display Card 2');
-console.log('  PASSED: Card 2 successfully loaded into studio on submit.');
+const pdpImageB = mockDoc.getElementById('pdp-preview-image');
+const pdpNameB = mockDoc.getElementById('pdp-selected-template-name');
+assert.strictEqual(pdpImageB.src, templateB.previewImage, 'PDP preview image must show Template B preview image');
+assert(pdpNameB.textContent.includes('Luxury Dark Monogram'), 'PDP template name must show Luxury Dark Monogram');
+console.log('  PASSED: Product Specifications rendered Luxury Dark Monogram template previewImage and data.');
 
-// CASE 3: Select Card 3 → Submit → Card 3 appears
-console.log('\nTEST 3: Select Card 3 → Submit → Card 3 appears');
+// 4. Flow Step 3: Select Template C → Edit → Template C is still selected
+console.log('\nTEST 4: Select Template C → Edit → Template C is still selected');
+window.appRouter.selectTemplate('nexus-tech-startup');
+assert.strictEqual(window.appRouter.selectedTemplateId, 'nexus-tech-startup');
+
+// Launch Studio and save custom project with Template C
+window.appRouter.launchStudioWithSelectedTemplate();
+assert.strictEqual(window.appRouter.currentView, 'studio', 'Must be in studio');
+assert.strictEqual(window.studioEngine.state.templateId, 'nexus-tech-startup', 'Studio must load Template C');
+window.studioEngine.state.fields.company = 'NEXUS CLOUD SYSTEMS AI LAB';
+
+// Save project
+window.appRouter.saveCurrentProject();
+const savedProject = window.appRouter.myProjects[0];
+assert.strictEqual(savedProject.templateId, 'nexus-tech-startup', 'Saved project must retain templateId');
+
+// Switch to Template A temporarily
+window.appRouter.selectTemplate('care-clinic');
+assert.strictEqual(window.appRouter.selectedTemplateId, 'care-clinic');
+
+// Now click Edit on the saved project (Template C)
+window.appRouter.loadProjectIntoStudio(savedProject.id);
+assert.strictEqual(window.appRouter.selectedTemplateId, 'nexus-tech-startup', 'Template C must remain selected on edit');
+assert.strictEqual(window.studioEngine.state.templateId, 'nexus-tech-startup', 'Studio must display Template C on edit');
+assert.strictEqual(window.studioEngine.state.fields.company, 'NEXUS CLOUD SYSTEMS AI LAB', 'Custom edits must be preserved');
+
+// Open Product Specifications again after editing Template C
 window.appRouter.navigate('pdp', 'standard-visiting-cards');
-window.appRouter.selectCard(CARD_3);
-assert.strictEqual(window.appRouter.selectedCardId, CARD_3, 'selectedCardId must be Card 3');
-window.appRouter.launchStudioWithSelectedCard();
-assert.strictEqual(window.studioEngine.state.templateId, CARD_3, 'Studio canvas must display Card 3');
-console.log('  PASSED: Card 3 successfully loaded into studio on submit.');
+const pdpImageC = mockDoc.getElementById('pdp-preview-image');
+assert.strictEqual(pdpImageC.src, templateC.previewImage, 'Product Specifications must display Template C previewImage');
+console.log('  PASSED: Template C remained selected across project save, edit, and Product Specifications navigation.');
 
-// CASE 4: Select Card 2 → Edit → Card 2 remains selected
-console.log('\nTEST 4: Select Card 2 → Edit → Card 2 remains selected');
-// Create a saved project with Card 2
-const projectCard2 = {
-  id: 'proj_card_2',
-  productId: 'standard-visiting-cards',
-  cardId: CARD_2,
-  title: 'Neeta Rai Card Project',
-  designState: {
-    templateId: CARD_2,
-    layout: 'minimal-clean',
-    bgColor: '#ffffff',
-    textColor: '#000000',
-    fields: { company: 'NEETA DESIGN STUDIO', name: 'Neeta Rai' }
-  }
-};
-window.appRouter.myProjects = [projectCard2];
-window.appRouter.loadProjectIntoStudio('proj_card_2');
-// Simulate async hashchange
-window.dispatchEvent('hashchange');
-assert.strictEqual(window.appRouter.selectedCardId, CARD_2, 'selectedCardId must remain Card 2 after edit');
-assert.strictEqual(window.studioEngine.state.templateId, CARD_2, 'Studio templateId must be Card 2');
-assert.strictEqual(window.studioEngine.state.fields.company, 'NEETA DESIGN STUDIO', 'Custom fields must be preserved');
-console.log('  PASSED: Card 2 remained selected and custom fields were preserved after clicking Edit.');
+// 5. Flow Step 5: Backwards compatibility with alias IDs
+console.log('\nTEST 5: Backward compatibility with alias IDs (tpl-medical-clinic)');
+window.appRouter.selectCard('tpl-medical-clinic');
+assert.strictEqual(window.appRouter.selectedTemplateId, 'care-clinic', 'tpl-medical-clinic must resolve to care-clinic');
+console.log('  PASSED: Alias IDs cleanly resolve to the canonical data entity.');
 
-// CASE 5: Change Card 2 → Card 1 → Edit → Card 1 appears
-console.log('\nTEST 5: Change Card 2 → Card 1 → Edit → Card 1 appears');
-const projectCard1 = {
-  id: 'proj_card_1',
-  productId: 'standard-visiting-cards',
-  cardId: CARD_1,
-  title: 'Corporate Executive Card Project',
-  designState: {
-    templateId: CARD_1,
-    layout: 'executive-left',
-    bgColor: '#000000',
-    textColor: '#ffffff',
-    fields: { company: 'GLOBAL VENTURES INC', name: 'Alexander Cross' }
-  }
-};
-window.appRouter.myProjects.unshift(projectCard1);
-window.appRouter.loadProjectIntoStudio('proj_card_1');
-window.dispatchEvent('hashchange');
-assert.strictEqual(window.appRouter.selectedCardId, CARD_1, 'selectedCardId must be Card 1');
-assert.strictEqual(window.studioEngine.state.templateId, CARD_1, 'Studio templateId must be Card 1');
-assert.strictEqual(window.studioEngine.state.fields.company, 'GLOBAL VENTURES INC', 'Card 1 project fields must appear');
-console.log('  PASSED: Changed to Card 1, clicked Edit, and Card 1 appeared properly.');
-
-// CASE 6: Refresh/re-render should not unexpectedly change the selected card
-console.log('\nTEST 6: Refresh/re-render does not unexpectedly change selected card');
-window.appRouter.selectCard(CARD_3);
-assert.strictEqual(window.appRouter.selectedCardId, CARD_3);
-// Simulate re-rendering PDP options
+// 6. Flow Step 6: Refresh / re-render retains selected template
+console.log('\nTEST 6: Refresh/re-render does not unexpectedly reset selected template');
+window.appRouter.selectTemplate('luxury-dark-monogram');
 window.appRouter.renderPDPOptions();
-assert.strictEqual(window.appRouter.selectedCardId, CARD_3, 'Re-render must keep Card 3');
-// Simulate browser page refresh by constructing a new app instance
+assert.strictEqual(window.appRouter.selectedTemplateId, 'luxury-dark-monogram', 'Re-render keeps template');
 const refreshedApp = new window.PrinthubbsApp();
-assert.strictEqual(refreshedApp.selectedCardId, CARD_3, 'Page refresh must keep Card 3 from sessionStorage');
-console.log('  PASSED: Re-render and refresh reliably preserve the selected card.');
+assert.strictEqual(refreshedApp.selectedTemplateId, 'luxury-dark-monogram', 'Refresh reloads template from sessionStorage');
+console.log('  PASSED: Re-render and refresh reliably preserve the selected template.');
 
-console.log('\nALL 6 VERIFICATION TEST CASES PASSED SUCCESSFULLY!');
+console.log('\nALL VERIFICATION TESTS PASSED SUCCESSFULLY!');

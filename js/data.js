@@ -1523,125 +1523,15 @@ const PRINTSHUBB_DATA = {
     }
   ],
 
-  // --- STUDIO TEMPLATES FOR INSTANT PERSONALIZATION ---
-  studioTemplates: [
+  // --- SINGLE SOURCE OF TRUTH FOR TEMPLATES ---
+  templates: [
     {
-      id: 'tpl-corporate-modern',
-      name: 'Modern Executive (Atelier)',
-      category: 'visiting-cards',
-      theme: 'Corporate',
-      layout: 'executive-left',
-      bgColor: '#000000',
-      accentColor: '#ffffff',
-      textColor: '#ffffff',
-      secondaryTextColor: '#a3a3a3',
-      fontHeading: 'Space Grotesk',
-      fontBody: 'Hanken Grotesk',
-      backBgColor: '#1e293b',
-      backPattern: 'minimal-logo',
-      qrPosition: { align: 'bottom-right', size: 140 },
-      logoStyle: 'monogram',
-      fields: {
-        company: 'PRINTHUBBS ENTERPRISES',
-        tagline: 'Precision Web-to-Print Atelier',
-        name: 'ARJUN SHARMA',
-        title: 'Creative Director & Founder',
-        phone: '+91 98200 12345',
-        email: 'arjun@printhubbs.in',
-        website: 'www.printhubbs.in',
-        address: 'Bandra-Kurla Complex, Mumbai - 400051',
-        qrUrl: 'https://printhubbs.in/profile/arjun'
-      }
-    },
-    {
-      id: 'tpl-neeta-rai',
-      name: 'Neeta Rai Classic (As on Home)',
-      category: 'visiting-cards',
-      theme: 'Clean Minimal',
-      layout: 'minimal-clean',
-      bgColor: '#ffffff',
-      accentColor: '#000000',
-      textColor: '#000000',
-      secondaryTextColor: '#595959',
-      fontHeading: 'Inter',
-      fontBody: 'Inter',
-      backBgColor: '#0f172a',
-      backPattern: 'minimal-logo',
-      qrPosition: { align: 'bottom-right', size: 135 },
-      logoStyle: 'minimal',
-      fields: {
-        company: 'PRINTHUBBS STUDIO',
-        tagline: 'Contemporary Design & Print',
-        name: 'NEETA RAI',
-        title: 'Lead Product Designer',
-        phone: '+91 98201 54321',
-        email: 'neeta.rai@printhubbs.in',
-        website: 'www.printhubbs.in',
-        address: 'BKC, Mumbai - 400051',
-        qrUrl: 'https://printhubbs.in'
-      }
-    },
-    {
-      id: 'tpl-luxury-gold',
-      name: 'Luxury Dark Monogram',
-      category: 'visiting-cards',
-      theme: 'Luxury',
-      layout: 'luxury-gold',
-      bgColor: '#131b2e',
-      accentColor: '#f59e0b',
-      textColor: '#ffffff',
-      secondaryTextColor: '#94a3b8',
-      fontHeading: 'Inter',
-      fontBody: 'JetBrains Mono',
-      backBgColor: '#0b0f19',
-      backPattern: 'minimal-logo',
-      qrPosition: { align: 'bottom-right', size: 140 },
-      logoStyle: 'crest',
-      fields: {
-        company: 'ROYAL FINDS JEWELLERY',
-        tagline: 'Handcrafted Heritage Luxury',
-        name: 'KABIR MEHTA',
-        title: 'Managing Partner',
-        phone: '+91 99300 44556',
-        email: 'kabir@royalfinds.com',
-        website: 'www.royalfinds.com',
-        address: 'Park Street, Kolkata - 700016',
-        qrUrl: 'https://royalfinds.com'
-      }
-    },
-    {
-      id: 'tpl-tech-nexus',
-      name: 'Nexus Tech Startup vCard',
-      category: 'visiting-cards',
-      theme: 'Tech SaaS',
-      layout: 'tech-modern',
-      bgColor: '#0a0f1d',
-      accentColor: '#0284c7',
-      textColor: '#ffffff',
-      secondaryTextColor: '#94a3b8',
-      fontHeading: 'Inter',
-      fontBody: 'JetBrains Mono',
-      backBgColor: '#050914',
-      backPattern: 'minimal-logo',
-      qrPosition: { align: 'bottom-right', size: 140 },
-      logoStyle: 'code',
-      fields: {
-        company: 'NEXUS CLOUD SYSTEMS',
-        tagline: 'Autonomous AI Infrastructure',
-        name: 'DEV PATEL',
-        title: 'Chief Technology Officer',
-        phone: '+91 98450 78901',
-        email: 'dev@nexuscloud.io',
-        website: 'https://nexuscloud.io',
-        address: 'Koramangala 4th Block, Bengaluru - 560034',
-        qrUrl: 'https://nexuscloud.io/dev'
-      }
-    },
-    {
-      id: 'tpl-medical-clinic',
-      name: 'Care Clinic & Health Practice',
-      category: 'visiting-cards',
+      id: 'care-clinic',
+      name: 'Care Clinic & Healthcare',
+      category: 'Healthcare',
       theme: 'Healthcare',
+      previewImage: 'assets/images/templates/care-clinic.svg',
+      aliases: ['care-clinic', 'tpl-medical-clinic'],
       layout: 'healthcare-cross',
       bgColor: '#f0fdf4',
       accentColor: '#059669',
@@ -1666,10 +1556,132 @@ const PRINTSHUBB_DATA = {
       }
     },
     {
-      id: 'tpl-creative-studio',
+      id: 'luxury-dark-monogram',
+      name: 'Luxury Dark Monogram',
+      category: 'Luxury',
+      theme: 'Luxury',
+      previewImage: 'assets/images/templates/luxury-dark-monogram.svg',
+      aliases: ['luxury-dark-monogram', 'tpl-luxury-gold'],
+      layout: 'luxury-gold',
+      bgColor: '#131b2e',
+      accentColor: '#f59e0b',
+      textColor: '#ffffff',
+      secondaryTextColor: '#94a3b8',
+      fontHeading: 'Inter',
+      fontBody: 'JetBrains Mono',
+      backBgColor: '#0b0f19',
+      backPattern: 'minimal-logo',
+      qrPosition: { align: 'bottom-right', size: 140 },
+      logoStyle: 'crest',
+      fields: {
+        company: 'ROYAL FINDS JEWELLERY',
+        tagline: 'Handcrafted Heritage Luxury',
+        name: 'KABIR MEHTA',
+        title: 'Managing Partner',
+        phone: '+91 99300 44556',
+        email: 'kabir@royalfinds.com',
+        website: 'www.royalfinds.com',
+        address: 'Park Street, Kolkata - 700016',
+        qrUrl: 'https://royalfinds.com'
+      }
+    },
+    {
+      id: 'nexus-tech-startup',
+      name: 'Nexus Tech Startup',
+      category: 'Technology',
+      theme: 'Tech SaaS',
+      previewImage: 'assets/images/templates/nexus-tech-startup.svg',
+      aliases: ['nexus-tech-startup', 'tpl-tech-nexus'],
+      layout: 'tech-modern',
+      bgColor: '#0a0f1d',
+      accentColor: '#0284c7',
+      textColor: '#ffffff',
+      secondaryTextColor: '#94a3b8',
+      fontHeading: 'Inter',
+      fontBody: 'JetBrains Mono',
+      backBgColor: '#050914',
+      backPattern: 'minimal-logo',
+      qrPosition: { align: 'bottom-right', size: 140 },
+      logoStyle: 'code',
+      fields: {
+        company: 'NEXUS CLOUD SYSTEMS',
+        tagline: 'Autonomous AI Infrastructure',
+        name: 'DEV PATEL',
+        title: 'Chief Technology Officer',
+        phone: '+91 98450 78901',
+        email: 'dev@nexuscloud.io',
+        website: 'https://nexuscloud.io',
+        address: 'Koramangala 4th Block, Bengaluru - 560034',
+        qrUrl: 'https://nexuscloud.io/dev'
+      }
+    },
+    {
+      id: 'modern-executive',
+      name: 'Modern Executive (Atelier)',
+      category: 'Corporate',
+      theme: 'Corporate',
+      previewImage: 'assets/images/templates/modern-executive.svg',
+      aliases: ['modern-executive', 'tpl-corporate-modern'],
+      layout: 'executive-left',
+      bgColor: '#000000',
+      accentColor: '#ffffff',
+      textColor: '#ffffff',
+      secondaryTextColor: '#a3a3a3',
+      fontHeading: 'Space Grotesk',
+      fontBody: 'Hanken Grotesk',
+      backBgColor: '#1e293b',
+      backPattern: 'minimal-logo',
+      qrPosition: { align: 'bottom-right', size: 140 },
+      logoStyle: 'monogram',
+      fields: {
+        company: 'PRINTHUBBS ENTERPRISES',
+        tagline: 'Precision Web-to-Print Atelier',
+        name: 'ARJUN SHARMA',
+        title: 'Creative Director & Founder',
+        phone: '+91 98200 12345',
+        email: 'arjun@printhubbs.in',
+        website: 'www.printhubbs.in',
+        address: 'Bandra-Kurla Complex, Mumbai - 400051',
+        qrUrl: 'https://printhubbs.in/profile/arjun'
+      }
+    },
+    {
+      id: 'neeta-rai-classic',
+      name: 'Neeta Rai Classic (As on Home)',
+      category: 'Clean Minimal',
+      theme: 'Clean Minimal',
+      previewImage: 'assets/images/templates/neeta-rai-classic.svg',
+      aliases: ['neeta-rai-classic', 'tpl-neeta-rai'],
+      layout: 'minimal-clean',
+      bgColor: '#ffffff',
+      accentColor: '#000000',
+      textColor: '#000000',
+      secondaryTextColor: '#595959',
+      fontHeading: 'Inter',
+      fontBody: 'Inter',
+      backBgColor: '#0f172a',
+      backPattern: 'minimal-logo',
+      qrPosition: { align: 'bottom-right', size: 135 },
+      logoStyle: 'minimal',
+      fields: {
+        company: 'PRINTHUBBS STUDIO',
+        tagline: 'Contemporary Design & Print',
+        name: 'NEETA RAI',
+        title: 'Lead Product Designer',
+        phone: '+91 98201 54321',
+        email: 'neeta.rai@printhubbs.in',
+        website: 'www.printhubbs.in',
+        address: 'BKC, Mumbai - 400051',
+        qrUrl: 'https://printhubbs.in'
+      }
+    },
+    {
+      id: 'studio-rai-creative',
       name: 'Studio Rai Design (Creative)',
-      category: 'visiting-cards',
+      category: 'Creative Design',
       theme: 'Creative Design',
+      previewImage: 'assets/images/templates/studio-rai-creative.svg',
+      aliases: ['studio-rai-creative', 'tpl-creative-studio'],
       layout: 'creative-bold',
       bgColor: '#1e1b4b',
       accentColor: '#818cf8',
@@ -1694,6 +1706,11 @@ const PRINTSHUBB_DATA = {
       }
     }
   ],
+  // Helper to retrieve a template entity by ID or alias
+  getTemplate(id) {
+    if (!id) return null;
+    return this.templates.find(t => t.id === id || (t.aliases && t.aliases.includes(id))) || null;
+  },
 
   deliveryPincodes: {
     sameDayPincodes: ['400', '560', '700'],
@@ -1711,4 +1728,5 @@ const PRINTSHUBB_DATA = {
   }
 };
 
+PRINTSHUBB_DATA.studioTemplates = PRINTSHUBB_DATA.templates;
 window.PRINTSHUBB_DATA = PRINTSHUBB_DATA;

@@ -666,6 +666,49 @@ const PRINTSHUBB_DATA = {
       finishes: [{ id: 'kraft-ink', name: 'Opaque Ink Stamping', priceAdd: 0 }],
       sides: [{ id: 'single', name: 'Single-Sided', priceMult: 1.0 }, { id: 'double', name: 'Double-Sided', priceMult: 1.35 }]
     },
+    {
+      id: 'id-cards-badges',
+      name: 'ID Cards & Badges',
+      fullName: 'Custom ID Cards & Badges',
+      category: 'visiting-cards',
+      categoryLabel: 'Visiting Cards & Badges',
+      subtitle: 'Durable PVC & tearproof laminated cards with lanyard slot and high-res color photo printing',
+      basePrice: 150,
+      pricePill: 'BUY 10 @ Rs.150',
+      priceRange: '10 from ₹150.00',
+      pricePerUnit: '(₹15.00 each)',
+      rating: 4.8,
+      reviewCount: 312,
+      image: 'assets/images/products/id-cards-badges.jpg',
+      dimensions: '8.6 cm × 5.4 cm (CR80)',
+      customizable: true,
+      popular: true,
+      trending: true,
+      quantities: [
+        { qty: 10, price: 150, perUnit: '15.00', popular: true },
+        { qty: 25, price: 325, perUnit: '13.00' },
+        { qty: 50, price: 550, perUnit: '11.00' },
+        { qty: 100, price: 900, perUnit: '9.00' },
+        { qty: 250, price: 2000, perUnit: '8.00' }
+      ],
+      paperStocks: [
+        { id: 'pvc-cr80', name: 'Premium Solid PVC (CR80 30 Mil)', gsm: '760 Micron', priceMult: 1.0, desc: 'ISO 7810 compliant durable waterproof plastic card' },
+        { id: 'synthetic-non-tear', name: 'Tearproof Laminated Synthetic', gsm: '400 GSM', priceMult: 0.85, desc: 'Flexible lightweight weatherproof card' }
+      ],
+      corners: [
+        { id: 'rounded-corner', name: 'Rounded Corners (CR80 Standard)', priceAdd: 0 },
+        { id: 'standard-square', name: 'Standard Square Corners', priceAdd: 0 }
+      ],
+      finishes: [
+        { id: 'glossy-laminate', name: 'High-Gloss Protective Overlay', priceAdd: 0 },
+        { id: 'matte-anti-scratch', name: 'Matte Anti-Scratch Lamination', priceAdd: 20 }
+      ],
+      sides: [
+        { id: 'single-sided', name: 'Single-Sided Print', priceMult: 1.0 },
+        { id: 'double-sided', name: 'Double-Sided Print (Front Photo + Back Rules)', priceMult: 1.4 }
+      ],
+      defaultTemplateId: 'tpl-corporate-modern'
+    },
 
     // --- 2. APPAREL & MERCH ---
     {

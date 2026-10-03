@@ -1318,11 +1318,15 @@ class PrinthubbsApp {
     this.selectedTemplateId = tpl.id;
     this.pdpOptions.templateId = tpl.id;
     sessionStorage.setItem('printhubbs_selected_template', tpl.id);
+    if (this.selectedProduct) {
+      history.replaceState(null, '', `#pdp/${this.selectedProduct.id}?template=${tpl.id}`);
+    }
     this.renderPDPOptions();
     window.showToast(`Selected template: ${tpl.name}`, 'info');
   }
 
   launchStudioWithSelectedTemplate() {
+    this.activeProjectEdit = null;
     const product = this.selectedProduct || window.PRINTSHUBB_DATA.products[0];
     const templateId = this.selectedTemplateId || (this.pdpOptions && this.pdpOptions.templateId) || 'tpl-corporate-modern';
     this.navigate('studio', {
@@ -1352,7 +1356,10 @@ class PrinthubbsApp {
       window.studioEngine.init(canvasEl);
       window.studioEngine.setProduct(product);
 
-      if (targetTemplate) {
+      if (this.activeProjectEdit && this.activeProjectEdit.designState) {
+        // Preserve saved project custom design rather than wiping with clean template
+        window.studioEngine.state = JSON.parse(JSON.stringify(this.activeProjectEdit.designState));
+      } else if (targetTemplate) {
         this.selectedTemplateId = targetTemplate.id;
         sessionStorage.setItem('printhubbs_selected_template', targetTemplate.id);
         window.studioEngine.applyTemplate(targetTemplate);
@@ -1367,7 +1374,7 @@ class PrinthubbsApp {
     }
 
     // Render templates list in studio sidebar with active template highlighted
-    const activeId = targetTemplate ? targetTemplate.id : (window.PRINTSHUBB_DATA.studioTemplates[0] ? window.PRINTSHUBB_DATA.studioTemplates[0].id : null);
+    const activeId = (this.activeProjectEdit && this.activeProjectEdit.designState && this.activeProjectEdit.designState.templateId) || (targetTemplate ? targetTemplate.id : (window.PRINTSHUBB_DATA.studioTemplates[0] ? window.PRINTSHUBB_DATA.studioTemplates[0].id : null));
     this.renderStudioTemplatesList(activeId);
   }
 
@@ -1395,6 +1402,7 @@ class PrinthubbsApp {
   }
 
   applyStudioTemplate(tplId) {
+    this.activeProjectEdit = null;
     const tpl = window.PRINTSHUBB_DATA.studioTemplates.find(t => t.id === tplId);
     if (tpl) {
       this.selectedTemplateId = tpl.id;
@@ -1725,11 +1733,21 @@ class PrinthubbsApp {
     const proj = this.myProjects.find(p => p.id === projId);
     if (!proj) return;
     const product = window.PRINTSHUBB_DATA.products.find(p => p.id === proj.productId) || window.PRINTSHUBB_DATA.products[0];
-    this.navigate('studio', product);
+    const projTemplateId = (proj.designState && proj.designState.templateId) || this.selectedTemplateId || 'tpl-corporate-modern';
+
+    this.activeProjectEdit = proj;
+
+    // Navigate to studio without triggering hashchange reload so custom design is not overwritten
+    this.navigate('studio', { productId: product.id, templateId: projTemplateId }, false);
+    history.replaceState(null, '', `#studio/${product.id}?template=${projTemplateId}`);
+
     if (proj.designState) {
+      this.selectedTemplateId = projTemplateId;
+      sessionStorage.setItem('printhubbs_selected_template', projTemplateId);
       window.studioEngine.state = JSON.parse(JSON.stringify(proj.designState));
       window.studioEngine.syncFormControls();
       window.studioEngine.render();
+      this.renderStudioTemplatesList(projTemplateId);
       window.showToast(`Loaded "${proj.title}" into studio`, 'success');
     }
   }

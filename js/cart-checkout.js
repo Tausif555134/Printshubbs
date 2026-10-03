@@ -40,7 +40,10 @@ class CartAndCheckoutEngine {
     // Generate unique ID
     const cartItem = {
       id: 'item_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
-      productId: item.productId,
+      productId: item.productId || (item.selectedCard && item.selectedCard.id),
+      cardId: item.cardId || (item.selectedCard && item.selectedCard.id) || item.productId,
+      selectedCard: item.selectedCard || null,
+      matter: item.matter || '',
       title: item.title,
       category: item.category || 'Printing',
       thumbnail: item.thumbnail,
@@ -225,10 +228,14 @@ class CartAndCheckoutEngine {
             <div class="text-[11px] text-[#595959] space-y-0.5 mb-2 font-mono-spec">
               <div>Qty: <strong class="text-black">${item.quantity}</strong> ${item.size ? `| Size: <strong class="text-black">${item.size}</strong>` : ''} ${item.color ? `| Color: <span class="inline-block w-2.5 h-2.5 rounded-full border border-gray-400 align-middle" style="background-color:${item.color};"></span>` : ''} ${item.shape ? `| Shape: <strong class="text-black capitalize">${item.shape}</strong>` : ''}</div>
               <div>${item.paperStock || ''} ${item.corners && item.corners !== 'Standard Square' ? '• ' + item.corners : ''}</div>
+              ${item.matter ? `<div class="text-[10px] text-[#595959] truncate pt-0.5">Matter: <span class="text-black font-sans font-medium">${item.matter.replace(/\n/g, ' • ')}</span></div>` : ''}
             </div>
-            <div class="flex items-center justify-between">
-              <span class="font-mono-spec font-bold text-xs text-black">₹${item.totalPrice.toLocaleString('en-IN')}</span>
-              <span class="text-[10px] text-[#595959] font-mono-spec">(₹${item.unitPrice}/unit)</span>
+            <div class="flex items-center justify-between pt-1 border-t border-[#f0f0f0]">
+              <div>
+                <span class="font-mono-spec font-bold text-xs text-black">₹${item.totalPrice.toLocaleString('en-IN')}</span>
+                <span class="text-[10px] text-[#595959] font-mono-spec">(₹${item.unitPrice}/unit)</span>
+              </div>
+              <button onclick="window.appRouter.editCardOrder('${item.id}'); window.appRouter.closeCartDrawer();" class="text-[11px] font-bold text-black underline hover:text-[#595959] transition">Edit</button>
             </div>
           </div>
         </div>

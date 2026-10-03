@@ -91,26 +91,31 @@ class PrintStudioEngine {
     this.updateProofingBar();
   }
 
-  applyTemplate(template) {
-    if (!template) return;
-    this.state.templateId = template.id;
-    this.state.layout = template.layout || 'executive-left';
-    this.state.bgColor = template.bgColor || '#000000';
-    this.state.accentColor = template.accentColor || '#ffffff';
-    this.state.textColor = template.textColor || '#ffffff';
-    this.state.secondaryTextColor = template.secondaryTextColor || '#a3a3a3';
-    this.state.fontHeading = template.fontHeading || 'Inter';
-    this.state.fontBody = template.fontBody || 'Inter';
-    this.state.backBgColor = template.backBgColor || '#1e293b';
-    this.state.backPattern = template.backPattern || 'minimal-logo';
-    this.state.qrPosition = template.qrPosition ? { ...template.qrPosition } : { align: 'bottom-right', size: 140 };
-    this.state.logoStyle = template.logoStyle || 'monogram';
-    if (template.fields) {
-      this.state.fields = { ...template.fields };
+  applyCard(card) {
+    if (!card) return;
+    this.state.cardId = card.id;
+    this.state.templateId = card.id;
+    this.state.layout = card.layout || 'executive-left';
+    this.state.bgColor = card.bgColor || '#000000';
+    this.state.accentColor = card.accentColor || '#ffffff';
+    this.state.textColor = card.textColor || '#ffffff';
+    this.state.secondaryTextColor = card.secondaryTextColor || '#a3a3a3';
+    this.state.fontHeading = card.fontHeading || 'Inter';
+    this.state.fontBody = card.fontBody || 'Inter';
+    this.state.backBgColor = card.backBgColor || '#1e293b';
+    this.state.backPattern = card.backPattern || 'minimal-logo';
+    this.state.qrPosition = card.qrPosition ? { ...card.qrPosition } : { align: 'bottom-right', size: 140 };
+    this.state.logoStyle = card.logoStyle || 'monogram';
+    if (card.fields) {
+      this.state.fields = { ...card.fields };
     }
     this.generateQRMatrix();
     this.syncFormControls();
     this.render();
+  }
+
+  applyTemplate(card) {
+    this.applyCard(card);
   }
 
   updateField(fieldName, value) {

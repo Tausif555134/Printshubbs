@@ -851,11 +851,35 @@
         </div>
         <!-- Carousel Row -->
         <div id="popular-scroll-container" class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
-          <!-- Item 1: Standard Visiting Cards -->
-          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'standard-visiting-cards')">
+          <!-- Card A: Care Clinic -->
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.selectCard('care-clinic')">
             <span class="product-price-pill self-start mb-2">BUY 100 @ Rs.200</span>
-            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
-              <img alt="Standard Visiting Cards" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/standard-visiting-cards.jpg" />
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden p-2">
+              <img alt="Care Clinic Visiting Card" class="w-full h-full object-contain img-hq" loading="lazy" decoding="async" src="assets/images/templates/care-clinic.svg" />
+            </div>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Care Clinic Visiting Card</h3>
+          </article>
+          <!-- Card B: Luxury Dark Monogram -->
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.selectCard('luxury-dark-monogram')">
+            <span class="product-price-pill self-start mb-2">BUY 100 @ Rs.250</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden p-2">
+              <img alt="Luxury Dark Monogram Card" class="w-full h-full object-contain img-hq" loading="lazy" decoding="async" src="assets/images/templates/luxury-dark-monogram.svg" />
+            </div>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Luxury Dark Monogram</h3>
+          </article>
+          <!-- Card C: Nexus Tech Startup -->
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.selectCard('nexus-tech-startup')">
+            <span class="product-price-pill self-start mb-2">BUY 100 @ Rs.220</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden p-2">
+              <img alt="Nexus Tech Startup Card" class="w-full h-full object-contain img-hq" loading="lazy" decoding="async" src="assets/images/templates/nexus-tech-startup.svg" />
+            </div>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Nexus Tech Startup</h3>
+          </article>
+          <!-- Item 1: Standard Visiting Cards -->
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.selectCard('care-clinic')">
+            <span class="product-price-pill self-start mb-2">BUY 100 @ Rs.200</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden p-2">
+              <img alt="Standard Visiting Cards" class="w-full h-full object-contain img-hq" loading="lazy" decoding="async" src="assets/images/templates/care-clinic.svg" />
             </div>
             <h3 class="text-xs sm:text-sm font-bold text-black">Standard Visiting Cards</h3>
           </article>
@@ -1355,17 +1379,17 @@
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="pdp-action-buttons">
-            <button id="pdp-btn-customize" onclick="window.appRouter.launchStudioWithSelectedCard()" class="btn-primary py-3 px-4 text-xs font-bold flex items-center justify-center gap-2 shadow-md">
+            <button id="pdp-btn-submit-matter" onclick="window.appRouter.submitCardOrder()" class="btn-primary py-3 px-4 text-xs font-bold flex items-center justify-center gap-2 shadow-md sm:col-span-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              <span>Submit Order with This Card &amp; Matter</span>
+            </button>
+            <button id="pdp-btn-customize" onclick="window.appRouter.launchStudioWithSelectedCard()" class="btn-secondary py-2.5 px-4 text-xs font-bold flex items-center justify-center gap-2 shadow-sm">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
               <span>Customize in Design Studio</span>
             </button>
-            <button id="pdp-btn-submit-matter" onclick="window.appRouter.launchStudioWithSelectedCard()" class="btn-primary py-3 px-4 text-xs font-bold flex items-center justify-center gap-2 shadow-md">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-              <span>Choose Design &amp; Submit Matter</span>
-            </button>
-            <button id="pdp-btn-add-cart" onclick="window.appRouter.addPDPToCart()" class="btn-secondary py-3 px-4 text-xs font-bold flex items-center justify-center gap-2 shadow-sm sm:col-span-2">
+            <button id="pdp-btn-add-cart" onclick="window.appRouter.submitCardOrder()" class="btn-secondary py-2.5 px-4 text-xs font-bold flex items-center justify-center gap-2 shadow-sm">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-              <span>Add to Cart with Selected Specs</span>
+              <span>Add to Cart with Specs</span>
             </button>
           </div>
         </div>
@@ -1406,13 +1430,13 @@
             <div id="pdp-shapes-container" class="grid grid-cols-2 sm:grid-cols-3 gap-2"></div>
           </div>
 
-          <!-- Business Card Design Template Selector (for visiting cards) -->
-          <div id="pdp-template-section" class="hidden">
+          <!-- Printing Matter / Text Input Section -->
+          <div id="pdp-matter-section" class="pt-2">
             <div class="flex items-center justify-between mb-2">
-              <label class="block text-xs font-bold text-black uppercase tracking-wider">Select Design Template</label>
-              <span id="pdp-selected-template-name" class="text-xs text-[#595959] font-semibold"></span>
+              <label for="pdp-matter-input" class="block text-xs font-bold text-black uppercase tracking-wider">Printing Matter / Text</label>
+              <span class="text-[11px] text-[#595959]">Text to print on this card</span>
             </div>
-            <div id="pdp-templates-container" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5"></div>
+            <textarea id="pdp-matter-input" rows="4" placeholder="Enter name, title, company, phone, email, address to be printed on this card..." class="w-full input-atelier p-3 text-xs leading-relaxed font-sans" oninput="window.appRouter.setPDPMatter(this.value)"></textarea>
           </div>
 
           <!-- 1. Quantity Selector -->
@@ -1520,12 +1544,7 @@
 
         <!-- 5 Columns Tool Panel -->
         <div class="lg:col-span-5 bg-white border border-[#d9d9d9] rounded-lg p-5 shadow-sm space-y-4 max-h-[640px] overflow-y-auto custom-scrollbar">
-          <div>
-            <label class="block text-xs font-bold text-black uppercase tracking-wider mb-2">Pre-Made Studio Templates</label>
-            <div id="studio-templates-list" class="space-y-1.5"></div>
-          </div>
-
-          <div class="pt-3 border-t border-[#e6e6e6] space-y-3">
+          <div class="space-y-3">
             <label class="block text-xs font-bold text-black uppercase tracking-wider">Customize Text Layers</label>
             <div>
               <label class="block text-[11px] font-bold text-[#595959] mb-0.5">Company / Brand Name</label>

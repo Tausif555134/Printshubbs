@@ -1520,18 +1520,28 @@ const PRINTSHUBB_DATA = {
       corners: [{ id: 'standard', name: 'German Rollerball Refill', priceAdd: 0 }],
       finishes: [{ id: 'laser-engraving', name: 'Laser Engraved Brass Reveal', priceAdd: 0 }],
       sides: [{ id: 'barrel', name: 'Upper Barrel Engraving', priceMult: 1.0 }]
-    }
-  ],
+    },
 
-  // --- SINGLE SOURCE OF TRUTH FOR TEMPLATES ---
-  templates: [
+    // --- 1C. VISITING CARD DESIGNS (CARDS AS PRODUCTS) ---
     {
       id: 'care-clinic',
       name: 'Care Clinic & Healthcare',
-      category: 'Healthcare',
-      theme: 'Healthcare',
-      previewImage: 'assets/images/templates/care-clinic.svg',
-      aliases: ['care-clinic', 'tpl-medical-clinic'],
+      fullName: 'Care Clinic Visiting Card',
+      category: 'visiting-cards',
+      categoryLabel: 'Visiting Cards',
+      subtitle: 'Multi-Speciality Medical Center with Emerald Cross Accent',
+      basePrice: 200,
+      pricePill: 'BUY 100 @ Rs.200',
+      priceRange: '100 from ₹200.00',
+      pricePerUnit: '(₹2.00 each)',
+      rating: 4.8,
+      reviewCount: 312,
+      image: 'assets/images/templates/care-clinic.svg',
+      dimensions: '8.9 cm × 5.1 cm',
+      customizable: true,
+      popular: true,
+      trending: false,
+      defaultMatter: 'CARE ADVANCED DIAGNOSTICS\nMulti-Speciality Medical Center\nDR. SNEHA KULKARNI | MD, Consultant Physician\nPhone: +91 98220 99887 | appointments@careclinic.in\nJM Road, Shivajinagar, Pune - 411005',
       layout: 'healthcare-cross',
       bgColor: '#f0fdf4',
       accentColor: '#059669',
@@ -1543,25 +1553,48 @@ const PRINTSHUBB_DATA = {
       backPattern: 'minimal-logo',
       qrPosition: { align: 'bottom-right', size: 135 },
       logoStyle: 'cross',
-      fields: {
-        company: 'CARE ADVANCED DIAGNOSTICS',
-        tagline: 'Multi-Speciality Medical Center',
-        name: 'DR. SNEHA KULKARNI',
-        title: 'MD, Consultant Physician',
-        phone: '+91 98220 99887',
-        email: 'appointments@careclinic.in',
-        website: 'www.careclinic.in',
-        address: 'JM Road, Shivajinagar, Pune - 411005',
-        qrUrl: 'https://careclinic.in/dr-sneha'
-      }
+      quantities: [
+        { qty: 100, price: 200, perUnit: '2.00', popular: true },
+        { qty: 250, price: 450, perUnit: '1.80' },
+        { qty: 500, price: 800, perUnit: '1.60' },
+        { qty: 1000, price: 1400, perUnit: '1.40' }
+      ],
+      paperStocks: [
+        { id: 'standard-matte', name: 'Standard Matte', gsm: '350 GSM', priceMult: 1.0, desc: 'Smooth, non-reflective coating ideal for readability' },
+        { id: 'premium-glossy', name: 'Premium Glossy', gsm: '350 GSM', priceMult: 1.0, desc: 'High-shine reflective finish' }
+      ],
+      corners: [
+        { id: 'standard-square', name: 'Standard 90° Square', priceAdd: 0 },
+        { id: 'rounded-corner', name: 'Rounded Corners', priceAdd: 50 }
+      ],
+      finishes: [
+        { id: 'none', name: 'Standard Smooth Finish', priceAdd: 0 },
+        { id: 'spot-uv', name: 'Spot UV Accents', priceAdd: 180 }
+      ],
+      sides: [
+        { id: 'single-sided', name: 'Single-Sided Print', priceMult: 1.0 },
+        { id: 'double-sided', name: 'Double-Sided Print', priceMult: 1.35 }
+      ]
     },
     {
       id: 'luxury-dark-monogram',
       name: 'Luxury Dark Monogram',
-      category: 'Luxury',
-      theme: 'Luxury',
-      previewImage: 'assets/images/templates/luxury-dark-monogram.svg',
-      aliases: ['luxury-dark-monogram', 'tpl-luxury-gold'],
+      fullName: 'Luxury Dark Monogram Visiting Card',
+      category: 'visiting-cards',
+      categoryLabel: 'Visiting Cards',
+      subtitle: 'Handcrafted Heritage Luxury with Warm Gold Accents',
+      basePrice: 250,
+      pricePill: 'BUY 100 @ Rs.250',
+      priceRange: '100 from ₹250.00',
+      pricePerUnit: '(₹2.50 each)',
+      rating: 4.9,
+      reviewCount: 420,
+      image: 'assets/images/templates/luxury-dark-monogram.svg',
+      dimensions: '8.9 cm × 5.1 cm',
+      customizable: true,
+      popular: true,
+      trending: true,
+      defaultMatter: 'ROYAL FINDS JEWELLERY\nHandcrafted Heritage Luxury\nKABIR MEHTA | Managing Partner\nPhone: +91 99300 44556 | kabir@royalfinds.com\nPark Street, Kolkata - 700016',
       layout: 'luxury-gold',
       bgColor: '#131b2e',
       accentColor: '#f59e0b',
@@ -1573,25 +1606,37 @@ const PRINTSHUBB_DATA = {
       backPattern: 'minimal-logo',
       qrPosition: { align: 'bottom-right', size: 140 },
       logoStyle: 'crest',
-      fields: {
-        company: 'ROYAL FINDS JEWELLERY',
-        tagline: 'Handcrafted Heritage Luxury',
-        name: 'KABIR MEHTA',
-        title: 'Managing Partner',
-        phone: '+91 99300 44556',
-        email: 'kabir@royalfinds.com',
-        website: 'www.royalfinds.com',
-        address: 'Park Street, Kolkata - 700016',
-        qrUrl: 'https://royalfinds.com'
-      }
+      quantities: [
+        { qty: 100, price: 250, perUnit: '2.50', popular: true },
+        { qty: 250, price: 550, perUnit: '2.20' },
+        { qty: 500, price: 990, perUnit: '1.98' }
+      ],
+      paperStocks: [
+        { id: 'velvet-touch', name: 'Velvet Touch Soft-Feel', gsm: '450 GSM', priceMult: 1.0, desc: 'Ultra-luxurious tactile feel' }
+      ],
+      corners: [{ id: 'standard-square', name: 'Standard Square', priceAdd: 0 }],
+      finishes: [{ id: 'gold-foil', name: 'Raised Gold Foil', priceAdd: 240 }],
+      sides: [{ id: 'single-sided', name: 'Single-Sided Print', priceMult: 1.0 }]
     },
     {
       id: 'nexus-tech-startup',
       name: 'Nexus Tech Startup',
-      category: 'Technology',
-      theme: 'Tech SaaS',
-      previewImage: 'assets/images/templates/nexus-tech-startup.svg',
-      aliases: ['nexus-tech-startup', 'tpl-tech-nexus'],
+      fullName: 'Nexus Tech Startup Visiting Card',
+      category: 'visiting-cards',
+      categoryLabel: 'Visiting Cards',
+      subtitle: 'Autonomous AI Infrastructure with Cyan Modern Accents',
+      basePrice: 220,
+      pricePill: 'BUY 100 @ Rs.220',
+      priceRange: '100 from ₹220.00',
+      pricePerUnit: '(₹2.20 each)',
+      rating: 4.9,
+      reviewCount: 185,
+      image: 'assets/images/templates/nexus-tech-startup.svg',
+      dimensions: '8.9 cm × 5.1 cm',
+      customizable: true,
+      popular: true,
+      trending: true,
+      defaultMatter: 'NEXUS CLOUD SYSTEMS\nAutonomous AI Infrastructure\nDEV PATEL | Chief Technology Officer\nPhone: +91 98450 78901 | dev@nexuscloud.io\nKoramangala 4th Block, Bengaluru - 560034',
       layout: 'tech-modern',
       bgColor: '#0a0f1d',
       accentColor: '#0284c7',
@@ -1603,25 +1648,37 @@ const PRINTSHUBB_DATA = {
       backPattern: 'minimal-logo',
       qrPosition: { align: 'bottom-right', size: 140 },
       logoStyle: 'code',
-      fields: {
-        company: 'NEXUS CLOUD SYSTEMS',
-        tagline: 'Autonomous AI Infrastructure',
-        name: 'DEV PATEL',
-        title: 'Chief Technology Officer',
-        phone: '+91 98450 78901',
-        email: 'dev@nexuscloud.io',
-        website: 'https://nexuscloud.io',
-        address: 'Koramangala 4th Block, Bengaluru - 560034',
-        qrUrl: 'https://nexuscloud.io/dev'
-      }
+      quantities: [
+        { qty: 100, price: 220, perUnit: '2.20', popular: true },
+        { qty: 250, price: 490, perUnit: '1.96' },
+        { qty: 500, price: 880, perUnit: '1.76' }
+      ],
+      paperStocks: [
+        { id: 'standard-matte', name: 'Standard Matte', gsm: '350 GSM', priceMult: 1.0, desc: 'Smooth, non-reflective coating' }
+      ],
+      corners: [{ id: 'standard-square', name: 'Standard Square', priceAdd: 0 }],
+      finishes: [{ id: 'none', name: 'Standard Smooth Finish', priceAdd: 0 }],
+      sides: [{ id: 'single-sided', name: 'Single-Sided Print', priceMult: 1.0 }]
     },
     {
       id: 'modern-executive',
-      name: 'Modern Executive (Atelier)',
-      category: 'Corporate',
-      theme: 'Corporate',
-      previewImage: 'assets/images/templates/modern-executive.svg',
-      aliases: ['modern-executive', 'tpl-corporate-modern'],
+      name: 'Modern Executive',
+      fullName: 'Modern Executive Visiting Card',
+      category: 'visiting-cards',
+      categoryLabel: 'Visiting Cards',
+      subtitle: 'Precision Web-to-Print Atelier with Sleek Monochrome Look',
+      basePrice: 240,
+      pricePill: 'BUY 100 @ Rs.240',
+      priceRange: '100 from ₹240.00',
+      pricePerUnit: '(₹2.40 each)',
+      rating: 4.8,
+      reviewCount: 94,
+      image: 'assets/images/templates/modern-executive.svg',
+      dimensions: '8.9 cm × 5.1 cm',
+      customizable: true,
+      popular: false,
+      trending: false,
+      defaultMatter: 'PRINTHUBBS ENTERPRISES\nPrecision Web-to-Print Atelier\nARJUN SHARMA | Creative Director & Founder\nPhone: +91 98200 12345 | arjun@printhubbs.in\nBandra-Kurla Complex, Mumbai - 400051',
       layout: 'executive-left',
       bgColor: '#000000',
       accentColor: '#ffffff',
@@ -1633,25 +1690,34 @@ const PRINTSHUBB_DATA = {
       backPattern: 'minimal-logo',
       qrPosition: { align: 'bottom-right', size: 140 },
       logoStyle: 'monogram',
-      fields: {
-        company: 'PRINTHUBBS ENTERPRISES',
-        tagline: 'Precision Web-to-Print Atelier',
-        name: 'ARJUN SHARMA',
-        title: 'Creative Director & Founder',
-        phone: '+91 98200 12345',
-        email: 'arjun@printhubbs.in',
-        website: 'www.printhubbs.in',
-        address: 'Bandra-Kurla Complex, Mumbai - 400051',
-        qrUrl: 'https://printhubbs.in/profile/arjun'
-      }
+      quantities: [
+        { qty: 100, price: 240, perUnit: '2.40', popular: true },
+        { qty: 250, price: 530, perUnit: '2.12' }
+      ],
+      paperStocks: [{ id: 'standard-matte', name: 'Standard Matte', gsm: '350 GSM', priceMult: 1.0, desc: 'Smooth matte finish' }],
+      corners: [{ id: 'standard-square', name: 'Standard Square', priceAdd: 0 }],
+      finishes: [{ id: 'none', name: 'Standard Smooth Finish', priceAdd: 0 }],
+      sides: [{ id: 'single-sided', name: 'Single-Sided Print', priceMult: 1.0 }]
     },
     {
       id: 'neeta-rai-classic',
-      name: 'Neeta Rai Classic (As on Home)',
-      category: 'Clean Minimal',
-      theme: 'Clean Minimal',
-      previewImage: 'assets/images/templates/neeta-rai-classic.svg',
-      aliases: ['neeta-rai-classic', 'tpl-neeta-rai'],
+      name: 'Neeta Rai Classic',
+      fullName: 'Neeta Rai Classic Visiting Card',
+      category: 'visiting-cards',
+      categoryLabel: 'Visiting Cards',
+      subtitle: 'Clean Minimalist Monochrome Design with Balanced Typography',
+      basePrice: 200,
+      pricePill: 'BUY 100 @ Rs.200',
+      priceRange: '100 from ₹200.00',
+      pricePerUnit: '(₹2.00 each)',
+      rating: 4.7,
+      reviewCount: 160,
+      image: 'assets/images/templates/neeta-rai-classic.svg',
+      dimensions: '8.9 cm × 5.1 cm',
+      customizable: true,
+      popular: false,
+      trending: false,
+      defaultMatter: 'PRINTHUBBS STUDIO\nContemporary Design & Print\nNEETA RAI | Lead Product Designer\nPhone: +91 98201 54321 | neeta.rai@printhubbs.in\nBKC, Mumbai - 400051',
       layout: 'minimal-clean',
       bgColor: '#ffffff',
       accentColor: '#000000',
@@ -1663,25 +1729,34 @@ const PRINTSHUBB_DATA = {
       backPattern: 'minimal-logo',
       qrPosition: { align: 'bottom-right', size: 135 },
       logoStyle: 'minimal',
-      fields: {
-        company: 'PRINTHUBBS STUDIO',
-        tagline: 'Contemporary Design & Print',
-        name: 'NEETA RAI',
-        title: 'Lead Product Designer',
-        phone: '+91 98201 54321',
-        email: 'neeta.rai@printhubbs.in',
-        website: 'www.printhubbs.in',
-        address: 'BKC, Mumbai - 400051',
-        qrUrl: 'https://printhubbs.in'
-      }
+      quantities: [
+        { qty: 100, price: 200, perUnit: '2.00', popular: true },
+        { qty: 250, price: 450, perUnit: '1.80' }
+      ],
+      paperStocks: [{ id: 'standard-matte', name: 'Standard Matte', gsm: '350 GSM', priceMult: 1.0, desc: 'Smooth matte finish' }],
+      corners: [{ id: 'standard-square', name: 'Standard Square', priceAdd: 0 }],
+      finishes: [{ id: 'none', name: 'Standard Smooth Finish', priceAdd: 0 }],
+      sides: [{ id: 'single-sided', name: 'Single-Sided Print', priceMult: 1.0 }]
     },
     {
       id: 'studio-rai-creative',
-      name: 'Studio Rai Design (Creative)',
-      category: 'Creative Design',
-      theme: 'Creative Design',
-      previewImage: 'assets/images/templates/studio-rai-creative.svg',
-      aliases: ['studio-rai-creative', 'tpl-creative-studio'],
+      name: 'Studio Rai Creative',
+      fullName: 'Studio Rai Creative Visiting Card',
+      category: 'visiting-cards',
+      categoryLabel: 'Visiting Cards',
+      subtitle: 'Creative Indigo Architectural Design Card with Indigo Accents',
+      basePrice: 260,
+      pricePill: 'BUY 100 @ Rs.260',
+      priceRange: '100 from ₹260.00',
+      pricePerUnit: '(₹2.60 each)',
+      rating: 4.8,
+      reviewCount: 88,
+      image: 'assets/images/templates/studio-rai-creative.svg',
+      dimensions: '8.9 cm × 5.1 cm',
+      customizable: true,
+      popular: false,
+      trending: false,
+      defaultMatter: 'STUDIO RAI DESIGN\nSustainable Architectural Visions\nNEETA RAI | Principal Architect & Urbanist\nPhone: +91 98450 67890 | neeta@studiorai.in\nIndiranagar 100ft Road, Bengaluru - 560038',
       layout: 'creative-bold',
       bgColor: '#1e1b4b',
       accentColor: '#818cf8',
@@ -1693,23 +1768,30 @@ const PRINTSHUBB_DATA = {
       backPattern: 'minimal-logo',
       qrPosition: { align: 'bottom-right', size: 140 },
       logoStyle: 'creative',
-      fields: {
-        company: 'STUDIO RAI DESIGN',
-        tagline: 'Sustainable Architectural Visions',
-        name: 'NEETA RAI',
-        title: 'Principal Architect & Urbanist',
-        phone: '+91 98450 67890',
-        email: 'neeta@studiorai.in',
-        website: 'www.studiorai.in',
-        address: 'Indiranagar 100ft Road, Bengaluru - 560038',
-        qrUrl: 'https://studiorai.in/portfolio'
-      }
+      quantities: [
+        { qty: 100, price: 260, perUnit: '2.60', popular: true },
+        { qty: 250, price: 580, perUnit: '2.32' }
+      ],
+      paperStocks: [{ id: 'standard-matte', name: 'Standard Matte', gsm: '350 GSM', priceMult: 1.0, desc: 'Smooth matte finish' }],
+      corners: [{ id: 'standard-square', name: 'Standard Square', priceAdd: 0 }],
+      finishes: [{ id: 'none', name: 'Standard Smooth Finish', priceAdd: 0 }],
+      sides: [{ id: 'single-sided', name: 'Single-Sided Print', priceMult: 1.0 }]
     }
   ],
-  // Helper to retrieve a template entity by ID or alias
-  getTemplate(id) {
+
+  // Direct entity resolver: finds product or card by ID
+  getProduct(id) {
     if (!id) return null;
-    return this.templates.find(t => t.id === id || (t.aliases && t.aliases.includes(id))) || null;
+    return this.products.find(p => p.id === id) || null;
+  },
+
+  getCard(id) {
+    return this.getProduct(id);
+  },
+
+  // Legacy helper redirecting to real product
+  getTemplate(id) {
+    return this.getProduct(id);
   },
 
   deliveryPincodes: {
@@ -1728,5 +1810,5 @@ const PRINTSHUBB_DATA = {
   }
 };
 
-PRINTSHUBB_DATA.studioTemplates = PRINTSHUBB_DATA.templates;
 window.PRINTSHUBB_DATA = PRINTSHUBB_DATA;
+

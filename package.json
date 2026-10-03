@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
-    "test": "node -c js/data.js && node -c js/canvas-studio.js && node -c js/cart-checkout.js && node -c js/app.js"
+    "test": "node -c js/data.js && node -c js/canvas-studio.js && node -c js/cart-checkout.js && node -c js/app.js && node verify_flow.js"
   },
   "keywords": [
     "custom-printing",

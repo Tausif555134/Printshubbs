@@ -1354,12 +1354,16 @@
             </div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <button onclick="window.appRouter.navigate('studio', window.appRouter.selectedProduct)" class="btn-primary py-3 px-4 text-xs font-bold flex items-center justify-center gap-2 shadow-md">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="pdp-action-buttons">
+            <button id="pdp-btn-customize" onclick="window.appRouter.launchStudioWithSelectedTemplate()" class="btn-primary py-3 px-4 text-xs font-bold flex items-center justify-center gap-2 shadow-md">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
               <span>Customize in Design Studio</span>
             </button>
-            <button onclick="window.appRouter.addPDPToCart()" class="btn-secondary py-3 px-4 text-xs font-bold flex items-center justify-center gap-2 shadow-sm">
+            <button id="pdp-btn-submit-matter" onclick="window.appRouter.launchStudioWithSelectedTemplate()" class="btn-primary py-3 px-4 text-xs font-bold flex items-center justify-center gap-2 shadow-md">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              <span>Choose Design &amp; Submit Matter</span>
+            </button>
+            <button id="pdp-btn-add-cart" onclick="window.appRouter.addPDPToCart()" class="btn-secondary py-3 px-4 text-xs font-bold flex items-center justify-center gap-2 shadow-sm sm:col-span-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
               <span>Add to Cart with Selected Specs</span>
             </button>
@@ -1400,6 +1404,15 @@
           <div id="pdp-shape-section" class="hidden">
             <label class="block text-xs font-bold text-black uppercase tracking-wider mb-2">Select Shape</label>
             <div id="pdp-shapes-container" class="grid grid-cols-2 sm:grid-cols-3 gap-2"></div>
+          </div>
+
+          <!-- Business Card Design Template Selector (for visiting cards) -->
+          <div id="pdp-template-section" class="hidden">
+            <div class="flex items-center justify-between mb-2">
+              <label class="block text-xs font-bold text-black uppercase tracking-wider">Select Design Template</label>
+              <span id="pdp-selected-template-name" class="text-xs text-[#595959] font-semibold"></span>
+            </div>
+            <div id="pdp-templates-container" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5"></div>
           </div>
 
           <!-- 1. Quantity Selector -->
@@ -1560,15 +1573,15 @@
             <div class="grid grid-cols-3 gap-2 text-center text-[10px]">
               <div>
                 <span class="block mb-1 text-[#595959]">Background</span>
-                <input type="color" value="#000000" onchange="window.studioEngine.updateColor('bg', this.value)" class="w-full h-8 cursor-pointer rounded-lg border border-[#d9d9d9]" />
+                <input id="studio-color-bg" type="color" value="#000000" onchange="window.studioEngine.updateColor('bg', this.value)" class="w-full h-8 cursor-pointer rounded-lg border border-[#d9d9d9]" />
               </div>
               <div>
                 <span class="block mb-1 text-[#595959]">Accent Hue</span>
-                <input type="color" value="#000000" onchange="window.studioEngine.updateColor('accent', this.value)" class="w-full h-8 cursor-pointer rounded-lg border border-[#d9d9d9]" />
+                <input id="studio-color-accent" type="color" value="#000000" onchange="window.studioEngine.updateColor('accent', this.value)" class="w-full h-8 cursor-pointer rounded-lg border border-[#d9d9d9]" />
               </div>
               <div>
                 <span class="block mb-1 text-[#595959]">Text Primary</span>
-                <input type="color" value="#ffffff" onchange="window.studioEngine.updateColor('text', this.value)" class="w-full h-8 cursor-pointer rounded-lg border border-[#d9d9d9]" />
+                <input id="studio-color-text" type="color" value="#ffffff" onchange="window.studioEngine.updateColor('text', this.value)" class="w-full h-8 cursor-pointer rounded-lg border border-[#d9d9d9]" />
               </div>
             </div>
           </div>

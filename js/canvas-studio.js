@@ -92,14 +92,22 @@ class PrintStudioEngine {
   }
 
   applyTemplate(template) {
+    if (!template) return;
     this.state.templateId = template.id;
-    this.state.bgColor = template.bgColor;
-    this.state.accentColor = template.accentColor;
-    this.state.textColor = template.textColor;
-    this.state.secondaryTextColor = template.secondaryTextColor;
-    this.state.fontHeading = template.fontHeading;
-    this.state.fontBody = template.fontBody;
-    this.state.fields = { ...template.fields };
+    this.state.layout = template.layout || 'executive-left';
+    this.state.bgColor = template.bgColor || '#000000';
+    this.state.accentColor = template.accentColor || '#ffffff';
+    this.state.textColor = template.textColor || '#ffffff';
+    this.state.secondaryTextColor = template.secondaryTextColor || '#a3a3a3';
+    this.state.fontHeading = template.fontHeading || 'Inter';
+    this.state.fontBody = template.fontBody || 'Inter';
+    this.state.backBgColor = template.backBgColor || '#1e293b';
+    this.state.backPattern = template.backPattern || 'minimal-logo';
+    this.state.qrPosition = template.qrPosition ? { ...template.qrPosition } : { align: 'bottom-right', size: 140 };
+    this.state.logoStyle = template.logoStyle || 'monogram';
+    if (template.fields) {
+      this.state.fields = { ...template.fields };
+    }
     this.generateQRMatrix();
     this.syncFormControls();
     this.render();
@@ -236,58 +244,131 @@ class PrintStudioEngine {
     ctx.fillStyle = this.state.bgColor;
     ctx.fillRect(0, 0, W, H);
 
-    // Decorative Geometric Accent Line / Geometry (Atelier Precision Style)
-    ctx.fillStyle = this.state.accentColor;
-    ctx.fillRect(bleed + 20, bleed + 20, 8, H - (bleed * 2) - 40);
+    const layout = this.state.layout || 'executive-left';
+    const initial = (this.state.fields.company && this.state.fields.company.charAt(0)) || 'P';
 
-    // Horizontal bottom accent strip
-    ctx.fillStyle = this.state.accentColor;
-    ctx.fillRect(bleed + 20, H - bleed - 28, W - (bleed * 2) - 40, 4);
+    // 2. Render Layout Specific Decorative Geometry & Accents
+    if (layout === 'minimal-clean') {
+      // Clean Minimalist divider line under person header
+      ctx.fillStyle = this.state.accentColor;
+      ctx.fillRect(bleed + 50, bleed + 235, 240, 2);
+    } else if (layout === 'luxury-gold') {
+      // Luxury Gold Ornamental Double-Line Frame
+      ctx.save();
+      ctx.strokeStyle = this.state.accentColor;
+      ctx.lineWidth = 2.5;
+      const margin = bleed + 16;
+      ctx.strokeRect(margin, margin, W - (margin * 2), H - (margin * 2));
+      ctx.lineWidth = 1;
+      const innerMargin = margin + 8;
+      ctx.strokeRect(innerMargin, innerMargin, W - (innerMargin * 2), H - (innerMargin * 2));
+      // Diamond corner flourishes
+      const dSize = 6;
+      [
+        [innerMargin, innerMargin],
+        [W - innerMargin, innerMargin],
+        [innerMargin, H - innerMargin],
+        [W - innerMargin, H - innerMargin]
+      ].forEach(([dx, dy]) => {
+        ctx.fillStyle = this.state.accentColor;
+        ctx.beginPath();
+        ctx.moveTo(dx, dy - dSize);
+        ctx.lineTo(dx + dSize, dy);
+        ctx.lineTo(dx, dy + dSize);
+        ctx.lineTo(dx - dSize, dy);
+        ctx.closePath();
+        ctx.fill();
+      });
+      ctx.restore();
+    } else if (layout === 'tech-modern') {
+      // Cyber Header Strip and Status Pill
+      ctx.save();
+      ctx.fillStyle = this.state.accentColor;
+      ctx.fillRect(bleed + 40, bleed + 22, 12, 12);
+      ctx.fillStyle = this.state.secondaryTextColor;
+      ctx.font = '600 11px "JetBrains Mono", monospace';
+      ctx.fillText('NEXUS CLOUD INFRASTRUCTURE // vCard 3.0', bleed + 62, bleed + 24);
+      // Top accent hairline
+      ctx.fillStyle = this.state.accentColor;
+      ctx.fillRect(bleed + 40, bleed + 38, W - (bleed * 2) - 80, 2);
+      ctx.restore();
+    } else if (layout === 'healthcare-cross') {
+      // Clinical emerald top header band
+      ctx.fillStyle = this.state.accentColor;
+      ctx.fillRect(0, 0, W, bleed + 14);
+      ctx.fillStyle = this.state.secondaryTextColor;
+      ctx.fillRect(bleed + 48, bleed + 238, 200, 2);
+    } else if (layout === 'creative-bold') {
+      // Creative diagonal color accent
+      ctx.save();
+      ctx.fillStyle = this.state.accentColor;
+      ctx.beginPath();
+      ctx.moveTo(W - bleed - 280, 0);
+      ctx.lineTo(W, 0);
+      ctx.lineTo(W, H);
+      ctx.lineTo(W - bleed - 100, H);
+      ctx.closePath();
+      ctx.globalAlpha = 0.15;
+      ctx.fill();
+      ctx.restore();
+      // Left vertical accent
+      ctx.fillStyle = this.state.accentColor;
+      ctx.fillRect(bleed + 20, bleed + 20, 6, H - (bleed * 2) - 40);
+    } else {
+      // Default: Modern Executive Atelier (vertical left bar + bottom strip)
+      ctx.fillStyle = this.state.accentColor;
+      ctx.fillRect(bleed + 20, bleed + 20, 8, H - (bleed * 2) - 40);
+      ctx.fillRect(bleed + 20, H - bleed - 28, W - (bleed * 2) - 40, 4);
+    }
 
-    // 2. Company Name & Tagline (Top Left)
+    // 3. Company Name & Tagline
     ctx.fillStyle = this.state.textColor;
-    ctx.font = `700 32px "${this.state.fontHeading}", sans-serif`;
+    ctx.font = `700 30px "${this.state.fontHeading}", sans-serif`;
     ctx.textAlign = 'left';
     ctx.textBaseline = 'top';
-    ctx.fillText(this.state.fields.company.toUpperCase(), bleed + 50, bleed + 40);
+    const companyY = layout === 'tech-modern' ? bleed + 54 : bleed + 40;
+    ctx.fillText(this.state.fields.company.toUpperCase(), bleed + 50, companyY);
 
     ctx.fillStyle = this.state.accentColor;
-    ctx.font = `600 15px "${this.state.fontBody}", sans-serif`;
-    ctx.fillText(this.state.fields.tagline, bleed + 52, bleed + 82);
+    ctx.font = `600 14px "${this.state.fontBody}", sans-serif`;
+    ctx.fillText(this.state.fields.tagline, bleed + 52, companyY + 40);
 
-    // 3. Person Name & Title (Middle Left)
+    // 4. Person Name & Title
+    const nameY = layout === 'tech-modern' ? bleed + 168 : bleed + 155;
     ctx.fillStyle = this.state.textColor;
-    ctx.font = `700 36px "${this.state.fontHeading}", sans-serif`;
-    ctx.fillText(this.state.fields.name, bleed + 50, bleed + 160);
+    ctx.font = `700 34px "${this.state.fontHeading}", sans-serif`;
+    ctx.fillText(this.state.fields.name, bleed + 50, nameY);
 
     ctx.fillStyle = this.state.secondaryTextColor;
-    ctx.font = `500 18px "${this.state.fontBody}", sans-serif`;
-    ctx.fillText(this.state.fields.title, bleed + 52, bleed + 205);
+    ctx.font = `500 17px "${this.state.fontBody}", sans-serif`;
+    ctx.fillText(this.state.fields.title, bleed + 52, nameY + 44);
 
-    // 4. Contact Details (Bottom Left & Middle)
-    const startY = bleed + 270;
+    // 5. Contact Details (Bottom Left & Middle)
+    const startY = bleed + 265;
     const col1X = bleed + 50;
-    const col2X = bleed + 380;
-    const lineHeight = 34;
+    const lineHeight = 33;
 
     ctx.fillStyle = this.state.textColor;
-    ctx.font = `500 16px "JetBrains Mono", monospace`;
+    ctx.font = `500 15px "JetBrains Mono", monospace`;
 
-    // Phone
-    ctx.fillText(`TEL: ${this.state.fields.phone}`, col1X, startY);
-    // Email
-    ctx.fillText(`EML: ${this.state.fields.email}`, col1X, startY + lineHeight);
-    // Website
-    ctx.fillText(`WEB: ${this.state.fields.website}`, col1X, startY + (lineHeight * 2));
+    if (layout === 'tech-modern') {
+      ctx.fillText(`> TEL: ${this.state.fields.phone}`, col1X, startY);
+      ctx.fillText(`> EML: ${this.state.fields.email}`, col1X, startY + lineHeight);
+      ctx.fillText(`> WEB: ${this.state.fields.website}`, col1X, startY + (lineHeight * 2));
+    } else {
+      ctx.fillText(`TEL: ${this.state.fields.phone}`, col1X, startY);
+      ctx.fillText(`EML: ${this.state.fields.email}`, col1X, startY + lineHeight);
+      ctx.fillText(`WEB: ${this.state.fields.website}`, col1X, startY + (lineHeight * 2));
+    }
 
     // Address
     ctx.fillStyle = this.state.secondaryTextColor;
-    ctx.font = `400 15px "${this.state.fontBody}", sans-serif`;
-    ctx.fillText(this.state.fields.address, col1X, startY + (lineHeight * 3) + 6);
+    ctx.font = `400 14px "${this.state.fontBody}", sans-serif`;
+    ctx.fillText(this.state.fields.address, col1X, startY + (lineHeight * 3) + 4);
 
-    // 5. Render Uploaded Logo (if present) OR Brand Crest
+    // 6. Logo / Monogram Crest Area (Top Right)
     const logoAreaX = W - bleed - 240;
-    const logoAreaY = bleed + 40;
+    const logoAreaY = layout === 'tech-modern' ? bleed + 50 : bleed + 40;
 
     if (this.uploadedLogo) {
       try {
@@ -317,27 +398,99 @@ class PrintStudioEngine {
         console.error('Error drawing uploaded logo', e);
       }
     } else {
-      // Elegant Geometric Monogram Crest
+      // Draw layout-specific brand crest
       ctx.save();
-      ctx.strokeStyle = this.state.accentColor;
-      ctx.lineWidth = 3;
-      ctx.strokeRect(logoAreaX + 60, logoAreaY + 10, 80, 80);
+      if (layout === 'healthcare-cross') {
+        // Medical Cross Emblem
+        ctx.fillStyle = this.state.accentColor;
+        const cx = logoAreaX + 100;
+        const cy = logoAreaY + 45;
+        const armW = 16;
+        const armL = 46;
+        ctx.fillRect(cx - (armW / 2), cy - (armL / 2), armW, armL);
+        ctx.fillRect(cx - (armL / 2), cy - (armW / 2), armL, armW);
+      } else if (layout === 'minimal-clean') {
+        // Minimalist Circle Monogram
+        ctx.strokeStyle = this.state.accentColor;
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.arc(logoAreaX + 100, logoAreaY + 45, 38, 0, Math.PI * 2);
+        ctx.stroke();
 
-      ctx.fillStyle = this.state.textColor;
-      ctx.font = `700 38px "${this.state.fontHeading}", sans-serif`;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      const initial = this.state.fields.company.charAt(0) || 'P';
-      ctx.fillText(initial, logoAreaX + 100, logoAreaY + 50);
+        ctx.fillStyle = this.state.textColor;
+        ctx.font = `700 36px "${this.state.fontHeading}", sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(initial, logoAreaX + 100, logoAreaY + 46);
+      } else if (layout === 'luxury-gold') {
+        // Luxury Diamond Crest
+        ctx.strokeStyle = this.state.accentColor;
+        ctx.lineWidth = 3;
+        const cx = logoAreaX + 100;
+        const cy = logoAreaY + 45;
+        const r = 44;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - r);
+        ctx.lineTo(cx + r, cy);
+        ctx.lineTo(cx, cy + r);
+        ctx.lineTo(cx - r, cy);
+        ctx.closePath();
+        ctx.stroke();
+
+        ctx.fillStyle = this.state.accentColor;
+        ctx.font = `700 34px "${this.state.fontHeading}", sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(initial, cx, cy);
+      } else if (layout === 'tech-modern') {
+        // Cyber Bracketed Monogram
+        const cx = logoAreaX + 100;
+        const cy = logoAreaY + 45;
+        ctx.strokeStyle = this.state.accentColor;
+        ctx.lineWidth = 2.5;
+        ctx.strokeRect(cx - 36, cy - 36, 72, 72);
+        ctx.fillStyle = this.state.textColor;
+        ctx.font = `700 32px "JetBrains Mono", monospace`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(initial, cx, cy);
+      } else {
+        // Executive Atelier Monogram Crest
+        ctx.strokeStyle = this.state.accentColor;
+        ctx.lineWidth = 3;
+        ctx.strokeRect(logoAreaX + 60, logoAreaY + 10, 80, 80);
+
+        ctx.fillStyle = this.state.textColor;
+        ctx.font = `700 38px "${this.state.fontHeading}", sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(initial, logoAreaX + 100, logoAreaY + 50);
+      }
       ctx.restore();
     }
 
-    // 6. Dynamic QR Code Box (Bottom Right)
-    this.renderQRCode(ctx, W - bleed - 180, H - bleed - 200, 140);
+    // 7. Dynamic QR Code Box using configured qrPosition
+    const qrCfg = this.state.qrPosition || { align: 'bottom-right', size: 140 };
+    const qrSize = qrCfg.size || 140;
+    let qrX = W - bleed - 180;
+    let qrY = H - bleed - 200;
+
+    if (qrCfg.align === 'center-right') {
+      qrX = W - bleed - 180;
+      qrY = (H - qrSize) / 2;
+    } else if (qrCfg.align === 'bottom-left') {
+      qrX = bleed + 50;
+      qrY = H - bleed - qrSize - 40;
+    } else if (qrCfg.x !== undefined && qrCfg.y !== undefined) {
+      qrX = qrCfg.x;
+      qrY = qrCfg.y;
+    }
+
+    this.renderQRCode(ctx, qrX, qrY, qrSize);
   }
 
   renderBackSide(ctx, W, H, bleed) {
-    // Back Side Design (Minimalist Luxury Atelier)
+    // Back Side Design
     ctx.fillStyle = this.state.backBgColor || '#1e293b';
     ctx.fillRect(0, 0, W, H);
 
@@ -356,16 +509,16 @@ class PrintStudioEngine {
     ctx.font = `700 64px "${this.state.fontHeading}", sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    const initial = this.state.fields.company.charAt(0) || 'P';
+    const initial = (this.state.fields.company && this.state.fields.company.charAt(0)) || 'P';
     ctx.fillText(initial, centerX, centerY - 20);
 
     // Company Name below
     ctx.font = `700 24px "${this.state.fontHeading}", sans-serif`;
-    ctx.fillText(this.state.fields.company.toUpperCase(), centerX, centerY + 50);
+    ctx.fillText((this.state.fields.company || 'PRINTHUBBS').toUpperCase(), centerX, centerY + 50);
 
     ctx.fillStyle = this.state.accentColor;
     ctx.font = `600 15px "JetBrains Mono", monospace`;
-    ctx.fillText(this.state.fields.website.toUpperCase(), centerX, centerY + 85);
+    ctx.fillText((this.state.fields.website || 'WWW.PRINTHUBBS.IN').toUpperCase(), centerX, centerY + 85);
     ctx.restore();
   }
 
@@ -465,9 +618,26 @@ class PrintStudioEngine {
     for (const key in fields) {
       const input = document.getElementById(`studio-input-${key}`);
       if (input) {
-        input.value = fields[key];
+        input.value = fields[key] || '';
       }
     }
+
+    const colorBg = document.getElementById('studio-color-bg');
+    const colorAccent = document.getElementById('studio-color-accent');
+    const colorText = document.getElementById('studio-color-text');
+    if (colorBg && this.state.bgColor) colorBg.value = this.normalizeHexColor(this.state.bgColor);
+    if (colorAccent && this.state.accentColor) colorAccent.value = this.normalizeHexColor(this.state.accentColor);
+    if (colorText && this.state.textColor) colorText.value = this.normalizeHexColor(this.state.textColor);
+  }
+
+  normalizeHexColor(hex) {
+    if (!hex || typeof hex !== 'string') return '#000000';
+    let h = hex.trim();
+    if (h.startsWith('#') && h.length === 4) {
+      return '#' + h[1] + h[1] + h[2] + h[2] + h[3] + h[3];
+    }
+    if (h.startsWith('#') && h.length === 7) return h;
+    return '#000000';
   }
 
   // Generate Base64 snapshot for thumbnail at maximum fidelity

@@ -11,4 +11,7 @@ Thumbs.db
 /tsconfig.json
 /vite.config.ts
 /.env.example
+/carepulse/
+/scripts/
+/supabase/
 

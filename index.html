@@ -741,7 +741,7 @@
 
             <div class="flex-shrink-0 flex flex-col sm:flex-row gap-3">
               <button onclick="window.appRouter.navigate('pdp', 'royal-shadi-card')" class="px-5 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-bold text-xs sm:text-sm shadow-lg shadow-amber-400/20 transition active:scale-95 flex items-center justify-center gap-2 cursor-pointer">
-                <span>Customize Shadi Card</span>
+                <span>Upload Design &amp; Order</span>
                 <span>→</span>
               </button>
             </div>
@@ -772,7 +772,7 @@
                 <span class="text-xs text-[#595959] block">50 from</span>
                 <span class="text-sm font-bold text-black">₹450.00 <span class="text-[10px] text-[#595959] font-normal">(₹9.00 each)</span></span>
               </div>
-              <span class="px-3.5 py-1.5 bg-black text-white group-hover:bg-neutral-800 rounded-lg text-xs font-bold transition flex items-center gap-1">Customize →</span>
+              <span class="px-3.5 py-1.5 bg-black text-white group-hover:bg-neutral-800 rounded-lg text-xs font-bold transition flex items-center gap-1">Upload Design →</span>
             </div>
           </article>
 
@@ -798,7 +798,7 @@
                 <span class="text-xs text-[#595959] block">50 from</span>
                 <span class="text-sm font-bold text-black">₹520.00 <span class="text-[10px] text-[#595959] font-normal">(₹10.40 each)</span></span>
               </div>
-              <span class="px-3.5 py-1.5 bg-black text-white group-hover:bg-neutral-800 rounded-lg text-xs font-bold transition flex items-center gap-1">Customize →</span>
+              <span class="px-3.5 py-1.5 bg-black text-white group-hover:bg-neutral-800 rounded-lg text-xs font-bold transition flex items-center gap-1">Upload Design →</span>
             </div>
           </article>
 
@@ -824,7 +824,7 @@
                 <span class="text-xs text-[#595959] block">50 from</span>
                 <span class="text-sm font-bold text-black">₹380.00 <span class="text-[10px] text-[#595959] font-normal">(₹7.60 each)</span></span>
               </div>
-              <span class="px-3.5 py-1.5 bg-black text-white group-hover:bg-neutral-800 rounded-lg text-xs font-bold transition flex items-center gap-1">Customize →</span>
+              <span class="px-3.5 py-1.5 bg-black text-white group-hover:bg-neutral-800 rounded-lg text-xs font-bold transition flex items-center gap-1">Upload Design →</span>
             </div>
           </article>
         </div>
@@ -1373,16 +1373,37 @@
             </div>
           </div>
 
+          <!-- Hidden file input for Upload Design -->
+          <input type="file" id="pdp-design-file-input" accept="image/png, image/jpeg, image/svg+xml, application/pdf" class="hidden" onchange="window.appRouter.handlePDPDesignUpload(event)" />
+
+          <!-- Dedicated Upload Design Box -->
+          <div class="border-2 border-dashed border-[#d9d9d9] hover:border-black rounded-xl p-4 text-center cursor-pointer transition bg-[#fafafa] group" onclick="document.getElementById('pdp-design-file-input').click()">
+            <div class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center mx-auto mb-2 group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+            </div>
+            <p class="text-xs font-bold text-black group-hover:underline">Upload Design / Ready Artwork</p>
+            <p class="text-[11px] text-[#595959] mt-0.5">Click to upload PDF, PNG, JPG, or SVG file (300 DPI Pre-Press Ready)</p>
+          </div>
+
+          <!-- Upload Status Indicator -->
+          <div id="pdp-upload-status" class="hidden text-xs font-medium text-emerald-800 bg-emerald-50 border border-emerald-300 rounded-lg p-3 flex items-center justify-between">
+            <div class="flex items-center gap-2 truncate">
+              <svg class="w-4 h-4 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              <span id="pdp-upload-filename" class="truncate font-semibold">Design file uploaded</span>
+            </div>
+            <span class="text-[10px] bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded font-bold uppercase">Pre-Press Ready</span>
+          </div>
+
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="pdp-action-buttons">
-            <button id="pdp-btn-submit-matter" onclick="window.appRouter.submitCardOrder()" class="btn-primary py-3 px-4 text-xs font-bold flex items-center justify-center gap-2 shadow-md sm:col-span-2">
+            <button id="pdp-btn-submit-matter" onclick="window.appRouter.submitCardOrder()" class="btn-primary py-3 px-4 text-xs font-bold flex items-center justify-center gap-2 shadow-md sm:col-span-2 cursor-pointer">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
               <span>Submit Order with This Card &amp; Matter</span>
             </button>
-            <button id="pdp-btn-customize" onclick="window.appRouter.launchStudioWithSelectedCard()" class="btn-secondary py-2.5 px-4 text-xs font-bold flex items-center justify-center gap-2 shadow-sm">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
-              <span>Customize in Design Studio</span>
+            <button id="pdp-btn-upload-design" onclick="document.getElementById('pdp-design-file-input').click()" class="btn-secondary py-2.5 px-4 text-xs font-bold flex items-center justify-center gap-2 shadow-sm hover:border-black cursor-pointer">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+              <span>Upload Design</span>
             </button>
-            <button id="pdp-btn-add-cart" onclick="window.appRouter.submitCardOrder()" class="btn-secondary py-2.5 px-4 text-xs font-bold flex items-center justify-center gap-2 shadow-sm">
+            <button id="pdp-btn-add-cart" onclick="window.appRouter.submitCardOrder()" class="btn-secondary py-2.5 px-4 text-xs font-bold flex items-center justify-center gap-2 shadow-sm hover:border-black cursor-pointer">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
               <span>Add to Cart with Specs</span>
             </button>
@@ -1475,6 +1496,29 @@
           </div>
         </div>
       </div>
+
+      <!-- BEGIN: PDP Recommended Products Section -->
+      <section id="pdp-recommended-section" class="mt-12 pt-8 border-t border-[#d9d9d9]">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-neutral-100 text-black text-[11px] font-bold uppercase tracking-wider mb-1">
+              <span>✨ Recommended For You</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold font-display text-black">
+              Frequently Ordered Together
+            </h2>
+            <p class="text-xs text-[#595959] mt-0.5">
+              Complete your stationery and print suite with these matching essentials
+            </p>
+          </div>
+        </div>
+
+        <!-- Dynamic recommendations grid -->
+        <div id="pdp-recommended-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Dynamically populated by window.appRouter.renderRecommendedProducts() -->
+        </div>
+      </section>
+      <!-- END: PDP Recommended Products Section -->
     </div>
 
     <!-- VIEW 4: ONLINE INTERACTIVE DESIGN STUDIO (WEB-TO-PRINT) -->

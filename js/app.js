@@ -357,7 +357,7 @@ class PrinthubbsApp {
                 <span class="pcard-price">${product.priceRange || '₹' + product.basePrice.toLocaleString('en-IN')}</span>
                 ${product.pricePerUnit ? `<span class="pcard-price-per-unit">${product.pricePerUnit}</span>` : ''}
               </div>
-              <span class="pcard-cta">Customize <span class="pcard-cta-arrow">→</span></span>
+              <span class="pcard-cta">Upload Design <span class="pcard-cta-arrow">→</span></span>
             </div>
           </div>
         </article>
@@ -398,7 +398,7 @@ class PrinthubbsApp {
           ` : ''}
           <div class="flex items-center justify-between">
             <span class="text-xs font-bold text-black">${product.priceRange || '₹' + product.basePrice.toLocaleString('en-IN')}</span>
-            <span class="text-xs font-bold text-black group-hover:underline">Customize →</span>
+            <span class="text-xs font-bold text-black group-hover:underline">Upload Design →</span>
           </div>
           ${product.pricePerUnit ? `<div class="text-[10px] text-[#595959] font-mono-spec mt-0.5">${product.pricePerUnit}</div>` : ''}
         </div>
@@ -434,7 +434,7 @@ class PrinthubbsApp {
               <span class="pcard-price">${p.priceRange || '100 from ₹' + p.basePrice + '.00'}</span>
               <span class="pcard-price-per-unit">${p.pricePerUnit || '(₹' + (p.basePrice/100).toFixed(2) + ' each)'}</span>
             </div>
-            <span class="pcard-cta">Customize <span class="pcard-cta-arrow">→</span></span>
+            <span class="pcard-cta">Upload Design <span class="pcard-cta-arrow">→</span></span>
           </div>
         </div>
       </article>
@@ -473,7 +473,7 @@ class PrinthubbsApp {
             <div>
               <span class="pcard-price">${p.priceRange || 'From ₹' + p.basePrice + '.00 each'}</span>
             </div>
-            <span class="pcard-cta">Customize <span class="pcard-cta-arrow">→</span></span>
+            <span class="pcard-cta">Upload Design <span class="pcard-cta-arrow">→</span></span>
           </div>
         </div>
       </article>
@@ -1085,8 +1085,134 @@ class PrinthubbsApp {
       matterInput.value = this.pdpOptions.matter;
     }
 
+    // Reset any previous uploaded design when opening PDP
+    this.pdpUploadedDesign = null;
+    const statusEl = document.getElementById('pdp-upload-status');
+    if (statusEl) statusEl.classList.add('hidden');
+    const uploaderInput = document.getElementById('pdp-design-file-input');
+    if (uploaderInput) uploaderInput.value = '';
+
     this.renderPDPOptions();
     this.calculatePDPPrice();
+    this.renderRecommendedProducts();
+  }
+
+  handlePDPDesignUpload(event) {
+    const file = event && event.target && event.target.files && event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.pdpUploadedDesign = {
+        name: file.name,
+        size: file.size,
+        type: file.type,
+        dataUrl: e.target.result
+      };
+
+      // If it's an image, update the preview image directly
+      if (file.type && file.type.startsWith('image/')) {
+        const pdpImage = document.getElementById('pdp-preview-image');
+        if (pdpImage) {
+          pdpImage.src = e.target.result;
+        }
+      }
+
+      // Update upload status indicator
+      const statusEl = document.getElementById('pdp-upload-status');
+      const filenameEl = document.getElementById('pdp-upload-filename');
+      if (statusEl) {
+        statusEl.classList.remove('hidden');
+      }
+      if (filenameEl) {
+        filenameEl.textContent = `Design: ${file.name} (${Math.round(file.size / 1024)} KB)`;
+      }
+
+      window.showToast(`Design file "${file.name}" uploaded successfully!`, 'success');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  renderRecommendedProducts() {
+    const container = document.getElementById('pdp-recommended-grid');
+    if (!container || !window.PRINTSHUBB_DATA || !window.PRINTSHUBB_DATA.products) return;
+
+    const current = this.selectedProduct || this.selectedCard || window.PRINTSHUBB_DATA.products[0];
+    let recProducts = [];
+
+    if (current && current.category === 'shadi-cards') {
+      const recIds = ['royal-shadi-card', 'gold-laser-shadi-card', 'floral-pastel-shadi-card', 'custom-envelopes', 'corporate-gift-boxes', 'custom-labels'];
+      recProducts = window.PRINTSHUBB_DATA.products.filter(p => recIds.includes(p.id) && p.id !== current.id);
+    } else if (current && current.category === 'visiting-cards') {
+      const recIds = ['custom-envelopes', 'letterheads', 'self-inking-stamps', 'custom-pens', 'diary-pen-holder', 'care-clinic', 'luxury-dark-monogram'];
+      recProducts = window.PRINTSHUBB_DATA.products.filter(p => recIds.includes(p.id) && p.id !== current.id);
+    } else if (current && current.category === 'clothing-apparel') {
+      const recIds = ['winter-hoodies', 'polo-tshirts', 'embroidered-caps', 'tote-bags', 'dress-shirts'];
+      recProducts = window.PRINTSHUBB_DATA.products.filter(p => recIds.includes(p.id) && p.id !== current.id);
+    } else {
+      const recIds = ['standard-visiting-cards', 'custom-envelopes', 'photo-mugs', 'rollup-standees', 'custom-stickers'];
+      recProducts = window.PRINTSHUBB_DATA.products.filter(p => recIds.includes(p.id) && p.id !== current.id);
+    }
+
+    if (recProducts.length < 4) {
+      const extra = window.PRINTSHUBB_DATA.products.filter(p => p.id !== current.id && !recProducts.includes(p));
+      recProducts = recProducts.concat(extra.slice(0, 4 - recProducts.length));
+    }
+    recProducts = recProducts.slice(0, 4);
+
+    container.innerHTML = recProducts.map(p => `
+      <article class="bg-white border border-[#d9d9d9] hover:border-black rounded-xl p-3.5 flex flex-col justify-between group transition-all duration-200 hover:shadow-md cursor-pointer" onclick="window.appRouter.navigate('pdp', '${p.id}')">
+        <div>
+          <div class="relative w-full h-36 bg-[#f8f9fa] rounded-lg overflow-hidden mb-3 border border-[#e6e6e6] flex items-center justify-center p-2">
+            ${p.pricePill ? `<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black text-white text-[9px] font-bold uppercase tracking-wider z-10">${p.pricePill}</span>` : ''}
+            <img src="${p.image}" alt="${p.name}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-300 img-hq" loading="lazy" />
+          </div>
+          <div class="flex items-center gap-1 text-[10px] text-black font-bold mb-1">
+            <span class="text-[#eab308]">★★★★★</span>
+            <span>${p.rating || '4.8'}</span>
+            <span class="text-[#595959] font-normal">(${p.reviewCount || '250'})</span>
+          </div>
+          <h3 class="font-bold text-xs sm:text-sm text-black group-hover:underline line-clamp-1">${p.name}</h3>
+          <p class="text-[11px] text-[#595959] mt-0.5 line-clamp-2">${p.subtitle || ''}</p>
+        </div>
+        <div class="mt-3 pt-2.5 border-t border-[#e6e6e6] flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold text-black">${p.priceRange || 'From ₹' + p.basePrice}</span>
+            ${p.pricePerUnit ? `<span class="text-[10px] text-[#595959] block">${p.pricePerUnit}</span>` : ''}
+          </div>
+          <button onclick="event.stopPropagation(); window.appRouter.quickAddRecommended('${p.id}')" class="px-2.5 py-1 bg-black text-white hover:bg-neutral-800 rounded-md text-[11px] font-bold transition flex items-center gap-1 cursor-pointer">
+            + Add
+          </button>
+        </div>
+      </article>
+    `).join('');
+  }
+
+  quickAddRecommended(productId) {
+    const p = window.PRINTSHUBB_DATA.getProduct(productId) || window.PRINTSHUBB_DATA.products.find(item => item.id === productId);
+    if (!p) return;
+    const qtyTier = p.quantities ? p.quantities[0] : { qty: 1, price: p.basePrice };
+    const order = {
+      selectedCard: p,
+      cardId: p.id,
+      productId: p.id,
+      quantity: qtyTier.qty,
+      matter: p.defaultMatter || '',
+      title: p.name,
+      category: p.categoryLabel || 'Recommended Essentials',
+      thumbnail: p.image,
+      paperStock: p.paperStocks ? p.paperStocks[0].name : 'Standard Stock',
+      corners: p.corners ? p.corners[0].name : 'Standard',
+      finish: p.finishes ? p.finishes[0].name : 'Standard Finish',
+      sides: 'Standard',
+      unitPrice: (qtyTier.price / qtyTier.qty).toFixed(2),
+      totalPrice: qtyTier.price,
+      isCustomized: false,
+      date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
+    };
+    window.cartEngine.addItem(order);
+    window.showToast(`Added ${p.name} to cart!`, 'success');
+    this.openCartDrawer();
   }
 
   renderPDPOptions() {
@@ -1409,9 +1535,12 @@ class PrinthubbsApp {
       productId: card.id,
       quantity: qty,
       matter: matter,
+      uploadedDesign: this.pdpUploadedDesign ? this.pdpUploadedDesign.name : null,
+      uploadedDesignData: this.pdpUploadedDesign ? this.pdpUploadedDesign.dataUrl : null,
+      uploadedDesignType: this.pdpUploadedDesign ? this.pdpUploadedDesign.type : null,
       title: card.name,
       category: card.categoryLabel || 'Visiting Cards',
-      thumbnail: card.image,
+      thumbnail: (this.pdpUploadedDesign && this.pdpUploadedDesign.type && this.pdpUploadedDesign.type.startsWith('image/')) ? this.pdpUploadedDesign.dataUrl : card.image,
       paperStock: calc.stockName,
       corners: calc.cornerName,
       finish: calc.finishName,

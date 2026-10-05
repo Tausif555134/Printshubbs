@@ -92,6 +92,8 @@ class PrinthubbsApp {
       this.navigate('studio', { productId: param || 'standard-visiting-cards', templateId: targetTpl, cardId: targetTpl }, false);
     } else if (route === 'projects') {
       this.navigate('projects', null, false);
+    } else if (route === 'admin') {
+      this.navigate('admin', null, false);
     }
   }
 
@@ -214,6 +216,8 @@ class PrinthubbsApp {
         }
       } else if (viewName === 'projects') {
         window.location.hash = 'projects';
+      } else if (viewName === 'admin') {
+        window.location.hash = 'admin';
       }
     }
 
@@ -286,6 +290,10 @@ class PrinthubbsApp {
       this.openDesignStudio(product, product.id);
     } else if (viewName === 'projects') {
       this.renderProjectsAndOrders();
+    } else if (viewName === 'admin') {
+      if (window.adminEngine) {
+        window.adminEngine.render();
+      }
     }
   }
 

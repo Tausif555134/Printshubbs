@@ -1160,32 +1160,60 @@ class PrinthubbsApp {
     }
     recProducts = recProducts.slice(0, 4);
 
-    container.innerHTML = recProducts.map(p => `
-      <article class="bg-white border border-[#d9d9d9] hover:border-black rounded-xl p-3.5 flex flex-col justify-between group transition-all duration-200 hover:shadow-md cursor-pointer" onclick="window.appRouter.navigate('pdp', '${p.id}')">
-        <div>
-          <div class="relative w-full h-36 bg-[#f8f9fa] rounded-lg overflow-hidden mb-3 border border-[#e6e6e6] flex items-center justify-center p-2">
-            ${p.pricePill ? `<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black text-white text-[9px] font-bold uppercase tracking-wider z-10">${p.pricePill}</span>` : ''}
-            <img src="${p.image}" alt="${p.name}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-300 img-hq" loading="lazy" />
-          </div>
-          <div class="flex items-center gap-1 text-[10px] text-black font-bold mb-1">
-            <span class="text-[#eab308]">★★★★★</span>
-            <span>${p.rating || '4.8'}</span>
-            <span class="text-[#595959] font-normal">(${p.reviewCount || '250'})</span>
-          </div>
-          <h3 class="font-bold text-xs sm:text-sm text-black group-hover:underline line-clamp-1">${p.name}</h3>
-          <p class="text-[11px] text-[#595959] mt-0.5 line-clamp-2">${p.subtitle || ''}</p>
-        </div>
-        <div class="mt-3 pt-2.5 border-t border-[#e6e6e6] flex items-center justify-between">
+    const inlineContainer = document.getElementById('pdp-inline-recommended-grid');
+    if (inlineContainer) {
+      inlineContainer.innerHTML = recProducts.slice(0, 2).map(p => `
+        <article class="bg-[#fafafa] border border-[#d9d9d9] hover:border-black rounded-lg p-3 flex flex-col justify-between group transition hover:shadow-sm cursor-pointer" onclick="window.appRouter.navigate('pdp', '${p.id}')">
           <div>
-            <span class="text-xs font-bold text-black">${p.priceRange || 'From ₹' + p.basePrice}</span>
-            ${p.pricePerUnit ? `<span class="text-[10px] text-[#595959] block">${p.pricePerUnit}</span>` : ''}
+            <div class="relative w-full h-28 bg-white rounded overflow-hidden mb-2 border border-[#e6e6e6] flex items-center justify-center p-1.5">
+              ${p.pricePill ? `<span class="absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded bg-black text-white text-[8px] font-bold uppercase tracking-wider z-10">${p.pricePill}</span>` : ''}
+              <img src="${p.image}" alt="${p.name}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-300 img-hq" loading="lazy" />
+            </div>
+            <div class="flex items-center gap-1 text-[10px] text-[#eab308] font-bold mb-0.5">
+              <span>★★★★★</span>
+              <span class="text-black font-semibold text-[10px]">${p.rating || '4.8'}</span>
+            </div>
+            <h4 class="font-bold text-xs text-black group-hover:underline line-clamp-1">${p.name}</h4>
+            <p class="text-[10px] text-[#595959] mt-0.5 line-clamp-1">${p.subtitle || ''}</p>
           </div>
-          <button onclick="event.stopPropagation(); window.appRouter.quickAddRecommended('${p.id}')" class="px-2.5 py-1 bg-black text-white hover:bg-neutral-800 rounded-md text-[11px] font-bold transition flex items-center gap-1 cursor-pointer">
-            + Add
-          </button>
-        </div>
-      </article>
-    `).join('');
+          <div class="mt-2.5 pt-2 border-t border-[#e6e6e6] flex items-center justify-between">
+            <span class="text-xs font-bold text-black">${p.priceRange || '₹' + p.basePrice}</span>
+            <button onclick="event.stopPropagation(); window.appRouter.quickAddRecommended('${p.id}')" class="px-2 py-1 bg-black text-white hover:bg-neutral-800 rounded text-[10px] font-bold transition flex items-center gap-1 cursor-pointer">
+              + Add
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    if (container) {
+      container.innerHTML = recProducts.map(p => `
+        <article class="bg-white border border-[#d9d9d9] hover:border-black rounded-xl p-3.5 flex flex-col justify-between group transition-all duration-200 hover:shadow-md cursor-pointer" onclick="window.appRouter.navigate('pdp', '${p.id}')">
+          <div>
+            <div class="relative w-full h-36 bg-[#f8f9fa] rounded-lg overflow-hidden mb-3 border border-[#e6e6e6] flex items-center justify-center p-2">
+              ${p.pricePill ? `<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black text-white text-[9px] font-bold uppercase tracking-wider z-10">${p.pricePill}</span>` : ''}
+              <img src="${p.image}" alt="${p.name}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-300 img-hq" loading="lazy" />
+            </div>
+            <div class="flex items-center gap-1 text-[10px] text-black font-bold mb-1">
+              <span class="text-[#eab308]">★★★★★</span>
+              <span>${p.rating || '4.8'}</span>
+              <span class="text-[#595959] font-normal">(${p.reviewCount || '250'})</span>
+            </div>
+            <h3 class="font-bold text-xs sm:text-sm text-black group-hover:underline line-clamp-1">${p.name}</h3>
+            <p class="text-[11px] text-[#595959] mt-0.5 line-clamp-2">${p.subtitle || ''}</p>
+          </div>
+          <div class="mt-3 pt-2.5 border-t border-[#e6e6e6] flex items-center justify-between">
+            <div>
+              <span class="text-xs font-bold text-black">${p.priceRange || 'From ₹' + p.basePrice}</span>
+              ${p.pricePerUnit ? `<span class="text-[10px] text-[#595959] block">${p.pricePerUnit}</span>` : ''}
+            </div>
+            <button onclick="event.stopPropagation(); window.appRouter.quickAddRecommended('${p.id}')" class="px-2.5 py-1 bg-black text-white hover:bg-neutral-800 rounded-md text-[11px] font-bold transition flex items-center gap-1 cursor-pointer">
+              + Add
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
   }
 
   quickAddRecommended(productId) {

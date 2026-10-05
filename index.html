@@ -1408,6 +1408,37 @@
               <span>Add to Cart with Specs</span>
             </button>
           </div>
+
+          <!-- BEGIN: Inline Recommended Products (Fills the space directly below buttons) -->
+          <div class="mt-6 pt-5 border-t border-[#d9d9d9]">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-2">
+                <span class="text-sm">✨</span>
+                <h3 class="text-xs sm:text-sm font-bold text-black font-display uppercase tracking-wider">Frequently Ordered Together</h3>
+              </div>
+              <span class="text-[11px] text-[#595959] font-medium">Add to this order</span>
+            </div>
+            <div id="pdp-inline-recommended-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <!-- Dynamically populated by renderRecommendedProducts -->
+            </div>
+          </div>
+          <!-- END: Inline Recommended Products -->
+
+          <!-- Pre-Press Print Guarantee Strip -->
+          <div class="bg-[#f9f9f9] border border-[#e6e6e6] rounded-xl p-3.5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#595959] mt-3">
+            <div class="flex items-center gap-2.5">
+              <div class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center flex-shrink-0 font-bold text-xs">✓</div>
+              <div>
+                <p class="font-bold text-black text-xs">100% Print-Accuracy Guarantee</p>
+                <p class="text-[11px]">Free digital PDF proof &amp; color check before printing</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 text-[11px] font-medium text-black">
+              <span>🚚 Express Dispatch</span>
+              <span>•</span>
+              <span>🔒 GST Invoice</span>
+            </div>
+          </div>
         </div>
 
         <!-- 5 Columns Configurator Panel -->

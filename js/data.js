@@ -6,7 +6,18 @@
 const PRINTSHUBB_DATA = {
   categories: [
     { id: 'visiting-cards', name: 'Visiting Cards', icon: 'credit-card', count: '20+ Styles' },
-    { id: 'shadi-cards', name: 'Shadi & Wedding Cards', icon: 'heart', count: 'Exclusive Luxury Collection' }
+    { id: 'shadi-cards', name: 'Shadi & Wedding Cards', icon: 'heart', count: 'Exclusive Luxury Collection' },
+    { id: 'flex-printing', name: 'Flex Printing', icon: 'image', count: 'Large Format Signs' },
+    { id: 'pamphlets-posters', name: 'Pamphlet / Posters', icon: 'file-text', count: 'Marketing Flyers & Posters' },
+    { id: 'tags', name: 'Tags', icon: 'tag', count: 'Clothing & Product Tags' },
+    { id: 'office-files', name: 'Files', icon: 'folder', count: 'Document Folders' },
+    { id: 'letterheads', name: 'Letter Heads', icon: 'file', count: 'Executive Bond Paper' },
+    { id: 'envelopes', name: 'Envelopes', icon: 'mail', count: 'Business & Event Envelopes' },
+    { id: 'digital-paper-printing', name: 'Digital Paper Printing', icon: 'printer', count: 'High-Res Color Sheets' },
+    { id: 'atm-pouches', name: 'ATM Pouches', icon: 'shield', count: 'Card Protective Covers' },
+    { id: 'bill-books', name: 'Bill Books', icon: 'book', count: 'Carbonless Cash Memos' },
+    { id: 'stickers-labels', name: 'Stickers & Labels', icon: 'layers', count: 'Waterproof Die-Cut' },
+    { id: 'pens', name: 'Pens', icon: 'edit-3', count: 'Custom Branded' }
   ],
 
   products: [
@@ -1090,6 +1101,359 @@ const PRINTSHUBB_DATA = {
       corners: [{ id: 'standard-square', name: 'Standard Square', priceAdd: 0 }],
       finishes: [{ id: 'none', name: 'Standard Smooth Finish', priceAdd: 0 }],
       sides: [{ id: 'single-sided', name: 'Single-Sided Print', priceMult: 1.0 }]
+    },
+    // --- 2. LIST OF PRINTING SERVICES & FLEX PRINT ---
+    {
+      id: 'flex-printing',
+      name: 'Flex Printing',
+      fullName: 'High-Resolution Outdoor & Indoor Flex Banner Printing',
+      category: 'flex-printing',
+      categoryLabel: 'Flex Printing',
+      subtitle: 'Weather-resistant heavy-duty vinyl flex with metal eyelets and rich vibrant eco-solvent inks',
+      basePrice: 180,
+      pricePill: 'FROM Rs.180',
+      priceRange: '1 from ₹180.00',
+      pricePerUnit: '(₹30/sq.ft)',
+      rating: 4.8,
+      reviewCount: 420,
+      image: 'assets/images/products/flex-printing.jpg',
+      mockType: 'card',
+      dimensions: '3 ft × 2 ft (Custom Sizes Up To 50 ft)',
+      customizable: true,
+      popular: true,
+      trending: true,
+      quantities: [
+        { qty: 1, price: 180, perUnit: '180.00', popular: true },
+        { qty: 2, price: 340, perUnit: '170.00', discount: '5% OFF' },
+        { qty: 5, price: 800, perUnit: '160.00', discount: '11% OFF' },
+        { qty: 10, price: 1500, perUnit: '150.00', discount: '16% OFF' }
+      ],
+      paperStocks: [
+        { id: 'normal-flex', name: 'Normal 260 GSM Frontlit Flex', gsm: '260 GSM', priceMult: 1.0, desc: 'Standard vibrant outdoor advertising flex' },
+        { id: 'star-flex', name: 'Star Heavy 340 GSM Gloss Flex', gsm: '340 GSM', priceMult: 1.35, desc: 'High gloss, ultra-bright premium heavy banner' },
+        { id: 'backlit-flex', name: 'Backlit Translucent Glow-Sign Flex', gsm: '450 GSM', priceMult: 1.6, desc: 'Translucent light-diffusing flex for lightboards' }
+      ],
+      corners: [
+        { id: 'eyelets', name: 'Corner Metal Eyelets (Grommets)', priceAdd: 0 },
+        { id: 'pocket-fold', name: 'Pole Pocket Margin Fold', priceAdd: 30 }
+      ],
+      finishes: [
+        { id: 'gloss', name: 'High-Gloss Finish', priceAdd: 0 },
+        { id: 'matte', name: 'Smooth Matte Finish', priceAdd: 20 }
+      ],
+      sides: [
+        { id: 'single-sided', name: 'Single-Sided Print', priceMult: 1.0 }
+      ]
+    },
+    {
+      id: 'pamphlets-posters',
+      name: 'Pamphlet / Posters',
+      fullName: 'High-Impact Promotional Pamphlets & Gloss Posters',
+      category: 'pamphlets-posters',
+      categoryLabel: 'Pamphlet / Posters',
+      subtitle: 'Crisp vibrant full-color printing on art paper for marketing, retail offers & events',
+      basePrice: 350,
+      pricePill: 'BUY 100 @ Rs.350',
+      priceRange: '100 from ₹350.00',
+      pricePerUnit: '(₹3.50 each)',
+      rating: 4.7,
+      reviewCount: 680,
+      image: 'assets/images/products/flyers-brochures.jpg',
+      mockType: 'card',
+      dimensions: 'A5 (14.8 cm × 21 cm)',
+      customizable: true,
+      popular: true,
+      trending: true,
+      quantities: [
+        { qty: 100, price: 350, perUnit: '3.50', popular: true },
+        { qty: 500, price: 1250, perUnit: '2.50', discount: '28% OFF' },
+        { qty: 1000, price: 1950, perUnit: '1.95', discount: '44% OFF' },
+        { qty: 2500, price: 4200, perUnit: '1.68', discount: '52% OFF' }
+      ],
+      paperStocks: [
+        { id: 'art-paper-130', name: '130 GSM Gloss Art Paper', gsm: '130 GSM', priceMult: 1.0, desc: 'Cost-effective light promotional paper' },
+        { id: 'art-paper-170', name: '170 GSM Premium Gloss Art Paper', gsm: '170 GSM', priceMult: 1.25, desc: 'Sturdy high-definition vibrant paper' }
+      ],
+      corners: [{ id: 'standard', name: 'Standard Square Cut', priceAdd: 0 }],
+      finishes: [{ id: 'gloss', name: 'Gloss Coating', priceAdd: 0 }, { id: 'matte', name: 'Matte Lamination', priceAdd: 80 }],
+      sides: [{ id: 'single-sided', name: 'Single-Sided Print', priceMult: 1.0 }, { id: 'double-sided', name: 'Double-Sided Print', priceMult: 1.4 }]
+    },
+    {
+      id: 'tags',
+      name: 'Tags',
+      fullName: 'Custom Clothing Hang Tags & Product Price Tags',
+      category: 'tags',
+      categoryLabel: 'Tags',
+      subtitle: 'Die-cut apparel hang tags with drilled eyelet hole & luxury tactile cardstock',
+      basePrice: 220,
+      pricePill: 'BUY 100 @ Rs.220',
+      priceRange: '100 from ₹220.00',
+      pricePerUnit: '(₹2.20 each)',
+      rating: 4.8,
+      reviewCount: 310,
+      image: 'assets/images/products/tags.jpg',
+      mockType: 'card',
+      dimensions: '8.5 cm × 5 cm',
+      customizable: true,
+      popular: true,
+      quantities: [
+        { qty: 100, price: 220, perUnit: '2.20', popular: true },
+        { qty: 250, price: 480, perUnit: '1.92' },
+        { qty: 500, price: 850, perUnit: '1.70' },
+        { qty: 1000, price: 1500, perUnit: '1.50' }
+      ],
+      paperStocks: [
+        { id: 'cardstock-350', name: '350 GSM Heavy Board', gsm: '350 GSM', priceMult: 1.0, desc: 'Durable rigid apparel tag cardstock' },
+        { id: 'kraft-board-300', name: '300 GSM Organic Kraft Board', gsm: '300 GSM', priceMult: 1.15, desc: 'Earthy vintage recycled texture' }
+      ],
+      corners: [{ id: 'drilled-hole', name: 'Top Center 4mm Eyelet Punch', priceAdd: 0 }],
+      finishes: [{ id: 'matte', name: 'Matte Laminated', priceAdd: 0 }, { id: 'foil', name: 'Gold Foil Stamped Logo', priceAdd: 120 }],
+      sides: [{ id: 'double-sided', name: 'Double-Sided Print', priceMult: 1.0 }]
+    },
+    {
+      id: 'office-files',
+      name: 'Files',
+      fullName: 'Custom Branded Presentation Folders & Office Document Files',
+      category: 'office-files',
+      categoryLabel: 'Files',
+      subtitle: 'Heavy 350 GSM laminated cardstock with business card slit & inner dual pockets',
+      basePrice: 420,
+      pricePill: 'BUY 25 @ Rs.420',
+      priceRange: '25 from ₹420.00',
+      pricePerUnit: '(₹16.80 each)',
+      rating: 4.9,
+      reviewCount: 290,
+      image: 'assets/images/products/office-files.jpg',
+      mockType: 'card',
+      dimensions: '9" × 12" (Fits A4 & Legal Documents)',
+      customizable: true,
+      popular: true,
+      quantities: [
+        { qty: 25, price: 420, perUnit: '16.80', popular: true },
+        { qty: 50, price: 780, perUnit: '15.60' },
+        { qty: 100, price: 1450, perUnit: '14.50' },
+        { qty: 250, price: 3250, perUnit: '13.00' }
+      ],
+      paperStocks: [{ id: 'board-350', name: '350 GSM Laminated Presentation Board', gsm: '350 GSM', priceMult: 1.0, desc: 'Stiff, crease-resistant heavy folder stock' }],
+      corners: [{ id: 'pocket-dual', name: 'Dual Inside Pockets with Card Slit', priceAdd: 0 }],
+      finishes: [{ id: 'velvet-matte', name: 'Velvet Touch Matte Lamination', priceAdd: 0 }],
+      sides: [{ id: 'outer-inner', name: 'Outer Full Color + Pockets Print', priceMult: 1.0 }]
+    },
+    {
+      id: 'letterheads',
+      name: 'Letter Heads',
+      fullName: 'Executive Corporate Letterheads on 100 GSM Bond Paper',
+      category: 'letterheads',
+      categoryLabel: 'Letter Heads',
+      subtitle: 'Crisp professional letterheads suitable for laser, inkjet & offset printers',
+      basePrice: 450,
+      pricePill: 'BUY 100 @ Rs.450',
+      priceRange: '100 from ₹450.00',
+      pricePerUnit: '(₹4.50 each)',
+      rating: 4.6,
+      reviewCount: 520,
+      image: 'assets/images/products/letterheads.jpg',
+      mockType: 'card',
+      dimensions: 'A4 (21 cm × 29.7 cm)',
+      customizable: true,
+      popular: true,
+      quantities: [
+        { qty: 100, price: 450, perUnit: '4.50', popular: true },
+        { qty: 250, price: 950, perUnit: '3.80' },
+        { qty: 500, price: 1650, perUnit: '3.30' },
+        { qty: 1000, price: 2800, perUnit: '2.80' }
+      ],
+      paperStocks: [
+        { id: 'alibaster-100', name: '100 GSM Alabaster Executive Bond Paper', gsm: '100 GSM', priceMult: 1.0, desc: 'Bright white, smooth archival laser paper' }
+      ],
+      corners: [{ id: 'square', name: 'Precision Square Cut', priceAdd: 0 }],
+      finishes: [{ id: 'smooth', name: 'Smooth Uncoated Finish', priceAdd: 0 }],
+      sides: [{ id: 'single-sided', name: 'Single-Sided Print', priceMult: 1.0 }]
+    },
+    {
+      id: 'custom-envelopes',
+      name: 'Envelopes',
+      fullName: 'Custom Printed Business Envelopes & Official Envelopes',
+      category: 'envelopes',
+      categoryLabel: 'Envelopes',
+      subtitle: 'Self-seal peel-and-stick adhesive flap envelopes with full-color company logo',
+      basePrice: 350,
+      pricePill: 'BUY 100 @ Rs.350',
+      priceRange: '100 from ₹350.00',
+      pricePerUnit: '(₹3.50 each)',
+      rating: 4.7,
+      reviewCount: 410,
+      image: 'assets/images/products/custom-envelopes.jpg',
+      mockType: 'card',
+      dimensions: '9.5" × 4.25" (#10 / DL Commercial Size)',
+      customizable: true,
+      popular: true,
+      quantities: [
+        { qty: 100, price: 350, perUnit: '3.50', popular: true },
+        { qty: 250, price: 780, perUnit: '3.12' },
+        { qty: 500, price: 1400, perUnit: '2.80' },
+        { qty: 1000, price: 2400, perUnit: '2.40' }
+      ],
+      paperStocks: [{ id: 'white-bond-100', name: '100 GSM Executive White Bond', gsm: '100 GSM', priceMult: 1.0, desc: 'Opaque privacy paper' }],
+      corners: [{ id: 'self-seal', name: 'Peel & Seal Self-Adhesive Flap', priceAdd: 0 }],
+      finishes: [{ id: 'standard', name: 'Smooth Matte Finish', priceAdd: 0 }],
+      sides: [{ id: 'front-flap', name: 'Front Face + Flap Branding Print', priceMult: 1.0 }]
+    },
+    {
+      id: 'digital-paper-printing',
+      name: 'Digital Paper Printing',
+      fullName: 'Commercial High-Definition Digital Color Paper Printing',
+      category: 'digital-paper-printing',
+      categoryLabel: 'Digital Paper Printing',
+      subtitle: 'Ultra-crisp 2400 DPI digital press printing for color proofs, certificates & proposals',
+      basePrice: 150,
+      pricePill: 'BUY 50 @ Rs.150',
+      priceRange: '50 from ₹150.00',
+      pricePerUnit: '(₹3.00 per sheet)',
+      rating: 4.9,
+      reviewCount: 730,
+      image: 'assets/images/products/digital-paper-printing.jpg',
+      mockType: 'card',
+      dimensions: 'A4 / A3 / 12" × 18" Digital Press Sheets',
+      customizable: true,
+      popular: true,
+      quantities: [
+        { qty: 50, price: 150, perUnit: '3.00', popular: true },
+        { qty: 100, price: 260, perUnit: '2.60' },
+        { qty: 250, price: 580, perUnit: '2.32' },
+        { qty: 500, price: 1050, perUnit: '2.10' }
+      ],
+      paperStocks: [
+        { id: 'digital-gloss-170', name: '170 GSM Digital Gloss Paper', gsm: '170 GSM', priceMult: 1.0, desc: 'Vibrant photo-realistic color reproduction' },
+        { id: 'digital-matte-250', name: '250 GSM Heavy Digital Cardstock', gsm: '250 GSM', priceMult: 1.3, desc: 'Sturdy presentation weight' }
+      ],
+      corners: [{ id: 'square', name: 'Precision Guillotine Cut', priceAdd: 0 }],
+      finishes: [{ id: 'standard', name: 'High-Luster Digital Toner Finish', priceAdd: 0 }],
+      sides: [{ id: 'single-sided', name: 'Single-Sided Print', priceMult: 1.0 }, { id: 'double-sided', name: 'Double-Sided Print', priceMult: 1.45 }]
+    },
+    {
+      id: 'atm-pouches',
+      name: 'ATM Pouches',
+      fullName: 'Custom Printed ATM Card Sleeves & Bank Card Pouches',
+      category: 'atm-pouches',
+      categoryLabel: 'ATM Pouches',
+      subtitle: 'Protective plastic vinyl & coated paper sleeves for debit cards with custom branding',
+      basePrice: 280,
+      pricePill: 'BUY 100 @ Rs.280',
+      priceRange: '100 from ₹280.00',
+      pricePerUnit: '(₹2.80 each)',
+      rating: 4.8,
+      reviewCount: 360,
+      image: 'assets/images/products/atm-pouches.jpg',
+      mockType: 'card',
+      dimensions: 'Standard ISO Card Size (9.2 cm × 6.2 cm with Thumb Notch)',
+      customizable: true,
+      popular: true,
+      quantities: [
+        { qty: 100, price: 280, perUnit: '2.80', popular: true },
+        { qty: 250, price: 620, perUnit: '2.48' },
+        { qty: 500, price: 1100, perUnit: '2.20' },
+        { qty: 1000, price: 1900, perUnit: '1.90' }
+      ],
+      paperStocks: [
+        { id: 'poly-pvc', name: 'Waterproof Plastic PVC Vinyl Pouch', gsm: '220 Micron', priceMult: 1.0, desc: 'Tearproof, waterproof flexible plastic' }
+      ],
+      corners: [{ id: 'thumb-cut', name: 'Curved Thumb-Notch for Easy Card Access', priceAdd: 0 }],
+      finishes: [{ id: 'matte-anti-scratch', name: 'Anti-Scratch Matte Coat', priceAdd: 0 }],
+      sides: [{ id: 'double-sided', name: 'Front & Back Full Color Branding', priceMult: 1.0 }]
+    },
+    {
+      id: 'bill-books',
+      name: 'Bill Books',
+      fullName: 'Carbonless Duplicate & Triplicate Cash Memo Bill Books',
+      category: 'bill-books',
+      categoryLabel: 'Bill Books',
+      subtitle: 'Sequential numbering, clean perforation lines, binding cloth spine & carbonless instant copy paper',
+      basePrice: 320,
+      pricePill: 'BUY 5 Books @ Rs.320',
+      priceRange: '5 Books from ₹320.00',
+      pricePerUnit: '(₹64.00 per book · 50 sets each)',
+      rating: 4.9,
+      reviewCount: 480,
+      image: 'assets/images/products/bill-books.jpg',
+      mockType: 'card',
+      dimensions: '1/8 Demy Size (18 cm × 11.5 cm) or 1/6 Size',
+      customizable: true,
+      popular: true,
+      quantities: [
+        { qty: 5, price: 320, perUnit: '64.00', popular: true },
+        { qty: 10, price: 580, perUnit: '58.00' },
+        { qty: 25, price: 1350, perUnit: '54.00' },
+        { qty: 50, price: 2500, perUnit: '50.00' }
+      ],
+      paperStocks: [
+        { id: 'carbonless-duplicate', name: 'Carbonless 2-Ply (White/Yellow Copy)', gsm: '56 GSM NCR', priceMult: 1.0, desc: 'Instant clean copy without messy carbon paper' }
+      ],
+      corners: [{ id: 'perforated', name: 'Micro-Perforated Tear-Off Pages', priceAdd: 0 }],
+      finishes: [{ id: 'numbered', name: 'Sequential Red Ink Numbering Included', priceAdd: 0 }],
+      sides: [{ id: 'single-sided', name: 'Single-Sided Print', priceMult: 1.0 }]
+    },
+    {
+      id: 'stickers-labels',
+      name: 'Stickers & Labels',
+      fullName: 'Waterproof Die-Cut Stickers & Custom Product Labels',
+      category: 'stickers-labels',
+      categoryLabel: 'Stickers & Labels',
+      subtitle: 'Strong adhesive peel-and-stick labels for packaging, bottles & merchandise',
+      basePrice: 250,
+      pricePill: 'BUY 100 @ Rs.250',
+      priceRange: '100 from ₹250.00',
+      pricePerUnit: '(₹2.50 each)',
+      rating: 4.8,
+      reviewCount: 890,
+      image: 'assets/images/products/stickers.jpg',
+      mockType: 'card',
+      dimensions: '2" × 2" (Round, Square, or Custom Shape)',
+      customizable: true,
+      popular: true,
+      quantities: [
+        { qty: 100, price: 250, perUnit: '2.50', popular: true },
+        { qty: 250, price: 550, perUnit: '2.20' },
+        { qty: 500, price: 950, perUnit: '1.90' },
+        { qty: 1000, price: 1650, perUnit: '1.65' }
+      ],
+      paperStocks: [
+        { id: 'vinyl-gloss', name: 'Waterproof White Gloss Vinyl', gsm: '120 Micron', priceMult: 1.0, desc: 'Oil-resistant, outdoor durable adhesive' }
+      ],
+      corners: [{ id: 'die-cut', name: 'Custom Contour Die-Cut', priceAdd: 0 }],
+      finishes: [{ id: 'gloss', name: 'UV Protective Gloss', priceAdd: 0 }],
+      sides: [{ id: 'single-sided', name: 'Front Adhesive Print', priceMult: 1.0 }]
+    },
+    {
+      id: 'custom-pens',
+      name: 'Pens',
+      fullName: 'Custom Branded Promotional Ballpoint Pens',
+      category: 'pens',
+      categoryLabel: 'Pens',
+      subtitle: 'Smooth writing 0.7mm German ink refill with vibrant UV silk-screen logo printing',
+      basePrice: 350,
+      pricePill: 'BUY 25 @ Rs.350',
+      priceRange: '25 from ₹350.00',
+      pricePerUnit: '(₹14.00 each)',
+      rating: 4.6,
+      reviewCount: 410,
+      image: 'assets/images/products/custom-pens.jpg',
+      mockType: 'card',
+      dimensions: 'Standard Pen · 40 mm × 8 mm Print Area',
+      customizable: true,
+      popular: true,
+      quantities: [
+        { qty: 25, price: 350, perUnit: '14.00', popular: true },
+        { qty: 50, price: 620, perUnit: '12.40' },
+        { qty: 100, price: 1100, perUnit: '11.00' },
+        { qty: 250, price: 2400, perUnit: '9.60' }
+      ],
+      paperStocks: [
+        { id: 'matte-barrel', name: 'Soft-Touch Matte Barrel with Chrome Clip', gsm: 'Plastic/Metal', priceMult: 1.0, desc: 'Ergonomic comfortable grip' }
+      ],
+      corners: [{ id: 'standard', name: 'Retractable Click Mechanism', priceAdd: 0 }],
+      finishes: [{ id: 'blue-ink', name: 'Blue German Ink 0.7mm', priceAdd: 0 }],
+      sides: [{ id: 'single-side', name: 'Barrel Screen Print', priceMult: 1.0 }]
     }
   ],
 

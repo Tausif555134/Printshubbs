@@ -563,7 +563,7 @@
       <!-- Search Input Container -->
       <div class="flex-grow max-w-2xl relative mx-2 hidden sm:block">
         <div class="relative">
-          <input id="global-search-input" aria-label="Search" class="w-full pl-4 pr-11 py-2.5 text-sm rounded-lg border border-black bg-white shadow-inner outline-none transition placeholder:text-[#8c8c8c]" placeholder="Search all products, business cards, t-shirts..." type="search" autocomplete="off" />
+          <input id="global-search-input" aria-label="Search" class="w-full pl-4 pr-11 py-2.5 text-sm rounded-lg border border-black bg-white shadow-inner outline-none transition placeholder:text-[#8c8c8c]" placeholder="Search visiting cards, flex print, pamphlets, files, shadi cards..." type="search" autocomplete="off" />
           <button aria-label="Execute search" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#595959] hover:text-black transition-colors">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
               <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
@@ -716,6 +716,196 @@
         </div>
       </section>
       <!-- END: TrustStrip -->
+
+      <!-- BEGIN: PrintingServicesGrid (LIST OF PRINTING SERVICES - Match to Reference) -->
+      <section aria-labelledby="services-heading" class="max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-4">
+        <div class="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-[#e6e6e6] pb-4">
+          <div>
+            <h2 id="services-heading" class="text-2xl sm:text-3xl font-extrabold tracking-tight text-neutral-900 font-display uppercase drop-shadow-sm flex items-center gap-3">
+              <span>LIST OF PRINTING SERVICES</span>
+            </h2>
+            <p class="text-xs sm:text-sm text-[#595959] mt-1 font-medium">All commercial offset, digital, flex banners &amp; stationery essentials under one roof</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold border border-blue-200">
+              <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span> Complete Print Solutions
+            </span>
+          </div>
+        </div>
+
+        <!-- 6x2 Grid for 12 Services Matching User Screenshot (Cardholders Excluded) -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-5">
+          <!-- 1. VISITING CARDS -->
+          <article class="service-item-card bg-white border border-[#d9d9d9] hover:border-[#004b9a] rounded-xl p-3 flex flex-col justify-between transition-all duration-300 hover:shadow-lg group cursor-pointer" onclick="window.appRouter.navigate('catalog', 'visiting-cards')">
+            <div>
+              <div class="relative w-full h-32 sm:h-36 bg-[#f8f9fa] rounded-lg overflow-hidden mb-2.5 border border-[#ebebeb] flex items-center justify-center">
+                <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 backdrop-blur-sm text-white text-[10px] font-bold z-10">From ₹200</span>
+                <img src="assets/images/products/standard-visiting-cards.jpg" alt="Visiting Cards Printing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 img-hq" loading="lazy" />
+              </div>
+              <h3 class="text-xs sm:text-sm font-bold text-[#004b9a] group-hover:text-blue-800 text-center tracking-wide uppercase font-display">VISITING CARDS</h3>
+            </div>
+            <div class="mt-2 pt-2 border-t border-[#f0f0f0] text-center">
+              <span class="text-[11px] text-[#595959] group-hover:text-black font-semibold flex items-center justify-center gap-1">Upload &amp; Order →</span>
+            </div>
+          </article>
+
+          <!-- 2. FLEX PRINTING -->
+          <article class="service-item-card bg-white border border-[#d9d9d9] hover:border-[#004b9a] rounded-xl p-3 flex flex-col justify-between transition-all duration-300 hover:shadow-lg group cursor-pointer" onclick="window.appRouter.navigate('pdp', 'flex-printing')">
+            <div>
+              <div class="relative w-full h-32 sm:h-36 bg-[#f8f9fa] rounded-lg overflow-hidden mb-2.5 border border-[#ebebeb] flex items-center justify-center">
+                <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 backdrop-blur-sm text-white text-[10px] font-bold z-10">From ₹180</span>
+                <span class="absolute top-2 right-2 px-1.5 py-0.5 rounded bg-amber-400 text-black text-[9px] font-black z-10 uppercase">Outdoor</span>
+                <img src="assets/images/products/flex-printing.jpg" alt="Flex Banner Printing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 img-hq" loading="lazy" />
+              </div>
+              <h3 class="text-xs sm:text-sm font-bold text-[#004b9a] group-hover:text-blue-800 text-center tracking-wide uppercase font-display">FLEX PRINTING</h3>
+            </div>
+            <div class="mt-2 pt-2 border-t border-[#f0f0f0] text-center">
+              <span class="text-[11px] text-[#595959] group-hover:text-black font-semibold flex items-center justify-center gap-1">Upload &amp; Order →</span>
+            </div>
+          </article>
+
+          <!-- 3. PAMPHLET / POSTERS -->
+          <article class="service-item-card bg-white border border-[#d9d9d9] hover:border-[#004b9a] rounded-xl p-3 flex flex-col justify-between transition-all duration-300 hover:shadow-lg group cursor-pointer" onclick="window.appRouter.navigate('pdp', 'pamphlets-posters')">
+            <div>
+              <div class="relative w-full h-32 sm:h-36 bg-[#f8f9fa] rounded-lg overflow-hidden mb-2.5 border border-[#ebebeb] flex items-center justify-center">
+                <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 backdrop-blur-sm text-white text-[10px] font-bold z-10">From ₹350</span>
+                <img src="assets/images/products/flyers-brochures.jpg" alt="Pamphlet and Poster Printing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 img-hq" loading="lazy" />
+              </div>
+              <h3 class="text-xs sm:text-sm font-bold text-[#004b9a] group-hover:text-blue-800 text-center tracking-wide uppercase font-display">PAMPHLET / POSTERS</h3>
+            </div>
+            <div class="mt-2 pt-2 border-t border-[#f0f0f0] text-center">
+              <span class="text-[11px] text-[#595959] group-hover:text-black font-semibold flex items-center justify-center gap-1">Upload &amp; Order →</span>
+            </div>
+          </article>
+
+          <!-- 4. TAGS -->
+          <article class="service-item-card bg-white border border-[#d9d9d9] hover:border-[#004b9a] rounded-xl p-3 flex flex-col justify-between transition-all duration-300 hover:shadow-lg group cursor-pointer" onclick="window.appRouter.navigate('pdp', 'tags')">
+            <div>
+              <div class="relative w-full h-32 sm:h-36 bg-[#f8f9fa] rounded-lg overflow-hidden mb-2.5 border border-[#ebebeb] flex items-center justify-center">
+                <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 backdrop-blur-sm text-white text-[10px] font-bold z-10">From ₹220</span>
+                <img src="assets/images/products/tags.jpg" alt="Custom Clothing Tags Printing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 img-hq" loading="lazy" />
+              </div>
+              <h3 class="text-xs sm:text-sm font-bold text-[#004b9a] group-hover:text-blue-800 text-center tracking-wide uppercase font-display">TAGS</h3>
+            </div>
+            <div class="mt-2 pt-2 border-t border-[#f0f0f0] text-center">
+              <span class="text-[11px] text-[#595959] group-hover:text-black font-semibold flex items-center justify-center gap-1">Upload &amp; Order →</span>
+            </div>
+          </article>
+
+          <!-- 5. FILES -->
+          <article class="service-item-card bg-white border border-[#d9d9d9] hover:border-[#004b9a] rounded-xl p-3 flex flex-col justify-between transition-all duration-300 hover:shadow-lg group cursor-pointer" onclick="window.appRouter.navigate('pdp', 'office-files')">
+            <div>
+              <div class="relative w-full h-32 sm:h-36 bg-[#f8f9fa] rounded-lg overflow-hidden mb-2.5 border border-[#ebebeb] flex items-center justify-center">
+                <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 backdrop-blur-sm text-white text-[10px] font-bold z-10">From ₹420</span>
+                <img src="assets/images/products/office-files.jpg" alt="Presentation Folders and Files Printing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 img-hq" loading="lazy" />
+              </div>
+              <h3 class="text-xs sm:text-sm font-bold text-[#004b9a] group-hover:text-blue-800 text-center tracking-wide uppercase font-display">FILES</h3>
+            </div>
+            <div class="mt-2 pt-2 border-t border-[#f0f0f0] text-center">
+              <span class="text-[11px] text-[#595959] group-hover:text-black font-semibold flex items-center justify-center gap-1">Upload &amp; Order →</span>
+            </div>
+          </article>
+
+          <!-- 6. LETTER HEADS -->
+          <article class="service-item-card bg-white border border-[#d9d9d9] hover:border-[#004b9a] rounded-xl p-3 flex flex-col justify-between transition-all duration-300 hover:shadow-lg group cursor-pointer" onclick="window.appRouter.navigate('pdp', 'letterheads')">
+            <div>
+              <div class="relative w-full h-32 sm:h-36 bg-[#f8f9fa] rounded-lg overflow-hidden mb-2.5 border border-[#ebebeb] flex items-center justify-center">
+                <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 backdrop-blur-sm text-white text-[10px] font-bold z-10">From ₹450</span>
+                <img src="assets/images/products/letterheads.jpg" alt="Corporate Letter Heads Printing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 img-hq" loading="lazy" />
+              </div>
+              <h3 class="text-xs sm:text-sm font-bold text-[#004b9a] group-hover:text-blue-800 text-center tracking-wide uppercase font-display">LETTER HEADS</h3>
+            </div>
+            <div class="mt-2 pt-2 border-t border-[#f0f0f0] text-center">
+              <span class="text-[11px] text-[#595959] group-hover:text-black font-semibold flex items-center justify-center gap-1">Upload &amp; Order →</span>
+            </div>
+          </article>
+
+          <!-- 7. ENVELOPES -->
+          <article class="service-item-card bg-white border border-[#d9d9d9] hover:border-[#004b9a] rounded-xl p-3 flex flex-col justify-between transition-all duration-300 hover:shadow-lg group cursor-pointer" onclick="window.appRouter.navigate('pdp', 'custom-envelopes')">
+            <div>
+              <div class="relative w-full h-32 sm:h-36 bg-[#f8f9fa] rounded-lg overflow-hidden mb-2.5 border border-[#ebebeb] flex items-center justify-center">
+                <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 backdrop-blur-sm text-white text-[10px] font-bold z-10">From ₹350</span>
+                <img src="assets/images/products/custom-envelopes.jpg" alt="Business Envelopes Printing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 img-hq" loading="lazy" />
+              </div>
+              <h3 class="text-xs sm:text-sm font-bold text-[#004b9a] group-hover:text-blue-800 text-center tracking-wide uppercase font-display">ENVELOPES</h3>
+            </div>
+            <div class="mt-2 pt-2 border-t border-[#f0f0f0] text-center">
+              <span class="text-[11px] text-[#595959] group-hover:text-black font-semibold flex items-center justify-center gap-1">Upload &amp; Order →</span>
+            </div>
+          </article>
+
+          <!-- 8. DIGITAL PAPER PRINTING -->
+          <article class="service-item-card bg-white border border-[#d9d9d9] hover:border-[#004b9a] rounded-xl p-3 flex flex-col justify-between transition-all duration-300 hover:shadow-lg group cursor-pointer" onclick="window.appRouter.navigate('pdp', 'digital-paper-printing')">
+            <div>
+              <div class="relative w-full h-32 sm:h-36 bg-[#f8f9fa] rounded-lg overflow-hidden mb-2.5 border border-[#ebebeb] flex items-center justify-center">
+                <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 backdrop-blur-sm text-white text-[10px] font-bold z-10">From ₹150</span>
+                <img src="assets/images/products/digital-paper-printing.jpg" alt="Commercial Digital Paper Printing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 img-hq" loading="lazy" />
+              </div>
+              <h3 class="text-xs sm:text-sm font-bold text-[#004b9a] group-hover:text-blue-800 text-center tracking-wide uppercase font-display">DIGITAL PAPER PRINTING</h3>
+            </div>
+            <div class="mt-2 pt-2 border-t border-[#f0f0f0] text-center">
+              <span class="text-[11px] text-[#595959] group-hover:text-black font-semibold flex items-center justify-center gap-1">Upload &amp; Order →</span>
+            </div>
+          </article>
+
+          <!-- 9. ATM POUCHES -->
+          <article class="service-item-card bg-white border border-[#d9d9d9] hover:border-[#004b9a] rounded-xl p-3 flex flex-col justify-between transition-all duration-300 hover:shadow-lg group cursor-pointer" onclick="window.appRouter.navigate('pdp', 'atm-pouches')">
+            <div>
+              <div class="relative w-full h-32 sm:h-36 bg-[#f8f9fa] rounded-lg overflow-hidden mb-2.5 border border-[#ebebeb] flex items-center justify-center">
+                <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 backdrop-blur-sm text-white text-[10px] font-bold z-10">From ₹280</span>
+                <img src="assets/images/products/atm-pouches.jpg" alt="Custom ATM Card Pouches Printing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 img-hq" loading="lazy" />
+              </div>
+              <h3 class="text-xs sm:text-sm font-bold text-[#004b9a] group-hover:text-blue-800 text-center tracking-wide uppercase font-display">ATM POUCHES</h3>
+            </div>
+            <div class="mt-2 pt-2 border-t border-[#f0f0f0] text-center">
+              <span class="text-[11px] text-[#595959] group-hover:text-black font-semibold flex items-center justify-center gap-1">Upload &amp; Order →</span>
+            </div>
+          </article>
+
+          <!-- 10. BILL BOOKS -->
+          <article class="service-item-card bg-white border border-[#d9d9d9] hover:border-[#004b9a] rounded-xl p-3 flex flex-col justify-between transition-all duration-300 hover:shadow-lg group cursor-pointer" onclick="window.appRouter.navigate('pdp', 'bill-books')">
+            <div>
+              <div class="relative w-full h-32 sm:h-36 bg-[#f8f9fa] rounded-lg overflow-hidden mb-2.5 border border-[#ebebeb] flex items-center justify-center">
+                <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 backdrop-blur-sm text-white text-[10px] font-bold z-10">From ₹320</span>
+                <img src="assets/images/products/bill-books.jpg" alt="Carbonless Bill Books Printing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 img-hq" loading="lazy" />
+              </div>
+              <h3 class="text-xs sm:text-sm font-bold text-[#004b9a] group-hover:text-blue-800 text-center tracking-wide uppercase font-display">BILL BOOKS</h3>
+            </div>
+            <div class="mt-2 pt-2 border-t border-[#f0f0f0] text-center">
+              <span class="text-[11px] text-[#595959] group-hover:text-black font-semibold flex items-center justify-center gap-1">Upload &amp; Order →</span>
+            </div>
+          </article>
+
+          <!-- 11. STICKERS & LABELS -->
+          <article class="service-item-card bg-white border border-[#d9d9d9] hover:border-[#004b9a] rounded-xl p-3 flex flex-col justify-between transition-all duration-300 hover:shadow-lg group cursor-pointer" onclick="window.appRouter.navigate('pdp', 'stickers-labels')">
+            <div>
+              <div class="relative w-full h-32 sm:h-36 bg-[#f8f9fa] rounded-lg overflow-hidden mb-2.5 border border-[#ebebeb] flex items-center justify-center">
+                <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 backdrop-blur-sm text-white text-[10px] font-bold z-10">From ₹250</span>
+                <img src="assets/images/products/stickers.jpg" alt="Custom Stickers and Labels Printing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 img-hq" loading="lazy" />
+              </div>
+              <h3 class="text-xs sm:text-sm font-bold text-[#004b9a] group-hover:text-blue-800 text-center tracking-wide uppercase font-display">STICKERS &amp; LABELS</h3>
+            </div>
+            <div class="mt-2 pt-2 border-t border-[#f0f0f0] text-center">
+              <span class="text-[11px] text-[#595959] group-hover:text-black font-semibold flex items-center justify-center gap-1">Upload &amp; Order →</span>
+            </div>
+          </article>
+
+          <!-- 12. PENS -->
+          <article class="service-item-card bg-white border border-[#d9d9d9] hover:border-[#004b9a] rounded-xl p-3 flex flex-col justify-between transition-all duration-300 hover:shadow-lg group cursor-pointer" onclick="window.appRouter.navigate('pdp', 'custom-pens')">
+            <div>
+              <div class="relative w-full h-32 sm:h-36 bg-[#f8f9fa] rounded-lg overflow-hidden mb-2.5 border border-[#ebebeb] flex items-center justify-center">
+                <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 backdrop-blur-sm text-white text-[10px] font-bold z-10">From ₹350</span>
+                <img src="assets/images/products/custom-pens.jpg" alt="Promotional Pens Printing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 img-hq" loading="lazy" />
+              </div>
+              <h3 class="text-xs sm:text-sm font-bold text-[#004b9a] group-hover:text-blue-800 text-center tracking-wide uppercase font-display">PENS</h3>
+            </div>
+            <div class="mt-2 pt-2 border-t border-[#f0f0f0] text-center">
+              <span class="text-[11px] text-[#595959] group-hover:text-black font-semibold flex items-center justify-center gap-1">Upload &amp; Order →</span>
+            </div>
+          </article>
+        </div>
+      </section>
+      <!-- END: PrintingServicesGrid -->
 
       <!-- BEGIN: ShadiCardsSection (Indian Wedding / Shubh Vivah Invitations Showcase) -->
       <section aria-labelledby="shadi-cards-heading" class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-4">
@@ -934,6 +1124,38 @@
               <img alt="Floral Pastel Deckled Shadi Card" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/floral-pastel-shadi-card.jpg" />
             </div>
             <h3 class="text-xs sm:text-sm font-bold text-black">Floral Pastel Shadi Card</h3>
+          </article>
+          <!-- Item 9: Flex Printing -->
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'flex-printing')">
+            <span class="product-price-pill self-start mb-2">FROM Rs.180</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
+              <img alt="Outdoor Flex Banner Printing" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/flex-printing.jpg" />
+            </div>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Flex Banner Printing</h3>
+          </article>
+          <!-- Item 10: Pamphlet / Posters -->
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'pamphlets-posters')">
+            <span class="product-price-pill self-start mb-2">BUY 100 @ Rs.350</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
+              <img alt="Pamphlet and Poster Printing" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/flyers-brochures.jpg" />
+            </div>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Pamphlet / Posters</h3>
+          </article>
+          <!-- Item 11: Bill Books -->
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'bill-books')">
+            <span class="product-price-pill self-start mb-2">BUY 5 @ Rs.320</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
+              <img alt="Carbonless Bill Books Printing" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/bill-books.jpg" />
+            </div>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Carbonless Bill Books</h3>
+          </article>
+          <!-- Item 12: Letter Heads -->
+          <article class="category-scroll-item product-card w-40 sm:w-48 bg-white border border-[#d9d9d9] rounded-lg p-3 hover:border-black flex flex-col cursor-pointer" onclick="window.appRouter.navigate('pdp', 'letterheads')">
+            <span class="product-price-pill self-start mb-2">BUY 100 @ Rs.450</span>
+            <div class="w-full h-36 bg-[#f3f3f3] rounded flex items-center justify-center mb-3 overflow-hidden">
+              <img alt="Corporate Letter Heads Printing" class="w-full h-full object-cover img-hq" loading="lazy" decoding="async" src="assets/images/products/letterheads.jpg" />
+            </div>
+            <h3 class="text-xs sm:text-sm font-bold text-black">Corporate Letter Heads</h3>
           </article>
         </div>
       </section>

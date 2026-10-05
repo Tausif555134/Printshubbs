@@ -577,6 +577,13 @@
       <!-- Right Header Actions -->
       <nav aria-label="Customer quick actions" class="flex items-center gap-3 sm:gap-4 text-black text-xs font-bold">
         <!-- Admin Panel -->
+        <!-- Shadi Cards Button -->
+        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-50 border border-amber-300 text-amber-900 hover:bg-amber-100 transition-all shadow-sm cursor-pointer group" href="javascript:void(0)" onclick="window.appRouter.navigate('pdp', 'royal-shadi-card')" title="Explore Luxury Shadi & Wedding Invitations">
+          <span class="text-sm">💍</span>
+          <span class="text-xs font-bold tracking-wide">Shadi Cards</span>
+        </a>
+
+        <!-- Atelier Admin Panel (Single unified admin portal) -->
         <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black text-white hover:bg-neutral-800 transition-all shadow-sm cursor-pointer group" href="javascript:void(0)" onclick="window.appRouter.navigate('admin')" title="Access Atelier Admin Panel">
           <svg class="w-4 h-4 text-emerald-400 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
@@ -708,6 +715,121 @@
         </div>
       </section>
       <!-- END: TrustStrip -->
+
+      <!-- BEGIN: ShadiCardsSection (Indian Wedding / Shubh Vivah Invitations Showcase) -->
+      <section aria-labelledby="shadi-cards-heading" class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-4">
+        <!-- Royal Wedding Banner -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-amber-950 via-neutral-900 to-red-950 border border-amber-500/40 p-6 sm:p-8 text-white shadow-xl mb-8">
+          <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div class="max-w-2xl">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-bold uppercase tracking-wider mb-3">
+                <span>✨ Shubh Vivah Exclusive Collection</span>
+              </div>
+              <h2 id="shadi-cards-heading" class="text-2xl sm:text-3xl lg:text-4xl font-bold font-display tracking-tight text-white mb-2">
+                Royal Shadi &amp; Wedding Cards
+              </h2>
+              <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+                Handcrafted invitations featuring 3D embossed gold foil, laser-cut jali, rich velvet mounted boards, and personalized wedding matter in Hindi, English, and regional languages.
+              </p>
+              <div class="mt-4 flex flex-wrap gap-4 text-xs text-amber-200/90 font-medium">
+                <span class="flex items-center gap-1.5">✓ 300 DPI Pre-Press Proof</span>
+                <span class="flex items-center gap-1.5">✓ Boxed Envelopes Included</span>
+                <span class="flex items-center gap-1.5">✓ Custom Couple Monogram Wax Seal</span>
+              </div>
+            </div>
+
+            <div class="flex-shrink-0 flex flex-col sm:flex-row gap-3">
+              <button onclick="window.appRouter.navigate('pdp', 'royal-shadi-card')" class="px-5 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-bold text-xs sm:text-sm shadow-lg shadow-amber-400/20 transition active:scale-95 flex items-center justify-center gap-2 cursor-pointer">
+                <span>Customize Shadi Card</span>
+                <span>→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Feature Cards Showcase -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Card 1: Royal Velvet Shadi Card -->
+          <article class="bg-white border border-[#d9d9d9] hover:border-black rounded-xl p-4 transition-all duration-300 hover:shadow-xl flex flex-col justify-between group cursor-pointer" onclick="window.appRouter.navigate('pdp', 'royal-shadi-card')">
+            <div>
+              <div class="relative w-full h-64 bg-[#f9f9f9] rounded-lg overflow-hidden mb-4 border border-[#e6e6e6]">
+                <span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-black text-white text-[10px] font-bold uppercase tracking-wider z-10">BUY 50 @ Rs.450</span>
+                <span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold uppercase tracking-wider z-10">Royal Velvet</span>
+                <img src="assets/images/products/royal-shadi-card.jpg" alt="Royal Velvet Shadi Card" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 img-hq" />
+              </div>
+              <div class="flex items-center gap-1 text-[11px] text-black font-bold mb-1">
+                <span class="text-[#eab308]">★★★★★</span>
+                <span>4.9</span>
+                <span class="text-[#595959] font-normal">(842 reviews)</span>
+              </div>
+              <h3 class="font-bold text-base text-black group-hover:underline font-display">Royal Velvet Shubh Vivah Shadi Card</h3>
+              <p class="text-xs text-[#595959] mt-1 line-clamp-2">Deep crimson velvet cardstock with 3D embossed gold foil mandala, silk tassel &amp; matching envelope.</p>
+              <div class="mt-2 text-[11px] text-[#595959] font-mono-spec">Dimensions: 19 cm × 14 cm · 600 GSM</div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[#e6e6e6] flex items-center justify-between">
+              <div>
+                <span class="text-xs text-[#595959] block">50 from</span>
+                <span class="text-sm font-bold text-black">₹450.00 <span class="text-[10px] text-[#595959] font-normal">(₹9.00 each)</span></span>
+              </div>
+              <span class="px-3.5 py-1.5 bg-black text-white group-hover:bg-neutral-800 rounded-lg text-xs font-bold transition flex items-center gap-1">Customize →</span>
+            </div>
+          </article>
+
+          <!-- Card 2: Luxury Gold Laser-Cut Shadi Card -->
+          <article class="bg-white border border-[#d9d9d9] hover:border-black rounded-xl p-4 transition-all duration-300 hover:shadow-xl flex flex-col justify-between group cursor-pointer" onclick="window.appRouter.navigate('pdp', 'gold-laser-shadi-card')">
+            <div>
+              <div class="relative w-full h-64 bg-[#f9f9f9] rounded-lg overflow-hidden mb-4 border border-[#e6e6e6]">
+                <span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-black text-white text-[10px] font-bold uppercase tracking-wider z-10">BUY 50 @ Rs.520</span>
+                <span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold uppercase tracking-wider z-10">Laser Cut</span>
+                <img src="assets/images/products/gold-laser-shadi-card.jpg" alt="Luxury Gold Laser-Cut Shadi Card" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 img-hq" />
+              </div>
+              <div class="flex items-center gap-1 text-[11px] text-black font-bold mb-1">
+                <span class="text-[#eab308]">★★★★★</span>
+                <span>4.9</span>
+                <span class="text-[#595959] font-normal">(624 reviews)</span>
+              </div>
+              <h3 class="font-bold text-base text-black group-hover:underline font-display">Luxury Gold Laser-Cut Shadi Card</h3>
+              <p class="text-xs text-[#595959] mt-1 line-clamp-2">Champagne gold shimmer cardstock with intricate peacock jali gatefold &amp; maroon satin ribbon bow.</p>
+              <div class="mt-2 text-[11px] text-[#595959] font-mono-spec">Dimensions: 21 cm × 15 cm · 450 GSM</div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[#e6e6e6] flex items-center justify-between">
+              <div>
+                <span class="text-xs text-[#595959] block">50 from</span>
+                <span class="text-sm font-bold text-black">₹520.00 <span class="text-[10px] text-[#595959] font-normal">(₹10.40 each)</span></span>
+              </div>
+              <span class="px-3.5 py-1.5 bg-black text-white group-hover:bg-neutral-800 rounded-lg text-xs font-bold transition flex items-center gap-1">Customize →</span>
+            </div>
+          </article>
+
+          <!-- Card 3: Floral Pastel Wax-Seal Shadi Card -->
+          <article class="bg-white border border-[#d9d9d9] hover:border-black rounded-xl p-4 transition-all duration-300 hover:shadow-xl flex flex-col justify-between group cursor-pointer" onclick="window.appRouter.navigate('pdp', 'floral-pastel-shadi-card')">
+            <div>
+              <div class="relative w-full h-64 bg-[#f9f9f9] rounded-lg overflow-hidden mb-4 border border-[#e6e6e6]">
+                <span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-black text-white text-[10px] font-bold uppercase tracking-wider z-10">BUY 50 @ Rs.380</span>
+                <span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-rose-100 text-rose-900 border border-rose-300 text-[10px] font-bold uppercase tracking-wider z-10">Handmade Deckle</span>
+                <img src="assets/images/products/floral-pastel-shadi-card.jpg" alt="Floral Pastel Wax-Seal Shadi Card" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 img-hq" />
+              </div>
+              <div class="flex items-center gap-1 text-[11px] text-black font-bold mb-1">
+                <span class="text-[#eab308]">★★★★★</span>
+                <span>4.8</span>
+                <span class="text-[#595959] font-normal">(512 reviews)</span>
+              </div>
+              <h3 class="font-bold text-base text-black group-hover:underline font-display">Floral Pastel Wax-Seal Shadi Card</h3>
+              <p class="text-xs text-[#595959] mt-1 line-clamp-2">Blush pink deckle-edge handmade cotton paper, gold floral foil stamping &amp; customized monogram wax seal.</p>
+              <div class="mt-2 text-[11px] text-[#595959] font-mono-spec">Dimensions: 18 cm × 13 cm · 350 GSM</div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[#e6e6e6] flex items-center justify-between">
+              <div>
+                <span class="text-xs text-[#595959] block">50 from</span>
+                <span class="text-sm font-bold text-black">₹380.00 <span class="text-[10px] text-[#595959] font-normal">(₹7.60 each)</span></span>
+              </div>
+              <span class="px-3.5 py-1.5 bg-black text-white group-hover:bg-neutral-800 rounded-lg text-xs font-bold transition flex items-center gap-1">Customize →</span>
+            </div>
+          </article>
+        </div>
+      </section>
+      <!-- END: ShadiCardsSection -->
 
       <!-- BEGIN: MostPopularProducts (Vistaprint India layout) -->
       <section aria-labelledby="popular-heading" class="max-w-7xl mx-auto px-4 sm:px-6 py-6">

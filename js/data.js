@@ -14,6 +14,136 @@ const PRINTSHUBB_DATA = {
   ],
 
   products: [
+    // --- 0. ROYAL SHADI CARDS & WEDDING INVITATIONS ---
+    {
+      id: 'royal-shadi-card',
+      name: 'Royal Velvet Shadi Card',
+      fullName: 'Royal Velvet Shubh Vivah Shadi Card',
+      category: 'shadi-cards',
+      categoryLabel: 'Shadi & Wedding Cards',
+      subtitle: 'Deep crimson velvet cardstock with 3D embossed gold foil mandala, silk tassel & boxed envelope',
+      basePrice: 450,
+      pricePill: 'BUY 50 @ Rs.450',
+      priceRange: '50 from ₹450.00',
+      pricePerUnit: '(₹9.00 each)',
+      rating: 4.9,
+      reviewCount: 842,
+      image: 'assets/images/products/royal-shadi-card.jpg',
+      mockType: 'card',
+      dimensions: '19 cm × 14 cm',
+      customizable: true,
+      popular: true,
+      trending: true,
+      quantities: [
+        { qty: 50, price: 450, perUnit: '9.00', popular: true },
+        { qty: 100, price: 850, perUnit: '8.50', discount: '5% OFF' },
+        { qty: 250, price: 1950, perUnit: '7.80', discount: '12% OFF' },
+        { qty: 500, price: 3600, perUnit: '7.20', discount: '20% OFF' },
+        { qty: 1000, price: 6500, perUnit: '6.50', discount: '28% OFF' }
+      ],
+      paperStocks: [
+        { id: 'royal-velvet-600', name: 'Royal Crimson Velvet Mounted Cardstock', gsm: '600 GSM', priceMult: 1.0, desc: 'Ultra-plush velvet finish with gold foil border and matching envelope' },
+        { id: 'shimmer-gold-400', name: 'Imperial Metallic Gold Shimmer Stock', gsm: '400 GSM', priceMult: 1.15, desc: 'High-sheen metallic paper reflecting warm ambient light' },
+        { id: 'deckled-cotton-350', name: 'Artisanal Handmade Cotton Deckled Paper', gsm: '350 GSM', priceMult: 1.25, desc: 'Eco-conscious textured vintage cotton paper with feathered edges' }
+      ],
+      corners: [
+        { id: 'ornate-cut', name: 'Ornate Royal Scalloped Corners', priceAdd: 0 },
+        { id: 'classic-square', name: 'Traditional 90° Square Cut', priceAdd: 0 }
+      ],
+      finishes: [
+        { id: 'embossed-gold-foil', name: '3D Embossed Metallic Gold Foil Stamping', priceAdd: 0, desc: 'Gleaming 3D raised gold leaf foil detailing on auspicious shlokas & mandalas' },
+        { id: 'rose-gold-foil', name: 'Raised Rose Gold Metallic Foil', priceAdd: 60, desc: 'Contemporary romantic rose gold metallic finish' },
+        { id: 'antique-copper-foil', name: 'Antique Bronze & Copper Foil', priceAdd: 60, desc: 'Regal vintage metallic accent' }
+      ],
+      sides: [
+        { id: 'single-sided', name: 'Single Royal Insert Card', priceMult: 1.0 },
+        { id: 'double-sided', name: 'Multi-Function Program (Mehendi, Sangeet & Vivah)', priceMult: 1.4 }
+      ]
+    },
+    {
+      id: 'gold-laser-shadi-card',
+      name: 'Luxury Laser-Cut Shadi Card',
+      fullName: 'Luxury Gold Laser-Cut Shubh Vivah Shadi Card',
+      category: 'shadi-cards',
+      categoryLabel: 'Shadi & Wedding Cards',
+      subtitle: 'Champagne gold shimmer cardstock with intricate peacock jali gatefold & satin ribbon bow',
+      basePrice: 520,
+      pricePill: 'BUY 50 @ Rs.520',
+      priceRange: '50 from ₹520.00',
+      pricePerUnit: '(₹10.40 each)',
+      rating: 4.9,
+      reviewCount: 624,
+      image: 'assets/images/products/gold-laser-shadi-card.jpg',
+      mockType: 'card',
+      dimensions: '21 cm × 15 cm',
+      customizable: true,
+      popular: true,
+      trending: true,
+      quantities: [
+        { qty: 50, price: 520, perUnit: '10.40', popular: true },
+        { qty: 100, price: 980, perUnit: '9.80', discount: '6% OFF' },
+        { qty: 250, price: 2250, perUnit: '9.00', discount: '14% OFF' },
+        { qty: 500, price: 4200, perUnit: '8.40', discount: '20% OFF' },
+        { qty: 1000, price: 7800, perUnit: '7.80', discount: '25% OFF' }
+      ],
+      paperStocks: [
+        { id: 'champagne-shimmer-450', name: 'Champagne Gold Metallic Shimmer', gsm: '450 GSM', priceMult: 1.0, desc: 'Intricate precision laser-cut peacock and lotus jali gatefold' },
+        { id: 'ivory-pearl-380', name: 'Royal Ivory Pearlized Cardstock', gsm: '380 GSM', priceMult: 1.1, desc: 'Lustrous pearlescent coating with soft gold undertones' }
+      ],
+      corners: [
+        { id: 'standard', name: 'Die-cut Gatefold Lace Edge', priceAdd: 0 }
+      ],
+      finishes: [
+        { id: 'gold-foil-ribbon', name: 'Gold Foil Lettering with Maroon Satin Ribbon & Seal', priceAdd: 0 },
+        { id: 'silver-foil-ribbon', name: 'Silver Foil Lettering with Emerald Satin Ribbon', priceAdd: 40 }
+      ],
+      sides: [
+        { id: 'gatefold-insert', name: 'Folded Gatefold with Central Insert', priceMult: 1.0 },
+        { id: 'three-insert-suite', name: 'Full 3-Insert Event Suite (Haldi, Sangeet, Reception)', priceMult: 1.5 }
+      ]
+    },
+    {
+      id: 'floral-pastel-shadi-card',
+      name: 'Floral Pastel Wax-Seal Shadi Card',
+      fullName: 'Bespoke Floral Pastel Shadi Card with Monogram Wax Seal',
+      category: 'shadi-cards',
+      categoryLabel: 'Shadi & Wedding Cards',
+      subtitle: 'Blush pink deckle-edge handmade cotton paper, gold floral foil stamping & customized wax seal',
+      basePrice: 380,
+      pricePill: 'BUY 50 @ Rs.380',
+      priceRange: '50 from ₹380.00',
+      pricePerUnit: '(₹7.60 each)',
+      rating: 4.8,
+      reviewCount: 512,
+      image: 'assets/images/products/floral-pastel-shadi-card.jpg',
+      mockType: 'card',
+      dimensions: '18 cm × 13 cm',
+      customizable: true,
+      popular: true,
+      trending: true,
+      quantities: [
+        { qty: 50, price: 380, perUnit: '7.60', popular: true },
+        { qty: 100, price: 720, perUnit: '7.20', discount: '5% OFF' },
+        { qty: 250, price: 1650, perUnit: '6.60', discount: '13% OFF' },
+        { qty: 500, price: 3100, perUnit: '6.20', discount: '18% OFF' },
+        { qty: 1000, price: 5800, perUnit: '5.80', discount: '24% OFF' }
+      ],
+      paperStocks: [
+        { id: 'handmade-blush-350', name: 'Handmade Blush Pink Cotton Deckle Edge Paper', gsm: '350 GSM', priceMult: 1.0, desc: 'Feathered deckled edges with natural cotton texture' },
+        { id: 'sage-green-deckle', name: 'Sage Green Artisanal Cotton Paper', gsm: '350 GSM', priceMult: 1.05, desc: 'Subtle botanical pastel tone with organic texture' }
+      ],
+      corners: [
+        { id: 'deckled', name: 'Authentic Deckled Raw Edge', priceAdd: 0 }
+      ],
+      finishes: [
+        { id: 'gold-wax-seal', name: 'Real Gold Monogram Wax Seal & Gold Leaf Foiling', priceAdd: 0 },
+        { id: 'bronze-wax-seal', name: 'Antique Bronze Wax Seal & Gold Leaf Foiling', priceAdd: 30 }
+      ],
+      sides: [
+        { id: 'single-sided', name: 'Single Invitation Card + Envelope', priceMult: 1.0 },
+        { id: 'double-sided', name: 'Invitation + Itinerary Card + Envelope', priceMult: 1.35 }
+      ]
+    },
     // --- 1. VISITING CARDS ---
     {
       id: 'standard-visiting-cards',

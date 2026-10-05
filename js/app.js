@@ -1141,16 +1141,10 @@ class PrinthubbsApp {
     let recProducts = [];
 
     if (current && current.category === 'shadi-cards') {
-      const recIds = ['royal-shadi-card', 'gold-laser-shadi-card', 'floral-pastel-shadi-card', 'custom-envelopes', 'corporate-gift-boxes', 'custom-labels'];
-      recProducts = window.PRINTSHUBB_DATA.products.filter(p => recIds.includes(p.id) && p.id !== current.id);
-    } else if (current && current.category === 'visiting-cards') {
-      const recIds = ['custom-envelopes', 'letterheads', 'self-inking-stamps', 'custom-pens', 'diary-pen-holder', 'care-clinic', 'luxury-dark-monogram'];
-      recProducts = window.PRINTSHUBB_DATA.products.filter(p => recIds.includes(p.id) && p.id !== current.id);
-    } else if (current && current.category === 'clothing-apparel') {
-      const recIds = ['winter-hoodies', 'polo-tshirts', 'embroidered-caps', 'tote-bags', 'dress-shirts'];
+      const recIds = ['royal-shadi-card', 'gold-laser-shadi-card', 'floral-pastel-shadi-card', 'luxury-dark-monogram', 'care-clinic', 'nexus-tech-startup'];
       recProducts = window.PRINTSHUBB_DATA.products.filter(p => recIds.includes(p.id) && p.id !== current.id);
     } else {
-      const recIds = ['standard-visiting-cards', 'custom-envelopes', 'photo-mugs', 'rollup-standees', 'custom-stickers'];
+      const recIds = ['royal-shadi-card', 'gold-laser-shadi-card', 'floral-pastel-shadi-card', 'luxury-dark-monogram', 'care-clinic', 'nexus-tech-startup', 'standard-visiting-cards'];
       recProducts = window.PRINTSHUBB_DATA.products.filter(p => recIds.includes(p.id) && p.id !== current.id);
     }
 

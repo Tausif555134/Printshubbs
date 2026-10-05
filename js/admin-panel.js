@@ -323,13 +323,66 @@ class AdminPanelEngine {
     }
   }
 
-  // --- PRODUCT MANAGEMENT ---
+  // --- PRODUCT MANAGEMENT & PICTURE UPLOADS ---
+  handleModalImageUpload(event) {
+    const file = event && event.target && event.target.files && event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const dataUrl = e.target.result;
+      const previewEl = document.getElementById('admin-prod-image-preview');
+      const inputEl = document.getElementById('admin-prod-image');
+      if (previewEl) previewEl.src = dataUrl;
+      if (inputEl) inputEl.value = dataUrl;
+      if (typeof window.showToast === 'function') window.showToast(`Selected photo: ${file.name}`, 'info');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  handleProductPhotoUpload(event, productId) {
+    const file = event && event.target && event.target.files && event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const dataUrl = e.target.result;
+      const product = window.PRINTSHUBB_DATA.products.find(p => p.id === productId);
+      if (product) {
+        product.image = dataUrl;
+        
+        // Persist to custom products storage
+        try {
+          const stored = localStorage.getItem(this.productsKey);
+          let customList = stored ? JSON.parse(stored) : [];
+          const existingIdx = customList.findIndex(cp => cp.id === productId);
+          if (existingIdx !== -1) {
+            customList[existingIdx].image = dataUrl;
+          } else {
+            customList.push(product);
+          }
+          localStorage.setItem(this.productsKey, JSON.stringify(customList));
+        } catch (err) {
+          console.error('Error saving updated product photo:', err);
+        }
+
+        if (typeof window.showToast === 'function') {
+          window.showToast(`Picture updated for "${product.name}"!`, 'success');
+        }
+        this.render();
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
   openAddProductModal() {
     const modalEl = document.getElementById('admin-product-modal');
     if (!modalEl) return;
     document.getElementById('admin-modal-title').textContent = 'Add New Product to Atelier Catalog';
     document.getElementById('admin-prod-form').reset();
     document.getElementById('admin-prod-id').value = '';
+    const imgPreview = document.getElementById('admin-prod-image-preview');
+    if (imgPreview) imgPreview.src = 'assets/images/products/standard-visiting-cards.jpg';
     modalEl.classList.remove('hidden');
   }
 
@@ -348,6 +401,8 @@ class AdminPanelEngine {
     document.getElementById('admin-prod-dims').value = product.dimensions || '8.9 cm × 5.1 cm';
     document.getElementById('admin-prod-subtitle').value = product.subtitle || '';
     document.getElementById('admin-prod-image').value = product.image || '';
+    const imgPreview = document.getElementById('admin-prod-image-preview');
+    if (imgPreview) imgPreview.src = product.image || 'assets/images/products/standard-visiting-cards.jpg';
     document.getElementById('admin-prod-popular').checked = !!product.popular;
 
     modalEl.classList.remove('hidden');
@@ -1098,9 +1153,15 @@ class AdminPanelEngine {
                   ${filteredProducts.map(p => `
                     <tr class="hover:bg-[#f9f9f9] transition">
                       <td class="p-3.5 flex items-center gap-3">
-                        <img src="${p.image || 'assets/images/products/standard-visiting-cards.jpg'}" class="w-10 h-10 object-contain rounded border border-[#d9d9d9] bg-white p-1" />
+                        <div class="relative group">
+                          <img src="${p.image || 'assets/images/products/standard-visiting-cards.jpg'}" class="w-12 h-12 object-contain rounded-lg border border-[#d9d9d9] bg-white p-1" />
+                          <label class="absolute inset-0 bg-black/60 text-white rounded-lg opacity-0 group-hover:opacity-100 flex items-center justify-center cursor-pointer transition text-[9px] font-bold text-center p-1" title="Upload new photo for this product">
+                            <span>Change</span>
+                            <input type="file" accept="image/*" class="hidden" onchange="window.adminEngine.handleProductPhotoUpload(event, '${p.id}')" />
+                          </label>
+                        </div>
                         <div>
-                          <div class="font-bold text-black">${p.name}</div>
+                          <div class="font-bold text-black text-xs sm:text-sm">${p.name}</div>
                           <div class="text-[10px] text-[#595959] line-clamp-1">${p.subtitle || ''}</div>
                         </div>
                       </td>
@@ -1116,6 +1177,11 @@ class AdminPanelEngine {
                         </button>
                       </td>
                       <td class="p-3.5 text-right space-x-1.5 whitespace-nowrap">
+                        <label class="px-2.5 py-1 bg-black text-white hover:bg-neutral-800 rounded font-bold text-[11px] transition inline-flex items-center gap-1 cursor-pointer">
+                          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                          <span>Upload Photo</span>
+                          <input type="file" accept="image/*" class="hidden" onchange="window.adminEngine.handleProductPhotoUpload(event, '${p.id}')" />
+                        </label>
                         <button onclick="window.adminEngine.openEditProductModal('${p.id}')" class="px-2.5 py-1 bg-[#f3f3f3] hover:bg-black hover:text-white rounded border border-[#d9d9d9] font-bold text-[11px] transition">Edit</button>
                         <button onclick="window.adminEngine.deleteProduct('${p.id}')" class="px-2 py-1 text-rose-600 hover:bg-rose-50 rounded font-bold text-[11px] transition" title="Delete Product">✕</button>
                       </td>
@@ -1299,8 +1365,19 @@ class AdminPanelEngine {
               <textarea id="admin-prod-subtitle" rows="2" placeholder="Crisp 350 GSM premium paper with professional matte or gloss finish" class="w-full px-3 py-2 border border-[#d9d9d9] rounded-lg outline-none focus:border-black"></textarea>
             </div>
             <div>
-              <label class="font-bold text-black block mb-1">Mockup Image Asset Path</label>
-              <input id="admin-prod-image" placeholder="assets/images/products/standard-visiting-cards.jpg" class="w-full px-3 py-2 border border-[#d9d9d9] rounded-lg outline-none focus:border-black" />
+              <label class="font-bold text-black block mb-1">Product Photograph / Mockup Image *</label>
+              <div class="flex items-center gap-3 p-3 bg-[#f9f9f9] border border-[#d9d9d9] rounded-xl">
+                <img id="admin-prod-image-preview" src="assets/images/products/standard-visiting-cards.jpg" class="w-16 h-16 object-contain rounded-lg border border-[#d9d9d9] bg-white p-1 flex-shrink-0" />
+                <div class="flex-grow space-y-1.5">
+                  <label class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-black text-white hover:bg-neutral-800 rounded-lg font-bold text-xs cursor-pointer shadow-sm transition">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                    <span>Upload Product Picture</span>
+                    <input type="file" id="admin-prod-file-input" accept="image/*" class="hidden" onchange="window.adminEngine.handleModalImageUpload(event)" />
+                  </label>
+                  <input type="text" id="admin-prod-image" placeholder="assets/images/products/... or upload picture above" class="w-full px-2.5 py-1 text-[11px] border border-[#d9d9d9] rounded bg-white font-mono-spec outline-none" oninput="document.getElementById('admin-prod-image-preview').src = this.value" />
+                  <p class="text-[10px] text-[#595959]">Click "Upload Product Picture" (PNG, JPG, SVG supported)</p>
+                </div>
+              </div>
             </div>
             <div class="flex items-center gap-2 pt-1">
               <input id="admin-prod-popular" type="checkbox" class="w-4 h-4 rounded text-black border-[#d9d9d9] focus:ring-0 cursor-pointer" />
